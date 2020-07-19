@@ -1,0 +1,5 @@
+PDBFILE /tmp/guerler/136192415872540.pdb
+VDWFILE vdw.radii
+STDFILE standard.data
+PROBE 1.40
+ZSLICE 0.05
