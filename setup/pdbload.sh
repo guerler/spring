@@ -65,6 +65,7 @@ for (my $i = 0; $i < $n; $i++) {
 			my $filesize = -s $pd;
 			if ($filesize > 0) {
 				cmd ("mv $pd $out");
+				print ("Completed.\n");
 			} else {
 				cmd ("rm $pd");
 			}
