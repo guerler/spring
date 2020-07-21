@@ -35,12 +35,9 @@ for (my $i = 0; $i < $n; $i++) {
     my $entry = $list[$i];
     print "Loading " . $entry . ".\n";
 
-    # length of identifier
-    my $lng = length($entry);
-
     # split
-    my $id = lc(substr($entry, 0, $lng - 1));
-    my $ch = substr($entry, $lng - 1);
+    my $id = lc(substr($entry, 0, 4));
+    my $ch = substr($entry, -1);
 
     # prepare name
     my $od = $outpath . substr($entry, 0, 2) . "/";

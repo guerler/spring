@@ -2,7 +2,7 @@
  INSTRUCTIONS TO SET UP THE SPRING-DATABASE (i.e. PDB-REPOSITORY) with scripts
 ------------------------------------------------------------------------------------------
 Part 1.A - Setting up the indexing
- 1. Generate a text file containing all proteins (pdbcode+chain) separated by lines
+ 1. Generate a text file containing all proteins (pdbcode+"_"+chain) separated by lines
  1. Download original PDB files with spring_install/pdbload.sh (if not already done)
  2. Execute spring_install/pdbchains.sh (it will show which parameters are required)
  3. Execute spring_install/pdbfasta.sh

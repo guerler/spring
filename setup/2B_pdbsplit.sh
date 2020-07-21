@@ -39,12 +39,9 @@ close (data);
 
 # loop
 for (my $i = 0; $i < $n; $i++) {
-    # length of identifier
-    my $lng = length($list[$i]);   
-
     # split
-    my $id = substr($list[$i], 0, $lng - 1);
-    my $ch = substr($list[$i], $lng - 1);
+    my $id = substr($list[$i], 0, 4);
+    my $ch = substr($list[$i], -1);
 
 	# sub path
 	my $pathsub = substr($id, 0, 2) . "/" . $id;
