@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
- INSTRUCTIONS TO SET UP THE SPRING-DATABASE (i.e. PDB-REPOSITORY) with scripts/
+ INSTRUCTIONS TO SET UP THE SPRING-DATABASE (i.e. PDB-REPOSITORY) with scripts
 ------------------------------------------------------------------------------------------
 Part 1.A - Setting up the indexing
  1. Generate a text file containing all proteins (pdbcode+chain) separated by lines
@@ -21,7 +21,7 @@ Part 1.B - Running HHsearch (read HHsearch manual in hhsearch/hhsuite if neccess
 14. Execute spring_install/make_hhmdb.sh
 
 ------------------------------------------------------------------------------------------
- INSTRUCTIONS TO SET UP A TARGET-LIBRARY (i.e. TARGET-REPOSITORY) with scripts/
+ INSTRUCTIONS TO SET UP A TARGET-LIBRARY (i.e. TARGET-REPOSITORY) with scripts
 ------------------------------------------------------------------------------------------
 Part 2.A - Setting up the target repository
  1. Download a sequence database in fasta format
