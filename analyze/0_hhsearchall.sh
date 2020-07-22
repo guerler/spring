@@ -24,12 +24,13 @@ my @files = glob($path . "*.fasta");
 for my $file(@files) {
 	my $name = fileparse($file, '\..*');
 	my $output = $path . $name . ".hhr";
+	my $hhm = $path . $name . ".hhm";
 	print("\nProcessing: " . $name . "\n");
 	if (-e $output) {
         print("Already available.\n");
         next;
     }
-	my $command = "$binary/hhsearch -i $file -d $db &";
+	my $command = "$binary/hhsearch -i $file -d $db -ohhm $hhm &";
 	print ("Executing: $command\n");
 	print "Press ENTER to continue or CTRL-C to exit.";
 	<STDIN>;
