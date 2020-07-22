@@ -12,7 +12,7 @@ if ($#ARGV + 1 < 2) {
 }
 
 # maximum number of chains
-my $MAXCHAINS = 50;
+my $MAXCHAINS = 25;
 
 # read path to files
 my $inp = $ARGV[0];
