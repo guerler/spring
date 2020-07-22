@@ -1,0 +1,11 @@
+The directories complex, monomer and genome have examples of the input and output.
+
+To run hhsearch for complex run:
+	/pathToHHsearch/hhsearch.py -q 12asA-12asB -iDir /nfs/amino-home/bgovi/source/example/monomer/ -make -search -complex
+To run hhsearch for complex run
+	/pathToHHsearch/hhsearch.py -q 12asA -iDir /nfs/amino-home/bgovi/source/example/ -make -search -monomer
+To run hhsearch for complex run
+	/pathToHHsearch/hhsearch.py -q A2BP1_A -iDir /nfs/amino-home/bgovi/source/example/ -make -search -monomer
+
+For each run the lis of targets can be used instead.  Just use -q /FullPath/targetList.txt
+The -job flag is used to submit jobs to cluster

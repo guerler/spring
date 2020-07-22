@@ -1,13 +1,19 @@
-#GXXFLAGS = -O3 -ffast-math -fprefetch-loop-arrays -mfpmath=sse -funswitch-loops -DNDEBUG -Wno-deprecated
-GXXFLAGS = -O3 -Wno-deprecated -ggdb -m64 -DNDEBUG -march=k8 -ffast-math  -Wno-non-template-friend  -fprefetch-loop-arrays -mfpmath=sse -funroll-loops -funswitch-loops 
+f2py=f2py
+python=python
 
-all:
-	g++ -c -o spring.o source/spring.cpp $(GXXFLAGS)
-	g++ -o spring $(GXXFLAGS) spring.o
+all: TMscoreMod nwalign ScoreMod tmalign
 
-linear:
-	g++ -c -o spring_linear.o source/spring_linear.cpp $(GXXFLAGS)
-	g++ -o spring_linear $(GXXFLAGS) spring_linear.o
-clean:	
-	rm -f *.o
-	rm -f spring
+TMscoreMod: PDB/TMscore/TMscoreMod.f
+	cd PDB/TMscore;${f2py} -c -m TMscoreMod TMscoreMod.f
+
+nwalign: PDB/NWalign/NWalign_wrapper.f
+	cd PDB/NWalign;${f2py} -c -m nwalign NWalign_wrapper.f
+
+ScoreMod: PDB/KABSCH_FORTRAN/ScoreMod.f
+	cd PDB/KABSCH_FORTRAN;${f2py} -c -m ScoreMod ScoreMod.f
+
+tmalign: PDB/TMalign/TMalign_wrapper.h PDB/TMalign/TMalign_wrapper.cpp
+	cd PDB/TMalign;python setup.py build_ext --inplace
+
+clean:
+	rm PDB/*/*.so

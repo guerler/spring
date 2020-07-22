@@ -1,0 +1,80 @@
+#!/usr/bin/perl
+
+# flush
+select((select(STDOUT), $| = 1)[0]);
+strict;
+
+# verify
+if ($#ARGV + 1 < 1)
+{
+    print "Parameters required: [input SPRING results file]\n\n";
+    print "Description: This script converts a SPRING output file into a valid SQL statement for our database.\n";
+    exit();
+}
+
+# read parameters
+my $inp = $ARGV[0];
+my $out = $inp . ".sql";
+
+# check
+if ($inp eq $out)
+{
+    print "Input and Output have to be different.\n";
+    die();
+}
+
+# counter
+my $n = 0;
+
+# open file
+open (INPUT, $inp);
+open (OUTPUT, ">$out");
+while (my $record = <INPUT>)
+{    
+    # split columns
+    @values = split(" ", $record);
+    
+    # check size
+    if (@values != 10)
+    {
+        print "Wrong format.\n";
+        die();
+    }
+
+    # check
+    if ($values[0] ne "1")
+    {
+        next;
+    }
+
+    # get entries
+    my $ida         = $values[1];
+    my $idb         = $values[2];
+    my $templatea   = $values[3];
+    my $templateb   = $values[4];
+    my $score       = $values[5];
+    my $energy      = $values[6];
+    my $tmscore     = $values[7];
+    my $aligned     = $values[8];
+    my $identity    = substr($values[9], 0, -1) / 100.0;
+
+    # check
+    if ($ida eq "" || $idb eq "")
+    {
+        next;
+    }
+
+    # make sql
+    print OUTPUT "INSERT INTO interactions VALUES('$n', '$ida','$idb','$templatea','$templateb','$score','$energy','$tmscore','$aligned','$identity');\n";
+    $n++;
+}
+close (INPUT);
+close (OUTPUT);
+
+sub trim($)
+{
+	my $string = shift;
+	$string =~ s/^\s+//;
+	$string =~ s/\s+$//;
+	return $string;
+}

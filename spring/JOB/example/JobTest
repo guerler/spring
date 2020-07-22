@@ -1,0 +1,7 @@
+#PBS -q default
+#PBS -d /tmp/
+#PBS -l nodes=1:ppn=1,walltime=24:59:00
+#PBS -o /nfs/amino-home/bgovi/source/JOB/example/JobTest.out
+#PBS -e /nfs/amino-home/bgovi/source/JOB/example/JobTest.err
+#PBS -N JobTest
+/nfs/amino-home/bgovi/source/JOB/example/test.py 
