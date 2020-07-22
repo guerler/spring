@@ -29,9 +29,10 @@ for my $file(@files) {
         print("Already available.\n");
         next;
     }
+	my $ready = false;
 	my $command = "$binary -i $file -d $db -ohhm $path$name.hhm -oa3m $path$name.a3m &";
 	print ("Executing: $command\n");
 	print "Press ENTER to continue or CTRL-C to exit.";
 	<STDIN>;
-	system($command);
+	#system($command);
 }
