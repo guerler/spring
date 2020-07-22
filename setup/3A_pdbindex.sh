@@ -68,7 +68,6 @@ for (my $i = 0; $i < $n; $i++) {
 
         # verify
         if ($is eq "." || $is eq "..") {
-            print "Skipping.\n";
             next;
         }
 
