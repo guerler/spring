@@ -21,7 +21,7 @@ struct HHsearch
     {
         // names
         this->modelpath = modelpath;        
-        this->fname     = "hhr/" + chain.substr(0, 2) + "/" + chain + ".hhr";
+        this->fname     = chain + ".hhr";
         this->chain     = chain;
     
         // return    
@@ -47,12 +47,7 @@ struct HHsearch
         {
             Msg::write ("WARNING: HHsearch file %s not found!", fname.c_str());
             return false;
-        }    
-
-        // exclude
-        Exclude exclude;
-        if (!exclude.construct(modelpath + "neighbor/identity/" + chain.substr(0, 2) + "/" + chain) && seqcut < 1.0)
-            Msg::write ("WARNING: Exclusion file for %s not found!", chain.c_str());
+        }
 
         // hash
         Hash < string, int > lhash;
@@ -103,11 +98,6 @@ struct HHsearch
                         Msg::error ("HHsearch::construct()", "Identity not found.");
                     }
                 }
-				
-				// check template name
-				if (seqcut < 1.0)
-					if (templatename.substr(0, 4) == chain.substr(0, 4) || exclude.get(templatename) > seqcut)
-						continue;
 
                 // verify
                 if (score > minscore)

@@ -158,16 +158,16 @@ struct ModSpring_Model
         SpecMolecule targetmono, molmono;
         SpecMolecule targetfullmono, molfullmono;
         bool withmono = false;
-        if (SpringConfig::SUGGESTEDMONO && store.read(&targetfullmono, modelpath + "monomers/" + ida.substr(0, 2) + "/" + ida, ida) &&
-            store.read(&molfullmono, modelpath + "monomers/"  + idb.substr(0, 2) + "/" + idb, idb))
+        if (SpringConfig::SUGGESTEDMONO && store.read(&targetfullmono, modelpath + "monomers/" + ida, ida) &&
+            store.read(&molfullmono, modelpath + "monomers/"  + idb, idb))
         {
             // both loaded
             withmono = true;
 
             // align model to sequence
-            sa.makemodel(&targetfullmono, modelpath + "fasta/" + ida.substr(0, 2) + "/" + ida);
-            sa.makemodel(&molfullmono, modelpath + "fasta/" + idb.substr(0, 2) + "/" + idb);
-            
+            sa.makemodel(&targetfullmono, modelpath + "fasta/" + ida);
+            sa.makemodel(&molfullmono, modelpath + "fasta/" + idb);
+
             // copy calphas
             targetfullmono.copyCAlpha(&targetmono);
             molfullmono.copyCAlpha(&molmono);
@@ -190,9 +190,9 @@ struct ModSpring_Model
             }
 
             // align model to sequence
-            sa.makemodel(&targetmono, modelpath + "fasta/" + ida.substr(0, 2) + "/" + ida);
-            sa.makemodel(&molmono, modelpath + "fasta/" + idb.substr(0, 2) + "/" + idb);
-            
+            sa.makemodel(&targetmono, modelpath + "fasta/" + ida);
+            sa.makemodel(&molmono, modelpath + "fasta/" + idb);
+
             // log
             Msg::write ("Suggested monomeric structures not available.");
         }
@@ -207,19 +207,19 @@ struct ModSpring_Model
         if (withref)
         {
 	        // construct reference molecules
-	        if (!store.read(&targetref, modelpath + "chains/" + ida.substr(0, 2) + "/" + ida, ida))
+	        if (!store.read(&targetref, modelpath + "chains/" + ida, ida))
     	        withref = false;
 
 	        // construct reference molecules
-    	    if (!store.read(&molref, modelpath + "chains/" + idb.substr(0, 2) + "/" + idb, idb))
+            if (!store.read(&molref, modelpath + "chains/" + idb, idb))
         	    withref = false;
 
             // proceeding without reference
             if (withref)
             {
                 // align model to sequence
-                sa.makemodel(&targetref, modelpath + "fasta/" + ida.substr(0, 2) + "/" + ida);
-                sa.makemodel(&molref, modelpath + "fasta/" + idb.substr(0, 2) + "/" + idb);
+                sa.makemodel(&targetref, modelpath + "fasta/" + ida);
+                sa.makemodel(&molref, modelpath + "fasta/" + idb);
 
                 // check
                 if (targetmono.lcalpha.size() != targetref.lcalpha.size() || molmono.lcalpha.size() != molref.lcalpha.size())
@@ -300,7 +300,7 @@ struct ModSpring_Model
             double score = clx->score;
 
             // fix modelsizes
-            sa.makemodel(&clx->mol, modelpath + "fasta/" + idb.substr(0, 2) + "/" + idb);
+            sa.makemodel(&clx->mol, modelpath + "fasta/" + idb);
             
             // placed
             bool done = false;
