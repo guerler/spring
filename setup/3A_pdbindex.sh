@@ -7,8 +7,8 @@ select((select(STDOUT), $| = 1)[0]);
 use strict;
 
 # verify
-if ($#ARGV + 1 < 2) {
-	print "Parameters required: [list] [path to pdb repository]\n\n";
+if ($#ARGV + 1 < 3) {
+	print "Parameters required: [list] [path to pdb repository] [database file]\n\n";
 	print "Description: This script maps the extended monomer libraries complexation partners to the template database\n";	
 	exit();
 }
@@ -17,7 +17,7 @@ if ($#ARGV + 1 < 2) {
 my $lst = $ARGV[0];
 my $inp = $ARGV[1] . "splits";
 my $sdb = $ARGV[1] . "database/fasta.db";
-my $idx = $ARGV[1] . "database/index.db";
+my $idx = $ARGV[2];
 
 # temporary
 my $record = "";
@@ -40,6 +40,9 @@ close (data);
 # loop
 open (idx, ">$idx");
 for (my $i = 0; $i < $n; $i++) {
+    # print
+    print "Loading " . $lid[$i] . ".\n";
+
     # get id
     my $id = $lid[$i];
 
@@ -52,18 +55,22 @@ for (my $i = 0; $i < $n; $i++) {
     # sort files
     my @lis=sort @files;
 
+    # print directory content
+    print $sub . "\n";
+
     # split
     for (my $j = 0; $j < @lis; $j++) {
         # get sub name
         my $is = $lis[$j];
 
+        # log
+        print $is . "\n";
+
         # verify
         if ($is eq "." || $is eq "..") {
+            print "Skipping.\n";
             next;
         }
-
-        # log
-        #print $is . "\n";
 
         # get sequence
         my $seq = "";

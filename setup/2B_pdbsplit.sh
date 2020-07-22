@@ -39,18 +39,22 @@ close (data);
 
 # loop
 for (my $i = 0; $i < $n; $i++) {
+    # print
+    print "Loading " . $list[$i] . ".\n";
+
     # split
-    my $id = substr($list[$i], 0, 4);
+    my $id = $list[$i];
     my $ch = substr($list[$i], -1);
 
-	# sub path
-	my $pathsub = substr($id, 0, 2) . "/" . $id;
+	# input path
+	my $pathsub = substr($id, 0, 2) . "/" . substr($id, 0, 4);
 
-    # prepare name
-    my $od = $outpath . $pathsub . $ch . "/";
+    # output path
+    my $od = $outpath . substr($id, 0, 2) . "/" . $id . "/";
 
     # check
     if (-e $od) {
+        print "Skipping.\n";
         next;
     }
 
