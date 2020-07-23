@@ -1,0 +1,61 @@
+<tool id="hhblits" name="HH-blits itererative protein sequence searching (hhblits)" version="0.1.0" python_template_version="3.5">
+    <requirements>
+        <requirement type="package" version="3.2.0">hhsuite</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        link $hhm_ffdata hhdb_hhm.ffdata &&
+        link $hhm_ffindex hhdb_hhm.ffindex &&
+        link $cs219_ffdata hhdb_cs219.ffdata &&
+        link $cs219_ffindex hhdb_cs219.ffindex &&
+        hhblits -n $n -e $e -i $input -d hhdb -o $output
+    ]]></command>
+    <inputs>
+        <param format="data" name="input" type="data" label="Query Sequence" help="Single sequence or multiple sequence alignment (MSA)
+                in a3m, a2m, or FASTA format, or HMM in hhm format (-i)"/>
+        <param format="data" name="hhm_ffindex" type="data" label="HHM Index file" help="Database file ending with 'hhm.ffindex'"/>
+        <param format="data" name="hhm_ffdata" type="data" label="HHM Data file" help="Database file ending with 'hhm.ffdata'"/>
+        <param format="data" name="cs219_ffindex" type="data" label="cs219 Index file" help="Database file ending with 'cs219.ffindex'"/>
+        <param format="data" name="cs219_ffdata" type="data" label="cs219 Data file" help="Database file ending with 'cs219.ffdata'"/>
+        <param name="n" type="integer" label="Number of Iterations (-n)" value="2" min="1" max="8"/>
+        <param name="e" type="float" label="E-value cutoff for inclusion in result alignment (-e)" value="0.001" min="0" max="1"/>
+    </inputs>
+    <outputs>
+        <data format="fasta" name="output" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="6VYB_A.fasta"/>
+            <param name="hhm_ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_hhm.ffindex"/>
+            <param name="hhm_ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_hhm.ffdata"/>
+            <param name="cs219_ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffindex"/>
+            <param name="cs219_ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffdata"/>
+            <output name="output" file="6VYB_A.hhr" lines_diff="4"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+HMM-HMM-based lightning-fast iterative sequence search
+HHblits is a sensitive, general-purpose, iterative sequence search tool that represents
+both query and database sequences by HMMs. You can search HHblits databases starting
+with a single query sequence, a multiple sequence alignment (MSA), or an HMM. HHblits
+prints out a ranked list of database HMMs/MSAs and can also generate an MSA by merging
+the significant database HMMs/MSAs onto the query MSA.
+
+Steinegger M, Meier M, Mirdita M, Vöhringer H, Haunsberger S J, and Söding J (2019)
+HH-suite3 for fast remote homology detection and deep protein annotation.
+bioRxiv, 560029. doi:10.1101/560029
+(c) The HH-suite development team
+
+Download databases from <http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/>.
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubhh-suite,
+  author = {Soeding, Johannes},
+  year = {2005},
+  title = {Protein homology detection by HMM-HMM comparison},
+  publisher = {Oxford University Press},
+  journal = {Bioinformatics},
+  url = {https://doi.org/10.1093/bioinformatics/bti125},
+}</citation>
+    </citations>
+</tool>
