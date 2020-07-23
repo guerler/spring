@@ -11,13 +11,14 @@ def main(args):
 			output = "%s/%s.hhr" % (args.inputs, name)
 			output_hhm = "%s/%s.hhm" % (args.inputs, name)
 			output_a3m = "%s/%s.a3m" % (args.inputs, name)
-			print("\nProcessing: %s\n" % (name))
+			print("\nProcessing: %s" % name)
+			print(30 * "-")
 			if os.path.isfile(output):
-				print("Already available.\n")
+				print("Already available.")
 				continue
 			background_flag = "" if args.fg else "&";
 			command = "%s -i %s -d %s -ohhm %s -oa3m %s %s" % (args.binary, input_file, args.database, output_hhm, output_a3m, background_flag)
-			print ("Executing: %s\n" % command)
+			print ("Executing: %s" % command)
 			if not args.enter:
 				raw_input('Press ENTER to continue or CTRL-C to exit.')
 			os.system(command)
