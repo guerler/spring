@@ -1,4 +1,4 @@
-<tool id="hhblits" name="HH-blits itererative protein sequence searching (hhblits)" version="0.1.0" python_template_version="3.5">
+<tool id="hhblits" name="HH-blits itererative protein sequence searching" version="0.1.0" python_template_version="3.5">
     <requirements>
         <requirement type="package" version="3.2.0">hhsuite</requirement>
     </requirements>
@@ -20,7 +20,7 @@
         <param name="e" type="float" label="E-value cutoff for inclusion in result alignment (-e)" value="0.001" min="0" max="1"/>
     </inputs>
     <outputs>
-        <data format="fasta" name="output" />
+        <data format="data" name="output" />
     </outputs>
     <tests>
         <test>
