@@ -18,14 +18,14 @@ def main(args):
 				crossreference[core] = []
 			crossreference[core].append(partner)
 	print ("Loaded cross reference from `%s`." % args.crossreference)
-	targets = get_template_scores(args.target)
+	targets = get_template_scores(args.target, args.minscore)
 	print ("Loaded target scores from `%s`." % args.target)
 	interactions = {}
 	for name in names:
 		input_directory = args.inputs.rstrip("/")
 		sub_directory = name[:int(len(name)/2)]			
 		input_file = "%s/hhr/%s/%s.hhr" % (input_directory, sub_directory, name)
-		templates = get_template_scores(input_file)
+		templates = get_template_scores(input_file, args.minscore)
 		minz = 0
 		for t in targets:
 			if t in crossreference:
@@ -35,14 +35,14 @@ def main(args):
 						score = min(targets[t], templates[p])
 						if score > minz:
 							minz = score
-		if minz >= args.minscore:
+		if minz > args.minscore:
 			interactions[name] = minz
 			print("Predicting: %s %s" % (name, minz))
 	with open(args.output, 'w') as output_file:
 		for i in interactions:
 			output_file.write("%s %s\n" % (i, interactions[i]))
 
-def get_template_scores(hhr_file):
+def get_template_scores(hhr_file, min_score):
 	result = {}
 	if os.path.isfile(hhr_file):
 		with open(hhr_file) as file:
@@ -51,8 +51,9 @@ def get_template_scores(hhr_file):
 					if not line.strip():
 						break
 					template_id = line[4:10]
-					template_score = line[57:63]
-					result[template_id] = float(template_score)
+					template_score = float(line[57:63])
+					if template_score > min_score:
+						result[template_id] = template_score
 	return result
 
 if __name__ == "__main__":
