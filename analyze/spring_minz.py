@@ -37,6 +37,7 @@ def main(args):
 							minz = score
 		if minz >= args.minscore:
 			interactions[name] = minz
+			print("Predicting: %s %s" % (name, minz))
 	with open(args.output, 'w') as output_file:
 		for i in interactions:
 			output_file.write("%s %s\n" % (i, interactions[i]))
