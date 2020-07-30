@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 import argparse
+import os
 
 def main(args):
 	names = []
@@ -42,14 +43,15 @@ def main(args):
 
 def get_template_scores(hhr_file):
 	result = {}
-	with open(hhr_file) as file:
-		for index, line in enumerate(file):
-			if index > 8:
-				if not line.strip():
-					break
-				template_id = line[4:10]
-				template_score = line[57:63]
-				result[template_id] = float(template_score)
+	if os.path.isfile(hhr_file):
+		with open(hhr_file) as file:
+			for index, line in enumerate(file):
+				if index > 8:
+					if not line.strip():
+						break
+					template_id = line[4:10]
+					template_score = line[57:63]
+					result[template_id] = float(template_score)
 	return result
 
 if __name__ == "__main__":
