@@ -30,7 +30,6 @@ def main(args):
 			input_file = "%s/hhr/%s/%s.hhr" % (input_directory, sub_directory, name)
 			templates = get_template_scores(input_file, args.minscore)
 			minz = 0
-			mintemplate = None
 			for t in targets:
 				if t in crossreference:
 					partners = crossreference[t]
