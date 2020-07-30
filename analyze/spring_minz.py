@@ -19,29 +19,33 @@ def main(args):
 			crossreference[core].append(partner)
 	print ("Loaded cross reference from `%s`." % args.crossreference)
 	targets = get_template_scores(args.target, args.minscore)
-	print ("Loaded target scores from `%s`." % args.target)
-	interactions = []
-	for name in names:
-		input_directory = args.inputs.rstrip("/")
-		sub_directory = name[:int(len(name)/2)]			
-		input_file = "%s/hhr/%s/%s.hhr" % (input_directory, sub_directory, name)
-		templates = get_template_scores(input_file, args.minscore)
-		minz = 0
-		for t in targets:
-			if t in crossreference:
-				partners = crossreference[t]
-				for p in partners:
-					if p in templates:
-						score = min(targets[t], templates[p])
-						if score > minz:
-							minz = score
-		if minz > args.minscore:
-			interactions.append((name, minz))
-			print("Predicting: %s, min-Z: %s" % (name, minz))
-	interactions.sort(key=lambda tup: tup[1], reverse=True)
-	with open(args.output, 'w') as output_file:
-		for i in interactions:
-			output_file.write("%s %s\n" % (i[0], i[1]))
+	if not targets:
+		print("No targets found `%s`" % args.target)
+	else:
+		print ("Loaded target scores from `%s`." % args.target)
+		interactions = []
+		for name in names:
+			input_directory = args.inputs.rstrip("/")
+			sub_directory = name[:int(len(name)/2)]
+			input_file = "%s/hhr/%s/%s.hhr" % (input_directory, sub_directory, name)
+			templates = get_template_scores(input_file, args.minscore)
+			minz = 0
+			mintemplate = None
+			for t in targets:
+				if t in crossreference:
+					partners = crossreference[t]
+					for p in partners:
+						if p in templates:
+							score = min(targets[t], templates[p])
+							if score > minz:
+								minz = score
+			if minz > args.minscore:
+				interactions.append((name, minz))
+				print("Predicting: %s, min-Z: %s" % (name, minz))
+		interactions.sort(key=lambda tup: tup[1], reverse=True)
+		with open(args.output, 'w') as output_file:
+			for i in interactions:
+				output_file.write("%s %s\n" % (i[0], i[1]))
 
 def get_template_scores(hhr_file, min_score):
 	result = {}
