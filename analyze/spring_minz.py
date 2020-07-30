@@ -20,7 +20,7 @@ def main(args):
 	print ("Loaded cross reference from `%s`." % args.crossreference)
 	targets = get_template_scores(args.target, args.minscore)
 	print ("Loaded target scores from `%s`." % args.target)
-	interactions = {}
+	interactions = []
 	for name in names:
 		input_directory = args.inputs.rstrip("/")
 		sub_directory = name[:int(len(name)/2)]			
@@ -36,11 +36,12 @@ def main(args):
 						if score > minz:
 							minz = score
 		if minz > args.minscore:
-			interactions[name] = minz
+			interactions.append((name, minz))
 			print("Predicting: %s, min-Z: %s" % (name, minz))
+	interactions.sort(key=lambda tup: tup[1])
 	with open(args.output, 'w') as output_file:
 		for i in interactions:
-			output_file.write("%s %s\n" % (i, interactions[i]))
+			output_file.write("%s %s\n" % (i[0], i[1]))
 
 def get_template_scores(hhr_file, min_score):
 	result = {}
