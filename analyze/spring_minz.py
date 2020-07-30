@@ -40,7 +40,7 @@ def main(args):
 			print("Predicting: %s %s" % (name, minz))
 	with open(args.output, 'w') as output_file:
 		for i in interactions:
-			output_file.write("%s %s\n" % (i, interactions[i]))
+			output_file.write("%s, min-Z: %s\n" % (i, interactions[i]))
 
 def get_template_scores(hhr_file, min_score):
 	result = {}
