@@ -3,11 +3,11 @@
         <requirement type="package" version="3.2.0">hhsuite</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        link $hhm_ffdata hhdb_hhm.ffdata &&
-        link $hhm_ffindex hhdb_hhm.ffindex &&
-        link $cs219_ffdata hhdb_cs219.ffdata &&
-        link $cs219_ffindex hhdb_cs219.ffindex &&
-        hhblits -n $n -e $e -i $input -d hhdb -o $output
+        link '$hhm_ffdata' hhdb_hhm.ffdata &&
+        link '$hhm_ffindex' hhdb_hhm.ffindex &&
+        link '$cs219_ffdata' hhdb_cs219.ffdata &&
+        link '$cs219_ffindex' hhdb_cs219.ffindex &&
+        hhblits -n '$n' -e '$e' -i '$input' -d hhdb -o '$output'
     ]]></command>
     <inputs>
         <param format="data" name="input" type="data" label="Query Sequence" help="Single sequence or multiple sequence alignment (MSA)
