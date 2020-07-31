@@ -26,7 +26,7 @@ def main(args):
 		interactions = []
 		for name in names:
 			input_directory = args.inputs.rstrip("/")
-			input_file = "%s/%s.hhr" % (input_directory, name)
+			input_file = "%s/%s" % (input_directory, name)
 			templates = get_template_scores(input_file, args.minscore)
 			minz = 0
 			for t in targets:
