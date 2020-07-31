@@ -1,12 +1,12 @@
 <tool id="spring_minz" name="SPRING min-Z" version="0.1.0" python_template_version="3.5">
-    <description>filter operation</description>
+    <description>Filter operation</description>
     <code file="spring_minz.py"/>
     <command detect_errors="exit_code"><![CDATA[
         mkdir -p inputs &&
-        #for input in $inputs:
+        #for input in $inputs
             link '${str(input)}' 'inputs/${input.name}' &&
             echo '${input.name}' >> 'input_list' &&
-        #end for &&
+        #end for
         python3 '$__tool_directory__/spring_minz.py' -m '$minscore' -t '$target' -c '$crossreference' -o '$output' -l input_list -i inputs
     ]]></command>
     <inputs>
