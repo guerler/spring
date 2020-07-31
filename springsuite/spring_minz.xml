@@ -40,7 +40,7 @@ evaluating the min-Z score. The min-Z is the smaller of the two Z-scores for a p
     <citations>
         <citation type="bibtex">
 @misc{githubhh-suite,
-author = {Guerler, Aysam},
+author = {Guerler, Govindarajoo, Zhang},
 year = {2013},
 title = {Mapping Monomeric Threading to Protein-Protein Structure Prediction},
 publisher = {ACS Publications},
