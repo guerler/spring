@@ -67,6 +67,6 @@ if __name__ == "__main__":
 	parser.add_argument('-l', '--list', help='Text file containing identifiers.', required=True)
 	parser.add_argument('-i', '--inputs', help='Directory containing `hhr/X/Y.hhr` files', required=True)
 	parser.add_argument('-o', '--output', help='Output file containing minZ-scores`', required=True)
-	parser.add_argument('-m', '--minscore', help='min-Z score threshold', default=10)
+	parser.add_argument('-m', '--minscore', help='min-Z score threshold', type=int, default=10)
 	args = parser.parse_args()
 	main(args)

@@ -26,11 +26,9 @@ def main(args):
 		interactions = []
 		for name in names:
 			input_directory = args.inputs.rstrip("/")
-			sub_directory = name[:int(len(name)/2)]
-			input_file = "%s/hhr/%s/%s.hhr" % (input_directory, sub_directory, name)
+			input_file = "%s/%s.hhr" % (input_directory, name)
 			templates = get_template_scores(input_file, args.minscore)
 			minz = 0
-			mintemplate = None
 			for t in targets:
 				if t in crossreference:
 					partners = crossreference[t]
@@ -68,6 +66,6 @@ if __name__ == "__main__":
 	parser.add_argument('-l', '--list', help='Text file containing identifiers.', required=True)
 	parser.add_argument('-i', '--inputs', help='Directory containing `hhr/X/Y.hhr` files', required=True)
 	parser.add_argument('-o', '--output', help='Output file containing minZ-scores`', required=True)
-	parser.add_argument('-m', '--minscore', help='min-Z score threshold', default=10)
+	parser.add_argument('-m', '--minscore', help='min-Z score threshold', type=int, default=10)
 	args = parser.parse_args()
 	main(args)
