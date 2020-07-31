@@ -4,8 +4,8 @@
     <command detect_errors="exit_code"><![CDATA[
         mkdir -p inputs &&
         #for input in $inputs
-            link '${str(input)}' 'inputs/${input.name}' &&
-            echo '${input.name}' >> 'input_list' &&
+            link '${str(input)}' 'inputs/${input.element_identifier}' &&
+            echo '${input.element_identifier}' >> 'input_list' &&
         #end for
         python3 '$__tool_directory__/spring_minz.py' -m '$minscore' -t '$target' -c '$crossreference' -o '$output' -l input_list -i inputs
     ]]></command>
