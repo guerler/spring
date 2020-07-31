@@ -20,7 +20,7 @@
     </outputs>
     <tests>
         <test>
-            <param name="target" value="covid19_10.hhr"/>
+            <param name="target" value="NP_000282.1.hhr"/>
             <param name="inputs">
                 <collection type="list">
                     <element name="NP_000282.1.hhr" value="NP_000282.1.hhr" />
