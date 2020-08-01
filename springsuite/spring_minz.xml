@@ -21,6 +21,24 @@
     </outputs>
     <tests>
         <test>
+            <param name="target" value="7BQY_A.hhr"/>
+            <param name="idx" value="10"/>
+            <param name="inputs">
+                <collection type="list">
+                    <element name="6W37_A.hhr" value="6W37_A.hhr" />
+                    <element name="6W4H_A.hhr" value="6W4H_A.hhr" />
+                    <element name="6W4H_B.hhr" value="6W4H_B.hhr" />
+                    <element name="6W9C_A.hhr" value="6W9C_A.hhr" />
+                    <element name="6W9Q_A.hhr" value="6W9Q_A.hhr" />
+                    <element name="6WEY_A.hhr" value="6WEY_A.hhr" />
+                    <element name="6WJI_A.hhr" value="6WJI_A.hhr" />
+                    <element name="6WLC_A.hhr" value="6WLC_A.hhr" />
+                </collection>
+            </param>
+            <param name="crossreference" value="dbCAN_random.txt"/>
+            <output name="output" file="dbCAN_result.txt"/>
+        </test>
+        <test>
             <param name="target" value="NP_000282.1.hhr"/>
             <param name="inputs">
                 <collection type="list">
@@ -30,7 +48,7 @@
                     <element name="NP_000836.2.hhr" value="NP_000836.2.hhr" />
                 </collection>
             </param>
-            <param name="crossreference" value="pdb70_random.crf"/>
+            <param name="crossreference" value="pdb70_random.txt"/>
             <output name="output" file="pdb70_result.txt"/>
         </test>
     </tests>
