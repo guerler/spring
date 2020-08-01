@@ -8,15 +8,15 @@ struct SpringConfig
     static const double MINSPRING     = -LARGE;
     static const double MINZ          = -LARGE;
     static const bool   WITHREF       = true;
-	
+
     // benchmark threshold
-    static const double SEQCUTOFF     = 0.3;
+    static const double SEQCUTOFF     = LARGE;
 
     // search depth
     static const int NTMPL            = 200;
     static const int NTMPL_PER_TARGET = 1000;
     static const int NTMPL_PER_PDB    = 10;
-    
+
     // clash configuration
     static const double RADIUS2       = 9.0;
 
