@@ -157,7 +157,7 @@ struct HHsearch
 
         // generate empty molecule
         model.construct(templatename);
-                           
+        Msg::write("Loading template %s.", templatename.c_str());
         // open sequence alignment file
         File f;
         if (!f.open (fname))
