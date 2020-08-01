@@ -38,6 +38,8 @@ def main(args):
 							score = min(targets[t], templates[p])
 							if score > minz:
 								minz = score
+								print(t)
+								print(s)
 			if minz > args.minscore:
 				interactions.append((name, minz))
 				print("Predicting: %s, min-Z: %s" % (name, minz))
