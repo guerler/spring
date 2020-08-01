@@ -30,6 +30,8 @@ def main(args):
 			input_file = "%s/hhr/%s/%s.hhr" % (input_directory, sub_directory, name)
 			templates = get_template_scores(input_file, args.minscore)
 			minz = 0
+			mint = None
+			minp = None
 			for t in targets:
 				if t in crossreference:
 					partners = crossreference[t]
@@ -38,11 +40,13 @@ def main(args):
 							score = min(targets[t], templates[p])
 							if score > minz:
 								minz = score
-								print(t)
-								print(p)
+								mint = t
+								minp = p
 			if minz > args.minscore:
 				interactions.append((name, minz))
 				#print("Predicting: %s, min-Z: %s" % (name, minz))
+				print(mint)
+				print(minp)
 		interactions.sort(key=lambda tup: tup[1], reverse=True)
 		with open(args.output, 'w') as output_file:
 			for i in interactions:
