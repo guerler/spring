@@ -39,7 +39,7 @@ def main(args):
 							if score > minz:
 								minz = score
 								print(t)
-								print(s)
+								print(p)
 			if minz > args.minscore:
 				interactions.append((name, minz))
 				print("Predicting: %s, min-Z: %s" % (name, minz))
