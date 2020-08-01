@@ -177,7 +177,7 @@ struct ComplexReader
 
             // alignment
             Vec < int > targetaln, molaln;
-            double tms = 0.0; //min(TMAlign::align(target, &targettmp, targetaln), TMAlign::align(mol, &moltmp, molaln));
+            double tms = min(TMAlign::align(target, &targettmp, targetaln), TMAlign::align(mol, &moltmp, molaln));
             if (tms == 0.0)
                 continue;
 

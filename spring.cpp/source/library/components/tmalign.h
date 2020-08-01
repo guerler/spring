@@ -60,8 +60,9 @@ struct TMAlign
         if (l != 0)
             execute += " -L " + Convert::toString(l) + " ";
         execute += unique + "mol.pdb " + unique + "tmpl.pdb > " + unique + "out.txt";
+        Msg::write("Executing %s.", execute.c_str());
         system (execute.c_str());
-        
+
         // get
         File f;
         f.open(unique + "out.txt");
