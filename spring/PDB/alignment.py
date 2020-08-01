@@ -76,15 +76,17 @@ def NWalign(sequenceA, sequenceB,sequenceAIsFile=False,sequenceBIsFile=False):
         (header, sequences) = pdbTmp.ReadFasta(sequenceB)
         sequenceB = sequences[0]
 
+    #print(sequenceA)
     out = nwalign.compares(sequenceA, sequenceB)
+    print(out)
     lengthMax = max(len(sequenceA),len(sequenceB) )*1.0
     seqidA = out[0]
     seqidB = out[1]
     seqid = max(seqidA,seqidB)
     numAlign = out[2]
-    seqA_align = ''.join(out[3])
-    align = ''.join(out[4])
-    seqB_align = ''.join(out[5])
+    seqA_align = ''.join( [outX.decode('UTF-8') for outX in out[3] ]    )
+    align = ''.join( [outX.decode('UTF-8') for outX in out[4] ]    )  #''.join(out[4][0].decode('UTF-8'))
+    seqB_align = ''.join( [outX.decode('UTF-8') for outX in out[5] ] )  #''.join(out[5][0].decode('UTF-8'))
     output = pd.Series([seqidA,seqidB,seqid,numAlign,seqA_align,align,
                         seqB_align],
         index=["seqidA", "seqidB","seqid", "numAlign", "seqA_align","align",
