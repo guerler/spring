@@ -18,7 +18,7 @@ def main(args):
 				crossreference[core] = []
 			crossreference[core].append(partner)
 	print ("Loaded cross reference from `%s`." % args.crossreference)
-	targets = get_template_scores(args.target, args.minscore)
+	targets = get_template_scores(args.target, args.minscore, args.idx)
 	interactions = []
 	if not targets:
 		print("No targets found `%s`" % args.target)
@@ -27,7 +27,7 @@ def main(args):
 		for name in names:
 			input_directory = args.inputs.rstrip("/")
 			input_file = "%s/%s" % (input_directory, name)
-			templates = get_template_scores(input_file, args.minscore)
+			templates = get_template_scores(input_file, args.minscore, args.idx)
 			minz = 0
 			for t in targets:
 				if t in crossreference:
@@ -45,15 +45,16 @@ def main(args):
 		for i in interactions:
 			output_file.write("%s %s\n" % (i[0], i[1]))
 
-def get_template_scores(hhr_file, min_score):
+def get_template_scores(hhr_file, min_score, identifier_length):
 	result = {}
+	identifier_length = identifier_length + 4
 	if os.path.isfile(hhr_file):
 		with open(hhr_file) as file:
 			for index, line in enumerate(file):
 				if index > 8:
 					if not line.strip():
 						break
-					template_id = line[4:10]
+					template_id = line[4:identifier_length]
 					template_score = float(line[57:63])
 					if template_score > min_score:
 						result[template_id] = template_score
@@ -63,8 +64,9 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='This script identifies interactions by detecting matching HH-search results.')
 	parser.add_argument('-t', '--target', help='HHR target file result', required=True)
 	parser.add_argument('-c', '--crossreference', help='Cross Reference index file', required=True)
+	parser.add_argument('-x', '--idx', help='Length of identifier', type=int, default=6)
 	parser.add_argument('-l', '--list', help='Text file containing identifiers.', required=True)
-	parser.add_argument('-i', '--inputs', help='Directory containing `hhr/X/Y.hhr` files', required=True)
+	parser.add_argument('-i', '--inputs', help='Directory containing `hhr` files', required=True)
 	parser.add_argument('-o', '--output', help='Output file containing minZ-scores`', required=True)
 	parser.add_argument('-m', '--minscore', help='min-Z score threshold', type=int, default=10)
 	args = parser.parse_args()
