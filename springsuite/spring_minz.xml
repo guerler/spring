@@ -1,5 +1,5 @@
 <tool id="spring_minz" name="SPRING min-Z" version="0.1.0" python_template_version="3.5">
-    <description>Filter operation</description>
+    <description>filter operation</description>
     <code file="spring_minz.py"/>
     <command detect_errors="exit_code"><![CDATA[
         mkdir -p inputs &&
@@ -10,10 +10,10 @@
         python3 '$__tool_directory__/spring_minz.py' -m '$minscore' -t '$target' -c '$crossreference' -o '$output' -l input_list -i inputs
     ]]></command>
     <inputs>
-        <param format="data" name="target" type="data" label="Target Sequence" help="Homology search results of query sequence `hhr`. (-t)"/>
-        <param format="data" name="inputs" type="data_collection" collection_type="list" label="Input Sequences" help="Homology search results of target sequences `hhr`. (-i)"/>
-        <param format="data" name="crossreference" type="data" label="Cross Reference" help="Cross reference of interacting proteins pairs. (-c)"/>
-        <param name="minscore" type="integer" label="min-Z score threshold" value="10" min="1" max="100" help="Matching complex templates with a score lower than this threshold will be excluded. (-c)"/>
+        <param format="txt" name="target" type="data" label="Target Profile" help="Homology search result of target profile `hhr`."/>
+        <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input Profiles" help="Homology search results of input profiles `hhr`."/>
+        <param format="txt" name="crossreference" type="data" label="Cross Reference" help="Cross reference of interacting proteins pairs."/>
+        <param name="minscore" type="integer" label="min-Z score threshold" value="10" min="1" max="100" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
     </inputs>
     <outputs>
         <data format="txt" name="output" />
