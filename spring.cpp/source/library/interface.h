@@ -21,7 +21,6 @@
 char strbuf[2048];
 
 // std includes
-using namespace std;
 #include <assert.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -49,6 +48,8 @@ using namespace std;
 #include <math.h>
 #include <stddef.h>
 #include <dirent.h>
+
+using namespace std;
 
 //
 // external

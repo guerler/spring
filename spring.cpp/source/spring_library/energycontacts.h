@@ -104,7 +104,7 @@ public:
 	}
     
     // get center of mass for side chains
-    bool getSCM (SpecMolecule* mol)
+    void getSCM (SpecMolecule* mol)
     {
         // get size
         int n = mol->lcalpha.size();
@@ -149,5 +149,5 @@ public:
         mol->construct(&tmp);
         for (int i = 0; i < n; i++)
         	mol->latom[i].pos = scm[i];
-    }		
+    }
 };
