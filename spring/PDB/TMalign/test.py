@@ -1,18 +1,22 @@
 import sys
-sys.path.append("/nfs/amino-home/bgovi/functions/python")
-sys.path.append("/nfs/amino-home/bgovi/source/PDB/")
+import os
+currentPath = os.path.dirname(os.path.abspath(__file__))
+pdbPath = os.path.dirname(currentPath)
+print(currentPath)
+print(pdbPath)
 
-from GetFasta import GetFasta
+sys.path.append(pdbPath)
+
 from pdbchains import PDBchains
-from tmalign import __tmalign__
+from tmalign import _tmalign
 
 pdb1 = PDBchains()
-pdb1.Read('./','PDB1.pdb', ca_only = True)
-seq1 = GetFasta("PDB1.pdb")
+pdb1.Read('./PDB1.pdb', ca_only = True)
+seq1 = pdb1.sequence[0]
 
 pdb2 = PDBchains()
-pdb2.Read('./', "PDB2.pdb", ca_only = True)
-seq2 = GetFasta("PDB2.pdb")
-x = __tmalign__(seq1,pdb1.coord[0],seq2,pdb2.coord[0])
+pdb2.Read("./PDB1.pdb", ca_only = True)
+seq2 = pdb2.sequence[0]
+x = _tmalign(seq1,pdb1.coord[0],seq2,pdb2.coord[0])
 
-print x
+print(x)
