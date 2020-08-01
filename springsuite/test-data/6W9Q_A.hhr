@@ -1,0 +1,140 @@
+Query         6W9Q_A
+Match_columns 123
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 641
+Date          Sat Aug  1 03:09:07 2020
+Command       hhsearch -e 0.001 -i /Users/guerler/galaxy/database/files/000/dataset_685.dat -d hhdb -o /Users/guerler/galaxy/database/files/000/dataset_832.dat 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 AJP22991.1|PL8_1.hmm|1.4e-102|   4.4       6  0.0093   22.3   0.0   21   37-57      7-27  (271)
+  2 ACE81431.1|GH5_15.hmm|2.3e-124   4.2     6.2  0.0097   22.5   0.0   31   29-61    223-253 (300)
+  3 CAG81347.1|CBM19|426-466|7e-13   3.5       8   0.012   16.1   0.0    9   21-29     33-41  (44)
+  4 ATY34423.1|PL10_2.hmm|5.1e-141   2.8      10   0.016   21.0   0.0   58   13-70    168-226 (275)
+  5 AAK94929.1|CBM55|16-61|2.6e-25   2.3      13    0.02   15.5   0.0   11   19-29     25-35  (46)
+  6 ABS47913.1|PL8_2.hmm|2.6e-99|6   2.0      15   0.024   19.3   0.0   17   59-78     57-73  (248)
+  7 SCV09658.1|GH137                 2.0      15   0.024   20.7   0.0   31   37-69    210-248 (367)
+  8 EEO46747.1|CBM58|202-318|3.8e-   2.0      16   0.025   17.7   0.0   12   93-104    37-48  (116)
+  9 QDM21448.1|AA3||6-537            1.7      19   0.029   21.2   0.0   33   50-83     80-112 (644)
+ 10 CBJ37966.1|GH28|235-654|7.7e-4   1.7      19   0.029   18.3   0.0   17   18-34      3-19  (345)
+
+No 1
+>AJP22991.1|PL8_1.hmm|1.4e-102|443-692
+Probab=4.39  E-value=6  Score=22.31  Aligned_cols=21  Identities=43%  Similarity=0.604  Sum_probs=16.8  Template_Neff=2.700
+
+Q 6W9Q_A           37 NALAYYNTTKGGRFVLALLSD   57 (123)
+Q Consensus        37 nalayynttkggrfvlallsd   57 (123)
+                      .-++|||..++=-|.|.+-|+
+T Consensus         7 Dkl~y~Na~~dF~FaLSm~S~   27 (271)
+T AJP22991.1|PL8    7 DKLAYYNAEKDFAFGLSMHSK   27 (271)
+Confidence            357899998888888888765
+
+
+No 2
+>ACE81431.1|GH5_15.hmm|2.3e-124|99-401
+Probab=4.23  E-value=6.2  Score=22.52  Aligned_cols=31  Identities=32%  Similarity=0.473  Sum_probs=17.3  Template_Neff=2.300
+
+Q 6W9Q_A           29 TQTACTDDNALAYYNTTKGGRFVLALLSDLQDL   61 (123)
+Q Consensus        29 tqtactddnalayynttkggrfvlallsdlqdl   61 (123)
+                      -+++|+||-  .---.+--|.+-|..=+++|+-
+T Consensus       223 i~tsCtd~~--~~~~p~ivGEWSLsvpdn~q~t  253 (300)
+T ACE81431.1|GH5  223 IETSCTDDV--NTHGPTIVGEWSLSVPDNVQDT  253 (300)
+Confidence            467888882  1111233466667666666653
+
+
+No 3
+>CAG81347.1|CBM19|426-466|7e-13
+Probab=3.47  E-value=8  Score=16.11  Aligned_cols=9  Identities=44%  Similarity=0.892  Sum_probs=6.1  Template_Neff=3.400
+
+Q 6W9Q_A           21 QMSCAAGTT   29 (123)
+Q Consensus        21 qmscaagtt   29 (123)
+                      .+.|++|++
+T Consensus        33 ~~~Cp~gt~   41 (44)
+T CAG81347.1|CBM   33 TTECPSGTT   41 (44)
+Confidence            467777765
+
+
+No 4
+>ATY34423.1|PL10_2.hmm|5.1e-141|81-355
+Probab=2.82  E-value=10  Score=21.01  Aligned_cols=58  Identities=19%  Similarity=0.363  Sum_probs=37.2  Template_Neff=2.400
+
+Q 6W9Q_A           13 ELSPVALRQMSCAAGTTQTACTD-DNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSD   70 (123)
+Q Consensus        13 elspvalrqmscaagttqtactd-dnalayynttkggrfvlallsdlqdlkwarfpksd   70 (123)
+                      ++.|+--|-.--+|=+++|.|+. .+-+-||.-|..-+|.-.+=..+.=|.-.++|...
+T Consensus       168 dl~Pa~ARtyEP~a~~~htTa~~i~~l~~fY~lTgD~kyLaripeAi~wLesvk~p~~~  226 (275)
+T ATY34423.1|PL1  168 DLKPAGARTYEPAALATHTTAANIRQLMDFYELTGDKKYLARIPEAIDWLESVKLPPDQ  226 (275)
+Confidence            56777777666565555555554 34567888888877765555545555556677766
+
+
+No 5
+>AAK94929.1|CBM55|16-61|2.6e-25
+Probab=2.30  E-value=13  Score=15.48  Aligned_cols=11  Identities=36%  Similarity=0.724  Sum_probs=7.6  Template_Neff=2.700
+
+Q 6W9Q_A           19 LRQMSCAAGTT   29 (123)
+Q Consensus        19 lrqmscaagtt   29 (123)
+                      -.+|+|.+|+.
+T Consensus        25 ~~~~~C~~gtv   35 (46)
+T AAK94929.1|CBM   25 GKPMKCPGGTV   35 (46)
+Confidence            35678888863
+
+
+No 6
+>ABS47913.1|PL8_2.hmm|2.6e-99|635-880
+Probab=2.03  E-value=15  Score=19.29  Aligned_cols=17  Identities=41%  Similarity=0.851  Sum_probs=11.8  Template_Neff=4.100
+
+Q 6W9Q_A           59 QDLKWARFPKSDGTGTIYTE   78 (123)
+Q Consensus        59 qdlkwarfpksdgtgtiyte   78 (123)
+                      .-..|.|+|   ||-||...
+T Consensus        57 ~GWDWNR~P---GtTtihLP   73 (248)
+T ABS47913.1|PL8   57 EGWDWNRYP---GTTTIHLP   73 (248)
+Confidence            457899998   56666543
+
+
+No 7
+>SCV09658.1|GH137
+Probab=2.03  E-value=15  Score=20.73  Aligned_cols=31  Identities=35%  Similarity=0.761  Sum_probs=22.2  Template_Neff=2.600
+
+Q 6W9Q_A           37 NALAYYNTT--------KGGRFVLALLSDLQDLKWARFPKS   69 (123)
+Q Consensus        37 nalayyntt--------kggrfvlallsdlqdlkwarfpks   69 (123)
+                      .-.-|||..        ++-|.-+|.-.|+  +.|.||++.
+T Consensus       210 ~FvmyYNA~g~s~~~~~k~EriGmAvS~Dm--~~W~Ry~~n  248 (367)
+T SCV09658.1|GH1  210 PFVMYYNAKGDSLKNNKKGERIGMAVSDDM--VHWKRYGKN  248 (367)
+Confidence            345677754        5578888887777  469999875
+
+
+No 8
+>EEO46747.1|CBM58|202-318|3.8e-68
+Probab=1.97  E-value=16  Score=17.68  Aligned_cols=12  Identities=50%  Similarity=0.949  Sum_probs=8.9  Template_Neff=1.700
+
+Q 6W9Q_A           93 PKVKYLYFIKGL  104 (123)
+Q Consensus        93 pkvkylyfikgl  104 (123)
+                      ...|||||-.|+
+T Consensus        37 ~~akYLY~Gegi   48 (116)
+T EEO46747.1|CBM   37 DGAKYLYFGEGI   48 (116)
+Confidence            345999997765
+
+
+No 9
+>QDM21448.1|AA3||6-537
+Probab=1.71  E-value=19  Score=21.21  Aligned_cols=33  Identities=24%  Similarity=0.487  Sum_probs=15.6  Template_Neff=4.300
+
+Q 6W9Q_A           50 FVLALLSDLQDLKWARFPKSDGTGTIYTELEPPC   83 (123)
+Q Consensus        50 fvlallsdlqdlkwarfpksdgtgtiyteleppc   83 (123)
+                      ||--...|-++.+-...--.-..|++|+ +.||-
+T Consensus        80 fv~hy~d~~~~~r~~~~t~~~~~G~~yv-~~pP~  112 (644)
+T QDM21448.1|AA3   80 FVRHYADDTRQARDPKYTYRTPDGGYYV-LDPPA  112 (644)
+Confidence            4444444333333222222345677887 66653
+
+
+No 10
+>CBJ37966.1|GH28|235-654|7.7e-46
+Probab=1.70  E-value=19  Score=18.26  Aligned_cols=17  Identities=35%  Similarity=0.651  Sum_probs=7.9  Template_Neff=6.800
+
+Q 6W9Q_A           18 ALRQMSCAAGTTQTACT   34 (123)
+Q Consensus        18 alrqmscaagttqtact   34 (123)
+                      .|.|-.|.|..-..+|.
+T Consensus         3 ~~~~~~~~~~~~~~~~~   19 (345)
+T CBJ37966.1|GH2    3 NLAQTACTASWAAAACA   19 (345)
+Confidence            34444554444444443
+
+

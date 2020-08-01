@@ -14,7 +14,7 @@
         <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input Profiles" help="Homology search results of input profiles `hhr`."/>
         <param format="txt" name="crossreference" type="data" label="Cross Reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
         <param name="minscore" type="integer" label="min-Z score threshold" value="10" min="1" max="100" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
-        <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="10" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
+        <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="20" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
     </inputs>
     <outputs>
         <data format="txt" name="output" />
@@ -30,8 +30,8 @@
                     <element name="NP_000836.2.hhr" value="NP_000836.2.hhr" />
                 </collection>
             </param>
-            <param name="crossreference" value="index.txt"/>
-            <output name="output" file="result.txt"/>
+            <param name="crossreference" value="pdb70_random.crf"/>
+            <output name="output" file="pdb70_result.txt"/>
         </test>
     </tests>
     <help><![CDATA[
