@@ -160,8 +160,8 @@ struct HHsearch
         Msg::write("Loading template %s.", templatename.c_str());
         // open sequence alignment file
         File f;
-        if (!f.open (fname))
-            Msg::error ("HHsearch::getmodel()","HHsearch file not found.");        
+        if (!f.open(fname))
+            Msg::write("HHsearch::getmodel()","HHsearch file not found %s.", fname.c_str());
 
         // steps
         int step = 0;
@@ -170,7 +170,7 @@ struct HHsearch
             // read line
             if (!f.read())
                 continue;
-                
+
             if (f.get(0) == ">" + templatename)
             {
                 step = 1;

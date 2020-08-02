@@ -36,6 +36,7 @@ struct CrossReference
         // cross reference
         File f;
         f.open (filename);
+        Msg::write("Reading index from %s", filename.c_str());
         Vec < string > lcompound, lmatch;
         string newbio = "", oldbio = "";
         string newcore = "", oldcore = "";        
