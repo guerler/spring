@@ -20,15 +20,6 @@ use File::Basename;
 use Cwd 'abs_path';
 use Getopt::Long;
 
-#### check system ####
-my $system=$^O;
-unless (lc($system) eq "linux")
-{
-    printf "Your operating system $system is unsupported\n";
-    printf "Currently only 64bit linux is supported\n";
-    exit();
-}
-
 #### parse commandline argument ####
 my $datadir='';
 my $seqname='';

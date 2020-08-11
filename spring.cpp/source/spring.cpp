@@ -190,8 +190,8 @@ struct ModSpring_Model
             }
 
             // align model to sequence
-            sa.makemodel(&targetmono, modelpath + "fasta/" + ida);
-            sa.makemodel(&molmono, modelpath + "fasta/" + idb);
+            //sa.makemodel(&targetmono, modelpath + "fasta/" + ida);
+            //sa.makemodel(&molmono, modelpath + "fasta/" + idb);
 
             // log
             Msg::write ("Suggested monomeric structures not available.");
@@ -259,23 +259,20 @@ struct ModSpring_Model
                 }
 
             // add
-            if (!found)
+            if (!found) {
                 cr.add (lmol[i], lmolscore[i], ltarget, ltargetscore, true);
+            }
         }
 
         // check
         Msg::write("Total number of identified templates is %i.", cr.lcomplex.size());
-        
+
         // return
         if (cr.lcomplex.size() == 0)
             return false;
-            
+
         // sort templates by score
         cr.makemodels();
-
-        // refine
-        if (SpringConfig::REFINEMENT)
-            cr.refinemodels();
 
         /**
             SUMMARIZE AND EVALUATE RESULTS
@@ -379,104 +376,50 @@ struct ModSpring_Model
                 string tmplnamecore = clx->corename + "/" + clx->core;
                 string tmplnamepartner = clx->corename + "/" + clx->partner;
                 
-                // true pair?
-                if (withref)
+                // check minimum
+                //if (clx->score < SpringConfig::MINSPRING)
+                //	continue;
+
+                // write models
+                Msg::write ("Score %f.", clx->score);
+
+                // trajectory
+                if (SpringConfig::WRITE)
                 {
-                    // get quality
-                    InterfaceQuality m;
-                    m.construct(&targetref, &molref);
-                    InterfaceQuality_Info quality = m.get(&clx->target, &clx->mol);
+                    // make side chains
+                    getsidechains(&clx->target, &clx->mol, &targetfullmono, &molfullmono);
 
-                    // log
-                    Msg::write ("mTM-score %2.2f, fnat %2.2f.", quality.interface_min_tm, quality.interface_contacts);
-
-                    // trajectory
-                    if (SpringConfig::WRITE)
+                    // check for clashes
+                    double clash_radius = sqrt(SpringConfig::RADIUS2);
+                    for (int m = 0; m < clx->target.lcalpha.size(); m++)
+                    for (int n = 0; n < clx->mol.lcalpha.size(); n++)
                     {
-                        // rotate
-                        quality.tmat.apply(&clx->target);
-                        quality.tmat.apply(&clx->mol);
-
-                        // make side chains
-                        //getsidechains(&clx->target, &clx->mol, &targetfullmono, &molfullmono);
-                        
-                        // build side chains
-                       	//Pulchra::make (&targetref);
-                       	//Pulchra::make (&molref);
-
-                        // add molecules
-                        Vec < SpecMolecule > pdb;
-                        pdb.push_back(clx->target);
-                        pdb.push_back(clx->mol);
-                        pdb.push_back(targetref);
-                        pdb.push_back(molref);
-
-                        // finalize
-                        clx->target.info = "REM spring " + Convert::toString(clx->score) + "\n";
-                        clx->target.info += "REM templates " + tmplnamecore + " " + tmplnamepartner + "\n";
-                        store.save (pdb, output + fname);
-                        Msg::write ("Predicted model %i stored.", nmodel);
-                    }
-                    
-                    // verify
-                    #ifdef SPRING_RELEASE
-                    if (quality.interface_contacts < top_quality.interface_contacts)
-                        continue;
-
-                    // backup
-                    top_quality = quality;
-
-                    // best result for benchmark
-                    outtable = ida + " " + idb + " " + tmplnamecore + " " + tmplnamepartner + " " + Convert::toString(clx->score) + " " + quality.toString() + "\n";
-                    #else
-                    outtable += ida + " " + idb + " " + tmplnamecore + " " + tmplnamepartner + " " + Convert::toString(clx->zscore) + " " + Convert::toString(clx->energy) + " " + Convert::toString(clx->tms) + " " + Convert::toString(clx->deviation) + " " + quality.toString() + "\n";
-                    #endif
-                } else {
-					// check minimum
-					if (clx->score < SpringConfig::MINSPRING)
-						continue;
-
-                    // write models
-                    Msg::write ("Score %f.", clx->score);
-
-                    // trajectory
-                    if (SpringConfig::WRITE)
-                    {
-                        // make side chains
-                        getsidechains(&clx->target, &clx->mol, &targetfullmono, &molfullmono);
-                        
-                        // check for clashes
-                        double clash_radius = sqrt(SpringConfig::RADIUS2);
-                        for (int m = 0; m < clx->target.lcalpha.size(); m++)
-                        for (int n = 0; n < clx->mol.lcalpha.size(); n++)
+                        if (clx->target.latom[clx->target.lcalpha[m]].pos.dist(clx->mol.latom[clx->mol.lcalpha[n]].pos) < clash_radius)
                         {
-                            if (clx->target.latom[clx->target.lcalpha[m]].pos.dist(clx->mol.latom[clx->mol.lcalpha[n]].pos) < clash_radius)
-                            {
-                                if (clx->target.lcalpha.size() > clx->mol.lcalpha.size())
-                                    clx->target.latom[clx->target.lcalpha[m]].pos = NOCOORD;
-                                else
-                                    clx->mol.latom[clx->mol.lcalpha[n]].pos = NOCOORD;
-                            }
+                            if (clx->target.lcalpha.size() > clx->mol.lcalpha.size())
+                                clx->target.latom[clx->target.lcalpha[m]].pos = NOCOORD;
+                            else
+                                clx->mol.latom[clx->mol.lcalpha[n]].pos = NOCOORD;
                         }
-
-                        // alignment details
-                        outdetails += "\nNo. " + Convert::toString(nmodel) + "\n" + clx->info;
-                        outdetails += "----------------------------------------------------------------------------------------------------\n";
-
-                        // finalize
-                        clx->target.info = "REM spring " + Convert::toString(clx->score) + "\n";
-                        clx->target.info += "REM templates " + tmplnamecore + " " + tmplnamepartner + "\n";
-                        store.save (&clx->target, &clx->mol, output + fname);
-                        Msg::write ("Predicted model %i stored.", nmodel);
                     }
 
-                    // write table
-                    if(SpringConfig::DETAILS)
-                        sprintf (strbuf, "%-5i %-15s %-15s %10.1f %10.1f %10.2f %10i %9i%%\n", nmodel, tmplnamecore.c_str(), tmplnamepartner.c_str(), clx->score, clx->energy, clx->tms, clx->aln_total, Lib::percent(clx->aln_same, clx->aln_total));
-                    else
-                        sprintf (strbuf, "%-5i %-15s %-15s %-15s %-15s %10.1f %10.1f %10.2f %10i %9i%%\n", nmodel, ida.c_str(), idb.c_str(),tmplnamecore.c_str(), tmplnamepartner.c_str(), clx->score, clx->energy, clx->tms, clx->aln_total, Lib::percent(clx->aln_same, clx->aln_total));
-                    outtable += strbuf;
+                    // alignment details
+                    outdetails += "\nNo. " + Convert::toString(nmodel) + "\n" + clx->info;
+                    outdetails += "----------------------------------------------------------------------------------------------------\n";
+
+                    // finalize
+                    clx->target.info = "REM spring " + Convert::toString(clx->score) + "\n";
+                    clx->target.info += "REM templates " + tmplnamecore + " " + tmplnamepartner + "\n";
+                    store.save (&clx->target, &clx->mol, output + fname);
+                    Msg::write ("Predicted model %i stored.", nmodel);
                 }
+
+                // write table
+                if(SpringConfig::DETAILS)
+                    sprintf (strbuf, "%-5i %-15s %-15s %10.1f %10.1f %10.2f %10i %9i%%\n", nmodel, tmplnamecore.c_str(), tmplnamepartner.c_str(), clx->score, clx->energy, clx->tms, clx->aln_total, Lib::percent(clx->aln_same, clx->aln_total));
+                else
+                    sprintf (strbuf, "%-5i %-15s %-15s %-15s %-15s %10.1f %10.1f %10.2f %10i %9i%%\n", nmodel, ida.c_str(), idb.c_str(),tmplnamecore.c_str(), tmplnamepartner.c_str(), clx->score, clx->energy, clx->tms, clx->aln_total, Lib::percent(clx->aln_same, clx->aln_total));
+                outtable += strbuf;
             }
         }
 

@@ -30,8 +30,8 @@ struct SpringConfig
     static const double NORMALIZE     = 6.5;   // 6.7, 6.5 no refinement
 
     // refinement
-    static const bool   REFINEMENT    = true;
-    static const bool   SUGGESTEDMONO = true;
+    static const bool   REFINEMENT    = false;
+    static const bool   SUGGESTEDMONO = false;
 
     #ifdef SPRING_RELEASE
     static const int    NTOP          = 5;

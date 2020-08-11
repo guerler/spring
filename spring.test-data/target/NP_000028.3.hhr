@@ -1,0 +1,119 @@
+Query         NP_000028.3
+Match_columns 1880
+No_of_seqs    9942 out of 36080
+Neff          7.02436
+Searched_HMMs 773
+Date          Fri Jul 24 17:08:18 2020
+Command       /home/guerler/hh-suite/build/bin/hhblits -i /home/guerler/human/fasta/NP_00/NP_000028.3.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/human/hhr/NP_00/NP_000028.3.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 6M3P_E Ankyrin-3, Spectrin bet 100.0 3.5E-61 3.1E-65  605.7   0.0  487  896-1384    1-490 (491)
+  2 1UOH_A 26S PROTEASOME NON-ATPA  99.2 2.6E-15 2.7E-19  161.5   0.0  206  206-411     6-212 (226)
+
+No 1
+>6M3P_E Ankyrin-3, Spectrin beta chain, non-erythrocytic; PROTEIN BINDING, STRUCTURAL PROTEIN; 3.312A {Rattus norvegicus}
+Probab=100.00  E-value=3.5e-61  Score=605.74  Aligned_cols=487  Identities=61%  Similarity=1.020  Sum_probs=370.5  Template_Neff=7.400
+
+Q NP_000028.3     896 TETSDNISPVASPVHTGFLVSFMVDARGGSMRGSRHNGLRVVIPPRTCAAPTRITCRLVKPQKLSTPPPLAEEEGLASRI  975 (1880)
+Q Consensus       896 ~~~~~~~~~~~~~~~~~~~~~~~i~~~GG~L~s~~~~gVsL~IPpGAv~~~~~I~l~v~~~~~~~~~p~l~~~e~~~Spv  975 (1880)
+                      ++++||+....+|...++.+++.|+++||.|.....+||+|.|||||+.++.+|++++...+.....|.+..++.++||+
+T Consensus         1 ~~~~~~~~~~~~p~~~~~~~s~~v~~~GG~l~~~~~~Gv~L~IPpgAi~~~~~I~~~v~~~~~~~~~p~L~~~E~LlS~v   80 (491)
+T 6M3P_E            1 ADTLDNVNLVSSPVHSGFLVSFMVDARGGSMRGSRHHGMRIIIPPRKCTAPTRITCRLVKRHKLANPPPMVEGEGLASRL   80 (491)
+T ss_dssp             ---------CCCCEEEEESSEEEECTTCEEEEESSSTTCEEEECTTCSSSCEEEEEEECCSSCCSSCCCCCTTCEEEEEE
+T ss_pred             CCCccccccccCCcccCCeEEEEECCCCCeEEEeCCCceEEEECcccCCCCcEEEEEEecCCCCCCCCCCCCCCeeeccc
+Confidence            35789999999999999999999999999998556899999999999999999999999876311256777789999999
+
+
+Q NP_000028.3     976 IALGPTGAQFLSPVIVEIPHFASHGRGDRELVVLRSENGSVWKEHRSRYGESYLDQILNGMDEELGSLEELEKKRVCRI- 1054 (1880)
+Q Consensus       976 V~~~P~g~~F~kPVtLtlPh~a~~~~~~~~l~l~~s~~~~~W~~i~~~~~~~~~~~~~~~~~~~~~~~~~~v~~~~v~~- 1054 (1880)
+                      |.|+|+|..|.+||+|++|||+....+.|.+.++.++.+..|+++...........+.+++.++-+...-.-.++.|++ 
+T Consensus        81 v~~gP~g~~f~kPV~l~iPh~a~~~~~~rei~v~~s~~~~~W~e~~~~~~e~~~~~~~~~~~~~ld~~~~~~~~~~~~i~  160 (491)
+T 6M3P_E           81 VEMGPAGAQFLGPVIVEIPHFGSMRGKERELIVLRSENGETWKEHQFDSKNEDLSELLNGMDEELDSPEELGTKRICRII  160 (491)
+T ss_dssp             EEESSTTCEEEEEEEEEEECCBCCTTTTEEEEEEEESSSSCEEECCCSCCCHHHHHTSCSSCCCCSCHHHHHHHTEEEEE
+T ss_pred             EEEecCCccccccEEEEeCCccccCCCceEEEEEEeCCCCeeEEeecCCCcchhHHHHccCcccCCChhHhCCceEEEEE
+Confidence            9999999999999999999999987678998888888889999998632211100000001000000000112567877 
+
+
+Q NP_000028.3    1055 ITTDFPLYFVIMSRLCQDYDTIGPEGGSLKSKLVPLVQATFPENAVTKRVKLALQAQPVPDELVTKLLGNQATFSPIVTV 1134 (1880)
+Q Consensus      1055 ~t~hFs~~~lv~~~~~~~~~~i~~~GG~L~l~~~~gV~L~IPpGAv~~~~~I~l~v~~~~~~~~p~l~~~e~~lSpvv~~ 1134 (1880)
+                      .+++|+.|++ ..++++++..|+++||.|.+..+++|++.||+||+.+..++.++|++.+....-.+..+....||+|.+
+T Consensus       161 ~~~~~~~Fav-Vsr~~~e~~~i~~~Gg~l~Ss~dp~V~~~fP~ga~~~~~~v~lqvqPi~~~~~~~~~~~~~~~Spiv~l  239 (491)
+T 6M3P_E          161 TKDFPQYFAV-VSRIKQESNQIGPEGGILSSTTVPLVQASFPEGALTKRIRVGLQAQPVPEETVKKILGNKATFSPIVTV  239 (491)
+T ss_dssp             EEECCSEEEE-EEEECCEEECC------EECSSSSSCEEECCCC----CCCEEEEEECCCHHHHHHC---CCEECCEEEE
+T ss_pred             eCCCCCeEEE-EEecccceeeecCCcceEeeccCCceEEEeCCCcccCcEEEEEEEEeCCHHHHHHHhcCCceecceEEE
+Confidence            6667755555 566799999999999999985559999999999999998888999886612222344567899999999
+
+
+Q NP_000028.3    1135 EPRRRKFHRPIGLRIPLPPSWTDNPRDSGEGD-TTSLRLLCSVIGGTDQAQWEDITGTTKLVYANECANFTTNVSARFWL 1213 (1880)
+Q Consensus      1135 ~P~g~~F~kPv~L~lph~a~~~~~~~~~~~~~-~~~l~l~~s~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 1213 (1880)
+                      .|++.+|+|||+|++|.+........|++.++ ...++|+||..++++.++|+|+|+++.+...|.|..|+|++++|||+
+T Consensus       240 ~p~~~~F~kPvtitlPlp~~~~~~~~~~~~~~~~~~l~lLcs~~~~~~~~~W~dit~~~~~~~~~~~vsF~~~~~~r~~l  319 (491)
+T 6M3P_E          240 EPRRRKFHKPITMTIPVPPPSGEGVSNGYKGDTTPSLRLLCSITGGTSPAQWEDITGTTPLTFIKDCVSFTTNVSARFWL  319 (491)
+T ss_dssp             SSCSEEEEEEEEEEEECCCCC-------------CCEEEEEECCCTTSCCCCEECGGGCCCBCSSSEEEEEEEECCEEEE
+T ss_pred             EcCCCcCCCCEEEEEeCCCCCCCCccCCCCCCCCCceEEEEEecCCCCccccEeccCceeeeEeCCEEEEEEeecccEEE
+Confidence            99999999999999998775442211233333 46889999999999999999999999999999999999999999999
+
+
+Q NP_000028.3    1214 SDCPRTAEAVNFATLLYKELTAVPYMAKFVIFAKMNDPREGRLRCYCMTDDKVDKTLEQHENFVEVARSRDIEVLEGMSL 1293 (1880)
+Q Consensus      1214 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 1293 (1880)
+                      -+|+...+++++|+.||+++.+||||++||+|+|..||.|.++||+||+||++||+|+++++|.++++|++++++||..+
+T Consensus       320 ~~~~~~~~~~~~a~~l~~~~~~~~~~~~~vv~~k~~dp~e~~l~~~c~~~~~~~~~l~~~~~f~~~~~S~~v~v~EG~~~  399 (491)
+T 6M3P_E          320 ADCHQVLETVGLASQLYRELICVPYMAKFVVFAKTNDPVESSLRCFCMTDDRVDKTLEQQENFEEVARSKDIEVLEGKPI  399 (491)
+T ss_dssp             EECSCTTHHHHHHHHHHHHHTCCEEEEEEEEEECC------CEEEEEESSCCSSCHHHHHTTCEEEECCCCEEEETTSEE
+T ss_pred             EEeCChHHHHHHHHHHHHHhccCcEEEEEEEEecCCCcceEEEEEEEeCchhHHHHHHhhcCcCCCCccCCEEEeCCCeE
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q NP_000028.3    1294 FAELSGNLVPVKKAAQQRSFHFQSFRENRLAMPVKVRDSSREPGGSLSFLRKAMKY-EDTQHILCHLNITMPPCAKGSGA 1372 (1880)
+Q Consensus      1294 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~ 1372 (1880)
+                      +.+++||++|+.+..++..|+|++||+||+.+.||++|.+.++.|.++|+|...+. +..|..+|.|+|++|.+.+.++.
+T Consensus       400 ~i~f~GNi~~~~~~~~~~~~~F~~~~~n~l~~~v~~~d~~~~~~G~~~f~r~~~~~~~~~~~~lc~L~i~lP~~~~~~~~  479 (491)
+T 6M3P_E          400 YVDCYGNLAPLTKGGQQLVFNFYSFKENRLPFSIKVRDTSQEPCGRLSFLKEPKTTKGLPQTAVCNLNITLPAHKKAEKA  479 (491)
+T ss_dssp             EEEEESSCCCCC---CCCEEECCTTSCEEEEECC----CCSCCCEEEEEESCC--CCSSCCCCSEEEEECCCCCSCCH--
+T ss_pred             EEEeeccEEEccCCCceEEEEEEeeCCceeeEEEEEcCCCCCCceEEEEEeCCCCCCCCCCcceEEeeeecCcccccCCc
+Confidence            99999999999999999999999999999999999999999999999999988876 45799999999999999998875
+
+
+Q NP_000028.3    1373 EDRRRTPTPLAL 1384 (1880)
+Q Consensus      1373 ~~~~~~~~~~~~ 1384 (1880)
+                      +.+ +.-+.+++
+T Consensus       480 ~~~-~~~~~~~~  490 (491)
+T 6M3P_E          480 DRR-QSFTSLAL  490 (491)
+T ss_dssp             ----HHHHHHCT
+T ss_pred             ccc-cccccccC
+Confidence            444 43344443
+
+
+No 2
+>1UOH_A 26S PROTEASOME NON-ATPASE REGULATORY SUBUNIT; ONCOPROTEIN, ANKYRIN REPEAT, 26S PROTEASOME; 2.0A {HOMO SAPIENS} SCOP: d.211.1.1
+Probab=99.17  E-value=2.6e-15  Score=161.54  Aligned_cols=206  Identities=32%  Similarity=0.396  Sum_probs=118.1  Template_Neff=12.800
+
+Q NP_000028.3     206 GFTPLHIAAHYENLNVAQLLLNRGAS-VNFTPQNGITPLHIASRRGNVIMVRLLLDRGAQIETKTKDELTPLHCAARNGH  284 (1880)
+Q Consensus       206 G~saL~~Aa~~g~~eiv~~LL~~g~d-i~~~d~~g~TpLh~Aa~~g~~eiVk~LL~~gad~~~~d~~G~TpL~~Aa~~g~  284 (1880)
+                      +.++++.|+..++.+++++++..... ....+..+.++|+.|+..++.+++++|+..+.++...+..+.++++.|+..++
+T Consensus         6 ~~~~l~~a~~~~~~~~~~~ll~~~~~~~~~~~~~~~~~l~~a~~~~~~~~~~~L~~~~~~~~~~~~~~~~~l~~a~~~~~   85 (226)
+T 1UOH_A            6 SNLMVCNLAYSGKLEELKESILADKSLATRTDQDSRTALHWACSAGHTEIVEFLLQLGVPVNDKDDAGWSPLHIAASAGR   85 (226)
+T ss_dssp             SSSHHHHHHHTTCHHHHHHHHHHCGGGGGCCCTTSCCHHHHHHHHTCHHHHHHHHHHTCCSCCCCTTCCCHHHHHHHHTC
+T ss_pred             chHHHHHHHHcCCHHHHHHHHHcCcccccCCCCCCCcHHHHHHHcCCHHHHHHHHHcCCCCCCCCCCCCcHHHHHHHcCC
+Confidence            34566666677777776666654322 12223345566777777777777777766655554444455666666666666
+
+
+Q NP_000028.3     285 VRISEILLDHGAPIQAKTKNGLSPIHMAAQGDHLDCVRLLLQYDAEIDDITLDHLTPLHVAAHCGHHRVAKVLLDKGAKP  364 (1880)
+Q Consensus       285 ~eilk~LL~~gadin~~d~~g~TpL~~Aa~~g~~div~~LL~~ga~i~~~d~~g~t~L~~Aa~~g~~eiVk~LLe~gadi  364 (1880)
+                      .+++++|+..+.+....+..+.++++.|+..++.+++++|++.+......+..+.++++.|+..++.+++++|+..+...
+T Consensus        86 ~~~~~~l~~~~~~~~~~~~~~~~~l~~a~~~~~~~~~~~l~~~~~~~~~~~~~~~~~l~~a~~~~~~~~~~~l~~~~~~~  165 (226)
+T 1UOH_A           86 DEIVKALLGKGAQVNAVNQNGCTPLHYAASKNRHEIAVMLLEGGANPDAKDHYEATAMHRAAAKGNLKMIHILLYYKAST  165 (226)
+T ss_dssp             HHHHHHHHHTTCCTTCCCTTCCCHHHHHHHHTCHHHHHHHHHTTCCTTCCCTTSCCHHHHHHHTTCHHHHHHHHHTTCCS
+T ss_pred             HHHHHHHHhCCCCcccccCCCCChhHhhhhcCChHHHHHHHHCCCCCCCCCcccccHHHHHHHcCCHHHHHHHHHcCCCC
+Confidence            66666666665544443444555666666666666666666555443333334455666666666666666666655544
+
+
+Q NP_000028.3     365 NSRALNGFTPLHIACKKNHVRVMELLLKTGASIDAVTESGLTPLHVA  411 (1880)
+Q Consensus       365 n~~d~~g~tpL~~Aa~~g~leIVk~LLe~Gadin~~d~~g~t~L~~A  411 (1880)
+                      +..+..+.++++.|+..++.+++++|++++.+++..+..+.++++.+
+T Consensus       166 ~~~~~~~~~~l~~a~~~~~~~~v~~Ll~~~~~~~~~~~~~~t~l~~a  212 (226)
+T 1UOH_A          166 NIQDTEGNTPLHLACDEERVEEAKLLVSQGASIYIENKEEKTPLQVA  212 (226)
+T ss_dssp             CCCCTTCCCHHHHHHHTTCHHHHHHHHHTTCCSCCCCTTSCCHHHHC
+T ss_pred             CCCCCCCCCHHHHHHHcCCHHHHHHHHHCCCCcEeeCCCCCChhHHh
+Confidence            44444455566666666666666666665555544444444454443
+

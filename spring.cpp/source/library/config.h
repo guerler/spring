@@ -5,30 +5,13 @@ class Config
 	Vec < string > ldata;
 public:
 	// constructor		
-	Config()
-	{
-        // table
-        Format::readList ("config.cnf", ldata);
-        
-        // read
-        ptWeb = get ("ptWeb");
-        ptCache = get ("ptCache");
-        ptTemp = get ("ptTemp");
-        ptData = get ("ptData");
-        ptResults = get ("ptResults");
-        dbHost = get ("dbHost");
-        dbUser = get ("dbUser");
-        dbPass = get ("dbPass");
-        dbName = get ("dbName");
-        dbPort	= Convert::toInt(get ("dbPort"));
-        
-        // generate temp		
+	Config() {
+        ptTemp = "/tmp/";
         mkdir(ptTemp.c_str(), 0777);
 	}
 
     // uuid
-    string get_uuid()
-    {
+    string get_uuid() {
         timeval tm;
         gettimeofday(&tm, NULL);
         return Convert::toString(tm.tv_sec) + Convert::toString(tm.tv_usec);
@@ -52,10 +35,7 @@ public:
 	}
     
     // files and directories
-    string ptWeb, ptCache, ptData, ptResults, ptTemp;
+    string ptTemp;
 
-    // database
-    int    dbPort;
-    string dbHost, dbName, dbPass, dbUser;
 };
 

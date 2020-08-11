@@ -44,9 +44,7 @@ def main(args):
 								minp = p
 			if minz > args.minscore:
 				interactions.append((name, minz))
-				#print("Predicting: %s, min-Z: %s" % (name, minz))
-				print(mint)
-				print(minp)
+				print("Predicting: %s, min-Z: %s, templates: %s, %s" % (name, minz, mint, minp))
 		interactions.sort(key=lambda tup: tup[1], reverse=True)
 		with open(args.output, 'w') as output_file:
 			for i in interactions:
