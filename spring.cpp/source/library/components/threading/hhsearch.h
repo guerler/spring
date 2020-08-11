@@ -256,7 +256,7 @@ struct HHsearch {
         model.finalize();
 
         // copy molecules back
-        mol->construct(&model);	
+        mol->construct(moltmpl);	
 
         // return
         return true;        

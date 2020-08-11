@@ -146,17 +146,3 @@ T 5VHO_A           53 KGVLLFGPPGTGKTLCARAVANRT   76 (267)
 T ss_pred             CEEEEECCCCCCHHHHHHHHHHHh
 Confidence            345678999999999988776543
 
-
-No 491
->6UV3_A Probable ATP-dependent RNA helicase DDX17/RNA; DEAD-box ATPase, RNA helicase, RNA; HET: ADP; 1.597A {Homo sapiens}
-Probab=83.29  E-value=0.71  Score=53.19  Aligned_cols=43  Identities=12%  Similarity=-0.021  Sum_probs=26.2  Template_Neff=11.800
-
-Q YP_009724389.1 5601 YSTLQGPPGTGKSHFAIGLALYYP----------SARIVYTACSHAAVDALCE 5643 (7096)
-Q Consensus      5601 ystlqgppgtgkshfaiglalyyp----------sarivytacshaavdalce 5643 (7096)
-                      -.-+.+|+|+|||..++..++..-          ..++++.+.+...+....+
-T Consensus       102 ~~l~~~~tG~GKT~~~~~~~~~~~~~~~~~~~~~~~~~lii~p~~~l~~q~~~  154 (448)
-T 6UV3_A          102 DMVGIAQTGSGKTLAYLLPAIVHINHQPYLERGDGPICLVLAPTRELAQQVQQ  154 (448)
-T ss_dssp             EEEEECCTTSCHHHHHHHHHHHHHHTSCCCCTTCCCSEEEECSSHHHHHHHHH
-T ss_pred             cEEEEcCCCCChHHHhHHHHHHHHhcCccccCCCCCeEEEEcCcHHHHHHHHH
-Confidence            346789999999998776555432          3345555555444443333
-
