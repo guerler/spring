@@ -186,7 +186,7 @@ class HHSEARCH_Functions:
                     continue
 
             if lines[i][0] == '>':
-                current_template = lines[i][1:].strip()
+                current_template = lines[i].strip().split()[0][1:] #lines[i][1:].strip()
                 if current_template in alignments:
                     is_hit = True
                     continue
@@ -239,7 +239,7 @@ class HHSEARCH_Functions:
         current_template = ''
         for i in xrange(0,len(lines) ): 
             if lines[i][0] == '>':
-                current_template = lines[i][1:].strip()
+                current_template = lines[i].strip().split()[0][1:] #lines[i][1:].strip()
                 if current_template in summary:
                     continue
                 rank.append(current_template)
@@ -270,6 +270,9 @@ class HHSEARCH_Functions:
             chainLength (int): Length of template chain ie. 585 in the example
         """
         line = lines[lineNum]
+        if 'ss_dssp' in line:
+            line = lines[lineNum-1]
+        print(line)
         tmp = line.strip().split()
         chainLen = int( tmp[-1].replace('(','').replace(')','') )
         return chainLen
