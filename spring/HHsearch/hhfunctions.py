@@ -270,7 +270,7 @@ class HHSEARCH_Functions:
             chainLength (int): Length of template chain ie. 585 in the example
         """
         line = lines[lineNum]
-        print(line)
+        #print(line)
         if 'ss_dssp' in line or 'ss_pred' in line:
             line = lines[lineNum-1]
         #print(line)
