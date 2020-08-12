@@ -168,12 +168,12 @@ def TMalign(model, native, modelIsFile = False, nativeIsFile = False,
     out  = tmalign._tmalign(seq[0],CAcoord[0], seq[1],CAcoord[1])
     transformationMatrix = out[0]
     seqid = out[1]
-    alignment = out[2]
+    alignment = out[2].decode("utf-8")
     numAlign = out[3]
     rmsd = out[4]
-    seqModel_align = out[5]
+    seqModel_align = out[5].decode("utf-8")
     TMscore_normModel = out[6]
-    seqNative_align = out[7]
+    seqNative_align = out[7].decode("utf-8")
     TMscore_normNative = out[8]
 
     if applyTransform:

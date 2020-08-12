@@ -1,0 +1,171 @@
+Query         ADSL_C
+Match_columns 46
+No_of_seqs    106 out of 216
+Neff          3.6 
+Searched_HMMs 110758
+Date          Wed May 14 19:27:47 2014
+Command       ./hhsuite/bin/hhsearch -i /tmp/ADSL_C/ADSL_C.hhm -d /library/yzhang/springdb/hhm.db -B 10000 -E 0.01 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 2j91A                           98.2 6.5E-06 5.8E-11   59.6   4.3   40    5-44      1-48  (457)
+  2 2vd6A                           98.2 6.6E-06 5.9E-11   59.5   4.3   41    5-45      1-49  (461)
+  3 4ffxA                           97.9 3.1E-05 2.8E-10   56.2   3.7   40    6-45      1-48  (457)
+  4 1yisA                           97.8 2.9E-05 2.6E-10   55.9   2.2   37    9-45      2-47  (411)
+  5 4flcA                           97.6 0.00021 1.9E-09   52.1   4.1   39    7-45      1-47  (460)
+  6 1dofA                           96.6   0.004 3.6E-08   45.0   2.5   31   15-45      3-41  (385)
+  7 1re5A                           96.5  0.0064 5.8E-08   44.5   3.0   31   15-45      1-40  (438)
+  8 2felA                           96.4  0.0087 7.9E-08   42.6   3.1   34   12-45      4-46  (337)
+  9 2fenA                           95.8   0.025 2.2E-07   40.6   3.1   34   12-45      4-46  (342)
+ 10 1q5nA                           95.4   0.045 4.1E-07   40.1   3.3   30   16-45      2-39  (431)
+
+No 1  
+>2j91A
+Probab=98.17  E-value=6.5e-06  Score=59.65  Aligned_cols=40  Identities=78%  Similarity=1.393  Sum_probs=37.5
+
+Q ss_pred             CCCCCCCcCcchhhhhhcCHHHHHHcCchH--------HHHHHHHHhh
+Q ADSL_C            5 GDHGSPDSYRSPLASRYASPEMCFVFSDRH--------WVCLSQMNKS   44 (46)
+Q Consensus         5 ~~~t~~d~Y~spLssRYAS~EM~~ifS~~~--------WiaLa~a~~~   44 (46)
+                      |||++.+.+.+|+.+||.+++|..+||+..        ++++|+||.+
+T Consensus         1 ~~~~~~~~~~~~~~~r~~~~~~~~~fs~~~~i~~~~~ve~A~a~a~~~   48 (457)
+T 2j91A             1 GDHGSPDSYRSPLASRYASPEMCFVFSDRYKFRTWRQLWLWLAEAEQT   48 (457)
+T ss_dssp             CCSCCTTSCCCHHHHTTSCHHHHHHTSHHHHHHHHHHHHHHHHHHHHH
+T ss_pred             CCCCCCCcccCCcccccccHHHHHHhCHhHHHHHHHHHHHHHHHHHHH
+Confidence            799999999999999999999999999999        8889998876
+
+
+No 2  
+>2vd6A
+Probab=98.17  E-value=6.6e-06  Score=59.55  Aligned_cols=41  Identities=76%  Similarity=1.341  Sum_probs=38.1
+
+Q ss_pred             CCCCCCCcCcchhhhhhcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C            5 GDHGSPDSYRSPLASRYASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus         5 ~~~t~~d~Y~spLssRYAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      |||++.+.+.+|+.+||.+++|..+||++.        |++||+|+.+.
+T Consensus         1 ~~~~~~~~~~~~~~~r~~~~~~~~~fs~~~~~~~~~~ve~Ala~a~~~~   49 (461)
+T 2vd6A             1 GDHGSPDSYRSPLASRYASPEMCFVFSDRYKFRTWRQLWLWLAEAEQTL   49 (461)
+T ss_dssp             CCSCCTTSCCCHHHHTTSCHHHHHHTSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             CCCCCCCCCCCCCccccccHHHHHHhChhhHHHHHHHHHHHHHHHHHHh
+Confidence            799999999999999999999999999999        88999998763
+
+
+No 3  
+>4ffxA
+Probab=97.91  E-value=3.1e-05  Score=56.18  Aligned_cols=40  Identities=75%  Similarity=1.320  Sum_probs=37.0
+
+Q ss_pred             CCCCCCcCcchhhhhhcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C            6 DHGSPDSYRSPLASRYASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus         6 ~~t~~d~Y~spLssRYAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      ||++.+.+.+|+..||.+++|..+||++.        |.+||+|+.+.
+T Consensus         1 ~~~~~~~~~~~~~~r~~~~~~~~~fs~~~~~~~~l~ve~Ala~a~~~~   48 (457)
+T 4ffxA             1 DHGSPDSYRSPLASRYASPEMCFVFSDRYKFRTWRQLWLWLAEAEQTL   48 (457)
+T ss_dssp             CCCCTTSCCCTTTTTSSCHHHHHHTSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             CCCCCCCCCCCCccccccHHHHHHhChhhHHHHHHHHHHHHHHHHHHh
+Confidence            78899999999999999999999999999        88999998763
+
+
+No 4  
+>1yisA
+Probab=97.81  E-value=2.9e-05  Score=55.87  Aligned_cols=37  Identities=27%  Similarity=0.603  Sum_probs=33.1
+
+Q ss_pred             CCCcCcchhhhhhcCHH-HHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C            9 SPDSYRSPLASRYASPE-MCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus         9 ~~d~Y~spLssRYAS~E-M~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      +.|.|.+||.+||.+++ |..|||++.        |+++|+|+.+.
+T Consensus         2 ~~~~~~~~~~~~~~~~~~~~~ifs~~~~i~~~~~ve~A~a~a~~e~   47 (411)
+T 1yisA             2 SEDKFESVLSTRYCKNSPLVSILSETNKATLWRQLWIWLAEAEKEL   47 (411)
+T ss_dssp             GGGSCCCHHHHTTTTTCTHHHHTSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             CCccCCCCcccccCChHHHHHHcChHHHHHHHHHHHHHHHHHHHHc
+Confidence            45789999999999999 999999999        88889888764
+
+
+No 5  
+>4flcA
+Probab=97.61  E-value=0.00021  Score=52.07  Aligned_cols=39  Identities=74%  Similarity=1.313  Sum_probs=34.1
+
+Q ss_pred             CCCCCcCcchhhhhhcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C            7 HGSPDSYRSPLASRYASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus         7 ~t~~d~Y~spLssRYAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      |++.+.+.+|+..||.+++|..+||++.        +++||+|+.+.
+T Consensus         1 ~~~~~~~~~~~~~r~~~~~~~~~fs~~~~~~~~l~ve~Ala~a~~~~   47 (460)
+T 4flcA             1 HGSPDSYRSPLASRYASPEMCFVFSDRYKFRTWRQLWLWLAEAEQTL   47 (460)
+T ss_dssp             CCCTTSCCCHHHHTTSCHHHHHHTSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             CCCCCcCCCcCccccccHHHHHHhChhHHHHHHHHHHHHHHHHHHHh
+Confidence            4456679999999999999999999999        88999998763
+
+
+No 6  
+>1dofA
+Probab=96.60  E-value=0.004  Score=44.97  Aligned_cols=31  Identities=26%  Similarity=0.281  Sum_probs=27.3
+
+Q ss_pred             chhhhhhcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C           15 SPLASRYASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus        15 spLssRYAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      +|+..||.+++|..|||+++        +.++|.|+.+.
+T Consensus         3 ~~~~~~y~~~~~~~ifs~~~~i~~~~~ve~A~a~al~e~   41 (385)
+T 1dofA             3 SPFDWRYGSEEIRRLFTNEAIINAYLEVERALVCALEEL   41 (385)
+T ss_dssp             CGGGTTSSCHHHHTTSSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             CccccccCCHHHHHHcChHHHHHHHHHHHHHHHHHHHHC
+Confidence            68999999999999999999        77788887764
+
+
+No 7  
+>1re5A
+Probab=96.49  E-value=0.0064  Score=44.51  Aligned_cols=31  Identities=32%  Similarity=0.428  Sum_probs=26.3
+
+Q ss_pred             chhhhhhcC-HHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C           15 SPLASRYAS-PEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus        15 spLssRYAS-~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      |++..||++ ++|..|||++.        +.++|.|+.+.
+T Consensus         1 ~~~~~~~~~~~~~~~i~s~~~~i~~~~~ve~A~a~a~~~~   40 (438)
+T 1re5A             1 NQLFDAYFTAPAMREIFSDRGRLQGMLDFEAALARAEASA   40 (438)
+T ss_dssp             CCTTHHHHSCHHHHHHTSHHHHHHHHHHHHHHHHHHHHTT
+T ss_pred             CCccccccCCHHHHHHCChHHHHHHHHHHHHHHHHHHHHC
+Confidence            456669999 99999999999        88888888764
+
+
+No 8  
+>2felA
+Probab=96.40  E-value=0.0087  Score=42.60  Aligned_cols=34  Identities=21%  Similarity=0.383  Sum_probs=28.1
+
+Q ss_pred             cCcchhhhh-hcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C           12 SYRSPLASR-YASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus        12 ~Y~spLssR-YAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      .|++|+..| |.+++|..+||++.        ++++|+|+.+.
+T Consensus         4 ~~~~~~~~~~~~~~~~~~~fs~~~~~~~~~~ve~A~a~al~~~   46 (337)
+T 2felA             4 PFEHPFLSGLFGDSEIIELFSAKADIDAMIRFETALAQAEAEA   46 (337)
+T ss_dssp             TTSCTTTHHHHCCHHHHGGGSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             cccccccccccCCHHHHHHcCCHHHHHHHHHHHHHHHHHHHHC
+Confidence            367887776 67899999999999        88888888764
+
+
+No 9  
+>2fenA
+Probab=95.82  E-value=0.025  Score=40.59  Aligned_cols=34  Identities=21%  Similarity=0.383  Sum_probs=27.8
+
+Q ss_pred             cCcchhhhh-hcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C           12 SYRSPLASR-YASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus        12 ~Y~spLssR-YAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      .+++||.+| |.+++|..+||+++        ++++|+|+.+.
+T Consensus         4 ~~~~~~~~~~~~~~~~~~i~s~~~~i~~~~~ve~A~a~al~~~   46 (342)
+T 2fenA             4 PFEHPFLSGLFGDSEIIELFSAKADIDAMIRFETALAQAEAEA   46 (342)
+T ss_dssp             TTSCTTTHHHHCCHHHHGGGSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             cCcccccccccCCHHHHHHcCCHHHHHHHHHHHHHHHHHHHHC
+Confidence            367888886 67899999999999        77888887653
+
+
+No 10 
+>1q5nA
+Probab=95.42  E-value=0.045  Score=40.13  Aligned_cols=30  Identities=30%  Similarity=0.316  Sum_probs=25.5
+
+Q ss_pred             hhhhhhcCHHHHHHcCchH--------HHHHHHHHhhc
+Q ADSL_C           16 PLASRYASPEMCFVFSDRH--------WVCLSQMNKSR   45 (46)
+Q Consensus        16 pLssRYAS~EM~~ifS~~~--------WiaLa~a~~~~   45 (46)
+                      ++.+||.+++|..+||+++        +.++|+|+.+.
+T Consensus         2 ~~~~~~~~~~~~~i~s~~~~~~~~~~ve~A~a~a~~~~   39 (431)
+T 1q5nA             2 LYASLFYQRDVTEIFSDRALVSYMVEAEVALAQAQAQV   39 (431)
+T ss_dssp             TTHHHHSCHHHHHHTSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             CcccccCCHHHHHHcCcHHHHHHHHHHHHHHHHHHHHC
+Confidence            6788999999999999999        77788877653
+
+
+Done!

@@ -1,0 +1,81 @@
+For parameters of hhsearch.py or hhfunctions.py
+Run:
+./hhsearch.py
+./hhfunctions.py
+
+Part 1 - Setup HHsearch (read HHsearch manual in hhsuite if neccessary)
+ 1. The directories blast, hhsuite and psipred are required to run the HHsearch Suite.
+	You might need to reinstall these programs.
+ 1a. For more information on HHsearch read the readmen in ./hhsuite/README
+ 2. Update local pathes in source/HHsearch/hhsuite/lib/hh/scripts/HHPaths.pm ie:
+	$execdir =
+	$datadir =
+	$ncbidir =
+ 
+ 3. Update hhsearchConfig.py (this is the configuration file for running hhsearch.py) the paths
+	that may need to be changed are.
+		hhsearchPATH: Full path to HHsearch directory (the diretory this readme file is in)
+		hhsuiteDir: Full path to hhsuite directory
+		uniprotDir: Full path to uniprot database directory
+		uniprotDBName: Name of uniprot database contained in uniprotDir
+		hhsearchDB: Full path to hhsearch database
+		hhblits: Full path to hhblits executable
+		hhmake: FUll path to hhmake executable
+		hhsearch: Full path to hhsearch exectuable
+		addss.pl: Full path to addss.pl script
+ 4. hhsearch.py handles the running and jobsubmission of the hhsearch scripts in the
+	scripts directory. run ./hhsearch.py for parameters for running program.  Can
+	also go to the example directory for examples
+ 5. hhfunctions.py contains helper functions for reading hhresults files and making models
+	from hhsearch results. 
+
+Directory Formats (each format is in the example directory) and Examples:
+Complex (use -complex when running hhsearch)
+  1. target directory should have the name chain1-chain2 ie 12asA-12asB
+  2. the target diretories should have two sequences in fasta format. Using the
+	name of the chain ie 12asA.seq and 12asB.seq
+  3. Can run hhsearch.py locally by running
+	./hhsearch.py -q 12asA-12asB -iDir /nfs/amino-home/bgovi/source/example/complex/ -make -search -complex
+Monomer (use -monomer when running hhsearch)
+  1. target directory should have be the name of the chain ie 12asA
+  2. the target directorie should have one sequence in fasta format ie 12asA.seq
+  3. Can run hhsearch.py locally by running
+	./hhsearch.py -q 12asA-12asB -iDir /nfs/amino-home/bgovi/source/example/monomer/ -make -search -monomer
+GenomeWide (use -genome when running hhsearch)
+  1. The input directory will contain 3 directories: fasta, hhm and hhr:
+	1a. The fasta directory will contain all of your sequence files
+	1b. The hhm directory will contain all the target.hhm files
+	1c. the hhr directory will contain all the target.hhr files
+  2. Each path is dependant on the target name and the substrPosition and substrLength parameters in hhsearchConfig.py
+  3a. Example paths.  If the target is 117eA and substrPosition = 0 and substrLenght = 2
+	3a1 (full path to sequence file): /PathToInputDirectory/fasta/11/117eA.seq
+	3a2 (full path to hhm file)     : /PathToInputDirectory/hhm/11/117eA.hhm
+	3a3 (full path to hhr file)     : /PathToInputDirectory/hhr/11/117eA.hhr
+  3b. Example paths 2. If the target is 117eA and substrPosition = 1 and substrLenght = 2
+        3b1 (full path to sequence file): /PathToInputDirectory/fasta/17/117eA.seq
+        3b2 (full path to hhm file)     : /PathToInputDirectory/hhm/17/117eA.hhm
+        3b3 (full path to hhr file)     : /PathToInputDirectory/hhr/17/117eA.hhr
+  3c. Example paths 2. If the target is 117eA and substrPosition = 2 and substrLenght = 3
+        3c1 (full path to sequence file): /PathToInputDirectory/fasta/7eA/117eA.seq
+        3c2 (full path to hhm file)     : /PathToInputDirectory/hhm/7eA/117eA.hhm
+        3c3 (full path to hhr file)     : /PathToInputDirectory/hhr/7eA/117eA.hhr
+  3d. The paths are made by getting a substring of the target based on the substrLengh and substrPosition parameters.
+	Only the Full paths for the fasta directory are needed to be made. hhsearch.py will make the other paths are 
+	hhmake and hhsearch results are being returned.
+
+
+  2. This format is used for organizational puruposes when running hundreds to thousands of targets.	
+
+TargetList and Batch Submission
+  1.  The -q can also except a new line delimeted list of targets ie. -q /full/pathTo/TargetFile
+        12asA
+        12asB
+        1a2sC
+        16gsA
+  2.  If running multiple targets to the cluster, the batchSize parameter in jobParameters in hhsearchConfig.py controls how many
+	targets are ran per job.
+
+Dependancies:
+PDB 
+CommandFunctions
+JOB 

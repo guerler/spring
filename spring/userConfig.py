@@ -43,41 +43,5 @@ For example the pdb chain 12asA in directory pdb will be stored in
 of length 2.  This file structure is used in most of the databases here.
 """
 
-#Job Parameters Default.  Can be change for each module
-#in its respective configuration file
-maxJobs = 1200
-priority = 'default'
-waitIfOverJobLimit=True
-"""
-If over job limit wait in background or kill script.
-Need to set to false when running on webserver
-"""
-
-#PDB Database
-pdbPath=rootdbPath+'pdb/'       #all pdb data is stored here
-pdbAllPath=pdbPath+'PDBall/'        #directory contains all protein complexes. Extract from pdbPath
-PDBNonRedundant=pdbPath+'PDBNonRedundant/' #Contains list of non redundant complexes contains in pdbAllPath
-chainsPath=pdbPath+'chains/'        #Contains all unique monomers from each pdbid from the pdbPath directory
-seqPath=pdbPath+'sequences/'        #Contains fasta format sequences of proteins in chainsPath
-pdbDatabase = pdbPath+'pdb/'        #all pdb files downloaded from www.rcsb.org
-
-#Databases for HHsearch
-HHsearchdbPath=rootdbPath+'HHsearch/'   #Path to where the hhsearch databases are stored
-hhmDB=aminoLibrary+'/DIMERDB/HHsearch/hhm.db'       #Path to hhm profile database
-uniprotDir=aminoZhangUniprotDir  #Path to uniprot database
-#uniprotDBName='uniprot20_2015_06'   #Name of uniprot database
-uniprotDBName='uniprot20_2016_02'   #Name of uniprot database
-
-#Data profiles loctation for COTH
-cothdbPath=rootdbPath+'COTH/'       #Path to the COTH profiles
-
-#SPRING index files locations
-springDB=rootdbPath+'SPRING/'       #Path to the SPRING index files
-springIndexAll=springDB+'indexAll.txt'  #List for spring contains all pairwise protein complexes
-springIndex=springDB+'index.txt'    #Non redundant list from indexAll.txt
-
-#Blast database location
-blastdbPath=rootdbPath+'BLAST/'     #Path to blast databse directory
-blastdb=blastdbPath+'blastPDB.seq'  #Full path to blast database
 if __name__ == "__main__":
-    print username
+    print(username)

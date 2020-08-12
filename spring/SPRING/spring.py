@@ -26,11 +26,15 @@ sys.path.append( springConfig.parameters['pdbPath'])
 from pdbchains import PDBchains, ReadFasta
 from alignment import TMalign, TMscore, NWalign
 from interface import InterfaceContacts, FractionNativeContacts
-sys.path.append( springConfig.parameters['jobPath'])
-from jobsubmit import JOBS
+
+
+
+# sys.path.append( springConfig.parameters['jobPath'])
+# from jobsubmit import JOBS
+
 sys.path.append( springConfig.parameters['hhsearchPath'])
 from hhfunctions import HHSEARCH_Functions
-from hhsearch import HHSEARCH
+# from hhsearch import HHSEARCH
 sys.path.append( springConfig.parameters['commandPath'])
 from commandfunctions import Execute, mkdirs, mkdir, RemoveDirectory
 
@@ -223,7 +227,8 @@ class SPRING:
             print("Writting Templates and Template Summary to File")
             self.WriteOutput(templateList,modelDirectory,
                     self.queryName,templateDir,initDir)
-        RemoveDirectory(self.workDir)
+        print("Commented out Deleting workDir")
+        #RemoveDirectory(self.workDir)
 
 
     def SwitchTopMonomer(self):
@@ -322,87 +327,6 @@ class SPRING:
             return templateList
         templateList = sorted(templateList, key=itemgetter(0), reverse=True)
         return templateList
-
-    def Submit(self,recordDir = '', 
-        walltime = springConfig.jobParameters['walltime'], 
-        priority = springConfig.jobParameters['priority'],
-        maxJobs =  springConfig.jobParameters['maxJobs'],
-        forceSubmit = springConfig.jobParameters['forceSubmit']):
-        """
-        Function for submiting spring script
-        """
-        springJob = JOBS(self.user,walltime=walltime,priority=priority,
-                        maxJobs=maxJobs)
-        #scriptName = os.path.basename(__file__)
-        scriptName = springConfig.parameters['springPY']
-        jobInput = [springConfig.pythonPath,
-                   springConfig.parameters['springPath']+'/'+scriptName,
-                   '-q',self.query,'-iDir',self.inputDirectory]
-        self._ExtendJobInput(jobInput)
-        if recordDir == '':
-            outputDir = self.inputDirectory+'/record/'
-            mkdir(outputDir)
-        else:
-            outputDir = recordDir
-            mkdir(outputDir)
-        jobName = "SPRING_"+os.path.basename(self.query)
-        jobOutput = []
-        jobOutput.append(self.springOutputDirectory+'/TemplateSummary.txt')
-        springJob.SubmitJob(jobInput,jobOutput,jobName,outputDir,
-                            ForceSubmit=forceSubmit)
-
-    def JobFailed(self,target,recordDir=''):
-        """
-        Checks to see if spring job failed. Returns False if job completed.
-        Returns true if pbs error and output files exists but spring output
-        files dont
-        """
-        jobName = "SPRING_"+os.path.basename(self.query)
-        springJob = JOBS(self.user)
-        outputDir = recordDir
-        if recordDir == '':
-            if not os.path.isfile(self.query):
-                outputDir = self.inputDirectory+'/record/'
-                mkdir(outputDir)
-            else: 
-                outputDir = self.inputDirectory+'/'+self.query+'/'
-                mkdir(outputDir)
-                outputDir+='/record/'
-                mkdir(outputDir)
-        if self.outputDirectory != '':
-            self.springOutputDirectory = self.outputDirectory+'/SPRING/'
-        else:
-            self.springOutputDirectory = self.inputDirectory+'/'+target+'/SPRING/'
-        jobOutputList = [self.springOutputDirectory+'/TemplateSummary.txt',self.springOutputDirectory+'/init.dat']
-        if self.dockMonomer:
-            modelPath = self.springOutputDirectory+'/Models/model1.pdb'
-            jobOutputList.append(modelPath)
-        return springJob.JobFailed(outputDir,jobName,jobOutputList)
-
-    def _ExtendJobInput(self,jobInput):
-        """
-        Add arguments to job script if provided by user
-        """
-        if self.outputDirectory != '':
-            jobInput.extend(['-oDir',self.outputDirectory])
-        if self.fileModelChainA != '':
-            jobInput.extend(['-c1',self.fileModelChainA])
-        if self.fileModelChainB != '':
-            jobInput.extend(['-c2',self.fileModelChainB])
-        if self.hhrFileA != '':
-            jobInput.extend(['-hhr1',self.hhrFileA])
-        if self.hhrFileB != '':
-            jobInput.extend(['-hhr2',self.hhrFileB])
-        if self.run_hhsearch:
-            jobInput.append('-hhsearch')
-        if self.W0 != springConfig.parameters['W0']:
-            jobInput.extend(['-W0','%.2f'%self.W0])
-        if self.W1 != springConfig.parameters['W1']:
-            jobInput.extend(['-W1','%.2f'%self.W1])
-        if self.Normalize != springConfig.parameters['Normalize']:
-            jobInput.extend(['-Norm','%.2f'%self.Normalize])
-        if self.dockMonomer:
-            jobInput.append('-dockMono')
 
     def RemoveMonomerFilePaths(self,lenQueryList):
         """
@@ -890,43 +814,11 @@ class SPRING:
     def HHsearchResultsComplete(self):
         """
         Check existence of hhr results files for both chains of the query.
-        If they are absent and run_hhsearch set to true hhsearch is ran on the 
-        query chain
         
         Returns:
             True if both hhr files present False otherwise
         """
         hhrFiles = [self.hhrFileA, self.hhrFileB]
-        outStr = ''
-        i = 0
-        for hhrFile in hhrFiles:
-            if not os.path.exists(hhrFile):
-                outStr+='For query '+self.queryName+"hhr file: "+hhrFile+" missing\n"
-                if self.run_hhsearch:
-                    fastaPath = self.queryDirectory
-                    hhmPath   = self.springOutputDirectory
-                    hhrPath   = self.springOutputDirectory
-                    query = ''
-                    if i == 0:
-                        query = self.queryA
-                    else:
-                        query = self.queryB
-                    hhsearch = HHSEARCH(query,self.user,runMake=True,
-                            runSearch=True,runMonomer=True, 
-                            seqfileExtension=springConfig.parameters[
-                                                    'seqFileExtension'])
-                    hhsearch.RunHHmake_HHsearch(query,fastaPath,hhmPath,hhrPath,
-                            self.workDir)
-                i+=1
-                    
-        if outStr != '' and not self.run_hhsearch:
-            print(outStr,end='')
-            print("HHR files missing for query "+self.queryName,
-                " and run_hhsearch set to False, either change",
-                " runHHmake to True at")
-            print("the command line or springConfig.py or run HHsearch",
-                 " seperately then rerun SPRING")
-            return False
 
         if (not os.path.exists(self.hhrFileA) or 
             not os.path.exists(self.hhrFileB)):
@@ -1385,10 +1277,6 @@ def ParseCommandLine():
     arguments.add_argument('-iDir',action="store",required=True,
             help=inputDirHelp)
 
-    jobHelp = "Job flag is used for job submission, default runs program "\
-            "locally."
-    arguments.add_argument('-job',action="store_true",default=False,
-              help=jobHelp)
 
     outputDirHelp = "Optional. Full path for COTH output.  Default is the "\
             "targetDirectory which is the inputDirectory/query/ is "\
@@ -1466,7 +1354,6 @@ if __name__ == "__main__":
     args = ParseCommandLine()
     query = args.q
     inputDirectory = args.iDir
-    submitJob = args.job
     outputDirectory = args.oDir
     run_hhsearch = args.hhsearch
     W0 = args.W0
@@ -1477,11 +1364,7 @@ if __name__ == "__main__":
     monfileB = args.c2
     hhr1  = args.hhr1
     hhr2  = args.hhr2
-    batchSize = springConfig.jobParameters['batchSize']
     dockMono = args.dockMono
-
-    if batchSize < 1:
-        batchSize = 1
     
     queryList = []
     queryStr = query
@@ -1489,15 +1372,7 @@ if __name__ == "__main__":
         f = open(query)
         targetList = [line.strip() for line in f]
         f.close()
-        if submitJob:
-            if batchSize > 1:
-                fout_Path = inputDirectory+'/record/'
-                mkdir(fout_Path)
-                queryList = WriteList(targetList, fout_Path, batchSize)
-            else:
-                queryList = targetList
-        else:
-            queryList.append(query)
+        queryList.append(query)
     else:
         queryList.append(query)
 
@@ -1513,12 +1388,4 @@ if __name__ == "__main__":
             W0=W0, W1=W1, Normalize=Normalize, fileModelChainA=monfileA,
             fileModelChainB=monfileB,hhrFileA=hhr1,hhrFileB=hhr2,
             runHHsearch = run_hhsearch, dockMonomer=dockMono)
-        if submitJob:
-            recordDir = ''
-            if not os.path.isfile(queryStr):
-                recordDir = inputDirectory+'/'+query+'/record/'
-            else:
-                recordDir = inputDirectory+'/record/'
-            spring_object.Submit(recordDir)
-        else:
-            spring_object.RunSpring()
+        spring_object.RunSpring()
