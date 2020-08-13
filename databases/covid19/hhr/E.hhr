@@ -1,0 +1,158 @@
+Query         E
+Match_columns 75
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:14:18 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/E.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//E.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 5X29_D Envelope small membrane  99.6 1.5E-18 1.8E-23  114.7   0.0   64    2-65     18-81  (81)
+  2 2MM4_A Envelope small membrane  99.4 4.7E-16 5.6E-21   96.9   0.0   58    8-65      1-58  (58)
+  3 2NA9_A Cytokine receptor commo  28.5      50 0.00061   20.5   0.0   13   28-40     22-34  (44)
+  4 3H0L_N Glutamyl-tRNA(Gln) amid  23.3      73 0.00088   25.5   0.0   23   47-69    196-221 (478)
+  5 3H0M_N Glutamyl-tRNA(Gln) amid  23.3      73 0.00088   25.5   0.0   23   47-69    196-221 (478)
+  6 3AL0_B Glutamyl-tRNA(Gln) amid  20.7      89  0.0011   24.9   0.0   23   47-69    200-225 (482)
+  7 3IP4_B Glutamyl-tRNA(Gln) amid  19.5      97  0.0012   25.0   0.0   23   47-69    193-218 (483)
+  8 5Z1L_H Flagellin; Archaellum,   18.5 1.1E+02  0.0013   21.7   0.0   29    4-32      6-34  (211)
+  9 6C14_A Protocadherin-15, LHFPL  17.9 1.1E+02  0.0013   21.2   0.0   24   21-44    240-263 (337)
+ 10 3S39_B Cytochrome c oxidase su  17.8 1.1E+02  0.0014   20.0   0.0   36   19-54     15-50  (166)
+
+No 1
+>5X29_D Envelope small membrane protein; membrane protein, viral protein, envelope; NMR {Human SARS coronavirus}
+Probab=99.55  E-value=1.5e-18  Score=114.66  Aligned_cols=64  Identities=86%  Similarity=1.146  Sum_probs=57.0  Template_Neff=3.100
+
+Q E                 2 YSFVSEETGTLIVNSVLLFLAFVVFLLVTLAILTALRLCAYCCNIVNVSLVKPSFYVYSRVKNL   65 (75)
+Q Consensus         2 ysfvseetgtlivnsvllflafvvfllvtlailtalrlcayccnivnvslvkpsfyvysrvknl   65 (75)
+                      .||++||+|++|||+++++++.++++++.+|++++.|||..||++.|..+++|+.|+|.+.||+
+T Consensus        18 ~~fv~~~~gglVVN~ilwllvciivLIV~iA~L~~IkLC~~C~~lcNt~V~~P~~yvY~~yk~l   81 (81)
+T 5X29_D           18 LYFQSMETGTLIVNSVLLFLAFVVFLLVTLAILTALRLAAYAANIVNVSLVKPTVYVYSRVKNL   81 (81)
+T ss_dssp             ------CCSCGGGGTHHHHHHHHTHHHHHHHHHTTTTCHHHHHHHHTCCTTSGGGGGSTTTTTC
+T ss_pred             hhhhhhhhhHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhHHhhhhhhcchHHHHHHhhcC
+Confidence            4899999999999999999999999999999999999999999999999999999999999985
+
+
+No 2
+>2MM4_A Envelope small membrane protein (E.C.40A; SARS coronavirus, envelope protein, membrane; NMR {SARS coronavirus}
+Probab=99.35  E-value=4.7e-16  Score=96.94  Aligned_cols=58  Identities=91%  Similarity=1.242  Sum_probs=56.5  Template_Neff=3.800
+
+Q E                 8 ETGTLIVNSVLLFLAFVVFLLVTLAILTALRLCAYCCNIVNVSLVKPSFYVYSRVKNL   65 (75)
+Q Consensus         8 etgtlivnsvllflafvvfllvtlailtalrlcayccnivnvslvkpsfyvysrvknl   65 (75)
+                      |+|+++||+++++++.++++++..|++++.|||..||+..|..+++|+.|+|.+.||+
+T Consensus         1 ~~g~lvVn~ilwl~vc~~~liv~iA~L~~ikLC~~C~~~cn~~v~~P~~~vY~~yk~~   58 (58)
+T 2MM4_A            1 ETGTLIVNSVLLFLAFVVFLLVTLAILTALRLAAYAANIVNVSLVKPTVYVYSRVKNL   58 (58)
+T ss_dssp             CCSCCSHHHHHHHHHHHHHHHHHHHHHHHHHHHHHTTTSCSCCCSSTTHHHHHHHHHC
+T ss_pred             CchhHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhchhHHHHHHhhcC
+Confidence            7999999999999999999999999999999999999999999999999999999985
+
+
+No 3
+>2NA9_A Cytokine receptor common subunit beta; transmembrane helix, NBP residue, SIGNALING; NMR {Homo sapiens}
+Probab=28.54  E-value=50  Score=20.49  Aligned_cols=13  Identities=54%  Similarity=1.073  Sum_probs=8.5  Template_Neff=3.500
+
+Q E                28 LVTLAILTALRLC   40 (75)
+Q Consensus        28 lvtlailtalrlc   40 (75)
+                      ++|++++.++|.|
+T Consensus        22 ~~tl~Ll~~l~fc   34 (44)
+T 2NA9_A           22 FLTIAVLLALRFC   34 (44)
+T ss_dssp             HHHHHHHHHHHHH
+T ss_pred             HHHHHHHHHHHHh
+Confidence            3566777777755
+
+
+No 4
+>3H0L_N Glutamyl-tRNA(Gln) amidotransferase subunit A (E.C.6.3.5.-); MULTI PROTEIN COMPLEX, LIGASE, Protein; HET: ADP, ASN; 2.3A {Aquifex aeolicus}
+Probab=23.26  E-value=73  Score=25.46  Aligned_cols=23  Identities=39%  Similarity=0.478  Sum_probs=17.5  Template_Neff=7.500
+
+Q E                47 VNVSLVKPS---FYVYSRVKNLNSSR   69 (75)
+Q Consensus        47 vnvslvkps---fyvysrvknlnssr   69 (75)
+                      ||||+-++.   ......+||+||-+
+T Consensus       196 vNISi~~~~~~~~g~RvEIKNlnS~~  221 (478)
+T 3H0L_N          196 INVSIRPKGSKEFGTRVEIKNVNSFR  221 (478)
+T ss_dssp             EEEEEEETTCCSCCCCEEEECCCSHH
+T ss_pred             EEEEeccCCCCcCCceEEEecCccHH
+Confidence            799997653   36677899999965
+
+
+No 5
+>3H0M_N Glutamyl-tRNA(Gln) amidotransferase subunit A (E.C.6.3.5.-); MULTI PROTEIN COMPLEX, LIGASE, Protein; HET: GLN; 2.8A {Aquifex aeolicus}
+Probab=23.26  E-value=73  Score=25.46  Aligned_cols=23  Identities=39%  Similarity=0.478  Sum_probs=17.5  Template_Neff=7.500
+
+Q E                47 VNVSLVKPS---FYVYSRVKNLNSSR   69 (75)
+Q Consensus        47 vnvslvkps---fyvysrvknlnssr   69 (75)
+                      ||||+-++.   ......+||+||-+
+T Consensus       196 vNISi~~~~~~~~g~RvEIKNlnS~~  221 (478)
+T 3H0M_N          196 INVSIRPKGSKEFGTRVEIKNVNSFR  221 (478)
+T ss_dssp             EEEEEEETTCCSCCCCEEEECCCSHH
+T ss_pred             EEEEeccCCCCcCCceEEEecCccHH
+Confidence            799997653   36677899999965
+
+
+No 6
+>3AL0_B Glutamyl-tRNA(Gln) amidotransferase subunit A (E.C.6.3.5.-); Protein-rna complex, LIGASE-RNA complex; HET: GSU; 3.368A {Thermotoga maritima}
+Probab=20.66  E-value=89  Score=24.95  Aligned_cols=23  Identities=39%  Similarity=0.395  Sum_probs=17.4  Template_Neff=7.600
+
+Q E                47 VNVSLVKPS---FYVYSRVKNLNSSR   69 (75)
+Q Consensus        47 vnvslvkps---fyvysrvknlnssr   69 (75)
+                      ||||+-++.   .....-+||+||-+
+T Consensus       200 vNVSi~~~~~~~~g~RvEIKNlnS~~  225 (482)
+T 3AL0_B          200 ANISVVDTETGRQSNRVEVKNMNSFR  225 (482)
+T ss_dssp             EECCCCSSSCSSCCCCCCCCCCCSSH
+T ss_pred             EEEEeccCCCCCccceEEEecccchh
+Confidence            799998752   35667789999865
+
+
+No 7
+>3IP4_B Glutamyl-tRNA(Gln) amidotransferase subunit A (E.C.6.3.5.-); MULTI PROTEIN COMPLEX, LIGASE, ATP-binding; 1.9A {Staphylococcus aureus subsp. aureus}
+Probab=19.48  E-value=97  Score=24.97  Aligned_cols=23  Identities=39%  Similarity=0.387  Sum_probs=17.4  Template_Neff=7.300
+
+Q E                47 VNVSLVKPS---FYVYSRVKNLNSSR   69 (75)
+Q Consensus        47 vnvslvkps---fyvysrvknlnssr   69 (75)
+                      +|||+-.+.   +.....+||+||-+
+T Consensus       193 vNVSi~~~~~~~~g~RvEIKNlnS~~  218 (483)
+T 3IP4_B          193 ANISLRPYGQEKFGTKAELKNLNSFN  218 (483)
+T ss_dssp             EEEEEEETTSCCCCCEEEEECCCSHH
+T ss_pred             EEEEccCcccccCCcceeeccccchH
+Confidence            799987643   46677899999965
+
+
+No 8
+>5Z1L_H Flagellin; Archaellum, archea, flagellum, metal binding;{Methanococcus maripaludis (strain S2 / LL)}
+Probab=18.46  E-value=1.1e+02  Score=21.70  Aligned_cols=29  Identities=21%  Similarity=0.493  Sum_probs=12.8  Template_Neff=7.700
+
+Q E                 4 FVSEETGTLIVNSVLLFLAFVVFLLVTLA   32 (75)
+Q Consensus         4 fvseetgtlivnsvllflafvvfllvtla   32 (75)
+                      +...+.|---+...++|+|||+...|...
+T Consensus         6 ~~~~~~a~tgi~~aIvlIA~VivAav~a~   34 (211)
+T 5Z1L_H            6 FMKSKKGASGIGTLIVFIAMVLVAAVAAS   34 (211)
+T ss_dssp             -------CCCCHHHHHHHHHHHHHHHHHH
+T ss_pred             hccccchhhHHHHHHHHHHHHHHHHHHHH
+Confidence            33445555555566667777665544433
+
+
+No 9
+>6C14_A Protocadherin-15, LHFPL tetraspan subfamily member; PCDH15, LHFPL5, protocadherin, tip link;{Mus musculus}
+Probab=17.94  E-value=1.1e+02  Score=21.22  Aligned_cols=24  Identities=4%  Similarity=-0.041  Sum_probs=0.0  Template_Neff=10.000
+
+Q E                21 LAFVVFLLVTLAILTALRLCAYCC   44 (75)
+Q Consensus        21 lafvvfllvtlailtalrlcaycc   44 (75)
+                      ...++.+.+.++++..+=+|.+||
+T Consensus       240 ~~~li~laill~l~~lili~~~~~  263 (337)
+T 6C14_A          240 EGALLALAFIIILCCIPAILVVLV  263 (337)
+T ss_dssp             HHHHHHHHHHHHHHHHHHHHHHHH
+T ss_pred             HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+No 10
+>3S39_B Cytochrome c oxidase subunit 1; oxidoreductase, xenon; HET: HAS, HEM; 4.8A {Thermus thermophilus}
+Probab=17.80  E-value=1.1e+02  Score=19.98  Aligned_cols=36  Identities=19%  Similarity=0.308  Sum_probs=0.0  Template_Neff=8.700
+
+Q E                19 LFLAFVVFLLVTLAILTALRLCAYCCNIVNVSLVKP   54 (75)
+Q Consensus        19 lflafvvfllvtlailtalrlcayccnivnvslvkp   54 (75)
+                      .++.+.+.+++.++++.+...+..-|+++.-+.++|
+T Consensus        15 ~w~~~~~~~~~~~~~~~~~~~~p~~~~~~~~~~~~~   50 (166)
+T 3S39_B           15 GWLAFSLAMLFVFIALIAYTLATHTAGVIPAGKLER   50 (166)
+T ss_dssp             HHHHHHHHHHHHHHHHHHHHHHSGGGGGSCCCSCCB
+T ss_pred             HHHHHHHHHHHHHHHHHHHHHhcchhcccchhhcCC
+
+

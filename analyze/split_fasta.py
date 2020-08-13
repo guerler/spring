@@ -9,9 +9,8 @@ def main(args):
 		current_content = ''
 		for index, line in enumerate(file):
 			if line.startswith('>'):
-				if current_name and len(current_name) > 2:
-					output_subdirectory = current_name[:len(current_name)/2]
-					output_path = "%s/%s" % (args.output.rstrip("/"), output_subdirectory)
+				if current_name and len(current_name) > 0:
+					output_path = "%s/" % (args.output.rstrip("/"))
 					if not os.path.exists(output_path):
 						os.makedirs(output_path)
 					output_name = "%s/%s.fasta" % (output_path, current_name)

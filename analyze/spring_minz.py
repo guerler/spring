@@ -19,6 +19,7 @@ def main(args):
 			crossreference[core].append(partner)
 	print ("Loaded cross reference from `%s`." % args.crossreference)
 	targets = get_template_scores(args.target, args.minscore)
+	targetname = os.path.splitext(args.target)[0]
 	if not targets:
 		print("No targets found `%s`" % args.target)
 	else:
@@ -48,7 +49,7 @@ def main(args):
 		interactions.sort(key=lambda tup: tup[1], reverse=True)
 		with open(args.output, 'w') as output_file:
 			for i in interactions:
-				output_file.write("%s %s\n" % (i[0], i[1]))
+				output_file.write("%s %s %s\n" % (targetname, i[0], i[1]))
 
 def get_template_scores(hhr_file, min_score):
 	result = {}

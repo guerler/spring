@@ -1,0 +1,195 @@
+Query         nsp7
+Match_columns 83
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:01:18 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/nsp7.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//nsp7.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 1YSY_A Replicase polyprotein 1  99.9 5.2E-30 6.3E-35  171.8   0.0   83    1-83      3-85  (85)
+  2 6XIP_C NSP15 endoribnuclease;   99.9 9.8E-30 1.2E-34  170.9   0.0   83    1-83      4-86  (86)
+  3 3UB0_B nonstructural protein 7  99.9 1.3E-29 1.6E-34  170.6   0.0   83    1-83      5-87  (87)
+  4 6M5I_A nsp8, Replicase polypro  99.9 2.1E-29 2.6E-34  167.8   0.0   82    1-82      1-82  (82)
+  5 6YHU_C nsp7, Replicase polypro  99.9 2.7E-26 3.3E-31  150.2   0.0   71    1-71      1-71  (71)
+  6 5MRE_2 54S ribosomal protein R  25.4      62 0.00075   22.4   0.0   37   47-83      4-40  (113)
+  7 5MRC_2 54S ribosomal protein R  25.0      64 0.00077   22.3   0.0   37   47-83      4-40  (113)
+  8 6RAX_A DNA replication licensi  23.2      73 0.00088   26.8   0.0   46    7-52    212-257 (575)
+  9 5B16_B Ribonuclease 3 (E.C.3.1  21.0      86   0.001   19.6   0.0   10   68-77      7-16  (39)
+ 10 5B16_C Ribonuclease 3 (E.C.3.1  21.0      86   0.001   19.6   0.0   10   68-77      7-16  (39)
+
+No 1
+>1YSY_A Replicase polyprotein 1ab (pp1ab) (ORF1AB); helix bundle, Structural Genomics, PSI; NMR {SARS coronavirus} SCOP: a.8.9.1
+Probab=99.92  E-value=5.2e-30  Score=171.76  Aligned_cols=83  Identities=99%  Similarity=1.305  Sum_probs=81.9  Template_Neff=3.200
+
+Q nsp7              1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRA   80 (83)
+Q Consensus         1 skmsdvkctsvvllsvlqqlrvesssklwaqcvqlhndillakdtteafekmvsllsvllsmqgavdinklceemldnra   80 (83)
+                      ||+.|+|||+||++++|+++++++.||.|+.||++||||++++|.+||||+++.||++++|.++++|++++|+.+++|..
+T Consensus         3 sKltD~Kct~VVll~~L~~l~v~ansk~w~~cV~LHN~il~~~d~eeA~e~L~~Lla~lls~~~~~~ld~l~D~~~~n~s   82 (85)
+T 1YSY_A            3 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINRLCEEMLDNRA   82 (85)
+T ss_dssp             SSCCCCSCTTTTTTTTSTTTSSCSCCHHHHHHHTHHHHHTTSSSHHHHHHHHHHHHHHHHHHHHCSSCSHHHHTTTHHHH
+T ss_pred             chhhhHHHHHHHHHHHHHHcCcccCHHHHHHHHHHHHHHHcCCCHHHHHHHHHHHHHHHHHhcCccCHHHHHHHHhhccc
+Confidence            79999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q nsp7             81 TLQ   83 (83)
+Q Consensus        81 tlq   83 (83)
+                      .||
+T Consensus        83 VLQ   85 (85)
+T 1YSY_A           83 TLQ   85 (85)
+T ss_dssp             SCC
+T ss_pred             ccC
+Confidence            887
+
+
+No 2
+>6XIP_C NSP15 endoribnuclease; SARS CoV-2, co-factor for RNA; HET: EDO; 1.5A {Severe acute respiratory syndrome coronavirus 2}
+Probab=99.92  E-value=9.8e-30  Score=170.92  Aligned_cols=83  Identities=100%  Similarity=1.307  Sum_probs=72.5  Template_Neff=3.100
+
+Q nsp7              1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRA   80 (83)
+Q Consensus         1 skmsdvkctsvvllsvlqqlrvesssklwaqcvqlhndillakdtteafekmvsllsvllsmqgavdinklceemldnra   80 (83)
+                      ||+.|+|||+||++++|+++++++.||.|+.||++||||+++.|.+||||+++.||++++|.++++|++++|+.+++|..
+T Consensus         4 sKltD~Kct~VVll~~L~~l~v~ansk~w~~cV~LHN~il~~~d~eeA~e~L~~LLa~lls~~~~~~ld~l~D~~~~n~s   83 (86)
+T 6XIP_C            4 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRA   83 (86)
+T ss_dssp             GGHHHHHHHHHHHHHHHHHTTCCTTSHHHHHHHHHHHHHHHCSSHHHHHHHHHHHHHHHHTSTTTSCHHHHTC-------
+T ss_pred             chhhHHHHHHHHHHHHHHHcCcccCHHHHHHHHHHHHHHHcCCCHHHHHHHHHHHHHHHHHhcCccCHHHHHHHHhhccc
+Confidence            79999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q nsp7             81 TLQ   83 (83)
+Q Consensus        81 tlq   83 (83)
+                      .||
+T Consensus        84 VLQ   86 (86)
+T 6XIP_C           84 TLQ   86 (86)
+T ss_dssp             ---
+T ss_pred             ccC
+Confidence            887
+
+
+No 3
+>3UB0_B nonstructural protein 7 and 8/Replicase; Feline Coronavirus, nonstructural protein, primer-independent; HET: MSE; 2.6A {Feline infectious peritonitis virus}
+Probab=99.92  E-value=1.3e-29  Score=170.61  Aligned_cols=83  Identities=42%  Similarity=0.748  Sum_probs=81.1  Template_Neff=3.100
+
+Q nsp7              1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRA   80 (83)
+Q Consensus         1 skmsdvkctsvvllsvlqqlrvesssklwaqcvqlhndillakdtteafekmvsllsvllsmqgavdinklceemldnra   80 (83)
+                      ||+.|+|||+||++++|+++++++.||.|+.||++||||+.+.|.+||||+++.|+++++|.++++|++++|+.+++|..
+T Consensus         5 sKltD~KcT~VVll~~L~~l~v~ansk~w~~cV~LHN~il~~~d~eeA~e~L~~Lla~lls~~~~~~ld~l~D~~~~n~s   84 (87)
+T 3UB0_B            5 SKLTEMKCTNVVLLGLLSKMHVESNSKEWNYCVGLHNEINLCDDPDAVLEKLLALIAFFLSKHNTCDLSDLIESYFENTT   84 (87)
+T ss_dssp             -CCCCCSSCCHHHHHHHHHTTGGGCHHHHHHHHHHHHHHHHCSCHHHHHHHHHHHHHHHHHHCTTCCCHHHHHHHHHHCG
+T ss_pred             chhhHHHHHHHHHHHHHHHcCccccHHHHHHHHHHHhHHhcCCCHHHHHHHHHHHHHHHHHHCCCCCHHHHHHHHhhccc
+Confidence            79999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q nsp7             81 TLQ   83 (83)
+Q Consensus        81 tlq   83 (83)
+                      .||
+T Consensus        85 VLQ   87 (87)
+T 3UB0_B           85 ILQ   87 (87)
+T ss_dssp             GGC
+T ss_pred             ccC
+Confidence            887
+
+
+No 4
+>6M5I_A nsp8, Replicase polyprotein 1a (E.C.3.4.19.12,3.4.22.69,3.4.22.-); primase, HYDROLASE; 2.496A {Severe acute respiratory syndrome coronavirus 2}
+Probab=99.91  E-value=2.1e-29  Score=167.78  Aligned_cols=82  Identities=100%  Similarity=1.311  Sum_probs=79.8  Template_Neff=3.300
+
+Q nsp7              1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRA   80 (83)
+Q Consensus         1 skmsdvkctsvvllsvlqqlrvesssklwaqcvqlhndillakdtteafekmvsllsvllsmqgavdinklceemldnra   80 (83)
+                      ||+.|+|||+||++++||++++++.||.|+.||++||||+.+.|.+||||+++.|+++++|.++++|++++|+.+++|..
+T Consensus         1 sKltD~KcT~VVll~~L~~l~v~ansk~w~~cV~LHN~il~~~d~eeA~e~L~~Lla~lls~~~~~~ld~l~D~~~~n~s   80 (82)
+T 6M5I_A            1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRA   80 (82)
+T ss_pred             CcchhHHHHHHHHHHHHHHcCcccCHHHHHHHHHHHHHHHcCCCHHHHHHHHHHHHHHHHHhcCccCHHHHHHHHhhccc
+Confidence            79999999999999999999999999999999999999999999999999999999999999999999999999999986
+
+
+Q nsp7             81 TL   82 (83)
+Q Consensus        81 tl   82 (83)
+                      .|
+T Consensus        81 VL   82 (82)
+T 6M5I_A           81 TL   82 (82)
+T ss_pred             cC
+Confidence            54
+
+
+No 5
+>6YHU_C nsp7, Replicase polyprotein 1a (E.C.3.4.19.12,3.4.22.69,3.4.22.-); nsp7, nsp8, SARS-CoV-2, nCoV-2019, COVID-19; 2.0A {Severe acute respiratory syndrome coronavirus 2}
+Probab=99.86  E-value=2.7e-26  Score=150.22  Aligned_cols=71  Identities=100%  Similarity=1.285  Sum_probs=69.0  Template_Neff=3.100
+
+Q nsp7              1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKL   71 (83)
+Q Consensus         1 skmsdvkctsvvllsvlqqlrvesssklwaqcvqlhndillakdtteafekmvsllsvllsmqgavdinkl   71 (83)
+                      ||+.|+|||+||++++|+++++++.||.|+.||++||||+.++|.+||||+++.|+++++|.++++|+.++
+T Consensus         1 sKltD~KcT~VVll~~L~k~~v~ansk~w~~cV~LHN~il~~~d~eeA~e~L~~Lla~lls~~~~~~ld~l   71 (71)
+T 6YHU_C            1 SKMSDVKCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVDINKL   71 (71)
+T ss_dssp             CHHHHHHHHHHHHHHHHHHTTGGGSHHHHHHHHHHHHHHHTCSSHHHHHHHHHHHHHHHHHSTTTSCGGGC
+T ss_pred             CcchhHHHHHHHHHHHHHHcCcccCHHHHHHHHHHHHHHHcCCCHHHHHHHHHHHHHHHHHhhcccChhcC
+Confidence            79999999999999999999999999999999999999999999999999999999999999999998764
+
+
+No 6
+>5MRE_2 54S ribosomal protein RML2, mitochondrial; yeast, mitochondrial, ribosome, saccharomyces cerevisiae; HET: MG, GDP; 3.75A {Saccharomyces cerevisiae}
+Probab=25.43  E-value=62  Score=22.39  Aligned_cols=37  Identities=24%  Similarity=0.282  Sum_probs=27.0  Template_Neff=5.900
+
+Q nsp7             47 EAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRATLQ   83 (83)
+Q Consensus        47 eafekmvsllsvllsmqgavdinklceemldnratlq   83 (83)
+                      ..-.|++.++++|..--.+-..-+++++-++.|++++
+T Consensus         4 ~~~~~~~t~~~~l~~~~~~p~~~~ls~ee~e~h~~I~   40 (113)
+T 5MRE_2            4 PLAQRVVTQLSVMSASRKQPKLLKLAREDLIKHQTIE   40 (113)
+T ss_pred             HHHHHHHHHHHHHccCCCCCCCCCCCHHHHHHHHHHH
+Confidence            3446788888888765555566688888888888763
+
+
+No 7
+>5MRC_2 54S ribosomal protein RML2, mitochondrial; yeast, mitochondrial, ribosome, saccharomyces cerevisiae; HET: MG, GDP; 3.25A {Saccharomyces cerevisiae}
+Probab=25.03  E-value=64  Score=22.33  Aligned_cols=37  Identities=24%  Similarity=0.282  Sum_probs=26.7  Template_Neff=5.900
+
+Q nsp7             47 EAFEKMVSLLSVLLSMQGAVDINKLCEEMLDNRATLQ   83 (83)
+Q Consensus        47 eafekmvsllsvllsmqgavdinklceemldnratlq   83 (83)
+                      ..-.+++.++++|..--.+-..-++++|-++.|++++
+T Consensus         4 ~~~~~~~t~~~~l~~~~~~p~~~~ls~ee~e~h~~I~   40 (113)
+T 5MRC_2            4 PLAQRVVTQLSVMSASRKQPKLLKLAREDLIKHQTIE   40 (113)
+T ss_pred             HHHHHHHHHHHHHcCCCCCCCCCCCCHHHHHHHHHHH
+Confidence            3446788888888765555566678888888887763
+
+
+No 8
+>6RAX_A DNA replication licensing factor Mcm2; Helicase, ATPase, AAA+, DNA unwinding; HET: ADP, ATP; 3.99A {Drosophila melanogaster}
+Probab=23.18  E-value=73  Score=26.82  Aligned_cols=46  Identities=17%  Similarity=0.354  Sum_probs=34.6  Template_Neff=7.100
+
+Q nsp7              7 KCTSVVLLSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKM   52 (83)
+Q Consensus         7 kctsvvllsvlqqlrvesssklwaqcvqlhndillakdtteafekm   52 (83)
+                      ++.++++....++|..++..-||..+|-+-.-.+-.+-+.+.+...
+T Consensus       212 ~s~s~~~y~La~~l~~~~~d~LW~AIVGlT~q~~~~~I~~~~Y~~~  257 (575)
+T 6RAX_A          212 RSAALMVFELAWKLSKDNMDLLWWAIVGITEQLLLGKIESGAYTLE  257 (575)
+T ss_pred             hhHHHHHHHHHHHhCccCHHHHHHHHHHHHHHHHcccccchHHHHH
+Confidence            5778899999999999999999999998765555444444444433
+
+
+No 9
+>5B16_B Ribonuclease 3 (E.C.3.1.26.3), Microprocessor complex; Endonuclease, RNase III, Trimeric complex; 3.2A {Homo sapiens}
+Probab=20.99  E-value=86  Score=19.64  Aligned_cols=10  Identities=50%  Similarity=0.587  Sum_probs=8.6  Template_Neff=2.800
+
+Q nsp7             68 INKLCEEMLD   77 (83)
+Q Consensus        68 inklceemld   77 (83)
+                      +|||++||+.
+T Consensus         7 L~KLk~EMlK   16 (39)
+T 5B16_B            7 LSKLQEEMKR   16 (39)
+T ss_dssp             HHHHHHHHHH
+T ss_pred             HHHHHHHHHH
+Confidence            5899999985
+
+
+No 10
+>5B16_C Ribonuclease 3 (E.C.3.1.26.3), Microprocessor complex; Endonuclease, RNase III, Trimeric complex; 3.2A {Homo sapiens}
+Probab=20.99  E-value=86  Score=19.64  Aligned_cols=10  Identities=50%  Similarity=0.587  Sum_probs=8.6  Template_Neff=2.800
+
+Q nsp7             68 INKLCEEMLD   77 (83)
+Q Consensus        68 inklceemld   77 (83)
+                      +|||++||+.
+T Consensus         7 L~KLk~EMlK   16 (39)
+T 5B16_C            7 LSKLQEEMKR   16 (39)
+T ss_dssp             HHHHHHHHHH
+T ss_pred             HHHHHHHHHH
+Confidence            5899999985
+
+

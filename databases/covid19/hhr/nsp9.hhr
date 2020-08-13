@@ -1,0 +1,337 @@
+Query         nsp9
+Match_columns 113
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:02:21 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/nsp9.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//nsp9.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 6WXD_B Non-structural protein  100.0 1.1E-42 1.3E-47  252.6   0.0  113    1-113     4-116 (116)
+  2 6W4B_B Nsp9 replicase protein; 100.0 1.2E-42 1.5E-47  252.5   0.0  113    1-113     5-117 (117)
+  3 6W9Q_A Non-structural protein  100.0 2.1E-42 2.6E-47  255.8   0.0  113    1-113    21-133 (133)
+  4 2J97_A REPLICASE POLYPROTEIN 1 100.0 1.3E-39 1.6E-44  234.4   0.0  109    1-113     1-109 (109)
+  5 2J98_A REPLICASE POLYPROTEIN 1 100.0 1.6E-39   2E-44  233.8   0.0  109    1-113     1-109 (109)
+  6 5C94_A Non-structural protein  100.0 2.8E-39 3.4E-44  234.8   0.0  111    1-113     6-116 (116)
+  7 5YM6_C nsp9; Porcine delta cor 100.0 5.1E-39 6.1E-44  233.2   0.0  109    1-113     1-109 (115)
+  8 5HIZ_A Non-structural protein  100.0 1.3E-37 1.6E-42  225.6   0.0  108    1-113     1-108 (114)
+  9 5YM8_B nsp9; Porcine delta cor 100.0 3.3E-36   4E-41  217.0   0.0  101    9-113     2-102 (108)
+ 10 1QTN_B CASPASE-8 (E.C.3.4.22.-  44.2      19 0.00023   22.1   0.0   44    8-51      5-48  (95)
+ 11 3P4U_D active caspase-6 (E.C.3  24.1      68 0.00083   20.8   0.0   39   12-50      8-46  (108)
+ 12 2QL9_B Caspase-7 (EC 3.4.22.60  23.4      72 0.00087   19.6   0.0   39   12-50      7-45  (97)
+ 13 2QLB_B Caspase-7 (EC 3.4.22.60  23.4      72 0.00087   19.6   0.0   39   12-50      7-45  (97)
+ 14 3EDR_D Caspase-7 (E.C.3.4.22.6  23.4      72 0.00087   19.6   0.0   39   12-50      7-45  (97)
+ 15 3SIP_B Caspase (E.C.3.4.22.-),  20.9      87  0.0011   20.2   0.0   39   12-50      9-47  (109)
+ 16 2DC1_B L-aspartate dehydrogena  20.3      91  0.0011   21.9   0.0   33   70-102   203-235 (236)
+
+No 1
+>6WXD_B Non-structural protein 9; COVID-19, SARS-CoV-2, Nsp9, RNA replicase; HET: SO4; 2.0A {Severe acute respiratory syndrome coronavirus 2}
+Probab=100.00  E-value=1.1e-42  Score=252.59  Aligned_cols=113  Identities=100%  Similarity=1.501  Sum_probs=109.3  Template_Neff=3.200
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      |||+.|..++||.|.||.+|+.|+++++.|||++..|++|+.|++||-.+|||+++.++||.|.|..||||||||..++|
+T Consensus         4 NNEl~P~~lk~~~v~a~~~~~~~~~~~~ka~Y~~~~G~~~~~Ai~Sd~~~LK~vk~~~d~g~~~v~ieLepPckF~v~~~   83 (116)
+T 6WXD_B            4 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   83 (116)
+T ss_dssp             ---CCCCCEEEEEEEEESSTTTCCSEEEEEEEEEETTEEEEEEEEESCSCCCEEEEECTTSSCEEEEEBCCCEEEEEEET
+T ss_pred             cccccccceeEeecccCCCCCcCCCccceEEEECCCCCEEEEEEEeCCCCceEEEEECCCCCceEEEeecCCeeEEecCC
+Confidence            89999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|+||+|+||||||.++||||||
+T Consensus        84 ~G~~vkYLYFVKnlntL~RG~VLG~I~aTVrLQ  116 (116)
+T 6WXD_B           84 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  116 (116)
+T ss_dssp             TEEEEEEEEEBTTCCHHHHHHHHHHHHHHSCBC
+T ss_pred             CCCEEEEEEEEcCccccchhheeeeEeeEEEeC
+Confidence            999999999999999999999999999999998
+
+
+No 2
+>6W4B_B Nsp9 replicase protein; replicase, Structural Genomics, Center for; 2.95A {Severe acute respiratory syndrome coronavirus 2}
+Probab=100.00  E-value=1.2e-42  Score=252.54  Aligned_cols=113  Identities=100%  Similarity=1.501  Sum_probs=112.0  Template_Neff=3.200
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      |||+.|..++||.|.||.+|+.|+++++.|||++..|++|+.|++||-.+|||+++.++||.|.|..||||||||..++|
+T Consensus         5 NNEl~P~~lk~~~v~a~~~~~~~~~~~~ka~Y~~~~G~~~~~Ai~Sd~~~LK~vk~~~d~g~~~v~ieLepPckF~v~~~   84 (117)
+T 6W4B_B            5 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   84 (117)
+T ss_dssp             CCBCCCCCEEEEEEEEESSTTTCEEEEEEEEEECCSSSCEEEEEEESCSCCCEEEEECSSSSCEEEEEBCCCEEEEECCT
+T ss_pred             cccccCcceeeeecccCCCCCcCCCccceEEEECCCCCEEEEEEEeCCCCceEEEEECCCCCceEEEeecCCeeEEecCC
+Confidence            89999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|+||+|+||||||.++||||||
+T Consensus        85 ~G~~vkYLYFVKNlntL~RG~VLG~I~aTVrLQ  117 (117)
+T 6W4B_B           85 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  117 (117)
+T ss_dssp             TSCEEEEEEEBTTCCHHHHHHHHHHHHHHSCBC
+T ss_pred             CCCEEEEEEEEcCccccchhheeeeEeeEEEeC
+Confidence            999999999999999999999999999999998
+
+
+No 3
+>6W9Q_A Non-structural protein 9; COVID-19, SARS-CoV-2, Nsp9, RNA replicase; 2.05A {Severe acute respiratory syndrome coronavirus 2}
+Probab=100.00  E-value=2.1e-42  Score=255.85  Aligned_cols=113  Identities=100%  Similarity=1.501  Sum_probs=112.1  Template_Neff=3.000
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      |||+.|..++||.|.||.+|+.|+++++.|||++..|++|+.|++||-.||||+++.++||.|.|..||||||||..++|
+T Consensus        21 NNEl~P~~lk~~~v~a~~~~~~~~~~~~ka~Y~~~~Gk~~~~Ai~Sd~~~LK~vk~e~d~G~~~vviELePPckF~v~~~  100 (133)
+T 6W9Q_A           21 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP  100 (133)
+T ss_dssp             TTCEEEEECEEEEEEEESSTTTCCSCCEEEEEEECSSSEEEEEEEESCSCCCEEEEECSSSSCEEEEEBCCCEEEEEEET
+T ss_pred             CCcccCcceeEeecccCCCCCccCCccceEEEEcCCCCEEEEEEEeCCCCceEEEEECCCCCceEEEeecCCeeEEecCC
+Confidence            89999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|+||+|+||||||.++||||||
+T Consensus       101 ~G~~vkYLYFVKNlntL~RG~VLG~I~aTVrLQ  133 (133)
+T 6W9Q_A          101 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  133 (133)
+T ss_dssp             TEEEEEEEEEBTTCCHHHHHHHHHHTHHHHHCC
+T ss_pred             CCCEEEEEEEEcCccccchhheeeeEeeEEEeC
+Confidence            999999999999999999999999999999998
+
+
+No 4
+>2J97_A REPLICASE POLYPROTEIN 1AB; SSB, HCOV, MEMBRANE, HELICASE, SARS; HET: SO4; 1.75A {HUMAN CORONAVIRUS 229E}
+Probab=100.00  E-value=1.3e-39  Score=234.38  Aligned_cols=109  Identities=43%  Similarity=0.779  Sum_probs=102.9  Template_Neff=3.300
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      ||||.|..++||.|.++  +..|....+.|||++..|++|+.|++||-.+|||++|.+++|  .|+.||||||||..++|
+T Consensus         1 NNEl~P~~lk~~~~~~~--~~~~~~~~~ka~Y~~~~G~~~~~Ai~Sd~~~Lk~vk~~~d~G--~v~ieLePPckF~v~~~   76 (109)
+T 2J97_A            1 NNEIMPGKMKVKATKGE--GDGGITSEGNALYNNEGGRAFMYAYVTTKPGMKYVKWEHDSG--VVTVELEPPCRFVIDTP   76 (109)
+T ss_pred             CCcccCCcceeeeeccc--cCCCcccceEEEEEecCCcEEEEEEEecCCCceEEEEECCCC--EEEEeecCCeeEEEccC
+Confidence            89999999999999876  345555569999999999999999999999999999999996  99999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|++|+|+||||||.++||||||
+T Consensus        77 ~G~~vkYLYFVKnlntL~RG~VlG~I~aTVrLQ  109 (109)
+T 2J97_A           77 TGPQIKYLYFVKNLNNLRRGAVLGYIGATVRLQ  109 (109)
+T ss_pred             CCCeEEEEEEEcCcccccchheeeeeeeEEEeC
+Confidence            999999999999999999999999999999998
+
+
+No 5
+>2J98_A REPLICASE POLYPROTEIN 1AB; SSB, HCOV, MEMBRANE, HELICASE, SARS; 1.8A {HUMAN CORONAVIRUS 229E}
+Probab=100.00  E-value=1.6e-39  Score=233.85  Aligned_cols=109  Identities=42%  Similarity=0.746  Sum_probs=99.8  Template_Neff=3.300
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      ||||.|..++||.|.++  +..|....+.|||++..|++|+.|++||-.+|||++|.++||  .|+.||||||||..++|
+T Consensus         1 NNEl~P~~lk~~~~~~~--~~~~~~~~~ka~Y~~~~G~~~~~Ai~Sd~~~Lk~vk~~~d~G--~v~ieLePPckF~v~~~   76 (109)
+T 2J98_A            1 NNEIMPGKMKVKATKGE--GDGGITSEGNALYNNEGGRAFMYAYVTTKPGMKYVKWEHDSG--VVTVELEPPARFVIDTP   76 (109)
+T ss_dssp             --CCGGGCCEEEEEEEE--CTTSCEEEEEEEEECCSSSCEEEEEEESCSCCCEEEEECCCC--EEEEEBCCCEEEEEEET
+T ss_pred             CCcccCCcceeEeeecc--CCCCccccceEEEECCCCCeEEEEEEeCCCCceEEEEECCCC--eEEEeecCCeeEEEcCC
+Confidence            89999999999999876  345555559999999999999999999999999999999986  89999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|++|+|+||||||.++||||||
+T Consensus        77 ~G~~vkYLYFVKnlntL~RG~VlG~I~aTVrLQ  109 (109)
+T 2J98_A           77 TGPQIKYLYFVKNLNNLRRGAVLGYIGATVRLQ  109 (109)
+T ss_dssp             TEEEEEEEEEBTTCCHHHHHHHHHHHHHHSCC-
+T ss_pred             CCCEEEEEEEEcCccccccceeeeeeeeEEEeC
+Confidence            999999999999999999999999999999998
+
+
+No 6
+>5C94_A Non-structural protein 9 (E.C.3.4.22.-); Coronaviurs RNA replicase, NSP, Homodimer; HET: PEG; 2.438A {Avian infectious bronchitis virus}
+Probab=100.00  E-value=2.8e-39  Score=234.76  Aligned_cols=111  Identities=40%  Similarity=0.717  Sum_probs=109.0  Template_Neff=3.200
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      |||+.|..++||.|.||..|..|+. .+.|||++..|++|+.|++||-.+|||+++.+.|| |.|..||||||||..++|
+T Consensus         6 NNEl~P~~lk~~~v~a~~d~~~~~~-~~ka~Y~~~~G~~~~~Ai~Sd~~~Lk~vk~~~~~G-~~vvieLepPckF~v~~~   83 (116)
+T 5C94_A            6 NNELMPHGVKTKACVAGVDQAHCSV-ESKCYYTSISGSSVVAAITSSNPNLKVASFLNEAG-NQIYVDLDPPCKFGMKVG   83 (116)
+T ss_dssp             TCCCCCEEEEEEEEEEESSGGGCCE-EEEEEEEEETTEEEEEEEEESCSCCCEEEEECTTS-CEEEEEBCCCEEEEEEET
+T ss_pred             cccccCCcceEeeeecccCcccccc-ceEEEEEcCCCCEEEEEEEeCCCCceEEEEECCCC-CEEEEEccCCcEEEEecC
+Confidence            8999999999999999999999988 89999999999999999999999999999999999 999999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|+||+|+||||||.++||||||
+T Consensus        84 ~g~~vkYLYFVKNlntL~RG~VLG~I~aTVrLQ  116 (116)
+T 5C94_A           84 DKVEVVYLYFIKNTRSIVRGMVLGAISNVVVLQ  116 (116)
+T ss_dssp             TEEEEEEEEEBTTCCHHHHHHHHHHHGGGEEEC
+T ss_pred             CceEEEEEEEEcccchhhhhhheeeEeeEEEeC
+Confidence            999999999999999999999999999999998
+
+
+No 7
+>5YM6_C nsp9; Porcine delta coronavirus, RNA binding; 1.803A {Porcine coronavirus HKU15}
+Probab=100.00  E-value=5.1e-39  Score=233.19  Aligned_cols=109  Identities=31%  Similarity=0.494  Sum_probs=94.1  Template_Neff=3.200
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      ||||.|..++||.|.+|  +..|....+.|||++..|++|+.|++||-.+|||+++.++||  .|+.||||||||..++|
+T Consensus         1 NNEl~p~~lkt~~~~a~--~~~~~~~~~ka~Y~~~~G~~~~~Ai~Sd~~~LK~vk~~~d~G--~vvieLePPckF~v~~~   76 (115)
+T 5YM6_C            1 NNELCLRNVFTAQNTAQ--DFNGNESTVKSFYVTRTGKKILVAITSTKDNLKTVTCLTETG--KTVLNLDPPMRFAHTVG   76 (115)
+T ss_dssp             CCBCCCCEEEEEEEEEE--ETTSCEEEEEEEEEEETTEEEEEEEEESCSCEEEEEEEC-CC--EEEEEBCCCEEEEC---
+T ss_pred             CCeecccceeEEecccc--cCCCCccccEEEEEccCCCEEEEEEEeCCCCceEEEEECCCC--eEEEEecCCceEEEecC
+Confidence            89999999999999999  555555669999999999999999999999999999999995  89999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||+|+||+|+||||||.++||||||
+T Consensus        77 ~~~~vkYLYFVKNlntL~RG~VLG~I~aTVr~~  109 (115)
+T 5YM6_C           77 GKQSVVYLYFIQNISSLNRGMVIGHISETTILQ  109 (115)
+T ss_dssp             ---CEEEEEEBTTCCHHHHHHHHHHHHHHC---
+T ss_pred             CceeEEEEEEEccccccccchhhheeeeeEEcc
+Confidence            999999999999999999999999999999998
+
+
+No 8
+>5HIZ_A Non-structural protein 9; RNA binding protein; 2.9A {Porcine epidemic diarrhea virus CV777}
+Probab=100.00  E-value=1.3e-37  Score=225.58  Aligned_cols=108  Identities=44%  Similarity=0.716  Sum_probs=90.7  Template_Neff=3.200
+
+Q nsp9              1 NNELSPVALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP   80 (113)
+Q Consensus         1 nnelspvalrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtp   80 (113)
+                      ||||.|..++||.|.||.  ..|. ..+.|||++..|++|+.|++||-.||||+++.+.+|  .++.||||||||..++|
+T Consensus         1 NNEl~P~~lk~~~v~a~~--~~~~-~~~ka~Y~~~~G~~~~~Ai~Sd~~~LK~vk~~~d~G--~vvieLePPckF~v~~~   75 (114)
+T 5HIZ_A            1 NNEIIPGKLKQRSIKAEG--DGIV-GEGKALYNNEGGRTFMYAFISDKPDLRVVKWEFDGG--CNTIELEPPRKFLVDSP   75 (114)
+T ss_dssp             ------CCCEEEEEEEEC--SSCE-EEEEEEEEECSSCEEEEEEEESSSCCCEEEC---CC--CCEEEBCCCEEEEEECS
+T ss_pred             CCcccCCcceeEEeeccc--CCcc-ceeEEEEEcCCCCEEEEEEEecCCCceEEEEEccCC--eEEEeecCCceEEEcCC
+Confidence            899999999999999984  4543 568899999999999999999999999999999985  79999999999999999
+
+
+Q nsp9             81 KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        81 kgpkvkylyfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      +||++|||||||+||+|+||||||.++||||||
+T Consensus        76 ~G~~vkYLYFVKNlntL~RG~VLG~I~aTVr~~  108 (114)
+T 5HIZ_A           76 NGAQIKYLYFVRNLNTLRRGAVLGYIGATVRLQ  108 (114)
+T ss_dssp             SSEEEEEEEEBTTCCHHHHHHHHHHHTTCC---
+T ss_pred             CCCEEEEEEEEcccccccceeeeeheeeEEEcc
+Confidence            999999999999999999999999999999998
+
+
+No 9
+>5YM8_B nsp9; Porcine delta coronavirus, RNA binding; 1.992A {Porcine coronavirus HKU15}
+Probab=100.00  E-value=3.3e-36  Score=217.01  Aligned_cols=101  Identities=30%  Similarity=0.498  Sum_probs=92.8  Template_Neff=3.100
+
+Q nsp9              9 LRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTPKGPKVKYL   88 (113)
+Q Consensus         9 lrqmscaagttqtactddnalayynttkggrfvlallsdlqdlkwarfpksdgtgtiyteleppcrfvtdtpkgpkvkyl   88 (113)
+                      +++|.|.||  +..|....+.||||+..|++|+.|++||-.+|||+++.++||  .|+.||||||||..+.|++|++|||
+T Consensus         2 lkt~~~~a~--~~~~~~~~~ka~Y~~~~G~~~v~Ai~Sd~~~LK~vk~~~d~G--~vviELePPcKF~v~~~g~~~vkYL   77 (108)
+T 5YM8_B            2 VFTAQNTAQ--DFNGNESTVKSFYVTRTGKKILVAITSTKDNLKTVTCLTETG--KTVLNLDPPMRFAHTVGGKQSVVYL   77 (108)
+T ss_dssp             EEEEEEEEE--ETTSCEEEEEEEEEEETTEEEEEEEEESCSCEEEEEEEC-CC--EEEEEBCCCEEEEEEETTEEEEEEE
+T ss_pred             cceeecccc--cCCCCccccEEEEEccCCCEEEEEEEeCCCCceEEEEECCCC--eEEEEeCCCceEEEecCCceeEEEE
+Confidence            688999999  555666679999999999999999999999999999999996  8999999999999999999999999
+
+
+Q nsp9             89 YFIKGLNNLNRGMVLGSLAATVRLQ  113 (113)
+Q Consensus        89 yfikglnnlnrgmvlgslaatvrlq  113 (113)
+                      ||||+||+|+||||||.++||||||
+T Consensus        78 YFVKNlntL~RG~VLG~I~aTVr~~  102 (108)
+T 5YM8_B           78 YFIQNISSLNRGMVIGHISETTILQ  102 (108)
+T ss_dssp             EEBTTCCHHHHHHHHHHHTTSCC--
+T ss_pred             EEEccccccccchhheeeeeeEEcc
+Confidence            9999999999999999999999998
+
+
+No 10
+>1QTN_B CASPASE-8 (E.C.3.4.22.-); APOPTOSIS, DITHIANE-DIOL, CASPASE, CYSTEINE-PROTEASE, HYDROLASE-HYDROLASE; HET: DTD; 1.2A {Homo sapiens}
+Probab=44.24  E-value=19  Score=22.14  Aligned_cols=44  Identities=20%  Similarity=0.295  Sum_probs=29.7  Template_Neff=9.400
+
+Q nsp9              8 ALRQMSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQDL   51 (113)
+Q Consensus         8 alrqmscaagttqtactddnalayynttkggrfvlallsdlqdl   51 (113)
+                      .-..+...+++--.-+|-.+..+|-+...|+.|+-+|..-|+.-
+T Consensus         5 ~~~~~p~~~d~li~~sT~~g~~a~r~~~~gS~fi~~L~~~l~~~   48 (95)
+T 1QTN_B            5 QTRYIPDEADFLLGMATVNNCVSYRNPAEGTWYIQSLCQSLRER   48 (95)
+T ss_dssp             CCC-CCTTCSEEEEESSCTTBCCEEETTTEEHHHHHHHHHHHHH
+T ss_pred             CcccCCCCCCEEEEecCCCCcccccCCCCCCHHHHHHHHHHhcc
+Confidence            33344455555555566666777777788999999998877754
+
+
+No 11
+>3P4U_D active caspase-6 (E.C.3.4.22.59), Ac-VEID-CHO; protease, caspase, Huntington's disease, competitive; HET: ASJ, CAS; 1.9A {Homo sapiens}
+Probab=24.08  E-value=68  Score=20.82  Aligned_cols=39  Identities=13%  Similarity=0.142  Sum_probs=27.5  Template_Neff=8.700
+
+Q nsp9             12 MSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQD   50 (113)
+Q Consensus        12 mscaagttqtactddnalayynttkggrfvlallsdlqd   50 (113)
+                      +.+.++.--.-+|..+-.+|-+...|+.|+-+|..-|+.
+T Consensus         8 ip~~~D~li~~ST~pg~~a~r~~~~GS~fI~~L~~~l~~   46 (108)
+T 3P4U_D            8 LPAGADFLMCYSVAEGYYSHRETVNGSWYIQDLCEMLGK   46 (108)
+T ss_dssp             EETTTTEEEEESSCTTBCCEEETTTEEHHHHHHHHHHHH
+T ss_pred             CCCCCCEEEEEcCCCCcccccccccccHHHHHHHHHHHH
+Confidence            344455554555666667788888999999988877764
+
+
+No 12
+>2QL9_B Caspase-7 (EC 3.4.22.60) (CASP-7) (ICE-like; CYSTEINE PROTEASE, APOPTOSIS, THIOL PROTEASE; HET: CIT, ASJ; 2.14A {Homo sapiens}
+Probab=23.42  E-value=72  Score=19.61  Aligned_cols=39  Identities=23%  Similarity=0.231  Sum_probs=27.5  Template_Neff=9.500
+
+Q nsp9             12 MSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQD   50 (113)
+Q Consensus        12 mscaagttqtactddnalayynttkggrfvlallsdlqd   50 (113)
+                      +...+++-..-+|..+..+|-+..+|+.|+-+|..-|..
+T Consensus         7 ~p~~~d~li~~st~~g~~a~~~~~~gS~fi~~l~~~l~~   45 (97)
+T 2QL9_B            7 IPVEADFLFAYSTVPGYYSWRSPGRGSWFVQALCSILEE   45 (97)
+T ss_dssp             BCTTTTEEEEESSCTTBCCEEETTTEEHHHHHHHHHHHH
+T ss_pred             CCCcCCEEEEeeCCCCcccccCCccccHHHHHHHHHHHH
+Confidence            344455555556666677777788999999888877764
+
+
+No 13
+>2QLB_B Caspase-7 (EC 3.4.22.60) (CASP-7) (ICE-like; CYSTEINE PROTEASE, APOPTOSIS, THIOL PROTEASE; HET: CIT, ASJ; 2.25A {Homo sapiens}
+Probab=23.42  E-value=72  Score=19.61  Aligned_cols=39  Identities=23%  Similarity=0.231  Sum_probs=27.5  Template_Neff=9.500
+
+Q nsp9             12 MSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQD   50 (113)
+Q Consensus        12 mscaagttqtactddnalayynttkggrfvlallsdlqd   50 (113)
+                      +...+++-..-+|..+..+|-+..+|+.|+-+|..-|..
+T Consensus         7 ~p~~~d~li~~st~~g~~a~~~~~~gS~fi~~l~~~l~~   45 (97)
+T 2QLB_B            7 IPVEADFLFAYSTVPGYYSWRSPGRGSWFVQALCSILEE   45 (97)
+T ss_dssp             BCTTTTEEEEESSCTTBCCEEETTTEEHHHHHHHHHHHH
+T ss_pred             CCCcCCEEEEeeCCCCcccccCCccccHHHHHHHHHHHH
+Confidence            344455555556666677777788999999888877764
+
+
+No 14
+>3EDR_D Caspase-7 (E.C.3.4.22.60), Inhibitor Ac-ldesd-cho; CASPASE, PEPTIDE INHIBITOR, APOPTOSIS, THIOL; HET: ASJ; 2.45A {Homo sapiens}
+Probab=23.42  E-value=72  Score=19.61  Aligned_cols=39  Identities=23%  Similarity=0.231  Sum_probs=27.5  Template_Neff=9.500
+
+Q nsp9             12 MSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQD   50 (113)
+Q Consensus        12 mscaagttqtactddnalayynttkggrfvlallsdlqd   50 (113)
+                      +...+++-..-+|..+..+|-+..+|+.|+-+|..-|..
+T Consensus         7 ~p~~~d~li~~st~~g~~a~~~~~~gS~fi~~l~~~l~~   45 (97)
+T 3EDR_D            7 IPVEADFLFAYSTVPGYYSWRSPGRGSWFVQALCSILEE   45 (97)
+T ss_dssp             BCTTCSEEEEESSCTTBCCEEETTTEEHHHHHHHHHHHH
+T ss_pred             CCCcCCEEEEeeCCCCcccccCCccccHHHHHHHHHHHH
+Confidence            344455555556666677777788999999888877764
+
+
+No 15
+>3SIP_B Caspase (E.C.3.4.22.-), Apoptosis 1 inhibitor; caspase, BIR domain, HYDROLASE-LIGASE-HYDROLASE complex; 3.496A {Drosophila melanogaster}
+Probab=20.94  E-value=87  Score=20.21  Aligned_cols=39  Identities=23%  Similarity=0.283  Sum_probs=27.6  Template_Neff=8.900
+
+Q nsp9             12 MSCAAGTTQTACTDDNALAYYNTTKGGRFVLALLSDLQD   50 (113)
+Q Consensus        12 mscaagttqtactddnalayynttkggrfvlallsdlqd   50 (113)
+                      +.+.+++-..-+|-.+..+|-+...|+.|+-+|..-|+.
+T Consensus         9 ~p~~~D~li~~ST~~g~~a~r~~~~GS~fi~~L~~~l~~   47 (109)
+T 3SIP_B            9 IPVHADFLIAYSTVPGFYSWRNTTRGSWFMQSLCAELAA   47 (109)
+T ss_pred             cCCCCCEEEEecCCCCccccccCCCCCHHHHHHHHHHHH
+Confidence            344455555555556667787888999999999887764
+
+
+No 16
+>2DC1_B L-aspartate dehydrogenase (E.C.1.4.1.21); L-Aspartate Dehydrogenase, NAD, OXIDOREDUCTASE; HET: CIT, NAD; 1.9A {Archaeoglobus fulgidus}
+Probab=20.30  E-value=91  Score=21.85  Aligned_cols=33  Identities=27%  Similarity=0.350  Sum_probs=26.2  Template_Neff=10.000
+
+Q nsp9             70 EPPCRFVTDTPKGPKVKYLYFIKGLNNLNRGMV  102 (113)
+Q Consensus        70 eppcrfvtdtpkgpkvkylyfikglnnlnrgmv  102 (113)
+                      ........+.|+..+..|.-++..|.+|-.|.|
+T Consensus       203 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  235 (236)
+T 2DC1_B          203 RVRNRPMRENPKTSYLAALSVTRILRNLKEGLV  235 (236)
+T ss_dssp             EEECCEETTEEEEEHHHHHHHHHHHHHHHCSEE
+T ss_pred             EEEcccCCCCCCchHHHHHHHHHHHHHhhccCC
+Confidence            333444467889999999999999999998876
+
+

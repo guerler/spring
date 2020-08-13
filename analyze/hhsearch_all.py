@@ -11,15 +11,19 @@ def main(args):
 	commands = []
 	for name in names:
 		input_directory = args.inputs.rstrip("/")
-		sub_directory = name[:int(len(name)/2)]			
-		input_file = "%s/fasta/%s/%s.fasta" % (input_directory, sub_directory, name)
-		output_path = "%s/hhr/%s" % (input_directory, sub_directory)
+		if args.subdirectory == 'y':
+			sub_directory = name[:int(len(name)/2)]
+			input_file = "%s/fasta/%s/%s.fasta" % (input_directory, sub_directory, name)
+			output_path = "%s/hhr/%s" % (input_directory, sub_directory)
+		else:
+			input_file = "%s/fasta/%s.fasta" % (input_directory, name)
+			output_path = "%s/hhr/" % (input_directory)
 		if not os.path.exists(output_path):
 			os.makedirs(output_path)
 		output_file = "%s/%s.hhr" % (output_path, name)
 		if os.path.isfile(output_file):
 			print("Already available.")
-			continue
+			#continue
 		command = "%s -i %s -d %s -o %s" % (args.binary, input_file, args.database, output_file)
 		os.system(command)
 
@@ -29,5 +33,6 @@ if __name__ == "__main__":
 	parser.add_argument('-i', '--inputs', help='Directory containing `fasta/X/Y.fasta` files', required=True)
 	parser.add_argument('-b', '--binary', help='HH-search/HH-blits binary path', required=True)
 	parser.add_argument('-d', '--database', help='HH-search database path', required=True)
+	parser.add_argument('-s', '--subdirectory', help='Use subdirectory splitting', default='y')
 	args = parser.parse_args()
 	main(args)

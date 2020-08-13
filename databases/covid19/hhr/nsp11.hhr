@@ -1,0 +1,366 @@
+Query         nsp11
+Match_columns 13
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:03:15 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/nsp11.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//nsp11.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 6QE3_A Putative transferase CA  33.5      37 0.00044   17.1   0.0   10    2-11     21-30  (309)
+  2 1NRK_A Unknown protein from 2D  33.4      37 0.00045   17.2   0.0   11    2-12     38-48  (328)
+  3 4JOB_A Lysophosphatidic acid p  31.6      41  0.0005   16.9   0.0    9    3-11    140-148 (396)
+  4 4JOD_A Lysophosphatidic acid p  31.6      41  0.0005   16.9   0.0    9    3-11    140-148 (396)
+  5 3M91_D Proteasome-associated A  31.5      41  0.0005   15.5   0.0   10    3-12     30-39  (44)
+  6 6GEU_A Putative transferase CA  30.7      44 0.00053   17.0   0.0   11    2-12     22-32  (314)
+  7 2KM7_A Small protein A; BamE,   29.0      49 0.00059   14.5   0.0    7    6-12      2-8   (102)
+  8 4ARU_A HISTIDINE ACID PHOSPHAT  27.6      54 0.00065   16.6   0.0    9    3-11     98-106 (413)
+  9 4ARV_A PHYTASE (E.C.3.1.3.26);  25.3      62 0.00076   16.8   0.0    9    3-11    123-131 (441)
+ 10 2HPA_B PROTEIN (ACID PHOSPHATA  25.0      64 0.00077   15.6   0.0    9    3-11     83-91  (342)
+ 11 4ARS_A HISTIDINE ACID PHOSPHAT  24.7      65 0.00079   16.3   0.0    9    3-11     98-106 (413)
+ 12 1VLY_A Unknown protein from 2D  24.6      66  0.0008   16.6   0.0   10    2-11     47-56  (338)
+ 13 3A8K_A Aminomethyltransferase   23.9      69 0.00084   16.4   0.0   10    2-11     60-69  (364)
+ 14 5CDH_A Major acid phosphatase;  23.6      71 0.00086   15.5   0.0    9    3-11     81-89  (336)
+ 15 5CDH_D Major acid phosphatase;  23.6      71 0.00086   15.5   0.0    9    3-11     81-89  (336)
+ 16 1VLO_A Aminomethyltransferase   21.6      82 0.00099   16.3   0.0   10    2-11     72-81  (381)
+ 17 3K4Q_A 3-phytase A (E.C.3.1.3.  21.5      83   0.001   16.5   0.0    9    3-11    146-154 (444)
+ 18 1DKL_B PHYTASE (E.C.3.1.3.2);   21.5      83   0.001   16.0   0.0    9    3-11     96-104 (410)
+ 19 1DKQ_A PHYTASE (E.C.3.1.3.2) M  21.2      85   0.001   16.0   0.0    9    3-11     96-104 (410)
+ 20 3P8C_E Cytoplasmic FMR1-intera  21.2      85   0.001   14.6   0.0    7    6-12     34-40  (75)
+ 21 4N78_E Cytoplasmic FMR1-intera  21.2      85   0.001   14.6   0.0    7    6-12     34-40  (75)
+ 22 2YBR_H SINGLE CHAIN ANTIBODY F  21.1      86   0.001   11.7   0.0    6    6-11    134-139 (146)
+ 23 2F40_A hypothetical protein PF  20.6      89  0.0011   16.4   0.0    8    5-12     38-45  (96)
+ 24 3M9D_H coil coil domain, inter  20.0      93  0.0011   15.0   0.0   10    3-12     54-63  (68)
+
+No 1
+>6QE3_A Putative transferase CAF17, mitochondrial (E.C.2.1.-.-).; Mitochondrial protein, Fe-S protein biogenesis; 1.75A {Homo sapiens}
+Probab=33.49  E-value=37  Score=17.13  Aligned_cols=10  Identities=50%  Similarity=0.806  Sum_probs=7.8  Template_Neff=9.000
+
+Q nsp11             2 ADAQSFLNGF   11 (13)
+Q Consensus         2 adaqsflngf   11 (13)
+                      .||..||+|.
+T Consensus        21 ~da~~fLq~l   30 (309)
+T 6QE3_A           21 PDAAPFLLGL   30 (309)
+T ss_pred             cCHHHHHhhh
+Confidence            5788888875
+
+
+No 2
+>1NRK_A Unknown protein from 2D-page; YGFZ, STRUCTURAL GENOMICS, UNKNOWN FUNCTION; HET: SO4; 2.8A {Escherichia coli} SCOP: b.44.2.1, d.250.1.1
+Probab=33.38  E-value=37  Score=17.19  Aligned_cols=11  Identities=27%  Similarity=0.688  Sum_probs=8.1  Template_Neff=9.100
+
+Q nsp11             2 ADAQSFLNGFA   12 (13)
+Q Consensus         2 adaqsflngfa   12 (13)
+                      .||..||++..
+T Consensus        38 ~da~~fLq~~~   48 (328)
+T 1NRK_A           38 ADSEKYMQGQV   48 (328)
+T ss_dssp             TTHHHHHHTTS
+T ss_pred             CCHHHHHhccc
+Confidence            47888888753
+
+
+No 3
+>4JOB_A Lysophosphatidic acid phosphatase type 6; hydrolase, Rossmann Fold, mitochondria; HET: TLA; 2.171A {Homo sapiens}
+Probab=31.57  E-value=41  Score=16.85  Aligned_cols=9  Identities=22%  Similarity=0.630  Sum_probs=6.7  Template_Neff=10.000
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .||+|+.|+
+T Consensus       140 SA~afl~Gl  148 (396)
+T 4JOB_A          140 STRCLLAGL  148 (396)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHhhh
+Confidence            477888876
+
+
+No 4
+>4JOD_A Lysophosphatidic acid phosphatase type 6; hydrolase, Rossmann Fold, mitochondria; 2.21A {Homo sapiens}
+Probab=31.57  E-value=41  Score=16.85  Aligned_cols=9  Identities=22%  Similarity=0.630  Sum_probs=6.7  Template_Neff=10.000
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .||+|+.|+
+T Consensus       140 SA~afl~Gl  148 (396)
+T 4JOD_A          140 STRCLLAGL  148 (396)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHhhh
+Confidence            477888876
+
+
+No 5
+>3M91_D Proteasome-associated ATPase, Prokaryotic ubiquitin-like protein; coil coil alpha helix, ATP-binding; 1.8A {Mycobacterium tuberculosis}
+Probab=31.49  E-value=41  Score=15.46  Aligned_cols=10  Identities=20%  Similarity=0.720  Sum_probs=1.3  Template_Neff=2.800
+
+Q nsp11             3 DAQSFLNGFA   12 (13)
+Q Consensus         3 daqsflngfa   12 (13)
+                      +|+.|.++|.
+T Consensus        30 NAeefV~~fV   39 (44)
+T 3M91_D           30 NAEDFVRAYV   39 (44)
+T ss_dssp             HC--------
+T ss_pred             hHHHHHHHHH
+Confidence            5788888873
+
+
+No 6
+>6GEU_A Putative transferase CAF17, mitochondrial (E.C.2.1.-.-).; Mitochondrial protein, Fe-S protein biogenesis; 1.55A {Homo sapiens}
+Probab=30.68  E-value=44  Score=16.97  Aligned_cols=11  Identities=45%  Similarity=0.697  Sum_probs=8.1  Template_Neff=8.900
+
+Q nsp11             2 ADAQSFLNGFA   12 (13)
+Q Consensus         2 adaqsflngfa   12 (13)
+                      .||.+||+|..
+T Consensus        22 ~da~~fLq~l~   32 (314)
+T 6GEU_A           22 PDAAPFLLGLL   32 (314)
+T ss_pred             cCHHHHHhhhc
+Confidence            47888888753
+
+
+No 7
+>2KM7_A Small protein A; BamE, SmpA, BAM complex, Omp85; NMR {N/A}
+Probab=28.98  E-value=49  Score=14.54  Aligned_cols=7  Identities=29%  Similarity=0.197  Sum_probs=5.0  Template_Neff=8.200
+
+Q nsp11             6 SFLNGFA   12 (13)
+Q Consensus         6 sflngfa   12 (13)
+                      |+|+|++
+T Consensus         2 ~~l~~~~    8 (102)
+T 2KM7_A            2 STLERVV    8 (102)
+T ss_dssp             CCCCCCC
+T ss_pred             Cccccce
+Confidence            6777765
+
+
+No 8
+>4ARU_A HISTIDINE ACID PHOSPHATASE (E.C.3.1.3.26); HYDROLASE, 6-PHYTASE, PHOSPHOHYDROLASE, HAPP; HET: TLA; 1.45A {HAFNIA ALVEI}
+Probab=27.56  E-value=54  Score=16.64  Aligned_cols=9  Identities=33%  Similarity=0.837  Sum_probs=6.6  Template_Neff=9.900
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.||
+T Consensus        98 SA~~~l~Gl  106 (413)
+T 4ARU_A           98 TGEAFLAGL  106 (413)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHHhh
+Confidence            467888876
+
+
+No 9
+>4ARV_A PHYTASE (E.C.3.1.3.26); HYDROLASE, 6-PHYTASE, MYO-INOSITOL HEXAKIS PHOSPHATE; HET: EDO, PO4, TOE, P15; 1.67A {YERSINIA KRISTENSENII}
+Probab=25.33  E-value=62  Score=16.77  Aligned_cols=9  Identities=44%  Similarity=0.929  Sum_probs=6.6  Template_Neff=9.600
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.||
+T Consensus       123 SA~afl~Gl  131 (441)
+T 4ARV_A          123 TGQAFLDGI  131 (441)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHHcc
+Confidence            467788776
+
+
+No 10
+>2HPA_B PROTEIN (ACID PHOSPHATASE); ACID PHOSPHATASE, N-PROPYLTARTRAMATE, HYDROLASE; HET: MAN, PT3, NAG, BMA, NDG; 2.9A {Homo sapiens} SCOP: c.60.1.2
+Probab=25.04  E-value=64  Score=15.59  Aligned_cols=9  Identities=22%  Similarity=0.242  Sum_probs=6.2  Template_Neff=10.400
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.||
+T Consensus        83 Sa~a~l~Gl   91 (342)
+T 2HPA_B           83 SAMTNLAAL   91 (342)
+T ss_dssp             HHHHHHHHH
+T ss_pred             cHHHHHHhh
+Confidence            467777776
+
+
+No 11
+>4ARS_A HISTIDINE ACID PHOSPHATASE (E.C.3.1.3.26); HYDROLASE; HET: GOL, ACT; 1.9A {HAFNIA ALVEI}
+Probab=24.71  E-value=65  Score=16.27  Aligned_cols=9  Identities=33%  Similarity=0.837  Sum_probs=6.3  Template_Neff=10.000
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.||
+T Consensus        98 Sa~~~l~Gl  106 (413)
+T 4ARS_A           98 TGEAFLAGL  106 (413)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHHhh
+Confidence            467777776
+
+
+No 12
+>1VLY_A Unknown protein from 2D-page; Structural genomics, Joint Center for; HET: EDO; 1.3A {Escherichia coli} SCOP: b.44.2.1, d.250.1.1
+Probab=24.56  E-value=66  Score=16.65  Aligned_cols=10  Identities=30%  Similarity=0.753  Sum_probs=7.5  Template_Neff=8.700
+
+Q nsp11             2 ADAQSFLNGF   11 (13)
+Q Consensus         2 adaqsflngf   11 (13)
+                      .|+..||+++
+T Consensus        47 ~da~~fLq~l   56 (338)
+T 1VLY_A           47 ADSEKYMQGQ   56 (338)
+T ss_dssp             TTHHHHHHTT
+T ss_pred             CCHHHHHhcc
+Confidence            4778888875
+
+
+No 13
+>3A8K_A Aminomethyltransferase (E.C.2.1.2.10), Glycine cleavage system; Glycine Cleavage System, Aminotransferase, Transferase; HET: LA2; 1.95A {Escherichia coli}
+Probab=23.93  E-value=69  Score=16.36  Aligned_cols=10  Identities=20%  Similarity=0.414  Sum_probs=7.4  Template_Neff=9.300
+
+Q nsp11             2 ADAQSFLNGF   11 (13)
+Q Consensus         2 adaqsflngf   11 (13)
+                      .||..||+++
+T Consensus        60 ~da~~fL~~l   69 (364)
+T 3A8K_A           60 SRTREFLRYL   69 (364)
+T ss_dssp             TTHHHHHHHH
+T ss_pred             ccHHHHHHHh
+Confidence            4778888875
+
+
+No 14
+>5CDH_A Major acid phosphatase; HISTIDINE ACID PHOSPHATASE, HYDROLASE, HYDROLASE-HYDROLASE; HET: 1PE, TLA; 2.001A {Legionella pneumophila}
+Probab=23.58  E-value=71  Score=15.47  Aligned_cols=9  Identities=56%  Similarity=0.748  Sum_probs=6.1  Template_Neff=10.300
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.|+
+T Consensus        81 Sa~~~l~Gl   89 (336)
+T 5CDH_A           81 SAQSLLMGL   89 (336)
+T ss_dssp             HHHHHHHHH
+T ss_pred             hHHHHHhcc
+Confidence            367777776
+
+
+No 15
+>5CDH_D Major acid phosphatase; HISTIDINE ACID PHOSPHATASE, HYDROLASE, HYDROLASE-HYDROLASE; HET: TLA, 1PE; 2.001A {Legionella pneumophila}
+Probab=23.58  E-value=71  Score=15.47  Aligned_cols=9  Identities=56%  Similarity=0.748  Sum_probs=6.1  Template_Neff=10.300
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.|+
+T Consensus        81 Sa~~~l~Gl   89 (336)
+T 5CDH_D           81 SAQSLLMGL   89 (336)
+T ss_dssp             HHHHHHHHH
+T ss_pred             hHHHHHhcc
+Confidence            367777776
+
+
+No 16
+>1VLO_A Aminomethyltransferase (E.C.2.1.2.10); np417381, aminomethyltransferase (T protein ; 1.7A {Escherichia coli K12} SCOP: d.250.1.1, b.44.2.1
+Probab=21.64  E-value=82  Score=16.34  Aligned_cols=10  Identities=20%  Similarity=0.414  Sum_probs=7.3  Template_Neff=9.100
+
+Q nsp11             2 ADAQSFLNGF   11 (13)
+Q Consensus         2 adaqsflngf   11 (13)
+                      .||..||+++
+T Consensus        72 ~da~~fL~~l   81 (381)
+T 1VLO_A           72 SRTREFLRYL   81 (381)
+T ss_dssp             TTHHHHHHHH
+T ss_pred             ccHHHHHHHH
+Confidence            4777888775
+
+
+No 17
+>3K4Q_A 3-phytase A (E.C.3.1.3.8); Phytase, PhyA, 3-Phosphotase, myo-inositol hexakis; HET: NAG, IHS; 2.2A {Aspergillus niger}
+Probab=21.53  E-value=83  Score=16.49  Aligned_cols=9  Identities=33%  Similarity=0.995  Sum_probs=6.6  Template_Neff=9.400
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.|+
+T Consensus       146 Sa~afl~Gl  154 (444)
+T 3K4Q_A          146 SGKKFIEGF  154 (444)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHHhh
+Confidence            467888776
+
+
+No 18
+>1DKL_B PHYTASE (E.C.3.1.3.2); HISTIDINE ACID PHOSPHATASE FOLD, HYDROLASE; 2.3A {Escherichia coli} SCOP: c.60.1.2
+Probab=21.51  E-value=83  Score=15.97  Aligned_cols=9  Identities=22%  Similarity=0.645  Sum_probs=6.3  Template_Neff=9.900
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.|+
+T Consensus        96 SA~afl~Gl  104 (410)
+T 1DKL_B           96 TGEAFAAGL  104 (410)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHHhh
+Confidence            467777775
+
+
+No 19
+>1DKQ_A PHYTASE (E.C.3.1.3.2) MUTANT; HISTIDINE ACID PHOSPHATASE FOLD, HYDROLASE; HET: IHP; 2.05A {Escherichia coli} SCOP: c.60.1.2
+Probab=21.24  E-value=85  Score=16.00  Aligned_cols=9  Identities=22%  Similarity=0.645  Sum_probs=6.2  Template_Neff=9.800
+
+Q nsp11             3 DAQSFLNGF   11 (13)
+Q Consensus         3 daqsflngf   11 (13)
+                      .|++|+.||
+T Consensus        96 SA~af~~Gl  104 (410)
+T 1DKQ_A           96 TGEAFAAGL  104 (410)
+T ss_dssp             HHHHHHHHH
+T ss_pred             HHHHHHHhh
+Confidence            467777776
+
+
+No 20
+>3P8C_E Cytoplasmic FMR1-interacting protein 1, Nck-associated; actin polymerization, PROTEIN BINDING; HET: GOL; 2.29A {Homo sapiens}
+Probab=21.19  E-value=85  Score=14.58  Aligned_cols=7  Identities=57%  Similarity=1.065  Sum_probs=4.8  Template_Neff=5.500
+
+Q nsp11             6 SFLNGFA   12 (13)
+Q Consensus         6 sflngfa   12 (13)
+                      .|||-|+
+T Consensus        34 ~FLN~F~   40 (75)
+T 3P8C_E           34 DFLNSFD   40 (75)
+T ss_pred             HHHHHHH
+Confidence            5777775
+
+
+No 21
+>4N78_E Cytoplasmic FMR1-interacting protein 1, Nck-associated; actin dynamics, PROTEIN BINDING; HET: GOL; 2.43A {Homo sapiens}
+Probab=21.19  E-value=85  Score=14.58  Aligned_cols=7  Identities=57%  Similarity=1.065  Sum_probs=4.8  Template_Neff=5.500
+
+Q nsp11             6 SFLNGFA   12 (13)
+Q Consensus         6 sflngfa   12 (13)
+                      .|||-|+
+T Consensus        34 ~FLN~F~   40 (75)
+T 4N78_E           34 DFLNSFD   40 (75)
+T ss_pred             HHHHHHH
+Confidence            5777775
+
+
+No 22
+>2YBR_H SINGLE CHAIN ANTIBODY FRAGMENT 9004G; IMMUNE SYSTEM-TOXIN COMPLEX, SCORPION TOXIN; 2.55A {CENTRUROIDES NOXIUS HOFFMANN}
+Probab=21.08  E-value=86  Score=11.75  Aligned_cols=6  Identities=50%  Similarity=0.434  Sum_probs=0.0  Template_Neff=12.600
+
+Q nsp11             6 SFLNGF   11 (13)
+Q Consensus         6 sflngf   11 (13)
+                      .+++|+
+T Consensus       134 ~~~~~~  139 (146)
+T 2YBR_H          134 EDLNGA  139 (146)
+T ss_dssp             ------
+T ss_pred             hHhccc
+Confidence            344444
+
+
+No 23
+>2F40_A hypothetical protein PF1455; protein structure prediction, residual dipolar; NMR {Pyrococcus furiosus} SCOP: i.11.1.1
+Probab=20.64  E-value=89  Score=16.39  Aligned_cols=8  Identities=38%  Similarity=0.833  Sum_probs=5.9  Template_Neff=2.500
+
+Q nsp11             5 QSFLNGFA   12 (13)
+Q Consensus         5 qsflngfa   12 (13)
+                      ..|+||+|
+T Consensus        38 RvFiNgYa   45 (96)
+T 2F40_A           38 RVFINPYA   45 (96)
+T ss_dssp             CCCCCTTT
+T ss_pred             eeeccccC
+Confidence            46888875
+
+
+No 24
+>3M9D_H coil coil domain, inter domain; alpha helix coil coil, 5; 4.5A {Mycobacterium tuberculosis}
+Probab=20.04  E-value=93  Score=14.98  Aligned_cols=10  Identities=20%  Similarity=0.720  Sum_probs=1.2  Template_Neff=3.900
+
+Q nsp11             3 DAQSFLNGFA   12 (13)
+Q Consensus         3 daqsflngfa   12 (13)
+                      +|..|..||.
+T Consensus        54 NAeeFV~~fV   63 (68)
+T 3M9D_H           54 NAEDFVRAYV   63 (68)
+T ss_dssp             CC--------
+T ss_pred             hHHHHHHHHH
+Confidence            5777887773
+
+

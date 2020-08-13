@@ -1,0 +1,170 @@
+Query         nsp1
+Match_columns 180
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 15:55:17 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/nsp1.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//nsp1.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 2GDT_A Leader protein  p65 hom  99.6 6.4E-19 7.8E-24  134.2   0.0  116   12-127     1-116 (116)
+  2 1JW3_A Conserved Hypothetical   28.0      52 0.00063   25.2   0.0   31   23-53     10-40  (140)
+  3 1J5U_A archease, possible chap  27.0      56 0.00067   25.8   0.0   27   22-48     19-45  (136)
+  4 4N2P_B Protein archease; METAL  24.7      65 0.00079   24.5   0.0   29   23-51     11-39  (143)
+  5 3K1T_A Glutamate--cysteine lig  24.2      68 0.00082   31.1   0.0   31   64-95    275-305 (432)
+  6 6BI6_A Uncharacterized protein  21.9      80 0.00097   26.2   0.0   46   29-79     49-94  (115)
+  7 6G1C_A Uncharacterized protein  20.9      87  0.0011   21.9   0.0   29   28-56     25-53  (92)
+  8 6G1C_B Uncharacterized protein  20.9      87  0.0011   21.9   0.0   29   28-56     25-53  (92)
+  9 2YZT_A Putative uncharacterize  20.0      93  0.0011   19.4   0.0   24   28-51     26-49  (67)
+ 10 1WV8_A hypothetical protein TT  19.0   1E+02  0.0012   19.7   0.0   21   28-48     27-47  (73)
+
+No 1
+>2GDT_A Leader protein  p65 homolog; leader protein, beta-barrel, alpha-beta, virus; NMR {SARS coronavirus} SCOP: d.346.1.1
+Probab=99.58  E-value=6.4e-19  Score=134.23  Aligned_cols=116  Identities=85%  Similarity=1.308  Sum_probs=109.0  Template_Neff=4.600
+
+Q nsp1             12 THVQLSLPVLQVRDVLVRGFGDSVEEVLSEARQHLKDGTCGLVEVEKGVLPQLEQPYVFIKRSDARTAPHGHVMVELVAE   91 (180)
+Q Consensus        12 thvqlslpvlqvrdvlvrgfgdsveevlsearqhlkdgtcglvevekgvlpqleqpyvfikrsdartaphghvmvelvae   91 (180)
+                      .||+++.|..++||+++++++.++|+++++++.+|+.|++.||.-.+|..|++.+|++|+.|+..-..-|-||.-++..+
+T Consensus         1 ~HV~~~~~~~~~rdi~v~~~~~~p~~~~~~~k~aL~~g~avLv~~~~g~~~~lpg~~v~l~rr~~~~~~~~~v~ql~~~~   80 (116)
+T 2GDT_A            1 GHVQLSLPVLQVRDVLVRGFGDSVEEALSEAREHLKNGTCGLVELEKGVLPQLEQPYVFIKRSDALSTNHGHKVVELVAE   80 (116)
+T ss_dssp             CCEEEEEEECCTTTCSCCCSCSSHHHHHHHHHHHHHHTCEEEECCCTTSGGGSCSCEEEEECCSSCCCCCSSCCCEEEEE
+T ss_pred             CceeeeccEEEEEeEEecCCCCCHHHHHHHHHHHHHcCCeEEEeecccCCcCcCCCEEEEEEeccccCCCcceEEEEEEc
+Confidence            49999999999999999999999999999999999999999999999999999999999999888766666776677888
+
+
+Q nsp1             92 LEGIQYGRSGETLGVLVPHVGEIPVAYRKVLLRKNG  127 (180)
+Q Consensus        92 legiqygrsgetlgvlvphvgeipvayrkvllrkng  127 (180)
+                      -.|++||+.|..+|.++|+.++-+..+..+++||||
+T Consensus        81 ~dGv~~g~~g~~iG~~vP~~~~~~~~~~~~~LRK~G  116 (116)
+T 2GDT_A           81 MDGIQYGRSGITLGVLVPHVGETPIAYRNVLLRKNG  116 (116)
+T ss_dssp             SSCTTTTSSSSCCEEEEECCSCCCSEEEEEEECCCC
+T ss_pred             CCcEEEcCCCCeeEeeeecCCCCcceeeEEEEeeCC
+Confidence            889999999999999999999999999999999987
+
+
+No 2
+>1JW3_A Conserved Hypothetical Protein MTH1598; MTH1598, hypothetical protein, structural genomics; NMR {Methanothermobacter thermautotrophicus} SCOP: d.208.1.1
+Probab=27.95  E-value=52  Score=25.23  Aligned_cols=31  Identities=19%  Similarity=0.248  Sum_probs=25.8  Template_Neff=7.300
+
+Q nsp1             23 VRDVLVRGFGDSVEEVLSEARQHLKDGTCGL   53 (180)
+Q Consensus        23 vrdvlvrgfgdsveevlsearqhlkdgtcgl   53 (180)
+                      .-|+-++.+|.|.+|.+++|...|-+=.++.
+T Consensus        10 tADv~i~~~G~tleelF~~aa~al~~~~~d~   40 (140)
+T 1JW3_A           10 TADAGFWAYGHDLEEVFENAALAMFEVMTDT   40 (140)
+T ss_dssp             SSEEEEEEECSSSHHHHHHHHHHHHHHHSCC
+T ss_pred             cCcEEEEEEeCCHHHHHHHHHHHHHHHhccc
+Confidence            4699999999999999999988776655544
+
+
+No 3
+>1J5U_A archease, possible chaperone TM1083; ARCHEASE, STRUCTURAL GENOMICS, JOINT CENTER; 2.0A {Thermotoga maritima} SCOP: d.208.1.1
+Probab=26.98  E-value=56  Score=25.79  Aligned_cols=27  Identities=37%  Similarity=0.447  Sum_probs=23.5  Template_Neff=6.300
+
+Q nsp1             22 QVRDVLVRGFGDSVEEVLSEARQHLKD   48 (180)
+Q Consensus        22 qvrdvlvrgfgdsveevlsearqhlkd   48 (180)
+                      ...|+-++.+|+|.+|.+++|...+-+
+T Consensus        19 HtADi~i~~~G~tleElF~~Aa~am~~   45 (136)
+T 1J5U_A           19 HTADIAYEISGNSYEELLEEARNILLE   45 (136)
+T ss_dssp             CSCCEEEEEEESSHHHHHHHHHHHHHH
+T ss_pred             CcCcEEEEEEeCCHHHHHHHHHHHHHh
+Confidence            367999999999999999999876665
+
+
+No 4
+>4N2P_B Protein archease; METAL COORDINATION, RNA LIGASE, CHAPERONE; HET: ACT, MSE, MPD; 1.435A {Pyrococcus horikoshii}
+Probab=24.73  E-value=65  Score=24.55  Aligned_cols=29  Identities=34%  Similarity=0.523  Sum_probs=23.4  Template_Neff=7.600
+
+Q nsp1             23 VRDVLVRGFGDSVEEVLSEARQHLKDGTC   51 (180)
+Q Consensus        23 vrdvlvrgfgdsveevlsearqhlkdgtc   51 (180)
+                      ..|+-++.+|+|.+|++..|...+.+=-+
+T Consensus        11 tADi~i~v~G~sl~Elf~~a~~al~~~~~   39 (143)
+T 4N2P_B           11 TADIGIRGYGDSLEEAFEAVAIALFDVMV   39 (143)
+T ss_dssp             EEEEEEEEEESSHHHHHHHHHHHHHHHHS
+T ss_pred             cCcEEEEEEeCCHHHHHHHHHHHHHHccc
+Confidence            46899999999999999999876654433
+
+
+No 5
+>3K1T_A Glutamate--cysteine ligase GshA; Putative gamma-glutamylcysteine synthetase, Structural Genomics; HET: GOL, SO4; 1.9A {Methylobacillus flagellatus KT}
+Probab=24.21  E-value=68  Score=31.13  Aligned_cols=31  Identities=26%  Similarity=0.464  Sum_probs=22.6  Template_Neff=4.100
+
+Q nsp1             64 LEQPYVFIKRSDARTAPHGHVMVELVAELEGI   95 (180)
+Q Consensus        64 leqpyvfikrsdartaphghvmvelvaelegi   95 (180)
+                      -++||||||- |+-|-.-|-++|.=..|+..+
+T Consensus       275 ~e~PfV~VKa-D~GTYGMGImtV~~~~ei~~L  305 (432)
+T 3K1T_A          275 KQEPFVIVKA-DAGTYGMGIMTVKSADDVRDL  305 (432)
+T ss_dssp             CSCCCEEEEE-ECGGGCEEEEEESSGGGGSSC
+T ss_pred             CCCCEEEEEe-CCCCccceEEEEcCHHHHHHh
+Confidence            3789999984 688888887777655555443
+
+
+No 6
+>6BI6_A Uncharacterized protein YejG; PF13989, YejG, UNKNOWN FUNCTION; NMR {Escherichia coli (strain K12)}
+Probab=21.91  E-value=80  Score=26.18  Aligned_cols=46  Identities=33%  Similarity=0.405  Sum_probs=35.2  Template_Neff=3.100
+
+Q nsp1             29 RGFGDSVEEVLSEARQHLKDGTCGLVEVEKGVLPQLEQPYVFIKRSDARTA   79 (180)
+Q Consensus        29 rgfgdsveevlsearqhlkdgtcglvevekgvlpqleqpyvfikrsdarta   79 (180)
+                      ..-|++.-+|+....|.|.|     ++|+-.|+.--.+|-.||.|.|.-+|
+T Consensus        49 Shdg~~Aw~vM~~L~~~L~d-----Iqv~~~V~E~eGePCLFv~~~DE~aa   94 (115)
+T 6BI6_A           49 SPDGDNAWSVMYKLSQALSD-----IEVPCSVLECEGEPCLFVNRQDEFAA   94 (115)
+T ss_dssp             SCCCHHHHHHHHHHHHHHHT-----TTCCCEEECSTTCCEEEECSTHHHHH
+T ss_pred             CCCchHHHHHHHHHHHHHhc-----CCCCeeEEEECCceeeEeecccccch
+Confidence            34577888888888888876     45666666666789999999997665
+
+
+No 7
+>6G1C_A Uncharacterized protein; N-terminal domain of the antitoxin; 1.56A {Burkholderia pseudomallei K96243}
+Probab=20.94  E-value=87  Score=21.94  Aligned_cols=29  Identities=17%  Similarity=0.525  Sum_probs=22.9  Template_Neff=7.900
+
+Q nsp1             28 VRGFGDSVEEVLSEARQHLKDGTCGLVEV   56 (180)
+Q Consensus        28 vrgfgdsveevlsearqhlkdgtcglvev   56 (180)
+                      +.++|+|.++++..|+..+..--....+-
+T Consensus        25 ~~~~g~t~eeA~~~a~eal~~~l~~~~~~   53 (92)
+T 6G1C_A           25 VHSWGETIDDAIKNTREAIVGHVETLIEL   53 (92)
+T ss_dssp             GCEEESSHHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             cEEEeCCHHHHHHHHHHHHHHHHHHHHHc
+Confidence            46789999999999999888766655553
+
+
+No 8
+>6G1C_B Uncharacterized protein; N-terminal domain of the antitoxin; 1.56A {Burkholderia pseudomallei K96243}
+Probab=20.94  E-value=87  Score=21.94  Aligned_cols=29  Identities=17%  Similarity=0.525  Sum_probs=20.1  Template_Neff=7.900
+
+Q nsp1             28 VRGFGDSVEEVLSEARQHLKDGTCGLVEV   56 (180)
+Q Consensus        28 vrgfgdsveevlsearqhlkdgtcglvev   56 (180)
+                      +.++|+|.++++..|+..+..--....+-
+T Consensus        25 ~~~~g~t~eeA~~~a~eal~~~l~~~~~~   53 (92)
+T 6G1C_B           25 VHSWGETIDDAIKNTREAIVGHVETLIEL   53 (92)
+T ss_dssp             CEEC---CHHHHHHHHHHHHHHHHHHHHT
+T ss_pred             cEEEeCCHHHHHHHHHHHHHHHHHHHHHc
+Confidence            46789999999999999888766655553
+
+
+No 9
+>2YZT_A Putative uncharacterized protein TTHA1756; Uncharacterized conserved protein, STRUCTURAL GENOMICS; 1.8A {Thermus thermophilus}
+Probab=20.00  E-value=93  Score=19.39  Aligned_cols=24  Identities=17%  Similarity=0.151  Sum_probs=18.7  Template_Neff=9.200
+
+Q nsp1             28 VRGFGDSVEEVLSEARQHLKDGTC   51 (180)
+Q Consensus        28 vrgfgdsveevlsearqhlkdgtc   51 (180)
+                      +.+.|+|.++++..++..+..---
+T Consensus        26 ~~~~g~t~~ea~~~~~eal~~~l~   49 (67)
+T 2YZT_A           26 AHTQAQSFEELLRRLQEAIAVSLE   49 (67)
+T ss_dssp             EEEEESSHHHHHHHHHHHHHHHTT
+T ss_pred             eEEecCCHHHHHHHHHHHHHHHHH
+Confidence            457899999999998887765433
+
+
+No 10
+>1WV8_A hypothetical protein TTHA1013; Hypothetical, STRUCTURAL GENOMICS, Unknown function; 2.2A {Thermus thermophilus} SCOP: d.304.1.1
+Probab=19.05  E-value=1e+02  Score=19.75  Aligned_cols=21  Identities=14%  Similarity=0.229  Sum_probs=17.2  Template_Neff=9.000
+
+Q nsp1             28 VRGFGDSVEEVLSEARQHLKD   48 (180)
+Q Consensus        28 vrgfgdsveevlsearqhlkd   48 (180)
+                      +.++|+|.+|+++.++..+..
+T Consensus        27 ~~~~g~t~~ea~~~~~eal~~   47 (73)
+T 1WV8_A           27 LATEAATLEELLAKLAVMVPE   47 (73)
+T ss_dssp             CCCEESSHHHHHHHHHHHHHH
+T ss_pred             cEEEcCCHHHHHHHHHHHHHH
+Confidence            457899999999998887765
+
+

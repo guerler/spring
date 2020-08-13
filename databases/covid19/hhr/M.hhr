@@ -1,0 +1,2088 @@
+Query         M
+Match_columns 222
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:14:54 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/M.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//M.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 1CTA_B TROPONIN C SITE III -;   55.1     9.9 0.00012   16.7   0.0   18    3-20     17-34  (36)
+  2 5I0I_G Unconventional myosin-X  44.1      19 0.00023   16.6   0.0   19    3-21     13-31  (43)
+  3 2MMU_A Cell division protein C  42.3      21 0.00026   28.8   0.0   17   15-31     68-84  (101)
+  4 2LHH_A Calmodulin; yeast calmo  38.2      27 0.00033   21.8   0.0   20    3-22     95-114 (128)
+  5 3OX6_A Calcium-binding protein  35.4      32 0.00039   21.6   0.0   18    3-20    100-117 (153)
+  6 5XOP_C Calcium-binding protein  34.6      34 0.00041   17.1   0.0   17    3-19     12-28  (66)
+  7 2M7M_A Calcium-binding protein  33.6      36 0.00044   17.0   0.0   18    3-20     12-29  (66)
+  8 6BWC_B Polysaccharide biosynth  33.2      37 0.00045   27.7   0.0   20    6-25    320-339 (343)
+  9 6BWC_C Polysaccharide biosynth  32.5      39 0.00047   27.6   0.0   20    6-25    320-339 (343)
+ 10 3AKB_A Putative calcium bindin  31.8      41 0.00049   22.0   0.0   19    3-21    110-128 (166)
+ 11 2B1U_A Calmodulin-like protein  31.2      42 0.00051   17.3   0.0   18    3-20     18-35  (71)
+ 12 3OX5_F Calcium-binding protein  30.7      44 0.00053   21.1   0.0   18    3-20    100-117 (153)
+ 13 6OQQ_D Legionella pneumophila   30.3      45 0.00054   20.9   0.0   19    3-21     96-114 (147)
+ 14 2BL0_C MAJOR PLASMODIAL MYOSIN  29.9      46 0.00056   20.6   0.0   19    3-21     18-36  (142)
+ 15 1JFK_A CALCIUM-BINDING PROTEIN  29.8      46 0.00056   20.3   0.0   19    3-21     87-105 (134)
+ 16 2NXQ_A Calcium-binding protein  29.8      46 0.00056   20.3   0.0   19    3-21     87-105 (134)
+ 17 3PX1_A Calcium-binding protein  29.8      46 0.00056   20.3   0.0   19    3-21     87-105 (134)
+ 18 2BL0_C MAJOR PLASMODIAL MYOSIN  29.7      46 0.00056   20.5   0.0   19    3-21     91-109 (142)
+ 19 1C7V_A CALCIUM VECTOR PROTEIN;  29.6      47 0.00057   18.1   0.0   19    3-21     20-38  (81)
+ 20 4OCI_A Calmodulin, putative; E  29.3      48 0.00058   20.9   0.0   19    3-21     89-107 (146)
+ 21 2JTZ_A Troponin C, slow skelet  29.0      49 0.00059   21.3   0.0   20    3-22     31-50  (161)
+ 22 6JLH_A Secretagogin, Synaptoso  28.7      50  0.0006   23.1   0.0   19    3-21    202-220 (261)
+ 23 6JLH_C Secretagogin, Synaptoso  28.7      50  0.0006   23.1   0.0   19    3-21    202-220 (261)
+ 24 1TOP_A TROPONIN C; CONTRACTILE  28.5      50 0.00061   21.4   0.0   19    3-21    108-126 (162)
+ 25 2M97_A Optimized Ratiometric C  28.4      51 0.00062   16.6   0.0   18    3-20     15-32  (69)
+ 26 1Q80_A Sarcoplasmic calcium-bi  28.3      51 0.00062   22.0   0.0   19    3-21    106-124 (174)
+ 27 2SCP_B SARCOPLASMIC CALCIUM-BI  28.3      51 0.00062   22.0   0.0   19    3-21    106-124 (174)
+ 28 4Y99_A Troponin C, Troponin T,  28.3      51 0.00062   21.2   0.0   19    3-21     31-49  (161)
+ 29 5ZOR_A Centrin, putative; cent  28.2      51 0.00062   20.9   0.0   19    3-21     93-111 (149)
+ 30 5DOW_A Calmodulin, Chloride an  28.1      52 0.00062   20.5   0.0   19    3-21     95-113 (148)
+ 31 5DOW_G Calmodulin, Chloride an  28.1      52 0.00062   20.5   0.0   19    3-21     95-113 (148)
+ 32 1NP8_A Calcium-dependent prote  27.8      53 0.00064   21.5   0.0   20    3-22     96-115 (159)
+ 33 2HF5_A Calmodulin; calmodulin   27.8      53 0.00064   16.7   0.0   10    5-14     15-24  (68)
+ 34 2F33_A Calbindin; ef-hand, Ca2  27.7      53 0.00064   23.1   0.0   20    3-22    203-222 (263)
+ 35 5VP3_A Mnemiopsin 1; biolumine  27.7      53 0.00064   22.7   0.0   19    3-21    138-156 (195)
+ 36 3EWV_A Calmodulin, Tumor necro  27.5      54 0.00065   21.0   0.0   19    3-21     28-46  (154)
+ 37 6MI5_X Lanmodulin; lanthanide,  27.4      54 0.00065   20.7   0.0   20    4-23     89-108 (117)
+ 38 1TOP_A TROPONIN C; CONTRACTILE  27.4      54 0.00066   21.2   0.0   19    3-21     32-50  (162)
+ 39 6IIE_A Diacylglycerol kinase a  27.3      55 0.00066   18.6   0.0   17    3-19     21-37  (93)
+ 40 2JNF_A Troponin C; Stretch Act  27.2      55 0.00066   21.0   0.0   19    3-21     26-44  (158)
+ 41 5XPD_A sugar transporter; SWEE  27.1      55 0.00067   27.1   0.0   19   25-43     79-97  (293)
+ 42 5COC_A Immunoglobulin G-bindin  27.0      56 0.00068   19.9   0.0   19    4-22      1-19  (130)
+ 43 1GGW_A CDC4P; LIGHT CHAIN, CYT  26.9      56 0.00068   20.3   0.0   18    3-20     17-34  (140)
+ 44 2HPS_A coelenterazine-binding   26.9      56 0.00068   21.8   0.0   19    3-21    114-132 (186)
+ 45 2TN4_A TROPONIN C; CONTRACTILE  26.8      56 0.00068   21.0   0.0   20    3-22     29-48  (159)
+ 46 2AUC_C MyoA Tail Interacting P  26.7      57 0.00069   19.8   0.0   18    3-20      8-25  (126)
+ 47 2KXW_A Calmodulin, Sodium chan  26.6      57 0.00069   17.0   0.0   18    3-20     20-37  (73)
+ 48 4OKH_A Calpain-3 (E.C.3.4.22.5  26.6      57 0.00069   22.2   0.0   19    3-21    162-180 (189)
+ 49 5JOL_A Plastin-2; Calcium-bind  26.3      59 0.00071   17.5   0.0   18    3-20     24-41  (82)
+ 50 6LI9_C Neutral and basic amino  26.2      59 0.00071   31.1   0.0   37   29-68     82-118 (699)
+ 51 6LID_C Neutral and basic amino  26.2      59 0.00071   31.1   0.0   37   29-68     82-118 (699)
+ 52 1O1D_I MOLECULAR MODELS OF AVE  26.1      59 0.00072   20.4   0.0   18    3-20     95-112 (147)
+ 53 4NQG_B Mitrocomin; Photoprotei  26.1      59 0.00072   22.3   0.0   19    3-21    126-144 (197)
+ 54 1TIZ_A calmodulin-related prot  26.0      60 0.00072   16.3   0.0   18    3-20     13-30  (67)
+ 55 4WPX_A Cdc31, Sac3 CID region,  25.9      60 0.00073   21.3   0.0   19    3-21    123-141 (177)
+ 56 4WPX_D Cdc31, Sac3 CID region,  25.9      60 0.00073   21.3   0.0   19    3-21    123-141 (177)
+ 57 1O1D_I MOLECULAR MODELS OF AVE  25.9      60 0.00073   20.4   0.0   19    3-21     18-36  (147)
+ 58 2BL0_B MAJOR PLASMODIAL MYOSIN  25.9      60 0.00073   20.2   0.0   18    3-20     88-105 (145)
+ 59 1LKJ_A Calmodulin; yeast calmo  25.9      60 0.00073   20.3   0.0   19    3-21     95-113 (146)
+ 60 1JFK_A CALCIUM-BINDING PROTEIN  25.7      61 0.00074   19.8   0.0   19    3-21     12-30  (134)
+ 61 2NXQ_A Calcium-binding protein  25.7      61 0.00074   19.8   0.0   19    3-21     12-30  (134)
+ 62 3PX1_A Calcium-binding protein  25.7      61 0.00074   19.8   0.0   19    3-21     12-30  (134)
+ 63 3J04_C Myosin-11, Myosin regul  25.4      62 0.00075   20.2   0.0   19    3-21     96-114 (148)
+ 64 3LCP_D Protein ERGIC-53, Multi  25.3      63 0.00076   19.2   0.0   19    3-21     30-48  (93)
+ 65 4OCI_A Calmodulin, putative; E  25.3      63 0.00076   20.4   0.0   19    3-21     18-36  (146)
+ 66 4TQG_A UDP-GlcNAc 4,6-dehydrat  25.2      63 0.00076   25.0   0.0   17    6-22    306-322 (323)
+ 67 3FWB_A Cell division control p  25.2      63 0.00076   20.9   0.0   19    3-21    108-126 (161)
+ 68 2LC5_A Calmodulin, putative; E  25.1      63 0.00077   20.5   0.0   19    3-21     99-117 (151)
+ 69 1WDC_B SCALLOP MYOSIN; MYOSIN,  25.0      64 0.00078   20.7   0.0   19    3-21     99-117 (156)
+ 70 3JVT_B Calcium-free Scallop My  25.0      64 0.00078   20.7   0.0   19    3-21     99-117 (156)
+ 71 6TZ6_E Serine/threonine-protei  25.0      64 0.00078   21.5   0.0   18    3-20    104-121 (173)
+ 72 1NCY_A TROPONIN C; MUSCLE PROT  25.0      64 0.00078   20.9   0.0   19    3-21     32-50  (162)
+ 73 2I18_A Calcium-binding protein  24.8      65 0.00079   16.5   0.0   17    3-19     17-33  (64)
+ 74 3J04_B Myosin-11, Myosin regul  24.7      65 0.00079   20.0   0.0   19    3-21     88-106 (143)
+ 75 5ZGM_A Parvalbumin SPVI; Parva  24.4      67 0.00081   18.9   0.0   18    3-20     54-71  (110)
+ 76 5W1A_B Myosin heavy chain, mus  24.1      68 0.00082   20.7   0.0   19    3-21     95-113 (155)
+ 77 1O1A_Q MOLECULAR MODELS OF AVE  24.1      68 0.00083   20.0   0.0   18    3-20     89-106 (145)
+ 78 1NCY_A TROPONIN C; MUSCLE PROT  24.0      69 0.00083   20.7   0.0   19    3-21    108-126 (162)
+ 79 1KK8_B LLOP MYOSIN S1-ADP-BeFx  23.9      69 0.00084   19.8   0.0   19    3-21     18-36  (139)
+ 80 2CCM_B CALEXCITIN; EF HAND, CA  23.9      69 0.00084   21.6   0.0   20    3-22     25-44  (191)
+ 81 2LMT_A Calmodulin-related prot  23.8      70 0.00084   20.3   0.0   18    3-20     95-112 (148)
+ 82 1DFK_Y MYOSIN HEAD; MYOSIN MOT  23.7      70 0.00085   19.9   0.0   19    3-21     19-37  (139)
+ 83 2MYS_C MYOSIN; MUSCLE PROTEIN,  23.7      70 0.00085   20.1   0.0   18    3-20     97-114 (149)
+ 84 4HEX_B Calmodulin; Calmodulin,  23.6      71 0.00086   20.5   0.0   19    3-21    103-121 (156)
+ 85 1F71_A REFINED SOLUTION STRUCT  23.5      71 0.00086   15.8   0.0   18    3-20     14-31  (67)
+ 86 2BL0_B MAJOR PLASMODIAL MYOSIN  23.5      71 0.00086   19.9   0.0   19    3-21     17-35  (145)
+ 87 1M46_A Myosin light chain/IQ4   23.4      72 0.00087   20.0   0.0   19    3-21     95-113 (148)
+ 88 2M8U_A Myosin Light Chain, Mlc  23.3      72 0.00088   17.2   0.0   17    3-19     23-39  (77)
+ 89 5IBW_B Calcium-binding EF-hand  23.3      72 0.00088   17.2   0.0   17    3-19     23-39  (77)
+ 90 6MUD_B Calmodulin-1, Sodium ch  23.2      73 0.00088   22.9   0.0   21    3-23     22-42  (140)
+ 91 5VE9_B Microtubule-actin cross  23.2      73 0.00088   17.9   0.0   18    3-20     39-56  (91)
+ 92 1EG4_A STRUCTURE OF A DYSTROPH  23.1      73 0.00089   24.6   0.0   18    3-20    179-196 (261)
+ 93 3LL8_D AKAP79 peptide, Serine/  23.1      73 0.00089   20.3   0.0   18    3-20     87-104 (155)
+ 94 2R2I_A Guanylyl cyclase-activa  22.9      74  0.0009   21.0   0.0   19    3-21    100-118 (198)
+ 95 3JTD_C Myosin heavy chain, str  22.8      75 0.00091   20.3   0.0   19    3-21     96-114 (156)
+ 96 4Q57_A Calmodulin, Plectin; EF  22.7      76 0.00092   15.4   0.0   17    3-19     14-30  (65)
+ 97 3KHE_B Calmodulin-like domain   22.5      77 0.00093   21.5   0.0   18    3-20    135-152 (191)
+ 98 1F4Q_B GRANCALCIN; penta-Ef-ha  22.5      77 0.00093   20.9   0.0   20    3-22     11-30  (165)
+ 99 2TN4_A TROPONIN C; CONTRACTILE  22.4      77 0.00094   20.3   0.0   19    3-21    105-123 (159)
+100 4F0Z_B Serine/threonine-protei  22.4      78 0.00094   20.9   0.0   18    3-20    102-119 (170)
+101 3TZ1_A Troponin C, Troponin I;  22.4      78 0.00094   16.6   0.0   18    3-20     19-36  (74)
+102 2M28_A Calcium-binding protein  22.4      78 0.00094   20.7   0.0   17    3-19    117-133 (171)
+103 3EWV_A Calmodulin, Tumor necro  22.3      78 0.00094   20.3   0.0   19    3-21    101-119 (154)
+104 5CPV_A CALCIUM-BINDING PARVALB  22.2      79 0.00095   18.4   0.0   18    3-20     54-71  (109)
+105 3AKB_A Putative calcium bindin  22.0      80 0.00096   20.7   0.0   20    3-22     16-35  (166)
+106 1GJY_A SORCIN; CALCIUM BINDING  21.9      80 0.00097   20.9   0.0   19    3-21     13-31  (167)
+107 3KF9_C Caltractin, Myosin ligh  21.9      80 0.00097   19.8   0.0   19    3-21     20-38  (149)
+108 3QRX_A Centrin, Melittin; calc  21.9      81 0.00098   20.6   0.0   19    3-21    113-131 (169)
+109 1QX2_B cbm1; EF-Hand (helix-lo  21.7      81 0.00099   16.7   0.0   15    6-20     22-36  (76)
+110 4WRI_A okadaic acid binding pr  21.4      83   0.001   21.9   0.0   18    3-20    120-137 (192)
+111 2KI0_A DS119; beta-alpha-beta,  21.3      84   0.001   22.4   0.0   11    9-19     13-23  (36)
+112 2AAO_A Calcium-dependent prote  21.3      84   0.001   20.4   0.0   19    3-21    111-129 (166)
+113 1M45_A Myosin light chain/IQ2   21.1      85   0.001   19.6   0.0   19    3-21     16-34  (148)
+114 5VLN_A Troponin C, slow skelet  21.1      86   0.001   19.5   0.0   16    3-18     98-113 (120)
+115 5H53_B Skeletal muscle myosin   21.0      86   0.001   19.8   0.0   19    3-21     17-35  (146)
+116 2SAS_A SARCOPLASMIC CALCIUM-BI  20.9      87  0.0011   20.9   0.0   18    3-20    117-134 (185)
+117 1EG3_A STRUCTURE OF A DYSTROPH  20.9      87  0.0011   24.3   0.0   17    3-19    179-195 (261)
+118 1UHH_A Aequorin 2; 4 EF-HAND M  20.9      87  0.0011   21.2   0.0   18    3-20    121-138 (191)
+119 1UHK_B Aequorin 2; 4 EF-hand m  20.9      87  0.0011   21.2   0.0   18    3-20    121-138 (191)
+120 5BPJ_A Apoberovin 1; Luminesce  20.8      87  0.0011   22.2   0.0   19    3-21    140-158 (208)
+121 2CCM_B CALEXCITIN; EF HAND, CA  20.8      87  0.0011   21.1   0.0   18    3-20    121-138 (191)
+122 1QV0_A Obelin (E.C.1.13.12.5);  20.8      88  0.0011   21.2   0.0   19    3-21    125-143 (195)
+123 1QV1_A Obelin (E.C.1.13.12.5);  20.8      88  0.0011   21.2   0.0   19    3-21    125-143 (195)
+124 4ZCU_C ATP-Mg/Pi carrier regul  20.8      88  0.0011   20.7   0.0   18    3-20     92-109 (165)
+125 4ZCV_A ATP-Mg/Pi carrier regul  20.8      88  0.0011   20.7   0.0   18    3-20     92-109 (165)
+126 4ZCV_D ATP-Mg/Pi carrier regul  20.8      88  0.0011   20.7   0.0   18    3-20     92-109 (165)
+127 4GGN_A Myosin A tail domain in  20.7      89  0.0011   19.1   0.0   18    3-20      8-25  (127)
+128 2PVB_A PROTEIN (PARVALBUMIN);   20.6      89  0.0011   18.5   0.0   18    3-20     53-70  (108)
+129 2I7A_A Calpain 13; calpain, ca  20.6      89  0.0011   22.0   0.0   19    2-20     15-33  (174)
+130 1GGW_A CDC4P; LIGHT CHAIN, CYT  20.6      89  0.0011   19.4   0.0   18    3-20     88-105 (140)
+131 2FCD_A Myosin light chain 1; E  20.6      89  0.0011   17.1   0.0   18    3-20     16-33  (78)
+132 3J04_C Myosin-11, Myosin regul  20.6      89  0.0011   19.6   0.0   19    3-21     19-37  (148)
+133 2ZND_A Programmed cell death p  20.4      90  0.0011   20.4   0.0   19    3-21     19-37  (172)
+134 3KHE_A Calmodulin-like domain   20.4      91  0.0011   21.3   0.0   17    3-19    135-151 (191)
+135 5ZOR_A Centrin, putative; cent  20.3      91  0.0011   19.8   0.0   19    3-21     19-37  (149)
+136 6SO3_C Myosin 2 heavy chain st  20.3      91  0.0011   19.8   0.0   18    3-20     96-113 (156)
+137 6SO3_D Myosin 2 heavy chain st  20.3      91  0.0011   19.8   0.0   18    3-20     96-113 (156)
+138 1OMR_A Recoverin; EF-hand, hel  20.2      92  0.0011   21.5   0.0   19    3-21    111-129 (201)
+139 2LHI_A Calmodulin, Serine/thre  20.2      92  0.0011   20.8   0.0   19    3-21     96-114 (176)
+140 6FIE_B Calbindin; Calcium Bind  20.2      92  0.0011   21.9   0.0   20    3-22    204-223 (264)
+
+No 1
+>1CTA_B TROPONIN C SITE III -; MUSCLE PROTEIN; NMR {N/A} SCOP: a.39.1.5
+Probab=55.07  E-value=9.9  Score=16.73  Aligned_cols=18  Identities=33%  Similarity=0.595  Sum_probs=11.5  Template_Neff=13.400
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.++.++++..+...
+T Consensus        17 ~~~~~~~~~~~~~~~~~~   34 (36)
+T 1CTA_B           17 NADGYIDIEELGEILRAT   34 (36)
+T ss_dssp             TCSSSBCHHHHHHHHTSC
+T ss_pred             CCCCeecHHHHHHHHHHh
+Confidence            346777777777665543
+
+
+No 2
+>5I0I_G Unconventional myosin-X, Calmodulin; myosin, motor domain, molecular motor; HET: ADP, MPO, VO4, SO4; 3.15A {Homo sapiens}
+Probab=44.08  E-value=19  Score=16.58  Aligned_cols=19  Identities=32%  Similarity=0.615  Sum_probs=14.2  Template_Neff=13.300
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.++.+++++.+.+.+
+T Consensus        13 ~~~~~i~~~~~~~~~~~~~   31 (43)
+T 5I0I_G           13 DGNGYISAAELRHVMTNLG   31 (43)
+T ss_pred             CCCCeeCHHHHHHHHHHhc
+Confidence            4568888888888877653
+
+
+No 3
+>2MMU_A Cell division protein CrgA; CrgA structure, Membrane protein, Hydrated; NMR {Mycobacterium tuberculosis}
+Probab=42.27  E-value=21  Score=28.84  Aligned_cols=17  Identities=35%  Similarity=0.689  Sum_probs=12.6  Template_Neff=4.500
+
+Q M                15 KLLEQWNLVIGFLFLTW   31 (222)
+Q Consensus        15 klleqwnlvigflfltw   31 (222)
+                      .-|.+||+.|||.++..
+T Consensus        68 ~~Lg~WNl~IGfgl~~~   84 (101)
+T 2MMU_A           68 AQLGPWNYAIAFAFMIT   84 (101)
+T ss_dssp             --CHHHHHHHHHHHHHH
+T ss_pred             hccChHHHHHHHHHHHH
+Confidence            34789999999987643
+
+
+No 4
+>2LHH_A Calmodulin; yeast calmodulin, METAL BINDING PROTEIN; HET: CA; NMR {Saccharomyces cerevisiae}
+Probab=38.22  E-value=27  Score=21.83  Aligned_cols=20  Identities=30%  Similarity=0.481  Sum_probs=15.4  Template_Neff=12.200
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      +.+|.|+.+|++.++++.+-
+T Consensus        95 ~~~g~l~~~e~~~~l~~~~~  114 (128)
+T 2LHH_A           95 NGDGLISAAELKHVLTSIGE  114 (128)
+T ss_dssp             TCCSCCCHHHHHHHHHHCCS
+T ss_pred             CCCCccCHHHHHHHHHHcCC
+Confidence            46788999999888876543
+
+
+No 5
+>3OX6_A Calcium-binding protein 1; EF-hand, Calcium-sensor, calcium binding, calcium; HET: HEZ, CA; 2.4A {Homo sapiens}
+Probab=35.43  E-value=32  Score=21.64  Aligned_cols=18  Identities=22%  Similarity=0.549  Sum_probs=15.0  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.+++.
+T Consensus       100 ~~~g~i~~~~~~~~l~~~  117 (153)
+T 3OX6_A          100 NGDGEISTSELREAMRAL  117 (153)
+T ss_dssp             TCSSSBCHHHHHHHHHHH
+T ss_pred             CCCCcccHHHHHHHHHHH
+Confidence            567999999999988764
+
+
+No 6
+>5XOP_C Calcium-binding protein 1 (EhCBP1), putative; CaBP1, EF-HAND, CALCIUM BINDING, METAL; HET: CA; 1.9A {Entamoeba histolytica HM-1:IMSS-B}
+Probab=34.63  E-value=34  Score=17.08  Aligned_cols=17  Identities=24%  Similarity=0.644  Sum_probs=13.1  Template_Neff=13.600
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      +.+|.|+.+|+.+.+.+
+T Consensus        12 ~~~~~i~~~~~~~~~~~   28 (66)
+T 5XOP_C           12 NGDGAVSYEEVKAFVSK   28 (66)
+T ss_dssp             TCSSCBCHHHHHHHHHH
+T ss_pred             CCCCeecHHHHHHHHHH
+Confidence            46788888888887765
+
+
+No 7
+>2M7M_A Calcium-binding protein; Protein, CALCIUM BINDING PROTEIN, METAL; HET: CA; NMR {Entamoeba histolytica}
+Probab=33.62  E-value=36  Score=16.98  Aligned_cols=18  Identities=22%  Similarity=0.543  Sum_probs=13.1  Template_Neff=13.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+++++.+.+.
+T Consensus        12 ~~~~~i~~~~~~~~~~~~   29 (66)
+T 2M7M_A           12 NGDGAVSYEEVKAFVSKK   29 (66)
+T ss_dssp             TCCSEEEHHHHHHHHHTT
+T ss_pred             CCCCccCHHHHHHHHHhc
+Confidence            567888888887776553
+
+
+No 8
+>6BWC_B Polysaccharide biosynthesis protein CapD; shout chain dehydrogenase, flagellin glycosylation; HET: SO4, NAP, UD1; 2.7A {Bacillus thuringiensis HD-771}
+Probab=33.16  E-value=37  Score=27.69  Aligned_cols=20  Identities=35%  Similarity=0.567  Sum_probs=13.0  Template_Neff=10.100
+
+Q M                 6 GTITVEELKKLLEQWNLVIG   25 (222)
+Q Consensus         6 gtitveelkklleqwnlvig   25 (222)
+                      ..+++||||++|++-+.+-|
+T Consensus       320 ~~~~~~~~~~~~~~~~~~~~  339 (343)
+T 6BWC_B          320 NAISKEELRNLILNQQLLTG  339 (343)
+T ss_dssp             -CCCHHHHHHHHHTC-----
+T ss_pred             CCCCHHHHHHHHHhcccccc
+Confidence            45899999999999887765
+
+
+No 9
+>6BWC_C Polysaccharide biosynthesis protein CapD; shout chain dehydrogenase, flagellin glycosylation; HET: NAP, UD1, SO4; 2.7A {Bacillus thuringiensis HD-771}
+Probab=32.48  E-value=39  Score=27.59  Aligned_cols=20  Identities=35%  Similarity=0.567  Sum_probs=16.3  Template_Neff=10.100
+
+Q M                 6 GTITVEELKKLLEQWNLVIG   25 (222)
+Q Consensus         6 gtitveelkklleqwnlvig   25 (222)
+                      ..+++||||++|++-+.+-|
+T Consensus       320 ~~~~~~~~~~~~~~~~~~~~  339 (343)
+T 6BWC_C          320 NAISKEELRNLILNQQLLTG  339 (343)
+T ss_dssp             CBCCHHHHHHHHHHTTCCC-
+T ss_pred             CCCCHHHHHHHHHhcccccc
+Confidence            34899999999999887765
+
+
+No 10
+>3AKB_A Putative calcium binding protein; calcium-binding protein, EF-hand, METAL BINDING; HET: CA; 1.5A {Streptomyces coelicolor}
+Probab=31.78  E-value=41  Score=22.00  Aligned_cols=19  Identities=26%  Similarity=0.592  Sum_probs=16.1  Template_Neff=12.300
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++.++
+T Consensus       110 ~~~g~i~~~e~~~~l~~~~  128 (166)
+T 3AKB_A          110 DGDGAVTVADTARALTAFG  128 (166)
+T ss_dssp             SSSSCCBHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            5679999999999988765
+
+
+No 11
+>2B1U_A Calmodulin-like protein 5; CLSP, Calmodulin-like skin protein, Solution; NMR {Homo sapiens}
+Probab=31.22  E-value=42  Score=17.25  Aligned_cols=18  Identities=39%  Similarity=0.724  Sum_probs=13.5  Template_Neff=13.400
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.++.+++++.+.+-
+T Consensus        18 ~~~~~l~~~~~~~~~~~~   35 (71)
+T 2B1U_A           18 DGDGHITVDELRRAMAGL   35 (71)
+T ss_dssp             SSSSEEEHHHHHHHGGGT
+T ss_pred             CCCCeecHHHHHHHHHHc
+Confidence            457888888888877653
+
+
+No 12
+>3OX5_F Calcium-binding protein 1; EF-hand, calcium sensor, calcium binding; HET: CA; 2.9A {Homo sapiens}
+Probab=30.66  E-value=44  Score=21.06  Aligned_cols=18  Identities=22%  Similarity=0.580  Sum_probs=15.0  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus       100 ~~~g~i~~~~~~~~l~~~  117 (153)
+T 3OX5_F          100 NGDGEISTSELREAMRKL  117 (153)
+T ss_dssp             TCSSEECHHHHHHHHHHH
+T ss_pred             CCCCeeCHHHHHHHHHHH
+Confidence            467899999999988764
+
+
+No 13
+>6OQQ_D Legionella pneumophila SidJ, Calmodulin; polyglutamylation, pseudokinase, atypical kinase fold; HET: POP, AMP, EDO; 2.102A {Legionella pneumophila}
+Probab=30.34  E-value=45  Score=20.86  Aligned_cols=19  Identities=32%  Similarity=0.555  Sum_probs=15.3  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.++..+
+T Consensus        96 ~~~g~i~~~~~~~~l~~~~  114 (147)
+T 6OQQ_D           96 NGDGLISAAELKHVLTSIG  114 (147)
+T ss_dssp             SSSSCCCHHHHHHHHHHSS
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4578999999999888754
+
+
+No 14
+>2BL0_C MAJOR PLASMODIAL MYOSIN HEAVY CHAIN; MUSCLE PROTEIN, SLIME MOULD, EF-HAND; 1.75A {PHYSARUM POLYCEPHALUM}
+Probab=29.86  E-value=46  Score=20.55  Aligned_cols=19  Identities=37%  Similarity=0.602  Sum_probs=15.4  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+.+.+
+T Consensus        18 ~~~g~i~~~~~~~~l~~~~   36 (142)
+T 2BL0_C           18 ERTGFITKEGLQTVLKQFG   36 (142)
+T ss_dssp             TCSSEEEHHHHHHHHHHHT
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4579999999999887754
+
+
+No 15
+>1JFK_A CALCIUM-BINDING PROTEIN complex with CALCIUM; EF-HAND, HELIX-LOOP-HELIX, CALCIUM BINDING PROTEIN; NMR {Entamoeba histolytica} SCOP: a.39.1.5
+Probab=29.80  E-value=46  Score=20.31  Aligned_cols=19  Identities=26%  Similarity=0.581  Sum_probs=14.9  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++..
+T Consensus        87 ~~~g~i~~~~~~~~l~~~~  105 (134)
+T 1JFK_A           87 DGDGKLTKEEVTSFFKKHG  105 (134)
+T ss_dssp             SCCSEEEHHHHHHHHTTTT
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4578999999998887643
+
+
+No 16
+>2NXQ_A Calcium-binding protein; EF hand motifs, calcium binding; HET: ACT; 2.4A {Entamoeba histolytica}
+Probab=29.80  E-value=46  Score=20.31  Aligned_cols=19  Identities=26%  Similarity=0.581  Sum_probs=0.0  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++..
+T Consensus        87 ~~~g~i~~~~~~~~l~~~~  105 (134)
+T 2NXQ_A           87 DGDGKLTKEEVTSFFKKHG  105 (134)
+T ss_dssp             -------------------
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4578999999998887643
+
+
+No 17
+>3PX1_A Calcium-binding protein; EF hand motif, calcium binding; 3.0A {Entamoeba histolytica}
+Probab=29.80  E-value=46  Score=20.31  Aligned_cols=19  Identities=26%  Similarity=0.581  Sum_probs=0.0  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++..
+T Consensus        87 ~~~g~i~~~~~~~~l~~~~  105 (134)
+T 3PX1_A           87 DGDGKLTKEEVTSFFKKHG  105 (134)
+T ss_dssp             -------------------
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4578999999998887643
+
+
+No 18
+>2BL0_C MAJOR PLASMODIAL MYOSIN HEAVY CHAIN; MUSCLE PROTEIN, SLIME MOULD, EF-HAND; 1.75A {PHYSARUM POLYCEPHALUM}
+Probab=29.69  E-value=46  Score=20.53  Aligned_cols=19  Identities=21%  Similarity=0.302  Sum_probs=15.0  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        91 ~~~g~i~~~~~~~~l~~~~  109 (142)
+T 2BL0_C           91 EGTGYIPKAALQDALLNLG  109 (142)
+T ss_dssp             SSCSCEEHHHHHHHHHHSS
+T ss_pred             CCCCeeCHHHHHHHHHHcC
+Confidence            4578899999999887743
+
+
+No 19
+>1C7V_A CALCIUM VECTOR PROTEIN; EF-HAND FAMILY, CALCIUM BINDING PROTEIN; NMR {Branchiostoma lanceolatum} SCOP: a.39.1.5
+Probab=29.61  E-value=47  Score=18.06  Aligned_cols=19  Identities=21%  Similarity=0.532  Sum_probs=14.4  Template_Neff=13.000
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.++.+|+++.+++..
+T Consensus        20 ~~~~~i~~~~~~~~~~~~~   38 (81)
+T 1C7V_A           20 NGDGVIDFDEFKFIMQKVG   38 (81)
+T ss_dssp             SGGGEECHHHHHHHSSTTT
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4578889999888877643
+
+
+No 20
+>4OCI_A Calmodulin, putative; EF-hand, Signalling, SIGNALING PROTEIN; HET: ACT; 2.009A {Entamoeba histolytica}
+Probab=29.34  E-value=48  Score=20.94  Aligned_cols=19  Identities=32%  Similarity=0.529  Sum_probs=15.1  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|++++++..+
+T Consensus        89 ~~~g~i~~~e~~~~l~~~~  107 (146)
+T 4OCI_A           89 DKKGFIPAIELRRILSTIG  107 (146)
+T ss_dssp             TCCSEEEHHHHHHHHHHHC
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4578999999999887643
+
+
+No 21
+>2JTZ_A Troponin C, slow skeletal and; EF-hand protein, Calcium-binding protein, Phe-to-Trp; HET: FTR; NMR {Homo sapiens} SCOP: a.39.1.5
+Probab=29.04  E-value=49  Score=21.29  Aligned_cols=20  Identities=25%  Similarity=0.479  Sum_probs=16.4  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      |.+|.|+.+|+++++...+.
+T Consensus        31 ~~~g~l~~~~~~~~l~~~~~   50 (161)
+T 2JTZ_A           31 AEDGSISTKELGKVMRMLGQ   50 (161)
+T ss_dssp             CSSSSCCGGGTTHHHHHTCC
+T ss_pred             CCCCCccHHHHHHHHHHcCC
+Confidence            46899999999999887654
+
+
+No 22
+>6JLH_A Secretagogin, Synaptosomal-associated protein 25; vesicle transport, endosomal sorting, membrane; HET: MSE, CA; 2.37A {Danio rerio}
+Probab=28.72  E-value=50  Score=23.06  Aligned_cols=19  Identities=11%  Similarity=0.254  Sum_probs=16.0  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.+++.+
+T Consensus       202 ~~~g~i~~~e~~~~l~~~~  220 (261)
+T 6JLH_A          202 SRTGALEGPEVDGFVKDMM  220 (261)
+T ss_dssp             TCSSEECTHHHHHHHHHHH
+T ss_pred             CCCCcccHHHHHHHHHHHH
+Confidence            5679999999999997764
+
+
+No 23
+>6JLH_C Secretagogin, Synaptosomal-associated protein 25; vesicle transport, endosomal sorting, membrane; HET: MSE, CA; 2.37A {Danio rerio}
+Probab=28.72  E-value=50  Score=23.06  Aligned_cols=19  Identities=11%  Similarity=0.254  Sum_probs=16.0  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.+++.+
+T Consensus       202 ~~~g~i~~~e~~~~l~~~~  220 (261)
+T 6JLH_C          202 SRTGALEGPEVDGFVKDMM  220 (261)
+T ss_dssp             TCSSEECTHHHHHHHHHHH
+T ss_pred             CCCCcccHHHHHHHHHHHH
+Confidence            5679999999999997764
+
+
+No 24
+>1TOP_A TROPONIN C; CONTRACTILE SYSTEM PROTEIN; 1.78A {Gallus gallus} SCOP: a.39.1.5
+Probab=28.49  E-value=50  Score=21.36  Aligned_cols=19  Identities=32%  Similarity=0.566  Sum_probs=15.6  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       108 ~~~g~i~~~~~~~~l~~~~  126 (162)
+T 1TOP_A          108 NADGFIDIEELGEILRATG  126 (162)
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4578999999999888754
+
+
+No 25
+>2M97_A Optimized Ratiometric Calcium Sensor; Calcium biosensors, METAL BINDING PROTEIN; NMR {Opsanus tau}
+Probab=28.36  E-value=51  Score=16.60  Aligned_cols=18  Identities=33%  Similarity=0.460  Sum_probs=13.2  Template_Neff=13.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+++++.+.+.
+T Consensus        15 ~~~~~i~~~~~~~~l~~~   32 (69)
+T 2M97_A           15 DGNGFIDREEFGDIIRLT   32 (69)
+T ss_dssp             SCSSSBCHHHHHHHHHHT
+T ss_pred             CCCCeeCHHHHHHHHHHh
+Confidence            346788888888877653
+
+
+No 26
+>1Q80_A Sarcoplasmic calcium-binding protein; all-alpha, METAL BINDING PROTEIN; NMR {Neanthes diversicolor} SCOP: a.39.1.5
+Probab=28.33  E-value=51  Score=21.97  Aligned_cols=19  Identities=11%  Similarity=0.247  Sum_probs=15.7  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       106 ~~~g~i~~~e~~~~l~~~~  124 (174)
+T 1Q80_A          106 NEDNNISRDEYGIFFGMLG  124 (174)
+T ss_dssp             TSSSSBCHHHHHHHHHHHT
+T ss_pred             CCCCCcCHHHHHHHHHHcC
+Confidence            5679999999999888764
+
+
+No 27
+>2SCP_B SARCOPLASMIC CALCIUM-BINDING PROTEIN; BINDING PROTEIN; 2.0A {Neanthes diversicolor} SCOP: a.39.1.5
+Probab=28.33  E-value=51  Score=21.97  Aligned_cols=19  Identities=11%  Similarity=0.247  Sum_probs=15.7  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       106 ~~~g~i~~~e~~~~l~~~~  124 (174)
+T 2SCP_B          106 NEDNNISRDEYGIFFGMLG  124 (174)
+T ss_dssp             TCSSEECHHHHHHHHHHTT
+T ss_pred             CCCCCcCHHHHHHHHHHcC
+Confidence            5679999999999888764
+
+
+No 28
+>4Y99_A Troponin C, Troponin T, Troponin; muscle regulation, calcium-binding, EF-hand, coiled-coil; HET: DMS; 2.0A {Homo sapiens}
+Probab=28.31  E-value=51  Score=21.20  Aligned_cols=19  Identities=26%  Similarity=0.532  Sum_probs=15.6  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.++.+|+++.++..+
+T Consensus        31 ~~~g~l~~~e~~~~l~~~~   49 (161)
+T 4Y99_A           31 AEDGSISTKELGKVMRMLG   49 (161)
+T ss_dssp             CTTSSBCHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4679999999999887754
+
+
+No 29
+>5ZOR_A Centrin, putative; centrin, EF-hand, calcium binding, Trypanosoma; NMR {Trypanosoma brucei brucei (strain 927/4 GUTat10.1)}
+Probab=28.17  E-value=51  Score=20.87  Aligned_cols=19  Identities=26%  Similarity=0.477  Sum_probs=15.1  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++...
+T Consensus        93 ~~~g~i~~~~~~~~l~~~~  111 (149)
+T 5ZOR_A           93 DKKGKISFANLKEVAKLLG  111 (149)
+T ss_pred             CCCCccCHHHHHHHHHHcC
+Confidence            5678999999998887653
+
+
+No 30
+>5DOW_A Calmodulin, Chloride anion exchanger; Calmodulin-Peptide Complex, CALCIUM BINDING PROTEIN; HET: CL, SO4, CA; 1.7A {Homo sapiens}
+Probab=28.13  E-value=52  Score=20.50  Aligned_cols=19  Identities=32%  Similarity=0.615  Sum_probs=15.2  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        95 ~~~g~i~~~~~~~~~~~~~  113 (148)
+T 5DOW_A           95 DGNGYISAAELRHVMTNLG  113 (148)
+T ss_dssp             TCSSEECHHHHHHHHHHTT
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            5678999999998887654
+
+
+No 31
+>5DOW_G Calmodulin, Chloride anion exchanger; Calmodulin-Peptide Complex, CALCIUM BINDING PROTEIN; HET: CA, SO4, CL; 1.7A {Homo sapiens}
+Probab=28.13  E-value=52  Score=20.50  Aligned_cols=19  Identities=32%  Similarity=0.615  Sum_probs=15.2  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        95 ~~~g~i~~~~~~~~~~~~~  113 (148)
+T 5DOW_G           95 DGNGYISAAELRHVMTNLG  113 (148)
+T ss_dssp             TCSSCBCHHHHHHHHHHTT
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            5678999999998887654
+
+
+No 32
+>1NP8_A Calcium-dependent protease, small subunit; dimer in solution, oligomer in; HET: CD; 2.0A {Rattus norvegicus} SCOP: a.39.1.8
+Probab=27.81  E-value=53  Score=21.54  Aligned_cols=20  Identities=35%  Similarity=0.438  Sum_probs=15.9  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      +.+|.|+.+|+++.++.++.
+T Consensus        96 ~~~g~i~~~~~~~~l~~~~~  115 (159)
+T 1NP8_A           96 DRSGTIGSNELPGAFEAAGF  115 (159)
+T ss_dssp             TCSSSBCTTTHHHHHHHTTC
+T ss_pred             CCCCeEcHHHHHHHHHHcCC
+Confidence            45799999999998876543
+
+
+No 33
+>2HF5_A Calmodulin; calmodulin fragment, calcium-binding, EF-hand, calmodulin; HET: CA; NMR {Homo sapiens} SCOP: a.39.1.5
+Probab=27.78  E-value=53  Score=16.70  Aligned_cols=10  Identities=50%  Similarity=0.667  Sum_probs=4.0  Template_Neff=13.400
+
+Q M                 5 NGTITVEELK   14 (222)
+Q Consensus         5 ngtitveelk   14 (222)
+                      +|.|+.+|+.
+T Consensus        15 ~~~i~~~~~~   24 (68)
+T 2HF5_A           15 NGTIDFPEFL   24 (68)
+T ss_dssp             SSSBCHHHHH
+T ss_pred             CCcccHHHHH
+Confidence            3444444433
+
+
+No 34
+>2F33_A Calbindin; ef-hand, Ca2+-binding, METAL BINDING PROTEIN; NMR {Rattus norvegicus}
+Probab=27.72  E-value=53  Score=23.07  Aligned_cols=20  Identities=40%  Similarity=0.486  Sum_probs=16.8  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      |.+|.|+.+|+++.++..+.
+T Consensus       203 ~~~g~i~~~e~~~~l~~~~~  222 (263)
+T 2F33_A          203 DGNGYIDENELDALLKDLCE  222 (263)
+T ss_dssp             SSSSCEEHHHHHHHHHHHHH
+T ss_pred             CCCCeeCHHHHHHHHHHHHH
+Confidence            45789999999999988664
+
+
+No 35
+>5VP3_A Mnemiopsin 1; bioluminescence, ctenophore, Ca(2+)-regulated photoprotein, EF-hand; 2.151A {Mnemiopsis leidyi}
+Probab=27.67  E-value=53  Score=22.67  Aligned_cols=19  Identities=42%  Similarity=0.873  Sum_probs=15.7  Template_Neff=11.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       138 ~~~g~i~~~el~~~l~~~~  156 (195)
+T 5VP3_A          138 DGDGTVDVEELKTMMKAFD  156 (195)
+T ss_dssp             TSSSSBCHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4679999999999988653
+
+
+No 36
+>3EWV_A Calmodulin, Tumor necrosis factor receptor; Calmodulin-peptide complex, p75, death domain; 2.6A {Homo sapiens}
+Probab=27.49  E-value=54  Score=21.03  Aligned_cols=19  Identities=37%  Similarity=0.625  Sum_probs=15.6  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++++.+.+
+T Consensus        28 ~~~g~i~~~~~~~~l~~~~   46 (154)
+T 3EWV_A           28 DGDGTITTKELGTVMRSLG   46 (154)
+T ss_dssp             TCSSEECHHHHHHHHHHTT
+T ss_pred             CCCCccCHHHHHHHHHHcC
+Confidence            4678999999999888754
+
+
+No 37
+>6MI5_X Lanmodulin; lanthanide, EF-hand, methylotroph, periplasm, METAL; HET: YT3; NMR {Methylobacterium extorquens (strain ATCC 14718 / DSM 1338 / JCM 2805 / NCIMB 9133 / AM1)}
+Probab=27.45  E-value=54  Score=20.72  Aligned_cols=20  Identities=25%  Similarity=0.217  Sum_probs=12.1  Template_Neff=11.700
+
+Q M                 4 SNGTITVEELKKLLEQWNLV   23 (222)
+Q Consensus         4 sngtitveelkklleqwnlv   23 (222)
+                      .+|.|+.+|++..+.+-...
+T Consensus        89 ~~g~i~~~e~~~~~~~~~~~  108 (117)
+T 6MI5_X           89 NDGTIDARELASPAGSALVN  108 (117)
+T ss_dssp             SSSEECGGGTSSSTTTTGGG
+T ss_pred             CCCccCHHHHHHHHhhcCCC
+Confidence            45667777777666554433
+
+
+No 38
+>1TOP_A TROPONIN C; CONTRACTILE SYSTEM PROTEIN; 1.78A {Gallus gallus} SCOP: a.39.1.5
+Probab=27.39  E-value=54  Score=21.22  Aligned_cols=19  Identities=26%  Similarity=0.511  Sum_probs=15.4  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++++...+
+T Consensus        32 ~~~g~i~~~~~~~~l~~~~   50 (162)
+T 1TOP_A           32 DGGGDISTKELGTVMRMLG   50 (162)
+T ss_pred             CCCCeecHHHHHHHHHHcC
+Confidence            4578999999999988754
+
+
+No 39
+>6IIE_A Diacylglycerol kinase alpha (E.C.2.7.1.107); Lipid kinase, diaclyglycerol, diacylglycerol kinase; HET: GOL, PG4; 2.142A {Homo sapiens}
+Probab=27.27  E-value=55  Score=18.55  Aligned_cols=17  Identities=35%  Similarity=0.606  Sum_probs=13.2  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      +.+|.|+.+|+++.+.+
+T Consensus        21 ~~~g~i~~~~~~~~l~~   37 (93)
+T 6IIE_A           21 DRNGILDSSEVDKIILQ   37 (93)
+T ss_pred             CCCCccCHHHHHHHHHH
+Confidence            45788999998887754
+
+
+No 40
+>2JNF_A Troponin C; Stretch Activated Muscle Contraction, Troponin; NMR {Lethocerus indicus}
+Probab=27.21  E-value=55  Score=20.98  Aligned_cols=19  Identities=16%  Similarity=0.485  Sum_probs=15.5  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++++.+.+
+T Consensus        26 ~~~g~i~~~e~~~~l~~~~   44 (158)
+T 2JNF_A           26 EGSGRVSTDQIGIILEVLG   44 (158)
+T ss_pred             CCCCeEcHHHHHHHHHHcC
+Confidence            4578999999999887754
+
+
+No 41
+>5XPD_A sugar transporter; SWEETs sugar transporter complex, TRANSPORT; HET: DCM; 2.788A {Arabidopsis thaliana}
+Probab=27.10  E-value=55  Score=27.14  Aligned_cols=19  Identities=32%  Similarity=0.468  Sum_probs=7.5  Template_Neff=9.100
+
+Q M                25 GFLFLTWICLLQFAYANRN   43 (222)
+Q Consensus        25 gflfltwicllqfayanrn   43 (222)
+                      |+++...+..+-+.|.++.
+T Consensus        79 ~~~~~~~~~~~~~~y~~~~   97 (293)
+T 5XPD_A           79 GCVIETIYIVLFVSYANKK   97 (293)
+T ss_dssp             HHHHHHHHHHHHHHSSCHH
+T ss_pred             HHHHHHHHHHHHHHhcChh
+Confidence            3333333333344455433
+
+
+No 42
+>5COC_A Immunoglobulin G-binding protein A,Calmodulin; Fusion, alpha helix, cross-linker, PROTEIN; 2.6691A {Staphylococcus aureus}
+Probab=26.97  E-value=56  Score=19.95  Aligned_cols=19  Identities=16%  Similarity=0.244  Sum_probs=15.3  Template_Neff=12.700
+
+Q M                 4 SNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         4 sngtitveelkklleqwnl   22 (222)
+                      .||.|+.+|++++++..+.
+T Consensus         1 ~~g~i~~~~~~~~l~~~~~   19 (130)
+T 5COC_A            1 VDNKFNKEQQNAFYEILHL   19 (130)
+T ss_pred             CCCcCCHHHHHHHHHHCCC
+Confidence            3789999999999887543
+
+
+No 43
+>1GGW_A CDC4P; LIGHT CHAIN, CYTOKINESIS, CELL CYCLE; NMR {Schizosaccharomyces pombe} SCOP: a.39.1.5
+Probab=26.91  E-value=56  Score=20.35  Aligned_cols=18  Identities=22%  Similarity=0.364  Sum_probs=14.9  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.+...
+T Consensus        17 ~~~g~i~~~~~~~~l~~~   34 (140)
+T 1GGW_A           17 HGTGRIPKTSIGDLLRAC   34 (140)
+T ss_dssp             SSSSEECHHHHHHHHHHT
+T ss_pred             CCCCceeHHHHHHHHHHC
+Confidence            467899999999988764
+
+
+No 44
+>2HPS_A coelenterazine-binding protein with bound coelenterazine; bioluminescence, coelenterazine-binding, Southeast Collaboratory for; HET: GOL, CTZ; 1.72A {Renilla muelleri}
+Probab=26.89  E-value=56  Score=21.81  Aligned_cols=19  Identities=26%  Similarity=0.550  Sum_probs=15.7  Template_Neff=12.300
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|++++++...
+T Consensus       114 ~~~g~i~~~e~~~~l~~~~  132 (186)
+T 2HPS_A          114 DKDGYVSLPEFKAFLQAVG  132 (186)
+T ss_dssp             TCSSEEEHHHHHHHHHHHC
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4679999999999988753
+
+
+No 45
+>2TN4_A TROPONIN C; CONTRACTILE SYSTEM PROTEIN, CALCIUM REGULATION; 2.0A {Oryctolagus cuniculus} SCOP: a.39.1.5
+Probab=26.85  E-value=56  Score=20.95  Aligned_cols=20  Identities=30%  Similarity=0.516  Sum_probs=15.7  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      +.+|.++.+|+++++.+.+.
+T Consensus        29 ~~~g~l~~~~~~~~l~~~~~   48 (159)
+T 2TN4_A           29 DGGGDISVKELGTVMRMLGQ   48 (159)
+T ss_dssp             TCSSEECHHHHHHHHHHTTC
+T ss_pred             CCCCccCHHHHHHHHHHcCC
+Confidence            45688999999998887653
+
+
+No 46
+>2AUC_C MyoA Tail Interacting Protein, MyoA; SGPP, Structural GENOMICS, PSI, PROTEIN; HET: MSE; 2.6A {Plasmodium knowlesi}
+Probab=26.74  E-value=57  Score=19.80  Aligned_cols=18  Identities=22%  Similarity=0.403  Sum_probs=15.0  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.+++.
+T Consensus         8 ~~~g~i~~~~~~~~l~~~   25 (126)
+T 2AUC_C            8 SSNGKLRIEDASHNARKL   25 (126)
+T ss_dssp             CCCSSCBHHHHHHHHHHT
+T ss_pred             CCCCcccHHHHHHHHHHc
+Confidence            567999999999988764
+
+
+No 47
+>2KXW_A Calmodulin, Sodium channel protein type; Action Potential, Amino Acid Motifs; NMR {Paramecium tetraurelia}
+Probab=26.63  E-value=57  Score=16.96  Aligned_cols=18  Identities=33%  Similarity=0.652  Sum_probs=13.6  Template_Neff=13.300
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.++.+|++..+.+.
+T Consensus        20 ~~~~~i~~~~~~~~~~~~   37 (73)
+T 2KXW_A           20 DGNGLISAAELRHVMTNL   37 (73)
+T ss_dssp             SSSSEEEHHHHHHHHHHS
+T ss_pred             CCCCcccHHHHHHHHHHc
+Confidence            457888888888877654
+
+
+No 48
+>4OKH_A Calpain-3 (E.C.3.4.22.54); calcium-binding, EF-hand, Hydrolase; HET: PEU, CA; 2.45A {Homo sapiens}
+Probab=26.56  E-value=57  Score=22.17  Aligned_cols=19  Identities=26%  Similarity=0.302  Sum_probs=14.8  Template_Neff=12.000
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|++.++....
+T Consensus       162 ~~~g~i~~~e~~~~~~~~~  180 (189)
+T 4OKH_A          162 DGDGIIKLNVLEWLQLTMY  180 (189)
+T ss_dssp             TCSSEEEECHHHHHHHHHH
+T ss_pred             CCCceEeehHHHHHHHHHh
+Confidence            5678899999888877654
+
+
+No 49
+>5JOL_A Plastin-2; Calcium-binding, EF-hand, L-plastin, METAL BINDING; NMR {Homo sapiens}
+Probab=26.26  E-value=59  Score=17.49  Aligned_cols=18  Identities=39%  Similarity=0.601  Sum_probs=13.2  Template_Neff=13.200
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.+.+.
+T Consensus        24 ~~~~~i~~~~~~~~l~~~   41 (82)
+T 5JOL_A           24 DGNGYISFNELNDLFKAA   41 (82)
+T ss_pred             CCCCccCHHHHHHHHHHC
+Confidence            357788888888777654
+
+
+No 50
+>6LI9_C Neutral and basic amino acid; transporter, MEMBRANE PROTEIN; HET: ARG, NAG, 3PH; 2.3A {Homo sapiens}
+Probab=26.16  E-value=59  Score=31.06  Aligned_cols=37  Identities=22%  Similarity=0.324  Sum_probs=22.3  Template_Neff=8.500
+
+Q M                29 LTWICLLQFAYANRNRFLYIIKLIFLWLLWPVTLACFVLA   68 (222)
+Q Consensus        29 ltwicllqfayanrnrflyiikliflwllwpvtlacfvla   68 (222)
+                      |+==-|++++  |. .+..++.++.+|++|-+.+++++.|
+T Consensus        82 l~ke~l~~~~--~~-~~~~~~r~~~fwl~~~~~~~m~~~a  118 (699)
+T 6LI9_C           82 MPKEVLFQFS--GQ-ARYRIPREILFWLTVASVLVLIAAT  118 (699)
+T ss_dssp             CCHHHHTTTT--TS-HHHHHHHHHHHHHHHHHHHHHHHHH
+T ss_pred             CCHHHHhHhc--CC-cchHHHHHHHHHHHHHHHHHHHHHH
+Confidence            3333455554  44 3556667787788887666666544
+
+
+No 51
+>6LID_C Neutral and basic amino acid; transporter, MEMBRANE PROTEIN; HET: 3PH, NAG; 2.7A {Homo sapiens}
+Probab=26.16  E-value=59  Score=31.06  Aligned_cols=37  Identities=22%  Similarity=0.324  Sum_probs=22.3  Template_Neff=8.500
+
+Q M                29 LTWICLLQFAYANRNRFLYIIKLIFLWLLWPVTLACFVLA   68 (222)
+Q Consensus        29 ltwicllqfayanrnrflyiikliflwllwpvtlacfvla   68 (222)
+                      |+==-|++++  |. .+..++.++.+|++|-+.+++++.|
+T Consensus        82 l~ke~l~~~~--~~-~~~~~~r~~~fwl~~~~~~~m~~~a  118 (699)
+T 6LID_C           82 MPKEVLFQFS--GQ-ARYRIPREILFWLTVASVLVLIAAT  118 (699)
+T ss_dssp             CCHHHHTTTT--TS-HHHHHHHHHHHHTTHHHHHHHHHHH
+T ss_pred             CCHHHHhHhc--CC-cchHHHHHHHHHHHHHHHHHHHHHH
+Confidence            3333455554  44 3556667787788887666666544
+
+
+No 52
+>1O1D_I MOLECULAR MODELS OF AVERAGED RIGOR; ACTIN-MYOSIN COMPLEX IN SITU IN; HET: MLY; 70.0A {Gallus gallus} SCOP: i.15.1.1
+Probab=26.11  E-value=59  Score=20.43  Aligned_cols=18  Identities=33%  Similarity=0.578  Sum_probs=14.7  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +++|.++.+|+++.++.-
+T Consensus        95 ~~~g~i~~~~~~~~l~~~  112 (147)
+T 1O1D_I           95 EGNGTVMGAELRHVLATL  112 (147)
+T ss_dssp             SSSCEEEHHHHHHHHHHS
+T ss_pred             CCCcEEeHHHHHHHHHHh
+Confidence            467899999999988764
+
+
+No 53
+>4NQG_B Mitrocomin; Photoprotein, luminescent protein, bioluminescence, calcium; HET: CZH; 1.301A {Mitrocoma cellularia}
+Probab=26.10  E-value=59  Score=22.27  Aligned_cols=19  Identities=21%  Similarity=0.386  Sum_probs=15.9  Template_Neff=12.000
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       126 ~~~g~i~~~e~~~~l~~~~  144 (197)
+T 4NQG_B          126 DGNGSVSLDEWIQYTHCAG  144 (197)
+T ss_dssp             SCSSEECHHHHHHHHHHHT
+T ss_pred             CCCCCccHHHHHHHHHHhC
+Confidence            4578999999999998764
+
+
+No 54
+>1TIZ_A calmodulin-related protein, putative; helix-turn-helix, Structural Genomics, PSI, Protein; NMR {Arabidopsis thaliana} SCOP: a.39.1.5
+Probab=25.97  E-value=60  Score=16.33  Aligned_cols=18  Identities=11%  Similarity=0.569  Sum_probs=13.1  Template_Neff=13.500
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.++.+++.+.+.+.
+T Consensus        13 ~~~~~i~~~~~~~~~~~~   30 (67)
+T 1TIZ_A           13 NKDGKLSLDEFREVALAF   30 (67)
+T ss_dssp             TSSSCEEHHHHHHHHHHT
+T ss_pred             CCCCCccHHHHHHHHHHH
+Confidence            456788888888777653
+
+
+No 55
+>4WPX_A Cdc31, Sac3 CID region, Sus1; cell cycle, mRNA nuclear export; 3.31A {Chaetomium thermophilum}
+Probab=25.93  E-value=60  Score=21.25  Aligned_cols=19  Identities=37%  Similarity=0.602  Sum_probs=15.5  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++.+
+T Consensus       123 ~~~g~i~~~e~~~~l~~~~  141 (177)
+T 4WPX_A          123 DGKGMITEDDLRKVCQQVG  141 (177)
+T ss_dssp             SCCSEECHHHHHHHHHHHC
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            4678999999999888643
+
+
+No 56
+>4WPX_D Cdc31, Sac3 CID region, Sus1; cell cycle, mRNA nuclear export; 3.31A {Chaetomium thermophilum}
+Probab=25.93  E-value=60  Score=21.25  Aligned_cols=19  Identities=37%  Similarity=0.602  Sum_probs=15.5  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++.+
+T Consensus       123 ~~~g~i~~~e~~~~l~~~~  141 (177)
+T 4WPX_D          123 DGKGMITEDDLRKVCQQVG  141 (177)
+T ss_dssp             TCCSEECHHHHHHHHHHHC
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            4678999999999888643
+
+
+No 57
+>1O1D_I MOLECULAR MODELS OF AVERAGED RIGOR; ACTIN-MYOSIN COMPLEX IN SITU IN; HET: MLY; 70.0A {Gallus gallus} SCOP: i.15.1.1
+Probab=25.93  E-value=60  Score=20.41  Aligned_cols=19  Identities=11%  Similarity=0.254  Sum_probs=15.4  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        18 ~~~g~i~~~~~~~~l~~~~   36 (147)
+T 1O1D_I           18 TGDAKITASQVGDIARALG   36 (147)
+T ss_dssp             TSSSCCCHHHHHHHHHHTT
+T ss_pred             CCCCCcCHHHHHHHHHHhC
+Confidence            4679999999999887653
+
+
+No 58
+>2BL0_B MAJOR PLASMODIAL MYOSIN HEAVY CHAIN; MUSCLE PROTEIN, SLIME MOULD, EF-HAND; 1.75A {PHYSARUM POLYCEPHALUM}
+Probab=25.93  E-value=60  Score=20.24  Aligned_cols=18  Identities=44%  Similarity=0.650  Sum_probs=14.8  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        88 ~~~g~i~~~~~~~~l~~~  105 (145)
+T 2BL0_B           88 EGNGTIQEAELRQLLLNL  105 (145)
+T ss_dssp             SSSSEEEHHHHHHHHHHS
+T ss_pred             CCCCeeCHHHHHHHHHHc
+Confidence            467899999999988754
+
+
+No 59
+>1LKJ_A Calmodulin; yeast calmodulin, saccharomyces cerevisiae, EF-hand; NMR {Saccharomyces cerevisiae} SCOP: a.39.1.5
+Probab=25.93  E-value=60  Score=20.27  Aligned_cols=19  Identities=32%  Similarity=0.555  Sum_probs=15.4  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        95 ~~~g~i~~~~~~~~l~~~~  113 (146)
+T 1LKJ_A           95 NGDGLISAAELKHVLTSIG  113 (146)
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4578999999999888754
+
+
+No 60
+>1JFK_A CALCIUM-BINDING PROTEIN complex with CALCIUM; EF-HAND, HELIX-LOOP-HELIX, CALCIUM BINDING PROTEIN; NMR {Entamoeba histolytica} SCOP: a.39.1.5
+Probab=25.70  E-value=61  Score=19.79  Aligned_cols=19  Identities=21%  Similarity=0.520  Sum_probs=15.2  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.++..+
+T Consensus        12 ~~~g~i~~~~~~~~~~~~~   30 (134)
+T 1JFK_A           12 NGDGAVSYEEVKAFVSKKR   30 (134)
+T ss_dssp             TCSSEEEHHHHHHHHHTTC
+T ss_pred             CCCCeecHHHHHHHHHhcc
+Confidence            5679999999998887643
+
+
+No 61
+>2NXQ_A Calcium-binding protein; EF hand motifs, calcium binding; HET: ACT; 2.4A {Entamoeba histolytica}
+Probab=25.70  E-value=61  Score=19.79  Aligned_cols=19  Identities=21%  Similarity=0.520  Sum_probs=15.2  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.++..+
+T Consensus        12 ~~~g~i~~~~~~~~~~~~~   30 (134)
+T 2NXQ_A           12 NGDGAVSYEEVKAFVSKKR   30 (134)
+T ss_dssp             TCSSCCCHHHHHHHHHHHH
+T ss_pred             CCCCeecHHHHHHHHHhcc
+Confidence            5679999999998887643
+
+
+No 62
+>3PX1_A Calcium-binding protein; EF hand motif, calcium binding; 3.0A {Entamoeba histolytica}
+Probab=25.70  E-value=61  Score=19.79  Aligned_cols=19  Identities=21%  Similarity=0.520  Sum_probs=15.2  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.++..+
+T Consensus        12 ~~~g~i~~~~~~~~~~~~~   30 (134)
+T 3PX1_A           12 NGDGAVSYEEVKAFVSKKR   30 (134)
+T ss_dssp             SCSSCCCHHHHHHHHHHHH
+T ss_pred             CCCCeecHHHHHHHHHhcc
+Confidence            5679999999998887643
+
+
+No 63
+>3J04_C Myosin-11, Myosin regulatory light chain; PHOSPHORYLATION, 2D CRYSTALLINE ARRAYS, MYOSIN; 20.0A {Gallus gallus}
+Probab=25.38  E-value=62  Score=20.25  Aligned_cols=19  Identities=26%  Similarity=0.501  Sum_probs=15.2  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        96 ~~~g~i~~~~~~~~l~~~~  114 (148)
+T 3J04_C           96 EGNGTVMGAEIRHVLVTLG  114 (148)
+T ss_dssp             TSCSEEEHHHHHHHHHHST
+T ss_pred             CCCCeEeHHHHHHHHHHhC
+Confidence            4678999999998887653
+
+
+No 64
+>3LCP_D Protein ERGIC-53, Multiple coagulation factor; ER-GOLGI TRANSPORT, GLYCOPROTEIN SORTING, DISEASE; 2.45A {Homo sapiens}
+Probab=25.28  E-value=63  Score=19.19  Aligned_cols=19  Identities=21%  Similarity=0.244  Sum_probs=13.3  Template_Neff=12.000
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.++.+|+++.+++..
+T Consensus        30 ~~~g~i~~~~~~~~l~~~~   48 (93)
+T 3LCP_D           30 DGNNLLDGLELSTAITHVH   48 (93)
+T ss_dssp             TCSSCEEHHHHHHHHHC--
+T ss_pred             CCCCccCHHHHHHHHHHHH
+Confidence            4578888888888776653
+
+
+No 65
+>4OCI_A Calmodulin, putative; EF-hand, Signalling, SIGNALING PROTEIN; HET: ACT; 2.009A {Entamoeba histolytica}
+Probab=25.27  E-value=63  Score=20.40  Aligned_cols=19  Identities=26%  Similarity=0.550  Sum_probs=15.7  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+.+.+
+T Consensus        18 ~~~g~i~~~~~~~~l~~~~   36 (146)
+T 4OCI_A           18 DGDGYLTLNEFESLVRVLG   36 (146)
+T ss_dssp             TSSSCBCHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4679999999999988753
+
+
+No 66
+>4TQG_A UDP-GlcNAc 4,6-dehydratase, 5-epimerase; NADP binding Sugar pathway, sugar; HET: NDP; 2.2A {Megavirus chiliensis}
+Probab=25.20  E-value=63  Score=24.99  Aligned_cols=17  Identities=35%  Similarity=0.520  Sum_probs=12.3  Template_Neff=11.200
+
+Q M                 6 GTITVEELKKLLEQWNL   22 (222)
+Q Consensus         6 gtitveelkklleqwnl   22 (222)
+                      ..++.||+|++|.+-|+
+T Consensus       306 ~~~~~~~~~~~~~~~~~  322 (323)
+T 4TQG_A          306 NILSKQELENYLNQVNL  322 (323)
+T ss_dssp             SBCCHHHHHHHHHC---
+T ss_pred             CCCCHHHHHHHHHhcCC
+Confidence            45899999999998775
+
+
+No 67
+>3FWB_A Cell division control protein 31; gene gating, complex, Cell cycle; 2.5A {Saccharomyces cerevisiae}
+Probab=25.19  E-value=63  Score=20.89  Aligned_cols=19  Identities=21%  Similarity=0.615  Sum_probs=15.1  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++.+
+T Consensus       108 ~~~g~i~~~e~~~~l~~~~  126 (161)
+T 3FWB_A          108 DHTGKISIKNLRRVAKELG  126 (161)
+T ss_dssp             TCSSEECHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHHC
+Confidence            4678999999999887653
+
+
+No 68
+>2LC5_A Calmodulin, putative; EHCAM, CA-BINDING PROTEIN, ENTAMOEBA HISTOLYTICA; HET: CA; NMR {Entamoeba histolytica}
+Probab=25.11  E-value=63  Score=20.51  Aligned_cols=19  Identities=37%  Similarity=0.595  Sum_probs=15.5  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+++.+
+T Consensus        99 ~~~g~i~~~~~~~~l~~~~  117 (151)
+T 2LC5_A           99 EKNGYISASELKHVLTTLG  117 (151)
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4578999999999888753
+
+
+No 69
+>1WDC_B SCALLOP MYOSIN; MYOSIN, CALCIUM BINDING PROTEIN, MUSCLE; 2.0A {Argopecten irradians} SCOP: a.39.1.5
+Probab=24.99  E-value=64  Score=20.74  Aligned_cols=19  Identities=26%  Similarity=0.459  Sum_probs=15.4  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        99 ~~~g~i~~~~~~~~l~~~~  117 (156)
+T 1WDC_B           99 QETKKLNIEYIKDLLENMG  117 (156)
+T ss_dssp             TCCSCEEHHHHHHHHHHSS
+T ss_pred             CCCCEEcHHHHHHHHHHcC
+Confidence            4578999999999888654
+
+
+No 70
+>3JVT_B Calcium-free Scallop Myosin Regulatory Domain; Regulated myosins, smooth and molluscan; 2.1A {Argopecten irradians}
+Probab=24.99  E-value=64  Score=20.74  Aligned_cols=19  Identities=26%  Similarity=0.459  Sum_probs=15.4  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        99 ~~~g~i~~~~~~~~l~~~~  117 (156)
+T 3JVT_B           99 QETKKLNIEYIKDLLENMG  117 (156)
+T ss_dssp             TCCSCEEHHHHHHHHHHSS
+T ss_pred             CCCCEEcHHHHHHHHHHcC
+Confidence            4578999999999888654
+
+
+No 71
+>6TZ6_E Serine/threonine-protein phosphatase (E.C.3.1.3.16), Calcineurin subunit; Calcineurin, FK506, antifungal, Hydrolase-Isomerase-Calcium Binding; HET: FK5, PO4; 2.55A {Candida albicans (strain WO-1)}
+Probab=24.98  E-value=64  Score=21.48  Aligned_cols=18  Identities=28%  Similarity=0.322  Sum_probs=14.9  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.+++.
+T Consensus       104 ~~~g~i~~~el~~~l~~~  121 (173)
+T 6TZ6_E          104 DRDGYIGNGELFIVMKMM  121 (173)
+T ss_pred             CCCCccCHHHHHHHHHHh
+Confidence            568999999999888764
+
+
+No 72
+>1NCY_A TROPONIN C; MUSCLE PROTEIN, CALCIUM-BINDING PROTEIN; 2.1A {Gallus gallus} SCOP: a.39.1.5
+Probab=24.95  E-value=64  Score=20.88  Aligned_cols=19  Identities=26%  Similarity=0.511  Sum_probs=15.3  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++++...+
+T Consensus        32 ~~~g~i~~~~~~~~l~~~~   50 (162)
+T 1NCY_A           32 DGGGDISTKELGTVMRMLG   50 (162)
+T ss_dssp             SCSSEEEGGGHHHHHHHTT
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4578899999999888754
+
+
+No 73
+>2I18_A Calcium-binding protein; BETA SHEET, ALPHA HELIX, CALCIUM; HET: LA; NMR {Entamoeba histolytica}
+Probab=24.77  E-value=65  Score=16.45  Aligned_cols=17  Identities=29%  Similarity=0.657  Sum_probs=12.6  Template_Neff=13.100
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      +.+|.|+.+++++.+.+
+T Consensus        17 ~~~~~i~~~~~~~~~~~   33 (64)
+T 2I18_A           17 DGDGKLTKEEVTSFFKK   33 (64)
+T ss_pred             CCCCccCHHHHHHHHHH
+Confidence            45688888888877664
+
+
+No 74
+>3J04_B Myosin-11, Myosin regulatory light chain; PHOSPHORYLATION, 2D CRYSTALLINE ARRAYS, MYOSIN; 20.0A {Gallus gallus}
+Probab=24.74  E-value=65  Score=20.03  Aligned_cols=19  Identities=26%  Similarity=0.513  Sum_probs=15.3  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|++..+++.+
+T Consensus        88 ~~~g~i~~~~~~~~l~~~~  106 (143)
+T 3J04_B           88 EASGFIHEDHLRELLTTMG  106 (143)
+T ss_dssp             SSCCCCCTTTHHHHHHTSS
+T ss_pred             CCCCcccHHHHHHHHHhcC
+Confidence            4678999999998887653
+
+
+No 75
+>5ZGM_A Parvalbumin SPVI; Parvalbumin, food allergen, ALLERGEN; HET: SO4; 1.399A {Mustelus griseus}
+Probab=24.44  E-value=67  Score=18.85  Aligned_cols=18  Identities=44%  Similarity=0.672  Sum_probs=13.7  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.+++.
+T Consensus        54 ~~~g~i~~~~~~~~~~~~   71 (110)
+T 5ZGM_A           54 DQSGFIEEEELKSVLKGF   71 (110)
+T ss_dssp             TCSSSBCHHHHHTHHHHH
+T ss_pred             CCCCccCHHHHHHHHHHH
+Confidence            456888888888887654
+
+
+No 76
+>5W1A_B Myosin heavy chain, muscle, Myosin; skeletal muscle myosin II, embryonic; HET: EDO, FLC, GOL; 2.227A {Drosophila melanogaster}
+Probab=24.13  E-value=68  Score=20.70  Aligned_cols=19  Identities=32%  Similarity=0.492  Sum_probs=15.2  Template_Neff=12.300
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        95 ~~~g~i~~~~~~~~l~~~~  113 (155)
+T 5W1A_B           95 EENGTMLLAELQHALLALG  113 (155)
+T ss_dssp             TSSSEEEHHHHHHHHHHSS
+T ss_pred             CCCCeeCHHHHHHHHHHcC
+Confidence            4578999999999887643
+
+
+No 77
+>1O1A_Q MOLECULAR MODELS OF AVERAGED RIGOR; ACTIN-MYOSIN COMPLEX IN SITU IN; HET: MLY; 70.0A {Gallus gallus} SCOP: i.15.1.1
+Probab=24.07  E-value=68  Score=19.99  Aligned_cols=18  Identities=33%  Similarity=0.427  Sum_probs=14.5  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.+...
+T Consensus        89 ~~~g~i~~~~~~~~l~~~  106 (145)
+T 1O1A_Q           89 DGKGSIKKSFLEELLTTG  106 (145)
+T ss_dssp             TSSCCCCHHHHHHHHHTT
+T ss_pred             CCCCeeeHHHHHHHHHhC
+Confidence            467899999999888753
+
+
+No 78
+>1NCY_A TROPONIN C; MUSCLE PROTEIN, CALCIUM-BINDING PROTEIN; 2.1A {Gallus gallus} SCOP: a.39.1.5
+Probab=24.01  E-value=69  Score=20.75  Aligned_cols=19  Identities=32%  Similarity=0.566  Sum_probs=15.4  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       108 ~~~g~i~~~~~~~~l~~~~  126 (162)
+T 1NCY_A          108 NADGFIDIEELGEILRATG  126 (162)
+T ss_dssp             TCSSCBCHHHHHHHHHTTC
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4578999999999887744
+
+
+No 79
+>1KK8_B LLOP MYOSIN S1-ADP-BeFx IN THE; actin-detached, Myosin, Mechanics of MOTOR; HET: ADP; 2.3A {Argopecten irradians} SCOP: a.39.1.5
+Probab=23.89  E-value=69  Score=19.80  Aligned_cols=19  Identities=32%  Similarity=0.573  Sum_probs=15.3  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++++++.+
+T Consensus        18 ~~~g~i~~~~~~~~l~~~~   36 (139)
+T 1KK8_B           18 DRDGFVSKEDIKAISEQLG   36 (139)
+T ss_dssp             TCSSCCCHHHHHHHHHHHS
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4568999999999987654
+
+
+No 80
+>2CCM_B CALEXCITIN; EF HAND, CALCIUM, SIGNALING PROTEIN; 1.8A {LOLIGO PEALEII}
+Probab=23.87  E-value=69  Score=21.59  Aligned_cols=20  Identities=10%  Similarity=0.273  Sum_probs=16.2  Template_Neff=12.200
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      |.+|+|+.+|+++++.+...
+T Consensus        25 ~~~g~i~~~e~~~~~~~~~~   44 (191)
+T 2CCM_B           25 NHDGVIEWDDFELAIKKICN   44 (191)
+T ss_dssp             TCSSEECHHHHHHHHHHHHH
+T ss_pred             CCCCccCHHHHHHHHHHHHH
+Confidence            45789999999999877654
+
+
+No 81
+>2LMT_A Calmodulin-related protein 97A; spermatogenesis, METAL BINDING PROTEIN; HET: CA; NMR {Drosophila melanogaster}
+Probab=23.82  E-value=70  Score=20.26  Aligned_cols=18  Identities=28%  Similarity=0.451  Sum_probs=14.4  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        95 ~~~g~i~~~~~~~~l~~~  112 (148)
+T 2LMT_A           95 DGDGFISPAELRFVMINL  112 (148)
+T ss_dssp             SCSSEECHHHHHHHHHHH
+T ss_pred             CCCCccCHHHHHHHHHHH
+Confidence            457889999999888764
+
+
+No 82
+>1DFK_Y MYOSIN HEAD; MYOSIN MOTOR, CONFORMATIONAL CHANGES, CONTRACTILE; 4.2A {Argopecten irradians} SCOP: a.39.1.5
+Probab=23.74  E-value=70  Score=19.89  Aligned_cols=19  Identities=32%  Similarity=0.573  Sum_probs=15.2  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        19 ~~~g~i~~~~~~~~l~~~~   37 (139)
+T 1DFK_Y           19 DRDGFVSKEDIKAISEQLG   37 (139)
+T ss_dssp             TCSSSCCHHHHHHHHHTTS
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4679999999998887653
+
+
+No 83
+>2MYS_C MYOSIN; MUSCLE PROTEIN, MYOSIN SUBFRAGMENT-1, MYOSIN; HET: MLY; 2.8A {Gallus gallus} SCOP: a.39.1.5
+Probab=23.66  E-value=70  Score=20.15  Aligned_cols=18  Identities=33%  Similarity=0.578  Sum_probs=14.7  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        97 ~~~g~i~~~~~~~~l~~~  114 (149)
+T 2MYS_C           97 EGNGTVMGAELRHVLATL  114 (149)
+T ss_pred             CCCCEEeHHHHHHHHHHh
+Confidence            457899999999988764
+
+
+No 84
+>4HEX_B Calmodulin; Calmodulin, Novel conformation, trans, EF-hand; 2.001A {Mus musculus}
+Probab=23.57  E-value=71  Score=20.54  Aligned_cols=19  Identities=32%  Similarity=0.615  Sum_probs=14.9  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       103 ~~~g~i~~~~~~~~l~~~~  121 (156)
+T 4HEX_B          103 DGNGYISAAELRHVMTNLG  121 (156)
+T ss_dssp             TCSSEECHHHHHHHHHHTT
+T ss_pred             CCCCcEeHHHHHHHHHHhC
+Confidence            4578999999998887643
+
+
+No 85
+>1F71_A REFINED SOLUTION STRUCTURE OF CALMODULIN; Calcium binding, EF hand, four-helix; NMR {Xenopus laevis} SCOP: a.39.1.5
+Probab=23.55  E-value=71  Score=15.82  Aligned_cols=18  Identities=33%  Similarity=0.641  Sum_probs=12.5  Template_Neff=13.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.++.+++++.+...
+T Consensus        14 ~~~~~i~~~~~~~~~~~~   31 (67)
+T 1F71_A           14 DGNGYISAAELRHVMTNL   31 (67)
+T ss_dssp             TSSSEEEHHHHHHHHHHT
+T ss_pred             CCCceEcHHHHHHHHHHh
+Confidence            356778888887776643
+
+
+No 86
+>2BL0_B MAJOR PLASMODIAL MYOSIN HEAVY CHAIN; MUSCLE PROTEIN, SLIME MOULD, EF-HAND; 1.75A {PHYSARUM POLYCEPHALUM}
+Probab=23.53  E-value=71  Score=19.91  Aligned_cols=19  Identities=32%  Similarity=0.623  Sum_probs=15.1  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+...+
+T Consensus        17 ~~~g~i~~~~~~~~l~~~~   35 (145)
+T 2BL0_B           17 DNDGKVSIEELGSALRSLG   35 (145)
+T ss_dssp             TCSSCEEGGGHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4578999999998887653
+
+
+No 87
+>1M46_A Myosin light chain/IQ4 Motif from; Protein-Peptide complex, IQ motif, myosin; 2.103A {Saccharomyces cerevisiae} SCOP: a.39.1.5
+Probab=23.36  E-value=72  Score=19.97  Aligned_cols=19  Identities=26%  Similarity=0.562  Sum_probs=15.1  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus        95 ~~~g~i~~~e~~~~l~~~~  113 (148)
+T 1M46_A           95 ESTGKVSVGDLRYMLTGLG  113 (148)
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            4678999999999887653
+
+
+No 88
+>2M8U_A Myosin Light Chain, MlcC; myosin light chain, helical bundle; NMR {Dictyostelium discoideum}
+Probab=23.32  E-value=72  Score=17.21  Aligned_cols=17  Identities=47%  Similarity=0.802  Sum_probs=13.0  Template_Neff=12.900
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      +.+|.++.+++++.+.+
+T Consensus        23 ~~~~~i~~~~~~~~~~~   39 (77)
+T 2M8U_A           23 DGNGYVTVDYLRKVLNE   39 (77)
+T ss_dssp             SCCSCEEHHHHHHHHHH
+T ss_pred             CCCcEEeHHHHHHHHHH
+Confidence            45788888888887765
+
+
+No 89
+>5IBW_B Calcium-binding EF-hand domain-containing protein, Myosin; Myosin IQ motif Complex, MOTOR; 1.9A {Dictyostelium discoideum}
+Probab=23.32  E-value=72  Score=17.21  Aligned_cols=17  Identities=47%  Similarity=0.802  Sum_probs=13.0  Template_Neff=12.900
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      +.+|.++.+++++.+.+
+T Consensus        23 ~~~~~i~~~~~~~~~~~   39 (77)
+T 5IBW_B           23 DGNGYVTVDYLRKVLNE   39 (77)
+T ss_dssp             TCCSCEEHHHHHHHHHH
+T ss_pred             CCCcEEeHHHHHHHHHH
+Confidence            45788888888887765
+
+
+No 90
+>6MUD_B Calmodulin-1, Sodium channel protein type; voltage-gated ion channel, transport protein; 2.69A {Homo sapiens}
+Probab=23.21  E-value=73  Score=22.94  Aligned_cols=21  Identities=10%  Similarity=0.093  Sum_probs=16.4  Template_Neff=9.700
+
+Q M                 3 DSNGTITVEELKKLLEQWNLV   23 (222)
+Q Consensus         3 dsngtitveelkklleqwnlv   23 (222)
+                      +.+|.|+.+||++++.+...-
+T Consensus        22 ~~~G~I~~~el~~~l~~l~~~   42 (140)
+T 6MUD_B           22 EATQFIEYSVLSDFADALSEP   42 (140)
+T ss_pred             CCCCEeCHHHHHHHHHHhCCC
+Confidence            457889999999988876543
+
+
+No 91
+>5VE9_B Microtubule-actin cross-linking factor 1, isoforms; Spectraplakin, EF-Hand, microtubule binding, GAS2; 2.795A {Homo sapiens}
+Probab=23.19  E-value=73  Score=17.95  Aligned_cols=18  Identities=28%  Similarity=0.300  Sum_probs=12.9  Template_Neff=12.800
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.++++..+.+.
+T Consensus        39 ~~~~~i~~~~~~~~~~~~   56 (91)
+T 5VE9_B           39 DQDGKITRQEFIDGILAS   56 (91)
+T ss_pred             CCCCccCHHHHHHHHHHc
+Confidence            356788888887777654
+
+
+No 92
+>1EG4_A STRUCTURE OF A DYSTROPHIN WW; EF-hand like domain, WW domain; 2.0A {Homo sapiens} SCOP: a.39.1.7, b.72.1.1
+Probab=23.09  E-value=73  Score=24.56  Aligned_cols=18  Identities=28%  Similarity=0.235  Sum_probs=15.2  Template_Neff=10.500
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|++.+++..
+T Consensus       179 d~~G~I~~~el~~~l~~~  196 (261)
+T 1EG4_A          179 SSTGFCDQRRLGLLLHDS  196 (261)
+T ss_pred             CCCCccCHHHHHHHHHHH
+Confidence            678999999999998743
+
+
+No 93
+>3LL8_D AKAP79 peptide, Serine/threonine-protein phosphatase 2B; protein-peptide docking, protein targeting, calcineurin; HET: PO4; 2.0A {Homo sapiens}
+Probab=23.09  E-value=73  Score=20.33  Aligned_cols=18  Identities=33%  Similarity=0.464  Sum_probs=14.5  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.++..
+T Consensus        87 ~~~g~i~~~e~~~~l~~~  104 (155)
+T 3LL8_D           87 DKDGYISNGELFQVLKMM  104 (155)
+T ss_pred             CCCCccCHHHHHHHHHHH
+Confidence            567899999999888654
+
+
+No 94
+>2R2I_A Guanylyl cyclase-activating protein 1; EF hand, GCAP, Guanylate Cyclase; HET: BME, MYR; 2.0A {Gallus gallus}
+Probab=22.94  E-value=74  Score=21.03  Aligned_cols=19  Identities=32%  Similarity=0.485  Sum_probs=15.3  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++...
+T Consensus       100 ~~~g~i~~~e~~~~l~~~~  118 (198)
+T 2R2I_A          100 DGNGCIDRGELLNIIKAIR  118 (198)
+T ss_dssp             TCSSCEEHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHHH
+Confidence            4578999999999887754
+
+
+No 95
+>3JTD_C Myosin heavy chain, striated muscle; Regulated myosins, smooth and molluscan; 2.57A {Argopecten irradians}
+Probab=22.77  E-value=75  Score=20.31  Aligned_cols=19  Identities=26%  Similarity=0.466  Sum_probs=15.1  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|++++++..+
+T Consensus        96 ~~~g~i~~~~l~~~l~~~~  114 (156)
+T 3JTD_C           96 EGQGFISGAELRHVLTALG  114 (156)
+T ss_dssp             SSSSEEEHHHHHHHHHHSS
+T ss_pred             CCCCEEcHHHHHHHHHHhC
+Confidence            4578999999999887643
+
+
+No 96
+>4Q57_A Calmodulin, Plectin; EF-hand motif, calponin homology domain; HET: EDO; 1.8A {Homo sapiens}
+Probab=22.72  E-value=76  Score=15.38  Aligned_cols=17  Identities=41%  Similarity=0.704  Sum_probs=11.5  Template_Neff=13.900
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      +.+|.++.+++++.+.+
+T Consensus        14 ~~~~~i~~~~~~~~~~~   30 (65)
+T 4Q57_A           14 DGDGTITTKELGTVMRS   30 (65)
+T ss_dssp             TCSSEECHHHHHHHHHH
+T ss_pred             CCCCceeHHHHHHHHHH
+Confidence            45677887777766554
+
+
+No 97
+>3KHE_B Calmodulin-like domain protein kinase isoform; calcium dependent kinase, Structural Genomics; HET: GOL; 1.95A {Toxoplasma gondii}
+Probab=22.54  E-value=77  Score=21.50  Aligned_cols=18  Identities=44%  Similarity=0.556  Sum_probs=14.7  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.++..
+T Consensus       135 ~~~g~i~~~~~~~~l~~~  152 (191)
+T 3KHE_B          135 DGSGKITNEELGRLFGVT  152 (191)
+T ss_dssp             TCSSEECHHHHHHHTTSS
+T ss_pred             CCCCccCHHHHHHHHcCC
+Confidence            567999999999888763
+
+
+No 98
+>1F4Q_B GRANCALCIN; penta-Ef-hand protein, calcium binding protein; 1.9A {Homo sapiens} SCOP: a.39.1.8
+Probab=22.46  E-value=77  Score=20.92  Aligned_cols=20  Identities=30%  Similarity=0.544  Sum_probs=16.5  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      +.+|.|+.+|+++++.+.+.
+T Consensus        11 ~~~g~i~~~~~~~~l~~~~~   30 (165)
+T 1F4Q_B           11 GQDGEVDAEELQRCLTQSGI   30 (165)
+T ss_dssp             CTTSCBCHHHHHHHHHHHTT
+T ss_pred             CCCCccCHHHHHHHHHhcCC
+Confidence            56899999999999887543
+
+
+No 99
+>2TN4_A TROPONIN C; CONTRACTILE SYSTEM PROTEIN, CALCIUM REGULATION; 2.0A {Oryctolagus cuniculus} SCOP: a.39.1.5
+Probab=22.39  E-value=77  Score=20.32  Aligned_cols=19  Identities=26%  Similarity=0.499  Sum_probs=15.2  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       105 ~~~g~i~~~~l~~~l~~~~  123 (159)
+T 2TN4_A          105 NADGYIDAEELAEIFRASG  123 (159)
+T ss_dssp             TCSSSBCHHHHHHHHHHTT
+T ss_pred             CCCCCcCHHHHHHHHHHhC
+Confidence            4578999999999887654
+
+
+No 100
+>4F0Z_B Serine/threonine-protein phosphatase 2B catalytic subunit; EF-hand, phosphatase, PxIxIT, LxVP, calcium; HET: GOL; 1.7A {Homo sapiens}
+Probab=22.37  E-value=78  Score=20.91  Aligned_cols=18  Identities=33%  Similarity=0.464  Sum_probs=15.0  Template_Neff=12.200
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|++..+++.
+T Consensus       102 ~~~g~i~~~e~~~~l~~~  119 (170)
+T 4F0Z_B          102 DKDGYISNGELFQVLKMM  119 (170)
+T ss_dssp             TCSSEECHHHHHHHHHHH
+T ss_pred             CCCCccCHHHHHHHHHHH
+Confidence            457899999999988875
+
+
+No 101
+>3TZ1_A Troponin C, Troponin I; protein-peptide complex, EF hand, Ca2+-sensor; 1.8A {Chlamys nipponensis akazara}
+Probab=22.36  E-value=78  Score=16.60  Aligned_cols=18  Identities=28%  Similarity=0.542  Sum_probs=12.7  Template_Neff=13.200
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.++++..+.+.
+T Consensus        19 ~~~~~i~~~~~~~~~~~~   36 (74)
+T 3TZ1_A           19 EKKGVIKVDVLRWILKSL   36 (74)
+T ss_dssp             TSSSSEEHHHHHHHHHHH
+T ss_pred             CCCCeecHHHHHHHHHHc
+Confidence            356778888887777654
+
+
+No 102
+>2M28_A Calcium-binding protein 4; METAL BINDING PROTEIN; HET: CA; NMR {Mus musculus}
+Probab=22.35  E-value=78  Score=20.71  Aligned_cols=17  Identities=41%  Similarity=0.622  Sum_probs=14.3  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      |.+|.|+.+|+++.++.
+T Consensus       117 ~~~g~i~~~e~~~~l~~  133 (171)
+T 2M28_A          117 DRDGRITVAELRQAAPA  133 (171)
+T ss_dssp             SCSSCEEHHHHHHHSST
+T ss_pred             CCCCCcCHHHHHHHHHH
+Confidence            56789999999988865
+
+
+No 103
+>3EWV_A Calmodulin, Tumor necrosis factor receptor; Calmodulin-peptide complex, p75, death domain; 2.6A {Homo sapiens}
+Probab=22.33  E-value=78  Score=20.30  Aligned_cols=19  Identities=32%  Similarity=0.615  Sum_probs=14.9  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       101 ~~~g~i~~~~~~~~l~~~~  119 (154)
+T 3EWV_A          101 DGNGYISAAELRHVMTNLG  119 (154)
+T ss_dssp             TSSSCBCHHHHHHHHHHTT
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4578899999998887643
+
+
+No 104
+>5CPV_A CALCIUM-BINDING PARVALBUMIN B; CALCIUM BINDING; 1.6A {Cyprinus carpio} SCOP: a.39.1.4
+Probab=22.18  E-value=79  Score=18.40  Aligned_cols=18  Identities=39%  Similarity=0.658  Sum_probs=13.7  Template_Neff=12.900
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+++++.+...
+T Consensus        54 ~~~g~i~~~~~~~~l~~~   71 (109)
+T 5CPV_A           54 DKSGFIEEDELKLFLQNF   71 (109)
+T ss_dssp             TCSSEECHHHHHTGGGGT
+T ss_pred             CCCCccCHHHHHHHHHHh
+Confidence            457888888888877654
+
+
+No 105
+>3AKB_A Putative calcium binding protein; calcium-binding protein, EF-hand, METAL BINDING; HET: CA; 1.5A {Streptomyces coelicolor}
+Probab=22.03  E-value=80  Score=20.66  Aligned_cols=20  Identities=20%  Similarity=0.244  Sum_probs=16.1  Template_Neff=12.300
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      +.+|.|+.+|+++.++....
+T Consensus        16 ~~~g~i~~~e~~~~l~~~~~   35 (166)
+T 3AKB_A           16 DGNGHIDRSDFSGAAKAMLA   35 (166)
+T ss_dssp             TCSSEECHHHHHHHHHHHHH
+T ss_pred             CCCCeecHHHHHHHHHHHHH
+Confidence            46799999999998877543
+
+
+No 106
+>1GJY_A SORCIN; CALCIUM BINDING, CALCIUM-BINDING, PHOSPHORYLATION; HET: SO4; 2.2A {CHINESE HAMSTER} SCOP: a.39.1.8
+Probab=21.90  E-value=80  Score=20.88  Aligned_cols=19  Identities=32%  Similarity=0.525  Sum_probs=15.9  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+.+..
+T Consensus        13 ~~~g~i~~~e~~~~l~~~~   31 (167)
+T 1GJY_A           13 GQDGQIDADELQRCLTQSG   31 (167)
+T ss_dssp             CTTSCBCHHHHHHHHHHHT
+T ss_pred             CCCCccCHHHHHHHHHHcc
+Confidence            5789999999999987654
+
+
+No 107
+>3KF9_C Caltractin, Myosin light chain kinase; centrin, myosin light chain kinase; 2.6A {Scherffelia dubia}
+Probab=21.89  E-value=80  Score=19.78  Aligned_cols=19  Identities=37%  Similarity=0.545  Sum_probs=15.4  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+.+.+
+T Consensus        20 ~~~g~i~~~~~~~~l~~~~   38 (149)
+T 3KF9_C           20 DGSGTIDAKELKVAMRALG   38 (149)
+T ss_dssp             TCCSEECHHHHHHHHHHHT
+T ss_pred             CCCCccCHHHHHHHHHHcC
+Confidence            4678899999999988754
+
+
+No 108
+>3QRX_A Centrin, Melittin; calcium-binding, EF-hand, cell division, calcium; 2.2A {Chlamydomonas reinhardtii}
+Probab=21.88  E-value=81  Score=20.59  Aligned_cols=19  Identities=32%  Similarity=0.732  Sum_probs=15.2  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.++.+|+++.++..+
+T Consensus       113 ~~~g~i~~~e~~~~l~~~~  131 (169)
+T 3QRX_A          113 DNSGTITIKDLRRVAKELG  131 (169)
+T ss_dssp             TCSSSBCHHHHHHHHHHTT
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            4578999999999887654
+
+
+No 109
+>1QX2_B cbm1; EF-Hand (helix-loop-helix) Calcium Binding Protein; HET: FME; 1.44A {Bos taurus} SCOP: a.39.1.1
+Probab=21.72  E-value=81  Score=16.73  Aligned_cols=15  Identities=33%  Similarity=0.492  Sum_probs=12.2  Template_Neff=13.100
+
+Q M                 6 GTITVEELKKLLEQW   20 (222)
+Q Consensus         6 gtitveelkklleqw   20 (222)
+                      |.|+.+++++.+++.
+T Consensus        22 ~~i~~~~~~~~~~~~   36 (76)
+T 1QX2_B           22 NQISKEELKLVMQTL   36 (76)
+T ss_dssp             TEECHHHHHHHHHHH
+T ss_pred             CccCHHHHHHHHHHH
+Confidence            889999998877664
+
+
+No 110
+>4WRI_A okadaic acid binding protein 2-alpha; Inhibitor, Toxin; HET: MLY, OKA; 1.4A {Halichondria okadai}
+Probab=21.44  E-value=83  Score=21.90  Aligned_cols=18  Identities=39%  Similarity=0.339  Sum_probs=14.8  Template_Neff=11.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.+++.
+T Consensus       120 ~~~g~i~~~e~~~~l~~~  137 (192)
+T 4WRI_A          120 EKKGYITKEEATKLGIRV  137 (192)
+T ss_dssp             TCCSEEEHHHHHHHHHHH
+T ss_pred             CCCCeEcHHHHHHHHHHh
+Confidence            457899999999988765
+
+
+No 111
+>2KI0_A DS119; beta-alpha-beta, DE NOVO PROTEIN; NMR {N/A}
+Probab=21.31  E-value=84  Score=22.37  Aligned_cols=11  Identities=73%  Similarity=0.773  Sum_probs=9.2  Template_Neff=1.000
+
+Q M                 9 TVEELKKLLEQ   19 (222)
+Q Consensus         9 tveelkklleq   19 (222)
+                      |.|||||+-|.
+T Consensus        13 tpeelkklkee   23 (36)
+T 2KI0_A           13 TPEELKKLKEE   23 (36)
+T ss_dssp             CHHHHHHHHHH
+T ss_pred             CHHHHHHHHHH
+Confidence            68999998775
+
+
+No 112
+>2AAO_A Calcium-dependent protein kinase, isoform AK1; Calcium dependent protein kinase, calmodulin-like; 2.0A {Arabidopsis thaliana}
+Probab=21.26  E-value=84  Score=20.43  Aligned_cols=19  Identities=37%  Similarity=0.620  Sum_probs=14.4  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       111 ~~~g~i~~~~~~~~~~~~~  129 (166)
+T 2AAO_A          111 DGSGYITPDELQQACEEFG  129 (166)
+T ss_dssp             TCSSSBCHHHHHHHTCC--
+T ss_pred             CCCCeeCHHHHHHHHHHhC
+Confidence            4578999999999887754
+
+
+No 113
+>1M45_A Myosin light chain/IQ2 Motif from; Protein-Peptide complex, IQ motif, myosin; 1.65A {Saccharomyces cerevisiae} SCOP: a.39.1.5
+Probab=21.13  E-value=85  Score=19.64  Aligned_cols=19  Identities=21%  Similarity=0.366  Sum_probs=15.4  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+.+.+
+T Consensus        16 ~~~g~i~~~~~~~~l~~~~   34 (148)
+T 1M45_A           16 KGQGAIAKDSLGDYLRAIG   34 (148)
+T ss_dssp             TCCSEEEGGGHHHHHHHTT
+T ss_pred             CCCCccCHHHHHHHHHHcC
+Confidence            4679999999999887743
+
+
+No 114
+>5VLN_A Troponin C, slow skeletal and; cardiac troponin calcium binding protein; NMR {Homo sapiens}
+Probab=21.07  E-value=86  Score=19.48  Aligned_cols=16  Identities=13%  Similarity=0.081  Sum_probs=11.2  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLE   18 (222)
+Q Consensus         3 dsngtitveelkklle   18 (222)
+                      +.+|.||.+|+.+.|.
+T Consensus        98 ~~~~~i~~~~~~~~l~  113 (120)
+T 5VLN_A           98 LRRVRISADAMMQALL  113 (120)
+T ss_dssp             TTTCCCCHHHHHHHHH
+T ss_pred             HhcCCcCHHHHHHHHH
+Confidence            4567888888777654
+
+
+No 115
+>5H53_B Skeletal muscle myosin heavy chain; Actin, Myosin, Muscle, rigor complex; HET: ADP, HIC; 5.2A {Oryctolagus cuniculus}
+Probab=21.01  E-value=86  Score=19.79  Aligned_cols=19  Identities=21%  Similarity=0.455  Sum_probs=15.3  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++++...+
+T Consensus        17 ~~~g~i~~~~~~~~l~~~~   35 (146)
+T 5H53_B           17 NRDGIIDKEDLRDTFAAMG   35 (146)
+T ss_dssp             SSSSCCCHHHHHHHHHHHC
+T ss_pred             CCCCcccHHHHHHHHHHcc
+Confidence            4578999999999987654
+
+
+No 116
+>2SAS_A SARCOPLASMIC CALCIUM-BINDING PROTEIN (ISO TYPE; CALCIUM-BINDING PROTEIN; 2.4A {Branchiostoma lanceolatum} SCOP: a.39.1.5
+Probab=20.92  E-value=87  Score=20.90  Aligned_cols=18  Identities=17%  Similarity=0.547  Sum_probs=14.2  Template_Neff=12.300
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|++..+.+.
+T Consensus       117 ~~~g~i~~~e~~~~~~~~  134 (185)
+T 2SAS_A          117 SGDGIVDLEEFQNYCKNF  134 (185)
+T ss_dssp             TSSSCCCHHHHHHHTTSS
+T ss_pred             CCCceecHHHHHHHHHhc
+Confidence            457889999998887665
+
+
+No 117
+>1EG3_A STRUCTURE OF A DYSTROPHIN WW; EF-hand like domain, WW domain; 2.0A {Homo sapiens} SCOP: b.72.1.1, a.39.1.7
+Probab=20.87  E-value=87  Score=24.27  Aligned_cols=17  Identities=29%  Similarity=0.313  Sum_probs=14.5  Template_Neff=10.400
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      |.+|.|+.+|++++++.
+T Consensus       179 d~~g~I~~~el~~~l~~  195 (261)
+T 1EG3_A          179 SSTGFCDQRRLGLLLHD  195 (261)
+T ss_dssp             CTTSCBCHHHHHHHHHH
+T ss_pred             CCCCcccHHHHHHHHHH
+Confidence            57899999999998874
+
+
+No 118
+>1UHH_A Aequorin 2; 4 EF-HAND MOTIF, COMPLEX, LUMINESCENT; HET: MSE, CZP; 1.8A {Aequorea victoria} SCOP: a.39.1.5
+Probab=20.85  E-value=87  Score=21.23  Aligned_cols=18  Identities=39%  Similarity=0.532  Sum_probs=14.8  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.++..
+T Consensus       121 ~~~g~i~~~e~~~~l~~~  138 (191)
+T 1UHH_A          121 DQNGAITLDEWKAYTKAA  138 (191)
+T ss_dssp             TCSSEECHHHHHHHHHHH
+T ss_pred             CCCCcccHHHHHHHHHHh
+Confidence            467999999999988654
+
+
+No 119
+>1UHK_B Aequorin 2; 4 EF-hand motif, Complex, LUMINESCENT; HET: CZN; 1.6A {Aequorea victoria} SCOP: a.39.1.5
+Probab=20.85  E-value=87  Score=21.23  Aligned_cols=18  Identities=39%  Similarity=0.532  Sum_probs=14.8  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.++..
+T Consensus       121 ~~~g~i~~~e~~~~l~~~  138 (191)
+T 1UHK_B          121 DQNGAITLDEWKAYTKAA  138 (191)
+T ss_dssp             TCSSEECHHHHHHHHHHH
+T ss_pred             CCCCcccHHHHHHHHHHh
+Confidence            467999999999988654
+
+
+No 120
+>5BPJ_A Apoberovin 1; Luminescent protein, Ca(2+)-regulated photoprotein, Coelenterazine; 1.756A {Beroe abyssicola}
+Probab=20.85  E-value=87  Score=22.22  Aligned_cols=19  Identities=37%  Similarity=0.858  Sum_probs=15.7  Template_Neff=11.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.++..+
+T Consensus       140 ~~~g~i~~~e~~~~l~~~~  158 (208)
+T 5BPJ_A          140 DGDGTVDVDELKTMMKAFD  158 (208)
+T ss_dssp             SCSSSBCHHHHHHHHHHTC
+T ss_pred             CCCCcccHHHHHHHHHHcC
+Confidence            4679999999999988654
+
+
+No 121
+>2CCM_B CALEXCITIN; EF HAND, CALCIUM, SIGNALING PROTEIN; 1.8A {LOLIGO PEALEII}
+Probab=20.82  E-value=87  Score=21.12  Aligned_cols=18  Identities=11%  Similarity=0.252  Sum_probs=14.8  Template_Neff=12.200
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      |.+|.|+.+|+++.++..
+T Consensus       121 ~~~g~i~~~e~~~~l~~~  138 (191)
+T 2CCM_B          121 SGDNIIDKHEYSTVYMSY  138 (191)
+T ss_dssp             TCSSBCCHHHHHHHHGGG
+T ss_pred             CCCCceeHHHHHHHHHHh
+Confidence            457899999999988764
+
+
+No 122
+>1QV0_A Obelin (E.C.1.13.12.5); Photoprotein, obelin, bioluminescence, atomic resolution; HET: CZH; 1.1A {Obelia longissima} SCOP: a.39.1.5
+Probab=20.80  E-value=88  Score=21.20  Aligned_cols=19  Identities=37%  Similarity=0.419  Sum_probs=13.3  Template_Neff=12.200
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       125 ~~~g~i~~~el~~~l~~~~  143 (195)
+T 1QV0_A          125 DGSGTITLDEWKAYGKISG  143 (195)
+T ss_dssp             ---CEECHHHHHHHHHHHS
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4578999999999887653
+
+
+No 123
+>1QV1_A Obelin (E.C.1.13.12.5); Photoprotein, obelin, bioluminescence, atomic resolution; HET: CZH; 1.1A {Obelia longissima} SCOP: a.39.1.5
+Probab=20.80  E-value=88  Score=21.20  Aligned_cols=19  Identities=37%  Similarity=0.419  Sum_probs=13.3  Template_Neff=12.200
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++..+
+T Consensus       125 ~~~g~i~~~el~~~l~~~~  143 (195)
+T 1QV1_A          125 DGSGTITLDEWKAYGKISG  143 (195)
+T ss_dssp             ---CEECHHHHHHHHHHHS
+T ss_pred             CCCCcccHHHHHHHHHHhC
+Confidence            4578999999999887653
+
+
+No 124
+>4ZCU_C ATP-Mg/Pi carrier regulatory domain; EF-hand, ATP-Mg/Pi, carrier, calcium, transport; HET: CA, SO4, GOL; 2.1A {Homo sapiens}
+Probab=20.75  E-value=88  Score=20.66  Aligned_cols=18  Identities=22%  Similarity=0.470  Sum_probs=14.6  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        92 ~~~g~i~~~~~~~~l~~~  109 (165)
+T 4ZCU_C           92 NNDGKIEASEIVQSLQTL  109 (165)
+T ss_dssp             TCSSEECHHHHHHHHHHT
+T ss_pred             CCCCccCHHHHHHHHHHc
+Confidence            467899999999888764
+
+
+No 125
+>4ZCV_A ATP-Mg/Pi carrier regulatory domain; EF-hand, ATP-Mg/Pi, carrier, calcium, transport; HET: SO4, CA, GOL; 2.8A {Homo sapiens}
+Probab=20.75  E-value=88  Score=20.66  Aligned_cols=18  Identities=22%  Similarity=0.470  Sum_probs=14.6  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        92 ~~~g~i~~~~~~~~l~~~  109 (165)
+T 4ZCV_A           92 NNDGKIEASEIVQSLQTL  109 (165)
+T ss_dssp             SCSSEECHHHHHHHHHHT
+T ss_pred             CCCCccCHHHHHHHHHHc
+Confidence            467899999999888764
+
+
+No 126
+>4ZCV_D ATP-Mg/Pi carrier regulatory domain; EF-hand, ATP-Mg/Pi, carrier, calcium, transport; HET: CA, SO4, GOL; 2.8A {Homo sapiens}
+Probab=20.75  E-value=88  Score=20.66  Aligned_cols=18  Identities=22%  Similarity=0.470  Sum_probs=14.6  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        92 ~~~g~i~~~~~~~~l~~~  109 (165)
+T 4ZCV_D           92 NNDGKIEASEIVQSLQTL  109 (165)
+T ss_dssp             SCSSEECHHHHHHHHHHT
+T ss_pred             CCCCccCHHHHHHHHHHc
+Confidence            467899999999888764
+
+
+No 127
+>4GGN_A Myosin A tail domain interacting; Malaria invasion machinery protein, PROTEIN; 2.29A {Plasmodium knowlesi}
+Probab=20.66  E-value=89  Score=19.09  Aligned_cols=18  Identities=22%  Similarity=0.403  Sum_probs=13.1  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++.-
+T Consensus         8 ~~~g~i~~~~~~~~l~~~   25 (127)
+T 4GGN_A            8 SSNGKLRIEDASHNARKL   25 (127)
+T ss_dssp             CC--CEEHHHHHHHHHHT
+T ss_pred             CCCCCccHHHHHHHHHHc
+Confidence            567999999999888764
+
+
+No 128
+>2PVB_A PROTEIN (PARVALBUMIN); CALCIUM BINDING PROTEIN, METAL BINDING; 0.91A {Esox lucius} SCOP: a.39.1.4
+Probab=20.65  E-value=89  Score=18.47  Aligned_cols=18  Identities=39%  Similarity=0.658  Sum_probs=13.2  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +++|.|+.+|+++.++.-
+T Consensus        53 ~~~g~i~~~~~~~~l~~~   70 (108)
+T 2PVB_A           53 DKSGFIEEDELKLFLQNF   70 (108)
+T ss_dssp             TCSSSBCHHHHHTGGGGT
+T ss_pred             CCCCccCHHHHHHHHHHh
+Confidence            457888888888776653
+
+
+No 129
+>2I7A_A Calpain 13; calpain, calcium-dependent cytoplasmic cysteine proteinases; HET: SO4; 1.8A {Homo sapiens}
+Probab=20.64  E-value=89  Score=22.02  Aligned_cols=19  Identities=26%  Similarity=0.307  Sum_probs=15.4  Template_Neff=11.000
+
+Q M                 2 ADSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         2 adsngtitveelkklleqw   20 (222)
+                      .+++|.|+.+|+++++.+-
+T Consensus        15 ~~~~g~i~~~e~~~~l~~~   33 (174)
+T 2I7A_A           15 VPRGSDIDATQLQGLLNQE   33 (174)
+T ss_dssp             CC-CCCEEHHHHHHHHHHH
+T ss_pred             CCCCCeeCHHHHHHHHHHH
+Confidence            3678999999999999874
+
+
+No 130
+>1GGW_A CDC4P; LIGHT CHAIN, CYTOKINESIS, CELL CYCLE; NMR {Schizosaccharomyces pombe} SCOP: a.39.1.5
+Probab=20.57  E-value=89  Score=19.45  Aligned_cols=18  Identities=39%  Similarity=0.578  Sum_probs=14.6  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        88 ~~~g~i~~~~~~~~l~~~  105 (140)
+T 1GGW_A           88 DATGMIGVGELRYVLTSL  105 (140)
+T ss_dssp             SCSSCCCHHHHHHHHHHH
+T ss_pred             CCCCeEeHHHHHHHHHHh
+Confidence            457899999999888764
+
+
+No 131
+>2FCD_A Myosin light chain 1; EF-HAND PROTEIN, CELL CYCLE; NMR {Saccharomyces cerevisiae}
+Probab=20.56  E-value=89  Score=17.11  Aligned_cols=18  Identities=22%  Similarity=0.379  Sum_probs=13.4  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.++++..+...
+T Consensus        16 ~~~g~i~~~~~~~~~~~~   33 (78)
+T 2FCD_A           16 KGQGAIAKDSLGDYLRAI   33 (78)
+T ss_pred             CCCCccCHHHHHHHHHHc
+Confidence            467888888888776653
+
+
+No 132
+>3J04_C Myosin-11, Myosin regulatory light chain; PHOSPHORYLATION, 2D CRYSTALLINE ARRAYS, MYOSIN; 20.0A {Gallus gallus}
+Probab=20.55  E-value=89  Score=19.55  Aligned_cols=19  Identities=11%  Similarity=0.268  Sum_probs=15.2  Template_Neff=12.700
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+...+
+T Consensus        19 ~~~g~i~~~~~~~~l~~~~   37 (148)
+T 3J04_C           19 TGDGKILYSQCGDVMRALG   37 (148)
+T ss_dssp             SSSSCEETTTHHHHHHHTT
+T ss_pred             CCCCceeHHHHHHHHHHcC
+Confidence            4678999999998887654
+
+
+No 133
+>2ZND_A Programmed cell death protein 6; PENTA-EF-HAND PROTEIN, CALCIUM BINDING PROTEIN; HET: MRD, PO4; 1.7A {Homo sapiens}
+Probab=20.44  E-value=90  Score=20.44  Aligned_cols=19  Identities=32%  Similarity=0.445  Sum_probs=15.5  Template_Neff=12.400
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.+.+.+
+T Consensus        19 ~~~g~i~~~~~~~~l~~~~   37 (172)
+T 2ZND_A           19 DRSGVISDTELQQALSNGT   37 (172)
+T ss_dssp             TCSSCEEHHHHHHHCCCSS
+T ss_pred             CCCCeeCHHHHHHHHhCCC
+Confidence            4679999999999987743
+
+
+No 134
+>3KHE_A Calmodulin-like domain protein kinase isoform; calcium dependent kinase, Structural Genomics; HET: GOL; 1.95A {Toxoplasma gondii}
+Probab=20.38  E-value=91  Score=21.27  Aligned_cols=17  Identities=47%  Similarity=0.657  Sum_probs=14.5  Template_Neff=12.000
+
+Q M                 3 DSNGTITVEELKKLLEQ   19 (222)
+Q Consensus         3 dsngtitveelkklleq   19 (222)
+                      |.+|.|+.+|+++.++.
+T Consensus       135 ~~~g~i~~~~~~~~l~~  151 (191)
+T 3KHE_A          135 DGSGKITNEELGRLFGV  151 (191)
+T ss_dssp             TCSSEECHHHHHHHTTS
+T ss_pred             CCCCccCHHHHHHHHcC
+Confidence            56899999999998876
+
+
+No 135
+>5ZOR_A Centrin, putative; centrin, EF-hand, calcium binding, Trypanosoma; NMR {Trypanosoma brucei brucei (strain 927/4 GUTat10.1)}
+Probab=20.33  E-value=91  Score=19.76  Aligned_cols=19  Identities=26%  Similarity=0.463  Sum_probs=15.1  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.++.+|+++.+...+
+T Consensus        19 ~~~g~l~~~~~~~~l~~~~   37 (149)
+T 5ZOR_A           19 DGSGAIDAEEMALAMKGLG   37 (149)
+T ss_pred             CCCCeecHHHHHHHHHHcC
+Confidence            4578999999999887653
+
+
+No 136
+>6SO3_C Myosin 2 heavy chain striated; myosin, thick filament, insect flight; 6.2A {Lethocerus indicus}
+Probab=20.27  E-value=91  Score=19.82  Aligned_cols=18  Identities=33%  Similarity=0.453  Sum_probs=14.5  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        96 ~~~g~i~~~~~~~~l~~~  113 (156)
+T 6SO3_C           96 AENGTMLAAELAHVLLSL  113 (156)
+T ss_pred             CCCCeEcHHHHHHHHHHh
+Confidence            457899999999888764
+
+
+No 137
+>6SO3_D Myosin 2 heavy chain striated; myosin, thick filament, insect flight; 6.2A {Lethocerus indicus}
+Probab=20.27  E-value=91  Score=19.82  Aligned_cols=18  Identities=33%  Similarity=0.453  Sum_probs=14.5  Template_Neff=12.600
+
+Q M                 3 DSNGTITVEELKKLLEQW   20 (222)
+Q Consensus         3 dsngtitveelkklleqw   20 (222)
+                      +.+|.|+.+|+++.++..
+T Consensus        96 ~~~g~i~~~~~~~~l~~~  113 (156)
+T 6SO3_D           96 AENGTMLAAELAHVLLSL  113 (156)
+T ss_pred             CCCCeEcHHHHHHHHHHh
+Confidence            457899999999888764
+
+
+No 138
+>1OMR_A Recoverin; EF-hand, helix-loop-helix, metal binding protein; 1.5A {Bos taurus} SCOP: a.39.1.5
+Probab=20.19  E-value=92  Score=21.54  Aligned_cols=19  Identities=32%  Similarity=0.468  Sum_probs=15.2  Template_Neff=11.900
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      |.+|.|+.+|+++.+....
+T Consensus       111 ~~~g~i~~~e~~~~l~~~~  129 (201)
+T 1OMR_A          111 DGNGTISKNEVLEIVTAIF  129 (201)
+T ss_dssp             TCSSSBCHHHHHHHHHHHH
+T ss_pred             CCCCccCHHHHHHHHHHHH
+Confidence            5679999999998887643
+
+
+No 139
+>2LHI_A Calmodulin, Serine/threonine-protein phosphatase 2B catalytic; yeast calmodulin, CNA1, METAL BINDING; HET: CA; NMR {Saccharomyces cerevisiae, synthetic, Saccharomyces cerevisiae}
+Probab=20.16  E-value=92  Score=20.81  Aligned_cols=19  Identities=32%  Similarity=0.555  Sum_probs=15.2  Template_Neff=12.100
+
+Q M                 3 DSNGTITVEELKKLLEQWN   21 (222)
+Q Consensus         3 dsngtitveelkklleqwn   21 (222)
+                      +.+|.|+.+|+++.++...
+T Consensus        96 ~~~g~i~~~e~~~~l~~~~  114 (176)
+T 2LHI_A           96 NGDGLISAAELKHVLTSIG  114 (176)
+T ss_dssp             SCSSSBCHHHHHHHHHTTT
+T ss_pred             CCCCccCHHHHHHHHHHhC
+Confidence            4578999999999887753
+
+
+No 140
+>6FIE_B Calbindin; Calcium Binding Protein, Buffer, IMPase; 1.51A {Homo sapiens}
+Probab=20.15  E-value=92  Score=21.92  Aligned_cols=20  Identities=40%  Similarity=0.486  Sum_probs=16.6  Template_Neff=12.500
+
+Q M                 3 DSNGTITVEELKKLLEQWNL   22 (222)
+Q Consensus         3 dsngtitveelkklleqwnl   22 (222)
+                      |.+|.|+.+|+++.++..+.
+T Consensus       204 ~~~g~i~~~e~~~~l~~~~~  223 (264)
+T 6FIE_B          204 DGNGYIDENELDALLKDLCE  223 (264)
+T ss_dssp             TCSSSBCHHHHHHHHHHHHH
+T ss_pred             CCCCeecHHHHHHHHHHHHH
+Confidence            56799999999999887654
+
+

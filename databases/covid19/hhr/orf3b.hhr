@@ -1,0 +1,488 @@
+Query         orf3b
+Match_columns 57
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:08:55 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/orf3b.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//orf3b.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 6GAP_A Outer capsid protein si  37.6      28 0.00034   24.4   0.0   16    2-17     13-28  (261)
+  2 6GAP_C Outer capsid protein si  37.6      28 0.00034   24.4   0.0   16    2-17     13-28  (261)
+  3 3BL5_B Queuosine biosynthesis   31.0      43 0.00052   19.6   0.0    9    3-11    194-202 (219)
+  4 3BL5_E Queuosine biosynthesis   31.0      43 0.00052   19.6   0.0    9    3-11    194-202 (219)
+  5 5FUV_A THYMDINE KINASE (E.C.2.  29.0      49 0.00059   19.2   0.0   19    2-20    137-157 (182)
+  6 5FUX_B THYMDINE KINASE (E.C.2.  29.0      49 0.00059   19.2   0.0   19    2-20    137-157 (182)
+  7 4OWF_G NF-kappa-B essential mo  28.7      50  0.0006   14.4   0.0    9    5-13      5-13  (30)
+  8 2CUP_A Skeletal muscle LIM-pro  28.4      51 0.00061   16.3   0.0    8    3-10     93-100 (101)
+  9 3CZU_B Ephrin type-A receptor   27.8      53 0.00064   23.3   0.0   38   11-48    114-163 (182)
+ 10 1WQ9_A Vascular endothelial gr  27.5      54 0.00065   19.7   0.0   13    5-17     43-55  (96)
+ 11 1Q5W_A homolog of yeast nuclea  26.5      58  0.0007   14.3   0.0    9    5-13      7-15  (31)
+ 12 1RV6_V placenta growth factor   25.0      64 0.00077   19.8   0.0   11    6-16     46-56  (101)
+ 13 1RV6_W placenta growth factor   25.0      64 0.00077   19.8   0.0   11    6-16     46-56  (101)
+ 14 4S1Z_I Ubiquitin, Ubiquitin th  24.3      67 0.00081   14.8   0.0    9    5-13     11-19  (36)
+ 15 1MJV_A Vascular Endothelial Gr  23.8      70 0.00084   19.3   0.0   11    6-16     44-54  (96)
+ 16 3ESW_A Peptide-N(4)-(N-acetyl-  23.5      71 0.00087   24.5   0.0   46    5-50    177-222 (355)
+ 17 2F4M_A peptide N-glycanase (E.  23.1      73 0.00089   23.2   0.0   47    4-50    114-160 (295)
+ 18 2GQE_A Nuclear pore complex pr  23.1      74 0.00089   14.2   0.0    9    5-13      8-16  (32)
+ 19 2XV7_A VASCULAR ENDOTHELIAL GR  22.9      75 0.00091   20.2   0.0   11    6-16     52-62  (112)
+ 20 4MQW_D Glycoprotein hormones,   22.4      77 0.00094   22.1   0.0   14    5-18     26-39  (102)
+ 21 3A9J_C Ubiquitin, Mitogen-acti  22.0      80 0.00097   14.4   0.0    9    5-13      9-17  (34)
+ 22 1WQ8_A Vascular endothelial gr  21.5      83   0.001   19.6   0.0   11    6-16     44-54  (110)
+ 23 2LBZ_A Thuricin17; helical loo  21.5      83   0.001   18.1   0.0   11    3-13      3-13  (31)
+ 24 4AY9_G GLYCOPROTEIN HORMONES,   21.4      84   0.001   21.6   0.0   14    5-18     26-39  (92)
+ 25 1HD4_A CHORIONIC GONADOTROPIN;  21.4      84   0.001   21.6   0.0   14    5-18     26-39  (92)
+ 26 3HEI_L Ephrin type-A receptor   21.1      85   0.001   20.6   0.0   34   11-44     86-131 (132)
+ 27 1MKK_A Vascular Endothelial Gr  21.1      85   0.001   18.9   0.0   12    6-17     44-55  (96)
+ 28 2WWZ_C UBIQUITIN, MITOGEN-ACTI  20.9      87   0.001   13.8   0.0    9    5-13      7-15  (32)
+ 29 6RM3_SFF uL2, uS2, uL15, eS26,  20.7      88  0.0011   18.4   0.0   10    6-15    136-145 (151)
+ 30 4UXH_A THYMIDINE KINASE (E.C.2  20.1      93  0.0011   18.3   0.0   21    2-22    139-161 (184)
+ 31 4UXH_B THYMIDINE KINASE (E.C.2  20.1      93  0.0011   18.3   0.0   21    2-22    139-161 (184)
+ 32 1X3Z_A peptide:N-glycanase (E.  20.1      93  0.0011   23.7   0.0   46    5-50    156-201 (335)
+
+No 1
+>6GAP_A Outer capsid protein sigma-1; cell attachment protein, reovirus sigma1; 2.15A {Mammalian orthoreovirus 3 Dearing}
+Probab=37.63  E-value=28  Score=24.37  Aligned_cols=16  Identities=13%  Similarity=0.052  Sum_probs=1.5  Template_Neff=7.400
+
+Q orf3b             2 AYCWRCTSCCFSERFQ   17 (57)
+Q Consensus         2 aycwrctsccfserfq   17 (57)
+                      ..||.|++-.-.+..+
+T Consensus        13 ~~cw~cg~~~~~~~le   28 (261)
+T 6GAP_A           13 GLVPRGSHMASSKGLE   28 (261)
+T ss_dssp             -------------CHH
+T ss_pred             CCCCCCCCccchHHHH
+Confidence            4699999876665544
+
+
+No 2
+>6GAP_C Outer capsid protein sigma-1; cell attachment protein, reovirus sigma1; 2.15A {Mammalian orthoreovirus 3 Dearing}
+Probab=37.63  E-value=28  Score=24.37  Aligned_cols=16  Identities=13%  Similarity=0.052  Sum_probs=1.5  Template_Neff=7.400
+
+Q orf3b             2 AYCWRCTSCCFSERFQ   17 (57)
+Q Consensus         2 aycwrctsccfserfq   17 (57)
+                      ..||.|++-.-.+..+
+T Consensus        13 ~~cw~cg~~~~~~~le   28 (261)
+T 6GAP_C           13 GLVPRGSHMASSKGLE   28 (261)
+T ss_dssp             -------------CHH
+T ss_pred             CCCCCCCCccchHHHH
+Confidence            4699999876665544
+
+
+No 3
+>3BL5_B Queuosine biosynthesis protein queC (E.C.3.5.-.-); preQ1 biosynthesis, RNA modification, tRNA; HET: PO4; 2.95A {Bacillus subtilis}
+Probab=31.04  E-value=43  Score=19.56  Aligned_cols=9  Identities=33%  Similarity=0.991  Sum_probs=6.6  Template_Neff=11.200
+
+Q orf3b             3 YCWRCTSCC   11 (57)
+Q Consensus         3 ycwrctscc   11 (57)
+                      -|+.|..|-
+T Consensus       194 ~C~~C~~c~  202 (219)
+T 3BL5_B          194 GCGECPACH  202 (219)
+T ss_dssp             CCSCSHHHH
+T ss_pred             CCCCCHHHH
+Confidence            488888874
+
+
+No 4
+>3BL5_E Queuosine biosynthesis protein queC (E.C.3.5.-.-); preQ1 biosynthesis, RNA modification, tRNA; HET: PO4; 2.95A {Bacillus subtilis}
+Probab=31.04  E-value=43  Score=19.56  Aligned_cols=9  Identities=33%  Similarity=0.991  Sum_probs=6.6  Template_Neff=11.200
+
+Q orf3b             3 YCWRCTSCC   11 (57)
+Q Consensus         3 ycwrctscc   11 (57)
+                      -|+.|..|-
+T Consensus       194 ~C~~C~~c~  202 (219)
+T 3BL5_E          194 GCGECPACH  202 (219)
+T ss_dssp             CCSCSHHHH
+T ss_pred             CCCCCHHHH
+Confidence            488888874
+
+
+No 5
+>5FUV_A THYMDINE KINASE (E.C.2.7.1.21); TRANSFERASE, THYMIDINE KINASE, T.BRUCEI, TBTK; HET: GOL, THM; 2.3A {TRYPANOSOMA BRUCEI}
+Probab=28.97  E-value=49  Score=19.18  Aligned_cols=19  Identities=26%  Similarity=0.606  Sum_probs=13.5  Template_Neff=10.700
+
+Q orf3b             2 AYCWRCTS--CCFSERFQNHN   20 (57)
+Q Consensus         2 aycwrcts--ccfserfqnhn   20 (57)
+                      ++||.|.+  -.++.|+.+..
+T Consensus       137 ~~c~~c~~~~~~~~~~~~~~~  157 (182)
+T 5FUV_A          137 AVCMECHNRKASFTYRTVKSD  157 (182)
+T ss_dssp             EECTTTSSSEECEEEECSCCC
+T ss_pred             EecccccCCceeeEEEEeCCC
+Confidence            57888883  67788876643
+
+
+No 6
+>5FUX_B THYMDINE KINASE (E.C.2.7.1.21); TRANSFERASE, TRANSEFRASE, THYMIDINE KINASE, T.BRUCEI; HET: PO4, QBT; 2.2A {TRYPANOSOMA BRUCEI}
+Probab=28.97  E-value=49  Score=19.18  Aligned_cols=19  Identities=26%  Similarity=0.606  Sum_probs=13.5  Template_Neff=10.700
+
+Q orf3b             2 AYCWRCTS--CCFSERFQNHN   20 (57)
+Q Consensus         2 aycwrcts--ccfserfqnhn   20 (57)
+                      ++||.|.+  -.++.|+.+..
+T Consensus       137 ~~c~~c~~~~~~~~~~~~~~~  157 (182)
+T 5FUX_B          137 AVCMECHNRKASFTYRTVKSD  157 (182)
+T ss_dssp             EECTTTSSSEECEEEECSCCC
+T ss_pred             EecccccCCceeeEEEEeCCC
+Confidence            57888883  67788876643
+
+
+No 7
+>4OWF_G NF-kappa-B essential modulator (E.C.6.3.2.-), ZINC; LUBAC, NF-kappa B, NEMO, HOIP; 2.0A {Mus musculus}
+Probab=28.70  E-value=50  Score=14.37  Aligned_cols=9  Identities=56%  Similarity=1.682  Sum_probs=6.8  Template_Neff=9.300
+
+Q orf3b             5 WRCTSCCFS   13 (57)
+Q Consensus         5 wrctsccfs   13 (57)
+                      |.|..|.|.
+T Consensus         5 w~C~~C~~~   13 (30)
+T 4OWF_G            5 WACQSCTFE   13 (30)
+T ss_dssp             EECTTTCCE
+T ss_pred             ccCCCCCCc
+Confidence            788888764
+
+
+No 8
+>2CUP_A Skeletal muscle LIM-protein 1; Four and half LIM domains; HET: ZN; NMR {Homo sapiens} SCOP: g.39.1.3
+Probab=28.40  E-value=51  Score=16.27  Aligned_cols=8  Identities=25%  Similarity=0.522  Sum_probs=5.1  Template_Neff=11.700
+
+Q orf3b             3 YCWRCTSC   10 (57)
+Q Consensus         3 ycwrctsc   10 (57)
+                      .|++|.+|
+T Consensus        93 ~cf~c~~c  100 (101)
+T 2CUP_A           93 DCFSGPSS  100 (101)
+T ss_dssp             TTCCCTTC
+T ss_pred             hhccCCCC
+Confidence            46677665
+
+
+No 9
+>3CZU_B Ephrin type-A receptor 2 (E.C.2.7.10.1); ATP-BINDING, KINASE, NUCLEOTIDE-BINDING, RECEPTOR, TRANSFERASE; HET: MAN, NAG; 2.65A {Homo sapiens}
+Probab=27.80  E-value=53  Score=23.33  Aligned_cols=38  Identities=29%  Similarity=0.423  Sum_probs=25.5  Template_Neff=5.400
+
+Q orf3b            11 CFSERFQNHNPQKE------------MATSTLQGCSLCLQLAVVVCNSLL   48 (57)
+Q Consensus        11 cfserfqnhnpqke------------matstlqgcslclqlavvvcnsll   48 (57)
+                      -|+..||..+|...            ++||+-....+|+.|.|-||..--
+T Consensus       114 ~~ti~Fr~fsP~P~GleF~pG~tYYfISTS~g~~~G~CmRl~v~V~~~~~  163 (182)
+T 3CZU_B          114 KLSEKFQRFTPFTLGKEFKEGHSYYYISKPIHQHEDRCLRLKVTVSGKIT  163 (182)
+T ss_dssp             EEEEECCSCCSCTTSCCCCTTCEEEEEEEESSSCCCSCCEEEEEE-----
+T ss_pred             eEEEEeeeeCCCCCceecCCCCeEEEEEecCCCCCcceEEEEEEEecCCC
+Confidence            46778887666542            578887778899999999986543
+
+
+No 10
+>1WQ9_A Vascular endothelial growth factor; Snake venom, Vascular endothelial growth; 2.0A {Daboia russellii russellii} SCOP: g.17.1.1
+Probab=27.51  E-value=54  Score=19.68  Aligned_cols=13  Identities=38%  Similarity=1.158  Sum_probs=9.9  Template_Neff=7.400
+
+Q orf3b             5 WRCTSCCFSERFQ   17 (57)
+Q Consensus         5 wrctsccfserfq   17 (57)
+                      .||+.||-++..+
+T Consensus        43 ~RC~GCC~~~~~~   55 (96)
+T 1WQ9_A           43 LRCSGCCTDESMK   55 (96)
+T ss_dssp             EEEECCCSSTTEE
+T ss_pred             EeccCCCCCCCeE
+Confidence            4899999987544
+
+
+No 11
+>1Q5W_A homolog of yeast nuclear protein; Ubiquitin, Protein-Protein complex, Zinc-finger, Rubredoxin; HET: ZN; NMR {Rattus norvegicus} SCOP: g.41.11.1
+Probab=26.48  E-value=58  Score=14.34  Aligned_cols=9  Identities=44%  Similarity=1.534  Sum_probs=6.6  Template_Neff=9.200
+
+Q orf3b             5 WRCTSCCFS   13 (57)
+Q Consensus         5 wrctsccfs   13 (57)
+                      |.|..|-|.
+T Consensus         7 w~C~~Ct~~   15 (31)
+T 1Q5W_A            7 WACQHCTFM   15 (31)
+T ss_dssp             EECSSSCCE
+T ss_pred             ccCCCCCCc
+Confidence            778888764
+
+
+No 12
+>1RV6_V placenta growth factor (PlGF), FLT1; PlGF, VEGF family, cystine knot; HET: B3P; 2.45A {Homo sapiens} SCOP: g.17.1.1
+Probab=25.02  E-value=64  Score=19.76  Aligned_cols=11  Identities=55%  Similarity=1.310  Sum_probs=8.9  Template_Neff=7.100
+
+Q orf3b             6 RCTSCCFSERF   16 (57)
+Q Consensus         6 rctsccfserf   16 (57)
+                      ||+.||-++..
+T Consensus        46 RC~GCC~~~~~   56 (101)
+T 1RV6_V           46 RCTGCCGDENL   56 (101)
+T ss_dssp             EEECCTTSTTE
+T ss_pred             eecCCCCCCCe
+Confidence            89999998744
+
+
+No 13
+>1RV6_W placenta growth factor (PlGF), FLT1; PlGF, VEGF family, cystine knot; HET: B3P; 2.45A {Homo sapiens} SCOP: g.17.1.1
+Probab=25.02  E-value=64  Score=19.76  Aligned_cols=11  Identities=55%  Similarity=1.310  Sum_probs=8.9  Template_Neff=7.100
+
+Q orf3b             6 RCTSCCFSERF   16 (57)
+Q Consensus         6 rctsccfserf   16 (57)
+                      ||+.||-++..
+T Consensus        46 RC~GCC~~~~~   56 (101)
+T 1RV6_W           46 RCTGCCGDENL   56 (101)
+T ss_dssp             EEECCTTSTTE
+T ss_pred             eecCCCCCCCe
+Confidence            89999998744
+
+
+No 14
+>4S1Z_I Ubiquitin, Ubiquitin thioesterase ZRANB1 (E.C.3.4.19.12); zinc finger, Hydrolase, Protease, Ubiquitin; 3.03A {Bos taurus}
+Probab=24.32  E-value=67  Score=14.77  Aligned_cols=9  Identities=33%  Similarity=1.457  Sum_probs=6.7  Template_Neff=9.000
+
+Q orf3b             5 WRCTSCCFS   13 (57)
+Q Consensus         5 wrctsccfs   13 (57)
+                      |.|..|.|.
+T Consensus        11 w~C~~Ct~~   19 (36)
+T 4S1Z_I           11 WACEYCTYE   19 (36)
+T ss_dssp             EECSSSCCE
+T ss_pred             eeCCCCCCc
+Confidence            778888764
+
+
+No 15
+>1MJV_A Vascular Endothelial Growth Factor A; cystine-knot growth factor, HORMONE-GROWTH FACTOR; 2.1A {Homo sapiens} SCOP: g.17.1.1
+Probab=23.84  E-value=70  Score=19.28  Aligned_cols=11  Identities=36%  Similarity=0.893  Sum_probs=9.0  Template_Neff=7.300
+
+Q orf3b             6 RCTSCCFSERF   16 (57)
+Q Consensus         6 rctsccfserf   16 (57)
+                      ||+.||-++..
+T Consensus        44 RC~GCC~~~~~   54 (96)
+T 1MJV_A           44 RCGGACNDEGL   54 (96)
+T ss_dssp             EEECBCSSTTE
+T ss_pred             eecCCCCCCCc
+Confidence            89999998754
+
+
+No 16
+>3ESW_A Peptide-N(4)-(N-acetyl-beta-glucosaminyl)asparagine amidase (E.C.3.5.1.52), UV excision; Glycoproteins Peptide:N-glycanase Chitobiose, Hydrolase, Metal-binding; HET: NAG; 3.4A {Saccharomyces cerevisiae}
+Probab=23.47  E-value=71  Score=24.55  Aligned_cols=46  Identities=15%  Similarity=0.240  Sum_probs=30.3  Template_Neff=5.900
+
+Q orf3b             5 WRCTSCCFSERFQNHNPQKEMATSTLQGCSLCLQLAVVVCNSLLTP   50 (57)
+Q Consensus         5 wrctsccfserfqnhnpqkematstlqgcslclqlavvvcnslltp   50 (57)
+                      |+|..|...+||...|.-.++..+---.|.-.-++.+.+|-++--|
+T Consensus       177 y~c~~c~~~~rfpr~~~~~~ll~tr~G~C~e~A~lF~allRalGip  222 (355)
+T 3ESW_A          177 YKCNRCGNITRFPRYNDPIKLLETRKGRXGEWCNLFTLILKSFGLD  222 (355)
+T ss_dssp             EEETTTCCEEEEEEECCHHHHHHHCEECHHHHHHHHHHHHHHTTCC
+T ss_pred             EecCCCCCeeecCCcCCHHHHHHcCCCCHhHHHHHHHHHHHHcCCc
+Confidence            7888999999998766555555544455665556666666665443
+
+
+No 17
+>2F4M_A peptide N-glycanase (E.C.3.5.1.52), UV excision; Glycoproteins, Ubiquitin-dependent protein degradation, Nucleotide; 1.85A {Mus musculus} SCOP: d.3.1.4
+Probab=23.14  E-value=73  Score=23.18  Aligned_cols=47  Identities=19%  Similarity=0.369  Sum_probs=29.2  Template_Neff=6.900
+
+Q orf3b             4 CWRCTSCCFSERFQNHNPQKEMATSTLQGCSLCLQLAVVVCNSLLTP   50 (57)
+Q Consensus         4 cwrctsccfserfqnhnpqkematstlqgcslclqlavvvcnslltp   50 (57)
+                      =|.|..|....+|...+...+...+..-.|.--.++.+.++.++--|
+T Consensus       114 ~y~c~~c~~~~~fpr~~~~~~lL~~r~G~C~e~A~lf~~lLRalGIp  160 (295)
+T 2F4M_A          114 NHYCDACQLSNRFPRYNNPEKLLETRCGRCGEWANCFTLCCRALGFE  160 (295)
+T ss_dssp             EEEETTTTEEEEEECCCCHHHHHHHCEESHHHHHHHHHHHHHHTTCC
+T ss_pred             hhccCCCCcCCCCCCCCCHHHHHHcCCCCcHHHHHHHHHHHHHcCCc
+Confidence            36788888888887555444444444445665556666666665544
+
+
+No 18
+>2GQE_A Nuclear pore complex protein Nup153; Zinc finger, Ran, Nuclear Pore; HET: ZN; NMR {Homo sapiens} SCOP: g.41.11.1
+Probab=23.07  E-value=74  Score=14.17  Aligned_cols=9  Identities=33%  Similarity=1.376  Sum_probs=6.6  Template_Neff=9.100
+
+Q orf3b             5 WRCTSCCFS   13 (57)
+Q Consensus         5 wrctsccfs   13 (57)
+                      |.|..|-|.
+T Consensus         8 w~C~~C~~~   16 (32)
+T 2GQE_A            8 WDCDTCLVQ   16 (32)
+T ss_dssp             EECSSSCCE
+T ss_pred             eeCCCCcee
+Confidence            778888764
+
+
+No 19
+>2XV7_A VASCULAR ENDOTHELIAL GROWTH FACTOR D; ANGIOGENESIS, LYMPHANGIOGENESIS, HORMONE; HET: MAN, NAG, BMA; 2.9A {HOMO SAPIENS}
+Probab=22.86  E-value=75  Score=20.25  Aligned_cols=11  Identities=45%  Similarity=1.241  Sum_probs=8.9  Template_Neff=6.500
+
+Q orf3b             6 RCTSCCFSERF   16 (57)
+Q Consensus         6 rctsccfserf   16 (57)
+                      ||+.||-++..
+T Consensus        52 RC~GCC~~~~~   62 (112)
+T 2XV7_A           52 RCGGCCNEESL   62 (112)
+T ss_dssp             EEECBCSSTTC
+T ss_pred             eecCCCCccCe
+Confidence            89999998743
+
+
+No 20
+>4MQW_D Glycoprotein hormones, alpha polypeptide, Follitropin; cystine-knot, leucine-rich repeats, Glycoprotein hormone; HET: EDO, TYS, NAG; 2.9A {Homo sapiens}
+Probab=22.43  E-value=77  Score=22.12  Aligned_cols=14  Identities=36%  Similarity=1.177  Sum_probs=11.0  Template_Neff=2.100
+
+Q orf3b             5 WRCTSCCFSERFQN   18 (57)
+Q Consensus         5 wrctsccfserfqn   18 (57)
+                      ..|..||||..+-.
+T Consensus        26 yQC~GCCFSRAYPT   39 (102)
+T 4MQW_D           26 LQCMGCCFSRAYPT   39 (102)
+T ss_dssp             EEEEEEEEEEEEEC
+T ss_pred             EeeccceeccccCC
+Confidence            36999999987753
+
+
+No 21
+>3A9J_C Ubiquitin, Mitogen-activated protein kinase kinase; protein complex, Isopeptide bond, Metal-binding; 1.18A {Mus musculus}
+Probab=21.98  E-value=80  Score=14.40  Aligned_cols=9  Identities=56%  Similarity=1.682  Sum_probs=6.7  Template_Neff=8.900
+
+Q orf3b             5 WRCTSCCFS   13 (57)
+Q Consensus         5 wrctsccfs   13 (57)
+                      |.|..|-|.
+T Consensus         9 w~C~~C~~~   17 (34)
+T 3A9J_C            9 WNCTACTFL   17 (34)
+T ss_dssp             EECTTTCCE
+T ss_pred             ccCCCCCCc
+Confidence            778888764
+
+
+No 22
+>1WQ8_A Vascular endothelial growth factor toxin; snake venom, Vascular endothelial growth; 1.9A {Vipera aspis aspis} SCOP: g.17.1.1
+Probab=21.50  E-value=83  Score=19.56  Aligned_cols=11  Identities=45%  Similarity=1.355  Sum_probs=8.9  Template_Neff=7.100
+
+Q orf3b             6 RCTSCCFSERF   16 (57)
+Q Consensus         6 rctsccfserf   16 (57)
+                      ||+.||-++..
+T Consensus        44 RC~GCC~~~~l   54 (110)
+T 1WQ8_A           44 RCSGCCTDESL   54 (110)
+T ss_dssp             EEECCCSSTTC
+T ss_pred             eecCCCCCCCe
+Confidence            89999988754
+
+
+No 23
+>2LBZ_A Thuricin17; helical loops, crosslinked, ANTIMICROBIAL PROTEIN; NMR {Bacillus thuringiensis}
+Probab=21.50  E-value=83  Score=18.11  Aligned_cols=11  Identities=36%  Similarity=1.289  Sum_probs=8.2  Template_Neff=1.300
+
+Q orf3b             3 YCWRCTSCCFS   13 (57)
+Q Consensus         3 ycwrctsccfs   13 (57)
+                      -||.|-.|.|-
+T Consensus         3 tcwscl~ca~c   13 (31)
+T 2LBZ_A            3 TCWSCLVCAAC   13 (31)
+T ss_dssp             CTTGGGGGGGC
+T ss_pred             cHHHHHHHHHH
+Confidence            48888888763
+
+
+No 24
+>4AY9_G GLYCOPROTEIN HORMONES, ALPHA POLYPEPTIDE, FOLLITROPIN; HORMONE-RECEPTOR COMPLEX, LEUCINE-RICH REPEATS, LRR; HET: NAG, TYS; 2.5A {HOMO SAPIENS}
+Probab=21.40  E-value=84  Score=21.59  Aligned_cols=14  Identities=36%  Similarity=1.177  Sum_probs=11.0  Template_Neff=2.300
+
+Q orf3b             5 WRCTSCCFSERFQN   18 (57)
+Q Consensus         5 wrctsccfserfqn   18 (57)
+                      ..|..||||..+-.
+T Consensus        26 yQC~GCCFSRAYPT   39 (92)
+T 4AY9_G           26 LQCMGCCFSRAYPT   39 (92)
+T ss_pred             EeeccceeccccCC
+Confidence            36899999987753
+
+
+No 25
+>1HD4_A CHORIONIC GONADOTROPIN; HCG, GLYCOPROTEIN, CHORIONIC GONADOTROPIN, GLYCOPROTEIN; HET: MAN, GAL, NAG, BMA; NMR {HOMO SAPIENS} SCOP: g.17.1.4
+Probab=21.36  E-value=84  Score=21.58  Aligned_cols=14  Identities=36%  Similarity=1.177  Sum_probs=11.0  Template_Neff=2.300
+
+Q orf3b             5 WRCTSCCFSERFQN   18 (57)
+Q Consensus         5 wrctsccfserfqn   18 (57)
+                      ..|..||||..+-.
+T Consensus        26 yQC~GCCFSRAYPT   39 (92)
+T 1HD4_A           26 LQCMGCCFSRAYPT   39 (92)
+T ss_dssp             CCCCCCCCCCCSSC
+T ss_pred             EeeccceeccccCC
+Confidence            36899999987753
+
+
+No 26
+>3HEI_L Ephrin type-A receptor 2 (E.C.2.7.10.1); Eph receptor tyrosine kinase, ephrin; 2.0A {Homo sapiens}
+Probab=21.13  E-value=85  Score=20.60  Aligned_cols=34  Identities=32%  Similarity=0.425  Sum_probs=24.5  Template_Neff=6.400
+
+Q orf3b            11 CFSERFQNHNPQKE------------MATSTLQGCSLCLQLAVVVC   44 (57)
+Q Consensus        11 cfserfqnhnpqke------------matstlqgcslclqlavvvc   44 (57)
+                      -|+..||..+|...            ++||+-+...+|+.|.|-||
+T Consensus        86 ~~ti~f~~fsp~p~g~eF~pg~~YYfIsTS~g~~~g~Cmrl~v~V~  131 (132)
+T 3HEI_L           86 KLSEKFQRFTPFTLGKEFKEGHSYYYISKPIHQHEDRCLRLKVTVK  131 (132)
+T ss_dssp             EEEEECCSCCSSTTSCCCCTTCEEEEEEEESSSCCCSCCEEEEEEC
+T ss_pred             eEEEEeeecCCCCCceeecCCCEEEEEeccCCccCCceEEEEEEEe
+Confidence            36677776655431            45788777889999998876
+
+
+No 27
+>1MKK_A Vascular Endothelial Growth Factor A; Cystine-knot growth factor, HORMONE-GROWTH FACTOR; 1.32A {Homo sapiens} SCOP: g.17.1.1
+Probab=21.11  E-value=85  Score=18.91  Aligned_cols=12  Identities=33%  Similarity=0.866  Sum_probs=9.3  Template_Neff=7.300
+
+Q orf3b             6 RCTSCCFSERFQ   17 (57)
+Q Consensus         6 rctsccfserfq   17 (57)
+                      ||+.||-++..+
+T Consensus        44 RC~GCC~~~~~~   55 (96)
+T 1MKK_A           44 RCGGCANDEGLE   55 (96)
+T ss_dssp             EEECCCCSSCCE
+T ss_pred             eecCCCCCCCcE
+Confidence            899999887543
+
+
+No 28
+>2WWZ_C UBIQUITIN, MITOGEN-ACTIVATED PROTEIN KINASE KINASE; PROTEIN BINDING, ISOPEPTIDE BOND, NZF; 1.4A {BOS TAURUS}
+Probab=20.95  E-value=87  Score=13.77  Aligned_cols=9  Identities=56%  Similarity=1.682  Sum_probs=6.2  Template_Neff=9.300
+
+Q orf3b             5 WRCTSCCFS   13 (57)
+Q Consensus         5 wrctsccfs   13 (57)
+                      |.|..|-+.
+T Consensus         7 w~C~~C~~~   15 (32)
+T 2WWZ_C            7 WNCTACTFL   15 (32)
+T ss_dssp             EECTTTCCE
+T ss_pred             ccCccCCCe
+Confidence            677777654
+
+
+No 29
+>6RM3_SFF uL2, uS2, uL15, eS26, uL3; Microsporidia, Ribosome, Intracellular Parasite; HET: MG; 3.4A {Vairimorpha necatrix}
+Probab=20.69  E-value=88  Score=18.39  Aligned_cols=10  Identities=40%  Similarity=1.026  Sum_probs=5.2  Template_Neff=9.700
+
+Q orf3b             6 RCTSCCFSER   15 (57)
+Q Consensus         6 rctsccfser   15 (57)
+                      +|+.|.+++.
+T Consensus       136 ~c~~c~~~~~  145 (151)
+T 6RM3_SFF        136 KCGKCGLSEN  145 (151)
+T ss_pred             ccCcCccEEE
+Confidence            4555555543
+
+
+No 30
+>4UXH_A THYMIDINE KINASE (E.C.2.7.1.21); TRANSFERASE; HET: T5A; 2.4A {LEISHMANIA MAJOR}
+Probab=20.11  E-value=93  Score=18.33  Aligned_cols=21  Identities=38%  Similarity=0.774  Sum_probs=13.5  Template_Neff=10.400
+
+Q orf3b             2 AYCWRCT--SCCFSERFQNHNPQ   22 (57)
+Q Consensus         2 aycwrct--sccfserfqnhnpq   22 (57)
+                      ++|++|.  .-.++.|..+.++|
+T Consensus       139 ~~c~~c~~~~~~~~~~~~~~~~~  161 (184)
+T 4UXH_A          139 AVCMMCHEQPACFTRRTVNVEQQ  161 (184)
+T ss_dssp             EECTTTSSSEECEEEECSCCCCS
+T ss_pred             EEcccCCCCCceeEEeecCCCCc
+Confidence            4678887  36677776654443
+
+
+No 31
+>4UXH_B THYMIDINE KINASE (E.C.2.7.1.21); TRANSFERASE; HET: T5A; 2.4A {LEISHMANIA MAJOR}
+Probab=20.11  E-value=93  Score=18.33  Aligned_cols=21  Identities=38%  Similarity=0.774  Sum_probs=13.5  Template_Neff=10.400
+
+Q orf3b             2 AYCWRCT--SCCFSERFQNHNPQ   22 (57)
+Q Consensus         2 aycwrct--sccfserfqnhnpq   22 (57)
+                      ++|++|.  .-.++.|..+.++|
+T Consensus       139 ~~c~~c~~~~~~~~~~~~~~~~~  161 (184)
+T 4UXH_B          139 AVCMMCHEQPACFTRRTVNVEQQ  161 (184)
+T ss_dssp             EECTTTSSSEECEEEECSCCCCS
+T ss_pred             EEcccCCCCCceeEEeecCCCCc
+Confidence            4678887  36677776654443
+
+
+No 32
+>1X3Z_A peptide:N-glycanase (E.C.3.5.1.52), UV excision repair; HYDROLASE-HYDROLASE INHIBITOR COMPLEX; HET: SUC; 2.8A {Saccharomyces cerevisiae} SCOP: d.3.1.4
+Probab=20.09  E-value=93  Score=23.72  Aligned_cols=46  Identities=17%  Similarity=0.323  Sum_probs=26.4  Template_Neff=6.000
+
+Q orf3b             5 WRCTSCCFSERFQNHNPQKEMATSTLQGCSLCLQLAVVVCNSLLTP   50 (57)
+Q Consensus         5 wrctsccfserfqnhnpqkematstlqgcslclqlavvvcnslltp   50 (57)
+                      ++|..|....||...|.-..+..+---.|.---.+.+.++-++--|
+T Consensus       156 y~c~~C~~~~rfpry~~p~~lL~~r~G~Cge~A~lf~~llRalGip  201 (335)
+T 1X3Z_A          156 YKCNRCGNITRFPRYNDPIKLLETRKGRCGEWCNLFTLILKSFGLD  201 (335)
+T ss_dssp             EEETTTCCEEEEEEECCHHHHHHHCEECHHHHHHHHHHHHHTTTCC
+T ss_pred             EEcCCCCCccccCCCCCHHHHHHhCCCCHHHHHHHHHHHHHHcCCC
+Confidence            5788888888887655433333333344555445555555555444
+
+

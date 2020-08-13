@@ -1,0 +1,180 @@
+Query         orf9b
+Match_columns 97
+No_of_seqs    1 out of 1
+Neff          1
+Searched_HMMs 82491
+Date          Thu Aug 13 16:11:18 2020
+Command       /home/guerler/hh-suite/build/bin/hhsearch -i /home/guerler/spring/databases/covid19/fasta/orf9b.fasta -d /home/guerler/pdb70/pdb70 -o /home/guerler/spring/databases/covid19/hhr//orf9b.hhr 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 6Z4U_A Protein 9b; orf9b, VIRA 100.0 3.9E-54 4.7E-59  301.8   0.0   97    1-97      1-97  (97)
+  2 2CME_H HYPOTHETICAL PROTEIN 5; 100.0 1.3E-33 1.6E-38  192.2   0.0   75   10-97      2-76  (76)
+  3 3HAX_A Probable tRNA pseudouri  23.8      70 0.00085   25.7   0.0   38   38-75    106-143 (346)
+  4 2RFK_A Probable tRNA pseudouri  19.8      95  0.0012   24.7   0.0   38   38-75    102-139 (334)
+  5 2APO_A Probable tRNA pseudouri  19.5      98  0.0012   25.5   0.0   38   38-75    126-163 (357)
+  6 3UAI_A H/ACA ribonucleoprotein  18.2 1.1E+02  0.0013   25.6   0.0   39   37-75    118-157 (400)
+  7 2AUS_C Probable tRNA pseudouri  18.2 1.1E+02  0.0013   24.5   0.0   38   38-75    106-143 (334)
+  8 3U28_A H/ACA ribonucleoprotein  17.7 1.1E+02  0.0014   25.5   0.0   39   37-75    118-157 (400)
+  9 2AB4_A PROTEIN/RNA Complex; RN  15.7 1.4E+02  0.0016   23.6   0.0   39   38-76     63-118 (309)
+ 10 1R3E_A tRNA pseudouridine synt  14.9 1.5E+02  0.0018   23.4   0.0   39   38-76     63-118 (309)
+
+No 1
+>6Z4U_A Protein 9b; orf9b, VIRAL PROTEIN; HET: 15P; 1.95A {Severe acute respiratory syndrome coronavirus 2}
+Probab=100.00  E-value=3.9e-54  Score=301.84  Aligned_cols=97  Identities=100%  Similarity=1.356  Sum_probs=83.3  Template_Neff=1.300
+
+Q orf9b             1 MDPKISEMHPALRLVDPQIQLAVTRMENAVGRDQNNVGPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIAVQMTK   80 (97)
+Q Consensus         1 mdpkisemhpalrlvdpqiqlavtrmenavgrdqnnvgpkvypiilrlgsplslnmarktlnsledkafqltpiavqmtk   80 (97)
+                      ||||+++++|||+|||||||+++||||+|+|++|||.|||||||||||||+|||+|+|++|||||+++||.|||++||||
+T Consensus         1 mdpk~~vv~palhlvdpqiqltitrmedav~~gqn~a~pkvypiilrlgsqlslsm~r~~l~sle~r~fqstpivv~mtk   80 (97)
+T 6Z4U_A            1 MDPKISEMHPALRLVDPQIQLAVTRMENAVGRDQNNVGPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIAVQMTK   80 (97)
+T ss_dssp             CCSSGGGCSSCEEEECTTEEEEECC-------------CEEECEEEEESSCEEEEEEEEEECCSSSCEEEEEEECCCEEC
+T ss_pred             CCccccccCchHHhcCccceeEeeechHhhccCccCCCCceeeeEeecCChhhHHhHhhcchhhhHHHhhcchhhheeec
+Confidence            89999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q orf9b            81 LATTEELPDEFVVVTVK   97 (97)
+Q Consensus        81 latteelpdefvvvtvk   97 (97)
+                      |||||||||||||||+|
+T Consensus        81 latteelpdefvvvt~k   97 (97)
+T 6Z4U_A           81 LATTEELPDEFVVVTVK   97 (97)
+T ss_dssp             CSSGGGSCSEEEEEEEC
+T ss_pred             ccccccCCCceEEEEeC
+Confidence            99999999999999987
+
+
+No 2
+>2CME_H HYPOTHETICAL PROTEIN 5; ALTERNATIVE OPEN READING FRAME, LIPID-BINDING; HET: D10; 2.8A {HUMAN SARS CORONAVIRUS} SCOP: b.164.1.1
+Probab=99.95  E-value=1.3e-33  Score=192.15  Aligned_cols=75  Identities=81%  Similarity=1.146  Sum_probs=73.2  Template_Neff=1.200
+
+Q orf9b            10 PALRLVDPQIQLAVTRMENAVGRDQNNVGPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIAVQMTKLATTEELPD   89 (97)
+Q Consensus        10 palrlvdpqiqlavtrmenavgrdqnnvgpkvypiilrlgsplslnmarktlnsledkafqltpiavqmtklatteelpd   89 (97)
+                      |||.||||||||..|             .||||||||||||.||+.|+|+.++|||.++||-|||.++||||||||||||
+T Consensus         2 palhlvdpqiqlt~t-------------d~kvypiilrlgs~lslsm~rr~~~sl~~r~f~stpiv~~mtklatteelpd   68 (76)
+T 2CME_H            2 PALHLVDPQIQLTIT-------------DPKVYPIILRLGSNLSLSMARRNLDSLEARAFQSTPIVVQMTKLATTEELPD   68 (76)
+T ss_dssp             CCCEEECTTEEEEET-------------TTEEECEEECCSSCCEEEEEEECCSCSSSCSEEEEECCCCCEECSCGGGSCS
+T ss_pred             CcccccCCceeeEeC-------------CccHHheeeEeccceehhhhhcccchhhHHHhhcCceeEEeeeecccccCCC
+Confidence            899999999999988             6999999999999999999999999999999999999999999999999999
+
+
+Q orf9b            90 EFVVVTVK   97 (97)
+Q Consensus        90 efvvvtvk   97 (97)
+                      ||||||+|
+T Consensus        69 efvvvt~k   76 (76)
+T 2CME_H           69 EFVVVTAK   76 (76)
+T ss_dssp             EEEEEECC
+T ss_pred             ceEEEEeC
+Confidence            99999987
+
+
+No 3
+>3HAX_A Probable tRNA pseudouridine synthase B; H/ACA, guide RNA, RNA-protein complex; HET: PG4, PGE; 2.11A {Pyrococcus furiosus}
+Probab=23.80  E-value=70  Score=25.72  Aligned_cols=38  Identities=16%  Similarity=0.297  Sum_probs=33.2  Template_Neff=7.200
+
+Q orf9b            38 GPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIA   75 (97)
+Q Consensus        38 gpkvypiilrlgsplslnmarktlnsledkafqltpia   75 (97)
+                      .+|.|-....+|.+.+....++.++++..+..|.+|+-
+T Consensus       106 ~~K~Y~a~v~~g~~v~~~~i~~~l~~f~g~i~Q~pP~~  143 (346)
+T 3HAX_A          106 AGKEYVALMHLHGDVPEDKIIQVMKEFEGEIIQRPPLR  143 (346)
+T ss_dssp             SCEEEEEEEEESSCCCHHHHHHHHHTTSEEEEECCCSS
+T ss_pred             CCeEEEEEEEEcCCCCHHHHHHHHHHCCCccccCCCCc
+Confidence            68999999999999888888888899988888888865
+
+
+No 4
+>2RFK_A Probable tRNA pseudouridine synthase B; PROTEIN-RNA COMPLEX, Archaeal H-ACA Ribonucleoprotein; 2.87A {Pyrococcus furiosus} SCOP: d.265.1.2, b.122.1.1
+Probab=19.79  E-value=95  Score=24.71  Aligned_cols=38  Identities=16%  Similarity=0.297  Sum_probs=32.5  Template_Neff=7.400
+
+Q orf9b            38 GPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIA   75 (97)
+Q Consensus        38 gpkvypiilrlgsplslnmarktlnsledkafqltpia   75 (97)
+                      .+|.|-...++|.+.+....++.++++..+..|..|.-
+T Consensus       102 ~~K~Y~~~~~~G~~v~~~~i~~~l~~f~g~i~Q~pP~~  139 (334)
+T 2RFK_A          102 AGKEYVALMHLHGDVPEDKIIQVMKEFEGEIIQRPPLR  139 (334)
+T ss_dssp             SCEEEEEEEEESSCCCHHHHHHHHHHTSEEEECSCCCS
+T ss_pred             CCeEEEEEEEEcCCCCHHHHHHHHHHCCCccccCCCcc
+Confidence            68999999999998888888888888888888887764
+
+
+No 5
+>2APO_A Probable tRNA pseudouridine synthase B; Protein-Protein complex, Box H/ACA, snoRNP; 1.95A {Methanocaldococcus jannaschii} SCOP: b.122.1.1, d.265.1.2
+Probab=19.47  E-value=98  Score=25.50  Aligned_cols=38  Identities=18%  Similarity=0.339  Sum_probs=30.0  Template_Neff=6.600
+
+Q orf9b            38 GPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIA   75 (97)
+Q Consensus        38 gpkvypiilrlgsplslnmarktlnsledkafqltpia   75 (97)
+                      .+|.|-...++|.+.+-...++.++++..+.+|..|.-
+T Consensus       126 ~~K~Y~~~~~lg~~~~~~~i~~~l~~f~g~i~Q~pP~~  163 (357)
+T 2APO_A          126 PPKEYVCLMHLHRDASEEDILRVFKEFTGRIYQRPPLK  163 (357)
+T ss_dssp             SCEEEEEEEEESSCCCHHHHHHHHHHHSEEEECC----
+T ss_pred             CCEEEEEEEEEecCCCHHHHHHHHHHccCeeeecCCcc
+Confidence            68999999999998877777888899988888888864
+
+
+No 6
+>3UAI_A H/ACA ribonucleoprotein complex subunit 4; H/ACA RNP assembly intermediate, H/ACA; 3.06A {Saccharomyces cerevisiae}
+Probab=18.21  E-value=1.1e+02  Score=25.63  Aligned_cols=39  Identities=28%  Similarity=0.365  Sum_probs=32.1  Template_Neff=6.600
+
+Q orf9b            37 VGPKVYPIILRLGSPL-SLNMARKTLNSLEDKAFQLTPIA   75 (97)
+Q Consensus        37 vgpkvypiilrlgspl-slnmarktlnsledkafqltpia   75 (97)
+                      -.+|.|-...++|.+. +-...++.++++....+|.+|.-
+T Consensus       118 ~~~K~Y~~~i~lg~~t~~~~~i~~~l~~f~G~i~Q~pP~~  157 (400)
+T 3UAI_A          118 GAGKEYVCIVRLHDALKDEKDLGRSLENLTGALFQRPPLI  157 (400)
+T ss_dssp             SSCEEEEEEEEESSCCSSTHHHHHHHHHTCEEEEECCCC-
+T ss_pred             CCCcEEEEEEEeCCcCCCHHHHHHHHHHhhcccccCCCcc
+Confidence            3589999999999987 66667778899999889998864
+
+
+No 7
+>2AUS_C Probable tRNA pseudouridine synthase B; ISOMERASE, STRUCTURAL PROTEIN, ISOMERASE-STRUCTURAL PROTEIN; HET: PO4; 2.1A {Pyrococcus abyssi}
+Probab=18.19  E-value=1.1e+02  Score=24.48  Aligned_cols=38  Identities=18%  Similarity=0.343  Sum_probs=29.3  Template_Neff=7.300
+
+Q orf9b            38 GPKVYPIILRLGSPLSLNMARKTLNSLEDKAFQLTPIA   75 (97)
+Q Consensus        38 gpkvypiilrlgsplslnmarktlnsledkafqltpia   75 (97)
+                      ..|.|-...++|...+....++.++++.....|..|+-
+T Consensus       106 ~~K~Y~~~~~~Gg~v~~~~i~~~l~~f~g~i~Q~pP~~  143 (334)
+T 2AUS_C          106 AGKEYVALMHLHGDVPEDKIRAVMKEFEGEIIQRPPLR  143 (334)
+T ss_dssp             SEEEEEEEEEESSCCCHHHHHHHHHHTSEECCCC----
+T ss_pred             CCeEEEEEEEEecCCCHHHHHHHHHHCCCceecCCCcc
+Confidence            68999999999998887777788888888888887764
+
+
+No 8
+>3U28_A H/ACA ribonucleoprotein complex subunit 4; pseudouridine synthase, pseudouridylation, H/ACA RNA; 1.9A {Saccharomyces cerevisiae}
+Probab=17.71  E-value=1.1e+02  Score=25.53  Aligned_cols=39  Identities=28%  Similarity=0.365  Sum_probs=29.5  Template_Neff=6.600
+
+Q orf9b            37 VGPKVYPIILRLGSPL-SLNMARKTLNSLEDKAFQLTPIA   75 (97)
+Q Consensus        37 vgpkvypiilrlgspl-slnmarktlnsledkafqltpia   75 (97)
+                      -.+|.|-...++|.+. +-...++.++++....+|.+|.-
+T Consensus       118 ~~~K~Y~~~i~lg~~t~~~~~i~~~l~~f~G~i~Q~pP~~  157 (400)
+T 3U28_A          118 GAGKEYVCIVRLHDALKDEKDLGRSLENLTGALFQRPPLI  157 (400)
+T ss_dssp             HSCEEEEEEEEESSCC----SSTTHHHHTCEEEEECCC--
+T ss_pred             cCCcEEEEEEEeCCCcCCHHHHHHHHHHccCccccCCCcc
+Confidence            3589999999999987 66667778899998889998864
+
+
+No 9
+>2AB4_A PROTEIN/RNA Complex; RNA modifications, Isomerase-RNA COMPLEX; 2.4A {Thermotoga maritima} SCOP: d.265.1.2, b.122.1.1
+Probab=15.75  E-value=1.4e+02  Score=23.62  Aligned_cols=39  Identities=23%  Similarity=0.257  Sum_probs=33.1  Template_Neff=7.400
+
+Q orf9b            38 GPKVYPIILRLG-----------------SPLSLNMARKTLNSLEDKAFQLTPIAV   76 (97)
+Q Consensus        38 gpkvypiilrlg-----------------splslnmarktlnsledkafqltpiav   76 (97)
+                      .+|.|-...++|                 .+.+....++.++++.....|..|...
+T Consensus        63 ~~K~Y~~~~~~G~~Tdt~d~~G~v~~~~~~~~~~~~l~~~l~~~~g~~~Q~pP~~S  118 (309)
+T 2AB4_A           63 LKKVFWVKMRLGLITETFDITGEVVEERECNVTEEEIREAIFSFVGEYDQVPPAYS  118 (309)
+T ss_dssp             CCEEEEEEEEETEEETTSBTTSCEEEECCCCCCHHHHHHHHHTTSEEEEECCCSSS
+T ss_pred             CCeEEEEEEEeCceeccccCCCCEEEEecCCCCHHHHHHHHHHcCCccccCCCccc
+Confidence            689999999999                 667778888889999998889888753
+
+
+No 10
+>1R3E_A tRNA pseudouridine synthase B (E.C.; RNA modification, pseudouridylation, LYASE-RNA COMPLEX; 2.1A {Thermotoga maritima} SCOP: d.265.1.2, b.122.1.1
+Probab=14.89  E-value=1.5e+02  Score=23.42  Aligned_cols=39  Identities=26%  Similarity=0.280  Sum_probs=33.0  Template_Neff=7.400
+
+Q orf9b            38 GPKVYPIILRLG-----------------SPLSLNMARKTLNSLEDKAFQLTPIAV   76 (97)
+Q Consensus        38 gpkvypiilrlg-----------------splslnmarktlnsledkafqltpiav   76 (97)
+                      .+|.|-...++|                 .+.+....++.++++.....|..|...
+T Consensus        63 ~~K~Y~~~~~~G~~Tdt~d~~G~v~~~~~~~~~~~~l~~~l~~~~g~~~Q~pP~~S  118 (309)
+T 1R3E_A           63 LKKVYWVKMRLGLITETFDITGEVVEERECNVTEEEIREAIFSFVGEYDQVPPAYS  118 (309)
+T ss_dssp             SCEEEEEEEEETEEESSSBTTSCEEEECCCCCCHHHHHHHHHSSSEEEEECCCSSS
+T ss_pred             CCcEEEEEEEeCceecCccCCCCEEEEecCCCCHHHHHHHHHHcCCccccCCCccc
+Confidence            689999999999                 567778888889999998889888753
+
+
