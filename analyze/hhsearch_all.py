@@ -21,9 +21,9 @@ def main(args):
 		if not os.path.exists(output_path):
 			os.makedirs(output_path)
 		output_file = "%s/%s.hhr" % (output_path, name)
-		if os.path.isfile(output_file):
+		if os.path.isfile(output_file) and args.overwrite == 'n':
 			print("Already available.")
-			#continue
+			continue
 		command = "%s -i %s -d %s -o %s" % (args.binary, input_file, args.database, output_file)
 		os.system(command)
 
@@ -34,5 +34,6 @@ if __name__ == "__main__":
 	parser.add_argument('-b', '--binary', help='HH-search/HH-blits binary path', required=True)
 	parser.add_argument('-d', '--database', help='HH-search database path', required=True)
 	parser.add_argument('-s', '--subdirectory', help='Use subdirectory splitting', default='y')
+	parser.add_argument('-w', '--overwrite', help='Overwrite existing results', default='n')
 	args = parser.parse_args()
 	main(args)

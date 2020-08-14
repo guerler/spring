@@ -41,9 +41,9 @@ def main(args):
 				interactions.append((name, minz))
 				print("Predicting: %s, min-Z: %s" % (name, minz))
 		interactions.sort(key=lambda tup: tup[1], reverse=True)
-	with open(args.output, 'w') as output_file:
+	with open(args.output, 'a+') as output_file:
 		for i in interactions:
-			output_file.write("%s %s\n" % (i[0], i[1]))
+			output_file.write("%s %s %s\n" % (args.name, i[0], i[1]))
 
 def get_template_scores(hhr_file, min_score, identifier_length):
 	result = {}
@@ -63,6 +63,7 @@ def get_template_scores(hhr_file, min_score, identifier_length):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='This script identifies interactions by detecting matching HH-search results.')
 	parser.add_argument('-t', '--target', help='HHR target file result', required=True)
+	parser.add_argument('-n', '--name', help='HHR target name', required=True)
 	parser.add_argument('-c', '--crossreference', help='Cross Reference index file', required=True)
 	parser.add_argument('-x', '--idx', help='Length of identifier', type=int, default=6)
 	parser.add_argument('-l', '--list', help='Text file containing identifiers.', required=True)

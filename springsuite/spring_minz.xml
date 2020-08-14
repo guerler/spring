@@ -7,10 +7,13 @@
             link '${str(input)}' 'inputs/${input.element_identifier}' &&
             echo '${input.element_identifier}' >> 'input_list' &&
         #end for
-        python3 '$__tool_directory__/spring_minz.py' -m '$minscore' -t '$target' -c '$crossreference' -x '$idx' -o '$output' -l input_list -i inputs
+        #for target in $targets
+            python3 '$__tool_directory__/spring_minz.py' -m '$minscore' -t '${str(target)}' -n '${target.element_identifier}' -c '$crossreference' -x '$idx' -o '$output' -l input_list -i inputs &&
+        #end for
+        echo 0
     ]]></command>
     <inputs>
-        <param format="txt" name="target" type="data" label="Target Profile" help="Homology search result of target/query profile `hhr`."/>
+        <param format="txt" name="targets" type="data_collection" label="Target Profiles" help="Homology search result of target/query profiles `hhr`."/>
         <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input Profiles" help="Homology search results of input profiles `hhr`."/>
         <param format="txt" name="crossreference" type="data" label="Cross Reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
         <param name="minscore" type="integer" label="min-Z score threshold" value="10" min="1" max="100" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
@@ -21,25 +24,42 @@
     </outputs>
     <tests>
         <test>
-            <param name="target" value="7BQY_A.hhr"/>
-            <param name="idx" value="10"/>
-            <param name="inputs">
+            <param name="targets">
                 <collection type="list">
-                    <element name="6W37_A.hhr" value="6W37_A.hhr" />
                     <element name="6W4H_A.hhr" value="6W4H_A.hhr" />
                     <element name="6W4H_B.hhr" value="6W4H_B.hhr" />
                     <element name="6W9C_A.hhr" value="6W9C_A.hhr" />
                     <element name="6W9Q_A.hhr" value="6W9Q_A.hhr" />
+                    <element name="6W37_A.hhr" value="6W37_A.hhr" />
                     <element name="6WEY_A.hhr" value="6WEY_A.hhr" />
                     <element name="6WJI_A.hhr" value="6WJI_A.hhr" />
                     <element name="6WLC_A.hhr" value="6WLC_A.hhr" />
+                    <element name="7BQY_A.hhr" value="7BQY_A.hhr" />
+                </collection>
+            </param>
+            <param name="idx" value="10"/>
+            <param name="inputs">
+                <collection type="list">
+                    <element name="6W4H_A.hhr" value="6W4H_A.hhr" />
+                    <element name="6W4H_B.hhr" value="6W4H_B.hhr" />
+                    <element name="6W9C_A.hhr" value="6W9C_A.hhr" />
+                    <element name="6W9Q_A.hhr" value="6W9Q_A.hhr" />
+                    <element name="6W37_A.hhr" value="6W37_A.hhr" />
+                    <element name="6WEY_A.hhr" value="6WEY_A.hhr" />
+                    <element name="6WJI_A.hhr" value="6WJI_A.hhr" />
+                    <element name="6WLC_A.hhr" value="6WLC_A.hhr" />
+                    <element name="7BQY_A.hhr" value="7BQY_A.hhr" />
                 </collection>
             </param>
             <param name="crossreference" value="dbCAN_random.txt"/>
             <output name="output" file="dbCAN_result.txt"/>
         </test>
         <test>
-            <param name="target" value="NP_000282.1.hhr"/>
+            <param name="targets">
+                <collection type="list">
+                    <element name="NP_000282.1.hhr" value="NP_000282.1.hhr" />
+                </collection>
+            </param>
             <param name="inputs">
                 <collection type="list">
                     <element name="NP_000282.1.hhr" value="NP_000282.1.hhr" />
