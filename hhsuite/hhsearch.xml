@@ -1,5 +1,5 @@
 <tool id="hhsearch" name="HHsearch" version="0.1.0" python_template_version="3.5">
-    <description>detecting remote homologues from proteins</description>
+    <description>detecting remote homologues of proteins</description>
     <requirements>
         <requirement type="package" version="3.2.0">hhsuite</requirement>
     </requirements>
