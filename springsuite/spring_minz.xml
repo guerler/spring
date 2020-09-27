@@ -20,7 +20,7 @@
         <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="20" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
     </inputs>
     <outputs>
-        <data format="txt" name="output" />
+        <data format="tabular" name="output" />
     </outputs>
     <tests>
         <test>

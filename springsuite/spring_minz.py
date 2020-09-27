@@ -43,7 +43,7 @@ def main(args):
 		interactions.sort(key=lambda tup: tup[1], reverse=True)
 	with open(args.output, 'a+') as output_file:
 		for i in interactions:
-			output_file.write("%s %s %s\n" % (args.name, i[0], i[1]))
+			output_file.write("%s\t%s\t%s\n" % (args.name, i[0], i[1]))
 
 def get_template_scores(hhr_file, min_score, identifier_length):
 	result = {}
