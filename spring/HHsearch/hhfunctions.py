@@ -16,9 +16,6 @@ import argparse
 import re
 import math
 
-import hhsearchConfig
-rootDir = hhsearchConfig.parameters['rootDir']
-sys.path.append(hhsearchConfig.parameters['pdbPath'])
 from pdbchains import ReadFasta,PDBchains
 
 class HHSEARCH_Functions:

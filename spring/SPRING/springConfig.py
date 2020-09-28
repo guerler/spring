@@ -4,13 +4,13 @@ import os
 springDirectory = os.path.dirname(os.path.realpath(__file__) ) +'/'
 sourceDirectory = os.path.dirname(os.path.realpath(springDirectory))+'/'
 sys.path.append(sourceDirectory)
-spring_db = '/home/bgovi/Workspace/SPRING/spring/spring/spring.test-data/springdb/'
-tmp_dir = '/home/bgovi/Workspace/SPRING/spring/spring/tmp/'
+spring_db = './spring.test-data/springdb/'
+tmp_dir = '/tmp/'
 
 
 #configuration dictionary for spring.py
 parameters = {
-'user': 'bgovi',
+'user': '',
 'tmpDir': tmp_dir,
 'rootDir':sourceDirectory,      #Path to source root. e.g. $HOME/source/
 'springPath':springDirectory,       #Full path to SPRING directory

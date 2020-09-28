@@ -1,3 +1,0 @@
-The commandfunctions.py module contains simple functions
-for running common shell commands such as making directories,
-removing directories and running subprocesses.

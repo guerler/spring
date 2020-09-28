@@ -5,7 +5,7 @@ on the parameters and requirements run:
 
 ScoreMod.f is a function written in python.  The
 ScoreMod.so is ScoreMod.f wrapped into c so that
-it can be called by python as a funciton.  To 
+it can be called by python as a function.  To 
 recompile ScoreMod.f run:
 
 f2py -c -m ScoreMod ScoreMod.f
