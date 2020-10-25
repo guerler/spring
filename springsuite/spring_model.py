@@ -97,7 +97,8 @@ def main(args):
 	templateMolecule = Molecule(args.template)
 	alignment = Alignment(args.query)
 	alignment.createModel(templateMolecule)
-	templateMolecule.save("test.pdb")
+	outputName = "%s.pdb" % alignment.queryName
+	templateMolecule.save(args.output or outputName)
 
 def toThreeAmino (seq):
 	code = dict(G="GLY", A="ALA", V="VAL", L="LEU", I="ILE", M="MET", F="PHE", P="PRO", Y="TYR", W="TRP",
@@ -113,5 +114,6 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
 	parser.add_argument('-q', '--query', help='HHR target file result', required=True)
 	parser.add_argument('-t', '--template', help='Structure template', required=True)
+	parser.add_argument('-o', '--output', help='Output PDB file', required=False)
 	args = parser.parse_args()
 	main(args)
