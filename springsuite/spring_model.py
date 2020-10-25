@@ -3,11 +3,11 @@ import argparse
 import os
 
 class Molecule:
-	def __init__(self, fileName):
+	def __init__(self, fileName, chainName):
 		self.calpha = {}
 		with open(fileName) as file:
 			for index, line in enumerate(file):
-				if "CA" == line[13:15]:
+				if "CA" == line[13:15] and chainName == line[21:22]:
 					x = self.toFloat(line[30:38])
 					y = self.toFloat(line[38:46])
 					z = self.toFloat(line[46:54])
@@ -17,7 +17,8 @@ class Molecule:
 					residueNumber = self.toInt(line[22:26])
 					self.calpha[residueNumber] = dict(x=x, y=y, z=z,
 						residue=residue, occupancy=occupancy, temperature=temperature)
-
+		if not self.calpha:
+			raise Exception("Template molecule has not atoms.")
 	def toFloat(self, x):
 		try:
 			return float(x)
@@ -31,6 +32,7 @@ class Molecule:
 			return 0
 
 	def save(self, outputName):
+		print ("Writing PDB file to %s." % outputName)
 		f = open(outputName, "w")
 		for residueNumber in sorted(self.calpha.keys()):  
 			ca = self.calpha[residueNumber]
@@ -94,7 +96,7 @@ class Alignment:
 			return 0
 
 def main(args):
-	templateMolecule = Molecule(args.template)
+	templateMolecule = Molecule(args.template, args.chain)
 	alignment = Alignment(args.query)
 	alignment.createModel(templateMolecule)
 	outputName = "%s.pdb" % alignment.queryName
@@ -113,6 +115,7 @@ def toSingleAmino (seq):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
 	parser.add_argument('-q', '--query', help='HHR target file result', required=True)
+	parser.add_argument('-c', '--chain', help='Structure chain', required=False, default="A")
 	parser.add_argument('-t', '--template', help='Structure template', required=True)
 	parser.add_argument('-o', '--output', help='Output PDB file', required=False)
 	args = parser.parse_args()
