@@ -86,6 +86,8 @@ class Alignment:
 					residueNumber = start + tcount
 					if residueNumber in templateMolecule.calpha:
 						templateMolecule.calpha[residueNumber]["residue"] = toThreeAmino(qs)
+					else:
+						print ("Warning: Skipping invalid residue identifier [%s]." % residueNumber)
 				if ts != "-":
 					tcount += 1
     
