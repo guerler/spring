@@ -3,11 +3,21 @@ import argparse
 import os
 
 class Molecule:
-	def __init__(self, fileName, chainName):
+	def __init__(self, fileName):
 		self.calpha = {}
+		self.hetatm = {}
+		self.biomol = {}
+		self.rotmat = None
 		with open(fileName) as file:
 			for index, line in enumerate(file):
-				if "CA" == line[13:15] and chainName == line[21:22]:
+				key = line[0:6].strip()
+				if key in ["ATOM", "HETATM"]:
+					atom = line[13:15].strip()
+					atomNumber = line[6:11]
+					chainName = line[21:22]
+					if chainName not in self.calpha:
+						self.calpha[chainName] = {}
+						self.hetatm[chainName] = {}
 					x = self.toFloat(line[30:38])
 					y = self.toFloat(line[38:46])
 					z = self.toFloat(line[46:54])
@@ -15,10 +25,27 @@ class Molecule:
 					temperature = self.toFloat(line[54:60])
 					residue = line[17:20]
 					residueNumber = self.toInt(line[22:26])
-					self.calpha[residueNumber] = dict(x=x, y=y, z=z,
-						residue=residue, occupancy=occupancy, temperature=temperature)
+					atomDict = dict(x=x, y=y, z=z,
+                     				residue=residue, occupancy=occupancy, temperature=temperature)
+					if key == "ATOM":
+						if "CA" == atom:
+							self.calpha[chainName][residueNumber] = atomDict
+					elif atom != "HOH":
+						self.hetatm[chainName][atomNumber] = atomDict
+				biokey = "REMARK 350 APPLY THE FOLLOWING TO CHAINS:"
+				if self.rotmat is None and line[0:len(biokey)] == biokey:
+					biomolChains = line[len(biokey):].split()
+					nextLine = next(file)
+					biomolMat1 = nextLine[23:].split()
+					nextLine = next(file)
+					biomolMat2 = nextLine[23:].split()
+					nextLine = next(file)
+					biomolMat3 = nextLine[23:].split()
+					matrix = [biomolMat1, biomolMat2, biomolMat3]
+					self.rotmat = dict(chains=biomolChains, matrix=matrix)
 		if not self.calpha:
-			raise Exception("Template molecule has not atoms.")
+			raise Exception("Molecule has no atoms.")
+
 	def toFloat(self, x):
 		try:
 			return float(x)
@@ -31,14 +58,14 @@ class Molecule:
 		except:
 			return 0
 
-	def save(self, outputName):
+	def save(self, chainName, outputName):
 		print ("Writing PDB file to %s." % outputName)
 		f = open(outputName, "w")
-		for residueNumber in sorted(self.calpha.keys()):  
-			ca = self.calpha[residueNumber]
+		for residueNumber in sorted(self.calpha[chainName].keys()):  
+			ca = self.calpha[chainName][residueNumber]
 			if ca["residue"] is not None:
-				atom = "ATOM  %5d  CA  %s A %3d    %8.3f%8.3f%8.3f%6.2f%6.2f           C\n" % (residueNumber, ca["residue"], residueNumber, ca["x"], ca["y"], ca["z"], ca["occupancy"], ca["temperature"])
-				f.write(atom)
+				atomString = "ATOM  %5d  CA  %s A %3d    %8.3f%8.3f%8.3f%6.2f%6.2f%12s\n" % (residueNumber, ca["residue"], residueNumber, ca["x"], ca["y"], ca["z"], ca["occupancy"], ca["temperature"], "C")
+				f.write(atomString)
 		f.close()
 
 class Alignment:
@@ -70,9 +97,9 @@ class Alignment:
 				if len(cols) > 1 and cols[0] == "No" and cols[1] == "2":
 					break
 
-	def createModel(self, templateMolecule):
-		for residueNumber in templateMolecule.calpha:
-			templateMolecule.calpha[residueNumber]["residue"] = None
+	def createModel(self, templateChain):
+		for residueNumber in templateChain:
+			templateChain[residueNumber]["residue"] = None
 		for i in range(len(self.templateStart)):
 			start = self.templateStart[i]
 			querySequence = self.queryAlignment[i]
@@ -84,13 +111,13 @@ class Alignment:
 				ts = templateSequence[j]
 				if qs != "-" and ts != "-":
 					residueNumber = start + tcount
-					if residueNumber in templateMolecule.calpha:
-						templateMolecule.calpha[residueNumber]["residue"] = toThreeAmino(qs)
+					if residueNumber in templateChain:
+						templateChain[residueNumber]["residue"] = toThreeAmino(qs)
 					else:
 						print ("Warning: Skipping invalid residue identifier [%s]." % residueNumber)
 				if ts != "-":
 					tcount += 1
-    
+
 	def toInt(self, x):
 		try:
 			return int(x)
@@ -98,11 +125,15 @@ class Alignment:
 			return 0
 
 def main(args):
-	templateMolecule = Molecule(args.template, args.chain)
+	templateMolecule = Molecule(args.template)
+	if args.chain not in templateMolecule.calpha:
+		raise Exception("Chain not found in template [%s]" % args.chain)
+	print (templateMolecule.rotmat)
+	'''templateChain = templateMolecule.calpha[args.chain]
 	alignment = Alignment(args.query)
-	alignment.createModel(templateMolecule)
+	alignment.createModel(templateChain)
 	outputName = "%s.pdb" % alignment.queryName
-	templateMolecule.save(args.output or outputName)
+	templateMolecule.save(args.chain, args.output or outputName)'''
 
 def toThreeAmino (seq):
 	code = dict(G="GLY", A="ALA", V="VAL", L="LEU", I="ILE", M="MET", F="PHE", P="PRO", Y="TYR", W="TRP",
