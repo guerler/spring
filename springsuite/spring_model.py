@@ -68,6 +68,25 @@ class Alignment:
 				if len(cols) > 1 and cols[0] == "No" and cols[1] == "2":
 					break
 
+	def createModel(self, templateMolecule):
+		for residueNumber in templateMolecule.calpha:
+			templateMolecule.calpha[residueNumber]["residue"] = None
+		for i in range(len(self.templateStart)):
+			start = self.templateStart[i]
+			querySequence = self.queryAlignment[i]
+			templateSequence = self.templateAlignment[i]
+			n = len(querySequence)
+			tcount = 0
+			for j in range(n):
+				qs = querySequence[j]
+				ts = templateSequence[j]
+				if qs != "-" and ts != "-":
+					residueNumber = start + tcount
+					if residueNumber in templateMolecule.calpha:
+						templateMolecule.calpha[residueNumber]["residue"] = toThreeAmino(qs)
+				if ts != "-":
+					tcount += 1
+    
 	def toInt(self, x):
 		try:
 			return int(x)
@@ -77,24 +96,7 @@ class Alignment:
 def main(args):
 	templateMolecule = Molecule(args.template)
 	alignment = Alignment(args.query)
-	for residueNumber in templateMolecule.calpha:
-		templateMolecule.calpha[residueNumber]["residue"] = None
-	for i in range(len(alignment.templateStart)):
-		start = alignment.templateStart[i]
-		querySequence = alignment.queryAlignment[i]
-		templateSequence = alignment.templateAlignment[i]
-		n = len(querySequence)
-		tcount = 0
-		for j in range(n):
-			qs = querySequence[j]
-			ts = templateSequence[j]
-			if qs != "-" and ts != "-":
-				residueNumber = start + tcount
-				if residueNumber in templateMolecule.calpha:
-					templateMolecule.calpha[residueNumber]["residue"] = toThreeAmino(qs)
-			if ts != "-":
-				tcount += 1
-	print (templateMolecule.calpha)
+	alignment.createModel(templateMolecule)
 	templateMolecule.save("test.pdb")
 
 def toThreeAmino (seq):
