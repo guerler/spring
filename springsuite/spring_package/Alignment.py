@@ -1,11 +1,11 @@
 class Alignment:
 	def __init__(self, fileName):
 		self.queryName = None
-		self.alignment = []
-		self.queryStart = []
+		self.alignment = list()
+		self.queryStart = list()
 		self.templateName = None
-		self.templateAlignment = []
-		self.templateStart = []
+		self.templateAlignment = list()
+		self.templateStart = list()
 		self.readFile(fileName)
 
 	def readFile(self, fileName):
@@ -28,7 +28,9 @@ class Alignment:
 					break
 
 	def createModel(self, templateChain):
+		previousResidue = dict()
 		for residueNumber in templateChain:
+			previousResidue[residueNumber] = templateChain[residueNumber]["residue"]
 			templateChain[residueNumber]["residue"] = None
 		for i in range(len(self.templateStart)):
 			templateStart = self.templateStart[i]
@@ -44,10 +46,13 @@ class Alignment:
 				if qs != "-" and ts != "-":
 					residueNumber = templateStart + tcount
 					if residueNumber in templateChain:
+						pr = previousResidue[residueNumber]
+						if pr != self.toThreeAmino(ts):
+							print ("Warning: Ignoring mismatching residue [%s != %s]." % (pr, self.toThreeAmino(ts)))
 						templateChain[residueNumber]["residue"] = self.toThreeAmino(qs)
 						templateChain[residueNumber]["residueNumber"] = queryStart + qcount
 					else:
-						print ("Warning: Skipping invalid residue identifier [%s]." % residueNumber)
+						print ("Warning: Skipping missing residue [%s]." % residueNumber)
 				if qs != "-":
 					qcount = qcount + 1
 				if ts != "-":

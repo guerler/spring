@@ -1,10 +1,10 @@
 class Molecule:
 	def __init__(self, fileName = None):
-		self.calpha = {}
-		self.hetatm = {}
-		self.biomol = {}
-		self.rotmat = []
-		self.atoms = []
+		self.calpha = dict()
+		self.hetatm = dict()
+		self.biomol = dict()
+		self.rotmat = list()
+		self.atoms = list()
 		if fileName is not None:
 			self.fromFile(fileName)
 
@@ -18,8 +18,8 @@ class Molecule:
 					atomNumber = line[6:11]
 					chainName = line[21:22]
 					if chainName not in self.calpha:
-						self.calpha[chainName] = {}
-						self.hetatm[chainName] = {}
+						self.calpha[chainName] = dict()
+						self.hetatm[chainName] = dict()
 					x = self.toFloat(line[30:38])
 					y = self.toFloat(line[38:46])
 					z = self.toFloat(line[46:54])
