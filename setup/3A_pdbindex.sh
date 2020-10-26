@@ -47,7 +47,7 @@ for (my $i = 0; $i < $n; $i++) {
     my $id = $lid[$i];
 
     # sub directory
-    my $sub = $inp . "/" . substr($id, 0, 2) . "/" . $id;
+    my $sub = $inp . "/" . $id;
     opendir(data, $sub);
     my @files = readdir(data);
     closedir(data);

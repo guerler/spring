@@ -50,7 +50,6 @@ for (my $i = 0; $i < $n; $i++) {
 		while (my $record = <sequence>) {
 			$content .= $record;
 		}
-
 		# print
 		print data $content . "\n";
 	} else {

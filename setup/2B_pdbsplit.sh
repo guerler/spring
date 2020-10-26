@@ -46,11 +46,8 @@ for (my $i = 0; $i < $n; $i++) {
     my $id = $list[$i];
     my $ch = substr($list[$i], -1);
 
-	# input path
-	my $pathsub = substr($id, 0, 2) . "/" . substr($id, 0, 4);
-
-    # output path
-    my $od = $outpath . substr($id, 0, 2) . "/" . $id . "/";
+	# output path
+    my $od = $outpath . "/". $id . "/";
 
     # check
     if (-e $od) {
@@ -58,121 +55,116 @@ for (my $i = 0; $i < $n; $i++) {
         next;
     }
 
-    # get files
-    my @files = glob($path . $pathsub . "/*.*");
-    for my $file (@files) {
-        #
-        # load file to array
-        #
-        my $nchains = 0;
-        my @fc = ();
-        open (data, $file);
-        while ($record = <data>) {
-            # get key argument
-            my $key = substr($record, 0, 3);
+    # input file
+    my $file = $path . "/" . substr($id, 0, 4) . ".pdb";
 
-            # get atom coordinates
-            if ($key eq "ATO") {
-                push (@fc, $record);                
-            }
+    #
+    # load file to array
+    #
+    my $nchains = 0;
+    my @fc = ();
+    open (data, $file);
+    while ($record = <data>) {
+        # get key argument
+        my $key = substr($record, 0, 3);
 
-            # count chains
-            if ($key eq "TER") {
-                push (@fc, "TER");
-                $nchains++;
-                
-                # set maximum number of chains
-                if ($nchains >= $MAXCHAINS) {
-					last;
-				}
-            }
+        # get atom coordinates
+        if ($key eq "ATO") {
+            push (@fc, $record);
         }
 
-        # verify size
-        my $fcn = @fc;
-        if ($fcn == 0) {
-            next;
-        }
-
-        # make sure file end with a TER
-        if (substr($fc[$fcn - 1], 0, 3) ne "TER") {
+        # count chains
+        if ($key eq "TER") {
             push (@fc, "TER");
             $nchains++;
-        }
-        close ($file);
 
-        #
-        # check for core chain
-        #
-        my $foundchain = 0;
-        for (my $i = 0; $i < @fc; $i++) {
-            # get key argument
-            my $key = substr($fc[$i], 0, 3);
-
-            # find chains
-            if ($key eq "ATO") {
-                my $cc = substr($fc[$i], 21, 1);
-                if($ch eq $cc) {
-                    $foundchain = 1;
-                    last;
-                }
+            # set maximum number of chains
+            if ($nchains >= $MAXCHAINS) {
+                last;
             }
         }
+    }
 
-        # verify that its at least a dimer
-        if ($foundchain == 0 || $nchains < 2) {
+    # verify size
+    my $fcn = @fc;
+    if ($fcn == 0) {
+        next;
+    }
+
+    # make sure file end with a TER
+    if (substr($fc[$fcn - 1], 0, 3) ne "TER") {
+        push (@fc, "TER");
+        $nchains++;
+    }
+    close ($file);
+
+    #
+    # check for core chain
+    #
+    my $foundchain = 0;
+    for (my $i = 0; $i < @fc; $i++) {
+        # get key argument
+        my $key = substr($fc[$i], 0, 3);
+
+        # find chains
+        if ($key eq "ATO") {
+            my $cc = substr($fc[$i], 21, 1);
+            if($ch eq $cc) {
+                $foundchain = 1;
+                last;
+            }
+        }
+    }
+
+    # verify that its at least a dimer
+    if ($foundchain == 0 || $nchains < 2) {
+        next;
+    }
+
+    # log
+    print $file . "\n";
+
+    # id
+    my $biomol = prefix(getname($file));
+
+    # make directory
+    cmd ("mkdir -p $od");
+
+    # separate chains
+    my $nc = 0;
+    my $cn = "";
+    my $cc = "";
+
+    # open pdb files
+    for (my $i = 0; $i < @fc; $i++) {
+        # get key argument
+        my $key = substr($fc[$i], 0, 3);
+
+        # open and close new files
+        if ($key ne "TER" && $key ne "ATO") {
             next;
         }
 
-        # log
-        print $file . "\n";
-
-        # id
-        my $biomol = prefix(getname($file));
-
-        # make directory
-        cmd ("mkdir -p $od");
-
-        # separate chains
-        my $nc = 0;
-        my $cn = "";
-        my $cc = "";
-
-        # open pdb files
-        for (my $i = 0; $i < @fc; $i++) {
-            # get key argument
-            my $key = substr($fc[$i], 0, 3);
-
-            # open and close new files
-            if ($key ne "TER" && $key ne "ATO") {
-                next;
-            }
-
-            # verify
-            if ($key eq "ATO" && ($cc eq "" || $cc eq substr($fc[$i], 21, 1))) {
-                # get current chain
-                $cc = substr($fc[$i], 21, 1);
-                # write data
-                $cn .= $fc[$i];                
-            } else {
-                # check
-                my $on = "_1_";
-                if ($cc eq $ch) {
-                    $on = "_0_";
-                }
-
+        # verify
+        if ($key eq "ATO" && ($cc eq "" || $cc eq substr($fc[$i], 21, 1))) {
+            # get current chain
+            $cc = substr($fc[$i], 21, 1);
+            # write data
+            $cn .= $fc[$i];
+        } else {
+            # check
+            if ($cc ne $ch) {
                 # write file
-                open (out, ">" . $od . $biomol . $on . $nc . ".pdb");
+                open (out, ">" . $od . $biomol . "_" . $nc . ".pdb");
                 print out $cn . "TER";
                 close (out);
 
                 # chain counter
                 $nc++;
-
-                # reset content
-                $cn = "";
-                $cc = "";
             }
+            # reset content
+            $cn = "";
+            $cc = "";
         }
     }
 }
