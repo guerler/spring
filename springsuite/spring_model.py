@@ -34,17 +34,37 @@ class Molecule:
 						self.hetatm[chainName][atomNumber] = atomDict
 				biokey = "REMARK 350 APPLY THE FOLLOWING TO CHAINS:"
 				if self.rotmat is None and line[0:len(biokey)] == biokey:
-					biomolChains = line[len(biokey):].split()
-					nextLine = next(file)
-					biomolMat1 = nextLine[23:].split()
-					nextLine = next(file)
-					biomolMat2 = nextLine[23:].split()
-					nextLine = next(file)
-					biomolMat3 = nextLine[23:].split()
+					chains = line[len(biokey):].split(",")
+					chains = list(map(lambda x: x.strip(), chains))
+					biomolMat1 = self.getFloats(file)
+					biomolMat2 = self.getFloats(file)
+					biomolMat3 = self.getFloats(file)
 					matrix = [biomolMat1, biomolMat2, biomolMat3]
-					self.rotmat = dict(chains=biomolChains, matrix=matrix)
+					self.rotmat = dict(chains=chains, matrix=matrix)
 		if not self.calpha:
 			raise Exception("Molecule has no atoms.")
+
+	def getFloats(self, file):
+		nextLine = next(file)
+		matLine = nextLine[23:].split()
+		matLine = list(map(lambda x: self.toFloat(x), matLine))
+		return matLine
+
+	def createUnit(self):
+		count = 0
+		for chain in self.rotmat["chains"]:
+			chainCopy = self.calpha[chain].copy()
+			for atomNumber in chainCopy:
+				atom = chainCopy[atomNumber]
+				rotmat = self.rotmat["matrix"]
+				newx = atom["x"] * rotmat[0][0] + atom["y"] * rotmat[0][1] + atom["z"] * rotmat[0][2] + rotmat[0][3]
+				newy = atom["x"] * rotmat[1][0] + atom["y"] * rotmat[1][1] + atom["z"] * rotmat[1][2] + rotmat[1][3]
+				newz = atom["x"] * rotmat[2][0] + atom["y"] * rotmat[2][1] + atom["z"] * rotmat[2][2] + rotmat[2][3]
+				atom["x"] = newx
+				atom["y"] = newy
+				atom["z"] = newz
+			self.calpha[str(count)] = chainCopy
+			count = count + 1
 
 	def toFloat(self, x):
 		try:
@@ -129,6 +149,8 @@ def main(args):
 	if args.chain not in templateMolecule.calpha:
 		raise Exception("Chain not found in template [%s]" % args.chain)
 	print (templateMolecule.rotmat)
+	print (templateMolecule.createUnit())
+	print (templateMolecule.calpha.keys())
 	'''templateChain = templateMolecule.calpha[args.chain]
 	alignment = Alignment(args.query)
 	alignment.createModel(templateChain)
