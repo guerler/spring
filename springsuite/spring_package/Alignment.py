@@ -1,11 +1,11 @@
 class Alignment:
 	def __init__(self, fileName):
 		self.queryName = None
-		self.alignment = list()
 		self.queryStart = list()
+		self.queryAlignment = list()
 		self.templateName = None
-		self.templateAlignment = list()
 		self.templateStart = list()
+		self.templateAlignment = list()
 		self.readFile(fileName)
 
 	def readFile(self, fileName):
@@ -20,7 +20,7 @@ class Alignment:
 					if len(cols) > 3:
 						if cols[0] == "Q" and cols[1] == self.queryName:
 							self.queryStart.append(self.toInt(cols[2]))
-							self.alignment.append(cols[3])
+							self.queryAlignment.append(cols[3])
 						if cols[0] == "T" and cols[1] == self.templateName:
 							self.templateStart.append(self.toInt(cols[2]))
 							self.templateAlignment.append(cols[3])
@@ -36,7 +36,7 @@ class Alignment:
 			templateStart = self.templateStart[i]
 			templateSequence = self.templateAlignment[i]
 			queryStart = self.queryStart[i]
-			querySequence = self.alignment[i]
+			querySequence = self.queryAlignment[i]
 			n = len(querySequence)
 			tcount = 0
 			qcount = 0
