@@ -243,7 +243,7 @@ if __name__ == "__main__":
 	parser.add_argument('-br', '--b_result', help='Second HHR target file result', required=True)
 	parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=False, default="A")
 	parser.add_argument('-bt', '--b_template', help='Second template PDB', required=False, default="A")
-	parser.add_argument('-t', '--template', help='Structure template', required=True)
+	parser.add_argument('-ts', '--template', help='Structure template', required=True)
 	parser.add_argument('-tc', '--template_core', help='Core template chain name', required=True)
 	parser.add_argument('-o', '--output', help='Output PDB file', required=False)
 	args = parser.parse_args()
