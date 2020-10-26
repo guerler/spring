@@ -26,9 +26,6 @@ def TMalign(fileA, fileB):
 			rotmatLine = list(map(lambda x: float(x), rotmatLine))
 			rotmatLine = [rotmatLine[1], rotmatLine[2], rotmatLine[3], rotmatLine[0]]
 			rotmat.append(rotmatLine)
-	molecule = Molecule(fileA)
-	for atom in molecule.atoms:
-		molecule.applyMatrix(atom, rotmat)
 	with open("temp/tmalign.out") as file:
 		for i in range(14):
 			line = next(file)
@@ -36,6 +33,9 @@ def TMalign(fileA, fileB):
 			tmscore = float(line[9:17])
 		except:
 			raise Exception("TMalign::Failed to retrieve TMscore.")
+	molecule = Molecule(fileA)
+	for atom in molecule.atoms:
+		molecule.applyMatrix(atom, rotmat)
 	return tmscore, molecule
 
 def main(args):
