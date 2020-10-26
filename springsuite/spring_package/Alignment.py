@@ -19,10 +19,10 @@ class Alignment:
 				if self.queryName and self.templateName:
 					if len(cols) > 3:
 						if cols[0] == "Q" and cols[1] == self.queryName:
-							self.queryStart.append(self.toInt(cols[2]))
+							self.queryStart.append(self.getStart(cols[2]))
 							self.queryAlignment.append(cols[3])
 						if cols[0] == "T" and cols[1] == self.templateName:
-							self.templateStart.append(self.toInt(cols[2]))
+							self.templateStart.append(self.getStart(cols[2]))
 							self.templateAlignment.append(cols[3])
 				if len(cols) > 1 and cols[0] == "No" and cols[1] == "2":
 					break
@@ -58,11 +58,11 @@ class Alignment:
 				if ts != "-":
 					tcount = tcount + 1
 
-	def toInt(self, x):
+	def getStart(self, x):
 		try:
 			return int(x)
 		except:
-			return 0
+			raise Exception("Invalid start index in alignment [%s]." % x)
 
 	def toThreeAmino (self, seq):
 		code = dict(G="GLY", A="ALA", V="VAL", L="LEU", I="ILE", M="MET", F="PHE", P="PRO", Y="TYR", W="TRP",

@@ -23,8 +23,8 @@ class Molecule:
 					x = self.toFloat(line[30:38])
 					y = self.toFloat(line[38:46])
 					z = self.toFloat(line[46:54])
-					occupancy = self.toFloat(line[54:60])
-					temperature = self.toFloat(line[54:60])
+					occupancy = self.toFloat(line[54:60], optional=True)
+					temperature = self.toFloat(line[54:60], optional=True)
 					residue = line[17:20]
 					residueNumber = self.toInt(line[22:26])
 					atomNumber = self.toInt(line[6:11])
@@ -86,17 +86,19 @@ class Molecule:
 		atom["z"] = newz
 		return atom
 
-	def toFloat(self, x):
+	def toFloat(self, x, optional=False):
 		try:
 			return float(x)
 		except:
+			if not optional:
+				raise Exception("Invalid float conversion [%s]." % x)
 			return 0.0
 
 	def toInt(self, x):
 		try:
 			return int(x)
 		except:
-			return 0
+			raise Exception("Invalid integer conversion [%s]." % x)
 
 	def saveChain(self, chainName, outputName):
 		print ("Writing PDB file to %s." % outputName)
