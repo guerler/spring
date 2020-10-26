@@ -99,7 +99,7 @@ class Alignment:
 		self.readFile(fileName)
 
 	def readFile(self, fileName):
-		with open(args.query) as file:
+		with open(fileName) as file:
 			for index, line in enumerate(file):
 				cols = line.split()
 				if len(cols) > 1 and cols[0] == "Query":
@@ -145,17 +145,19 @@ class Alignment:
 			return 0
 
 def main(args):
-	templateMolecule = Molecule(args.template)
-	if args.chain not in templateMolecule.calpha:
-		raise Exception("Chain not found in template [%s]" % args.chain)
-	print (templateMolecule.rotmat)
-	print (templateMolecule.createUnit())
-	print (templateMolecule.calpha.keys())
-	'''templateChain = templateMolecule.calpha[args.chain]
-	alignment = Alignment(args.query)
-	alignment.createModel(templateChain)
-	outputName = "%s.pdb" % alignment.queryName
-	templateMolecule.save(args.chain, args.output or outputName)'''
+	templateMolecule = Molecule(args.a_template)
+	if args.a_chain not in templateMolecule.calpha:
+		raise Exception("Chain not found in template [%s]" % args.a_chain)
+	templateMolecule.createUnit()
+	os.system("mkdir -p temp")
+	for key in templateMolecule.calpha.keys():
+		templateMolecule.save(key, "temp/%s.pdb" % key)
+
+	queryChain = templateMolecule.calpha[args.a_chain]
+	queryAlignment = Alignment(args.a_result)
+	queryAlignment.createModel(queryChain)
+	outputName = "%s.pdb" % queryAlignment.queryName
+	templateMolecule.save(args.a_chain, "temp/query.pdb")
 
 def toThreeAmino (seq):
 	code = dict(G="GLY", A="ALA", V="VAL", L="LEU", I="ILE", M="MET", F="PHE", P="PRO", Y="TYR", W="TRP",
@@ -169,9 +171,14 @@ def toSingleAmino (seq):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
-	parser.add_argument('-q', '--query', help='HHR target file result', required=True)
-	parser.add_argument('-c', '--chain', help='Structure chain', required=False, default="A")
+	parser.add_argument('-ar', '--a_result', help='First HHR target file result', required=True)
+	parser.add_argument('-ac', '--a_chain', help='First template chain name', required=False)
+	parser.add_argument('-at', '--a_template', help='First template PDB', required=True)
+	parser.add_argument('-br', '--b_result', help='Second HHR target file result', required=True)
+	parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=False, default="A")
+	parser.add_argument('-bt', '--b_template', help='Second template PDB', required=False, default="A")
 	parser.add_argument('-t', '--template', help='Structure template', required=True)
 	parser.add_argument('-o', '--output', help='Output PDB file', required=False)
 	args = parser.parse_args()
 	main(args)
+ 
