@@ -4,9 +4,19 @@ import os
 from spring_package.Molecule import Molecule
 from spring_package.Alignment import Alignment
 
-def TMalign(fileA, fileB, outputName):
+def buildModel(resultFile, templateFile, chainName, outputName):
+	template = Molecule(templateFile)
+	if chainName not in template.calpha:
+		raise Exception("Chain not found in template [%s]" % chainName)
+	chain = template.calpha[chainName]
+	alignment = Alignment(resultFile)
+	alignment.createModel(chain)
+	template.saveChain(chainName, outputName)
+	os.system("./build/pulchra %s" % outputName)
+
+def TMalign(fileA, fileB):
 	os.system("build/TMalign %s %s -m temp/tmalign.mat > temp/tmalign.out" % (fileA, fileB))
-	rotmat = []
+	rotmat = list()
 	with open("temp/tmalign.mat") as file:
 		line = next(file)
 		line = next(file)
@@ -19,18 +29,14 @@ def TMalign(fileA, fileB, outputName):
 	molecule = Molecule(fileA)
 	for atom in molecule.atoms:
 		molecule.applyMatrix(atom, rotmat)
-	molecule.save(outputName)
-	return molecule
-
-def buildModel(resultFile, templateFile, chainName, outputName):
-	template = Molecule(templateFile)
-	if chainName not in template.calpha:
-		raise Exception("Chain not found in template [%s]" % chainName)
-	chain = template.calpha[chainName]
-	alignment = Alignment(resultFile)
-	alignment.createModel(chain)
-	template.saveChain(chainName, outputName)
-	os.system("./build/pulchra %s" % outputName)
+	with open("temp/tmalign.out") as file:
+		for i in range(14):
+			line = next(file)
+		try:
+			tmscore = float(line[9:17])
+		except:
+			raise Exception("TMalign::Failed to retrieve TMscore.")
+	return tmscore, molecule
 
 def main(args):
 	os.system("mkdir -p temp")
@@ -39,13 +45,15 @@ def main(args):
 	for key in bioMolecule.calpha.keys():
 		bioMolecule.saveChain(key, "temp/template%s.pdb" % key)
 	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
-	coreMolecule = TMalign("temp/modelA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core, "temp/tmalignCore.pdb")
+	coreTMscore, coreMolecule = TMalign("temp/modelA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
 	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
-	partners = []
 	for chainName in bioMolecule.calpha.keys():
 		if chainName != args.template_core:
-			partnerMolecule = TMalign("temp/modelB.rebuilt.pdb", "temp/template%s.pdb" % chainName, "temp/tmalign%s.pdb" % chainName)
-			partners.append(partnerMolecule)
+			print("Evaluating chain %s..." % chainName) 
+			partnerTMscore, partnerMolecule = TMalign("temp/modelB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
+			minTMscore = min(coreTMscore, partnerTMscore)
+			print("min-TMscore: %2.5f" % minTMscore)
+			partnerMolecule.save("temp/tmalign%s.pdb" % chainName)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
