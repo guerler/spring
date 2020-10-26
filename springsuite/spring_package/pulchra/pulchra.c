@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/timeb.h>
+#include <time.h>
 
 #define uchar unsigned char
 #define uint unsigned int
@@ -507,7 +508,7 @@ int read_pdb_file(char* filename, mol_type* molecules, char *realname)
         if (atmname[0]=='H') continue;
         if (resnum!=prevresnum || !strncmp(atmname, "N ", 2)) {
           prevresnum=resnum;
-          if (res)
+          if (res) {
             if (sgnum) {
               res->sgx=sgx/(real)sgnum;
               res->sgy=sgy/(real)sgnum;
@@ -515,6 +516,7 @@ int read_pdb_file(char* filename, mol_type* molecules, char *realname)
             } else {
               res->sgx=res->sgy=res->sgz=0.;
             }
+          }
           locatmnum=0;
           version=' ';
           res = new_res();
@@ -593,7 +595,7 @@ int read_pdb_file(char* filename, mol_type* molecules, char *realname)
       }
     }
 
-    if (res)
+    if (res) {
       if (sgnum) {
         res->sgx=sgx/(real)sgnum;
         res->sgy=sgy/(real)sgnum;
@@ -601,7 +603,7 @@ int read_pdb_file(char* filename, mol_type* molecules, char *realname)
       } else {
         res->sgx=res->sgy=res->sgz=0.;
       }
-
+    }
     fclose(inp);
 
     molecules->seq = (uchar*)calloc(sizeof(uchar)*molecules->nres+1,1);
@@ -1735,7 +1737,7 @@ void rebuild_backbone(void)
         besthit=1000.;
         bestpos=0;
         do {
-          hit = fabs(nco_stat_pro[j].bins[0]-bin13_1)+fabs(nco_stat_pro[j].bins[1]-bin13_2)+0.2*fabs(nco_stat_pro[j].bins[2]-bin14);
+          hit = abs(nco_stat_pro[j].bins[0]-bin13_1)+abs(nco_stat_pro[j].bins[1]-bin13_2)+0.2*abs(nco_stat_pro[j].bins[2]-bin14);
           if (hit<besthit) {
             besthit=hit;
             bestpos=j;
@@ -1757,7 +1759,7 @@ void rebuild_backbone(void)
         besthit=1000.;
         bestpos=0;
         do {
-          hit = fabs(nco_stat[j].bins[0]-bin13_1)+fabs(nco_stat[j].bins[1]-bin13_2)+0.2*fabs(nco_stat[j].bins[2]-bin14);
+          hit = abs(nco_stat[j].bins[0]-bin13_1)+abs(nco_stat[j].bins[1]-bin13_2)+0.2*abs(nco_stat[j].bins[2]-bin14);
           if (hit<besthit) {
             besthit=hit;
             bestpos=j;
@@ -1815,7 +1817,7 @@ typedef struct _rot_struct {
 rot_struct *rotamers[20];
 
 /* this is obsolete in a standalone version of PULCHRA */
-int read_rotamers(void)
+void read_rotamers(void)
 {
   FILE *inp;
   char buf[1000];
@@ -2035,7 +2037,7 @@ void rebuild_sidechains(void)
       bestpos = 0;
       do {
         if (rot_stat_idx[j][0]==res->type) {
-          hit = fabs(rot_stat_idx[j][1]-bin13_1)+fabs(rot_stat_idx[j][2]-bin13_2)+0.2*fabs(rot_stat_idx[j][3]-bin14);
+          hit = abs(rot_stat_idx[j][1]-bin13_1)+abs(rot_stat_idx[j][2]-bin13_2)+0.2*abs(rot_stat_idx[j][3]-bin14);
           if (hit<SORTED_ROTAMERS[i][9][0]) {
             k = 9;
             while (k>=0 && hit<SORTED_ROTAMERS[i][k][0]) {
@@ -2405,7 +2407,7 @@ void optimize_exvol(void)
 
 	allocate_grid(&grid, &xgrid, &ygrid, &zgrid);
 
-    if (_VERBOSE) printf("Finding excluded volume conflicts...\n", xgrid, ygrid, zgrid);
+    if (_VERBOSE) printf("Finding excluded volume conflicts...\n");
 
 	iter = 0;
 
@@ -2645,7 +2647,7 @@ real calc_torsion(atom_type *a1, atom_type *a2, atom_type *a3, atom_type *a4)
 
 // Ca-N-C-Cb angle should be close to 34 deg
 
-int chirality_check(void)
+void chirality_check(void)
 {
   int i;
   atom_type *a_ca, *a_n, *a_c, *a_cb;
@@ -3001,9 +3003,9 @@ void optimize_backbone(mol_type *chain)
 	res_type *res;
   real ene, min_ene, tot1, tot2;
   int i, k, best;
-FILE *out;
+  FILE *out;
    
-  	if (_VERBOSE) printf("Optimizing backbone...\n", xgrid, ygrid, zgrid);
+  	if (_VERBOSE) printf("Optimizing backbone...\n");
 
 		allocate_grid(&grid, &xgrid, &ygrid, &zgrid);
 
@@ -3190,7 +3192,7 @@ int main(int argc, char **argv)
 
 
     if (_BB_REARRANGE) {
-      if (_VERBOSE) printf("Rearranging backbone atoms...\n", out_name);
+      if (_VERBOSE) printf("Rearranging backbone atoms...\n");
     }
 
     ptr = strstr(name,".pdb");
