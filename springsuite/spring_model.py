@@ -6,9 +6,6 @@ from spring_package.Alignment import Alignment
 from spring_package.Energy import Energy
 from spring_package.Molecule import Molecule
 
-w1 = 12.4
-w2 = 0.2
-
 def buildModel(resultFile, templateFile, chainName, outputName):
 	template = Molecule(templateFile)
 	if chainName not in template.calpha:
@@ -61,21 +58,23 @@ def main(args):
 			print("min-TMscore: %5.5f" % minTM)
 			energy = interfaceEnergy.get(coreMolecule, partnerMolecule)
 			print("Interaction: %5.5f" % energy)
-			springScore = minTM * w1 - energy * w2
+			springScore = minTM * args.wtm - energy * args.wenergy
 			print("SpringScore: %5.5f" % springScore)
 			partnerMolecule.save("temp/tmalign%s.pdb" % chainName)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
 	parser.add_argument('-ar', '--a_result', help='First HHR target file result', required=True)
-	parser.add_argument('-ac', '--a_chain', help='First template chain name', required=False)
+	parser.add_argument('-ac', '--a_chain', help='First template chain name', required=True)
 	parser.add_argument('-at', '--a_template', help='First template PDB', required=True)
 	parser.add_argument('-br', '--b_result', help='Second HHR target file result', required=True)
-	parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=False, default="A")
-	parser.add_argument('-bt', '--b_template', help='Second template PDB', required=False, default="A")
+	parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=True)
+	parser.add_argument('-bt', '--b_template', help='Second template PDB', required=True)
 	parser.add_argument('-ts', '--template', help='Structure template', required=True)
 	parser.add_argument('-tc', '--template_core', help='Core template chain name', required=True)
 	parser.add_argument('-o', '--output', help='Output PDB file', required=False)
+	parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=12.4, required=False)
+	parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=-0.2, required=False)
 	args = parser.parse_args()
 	main(args)
  
