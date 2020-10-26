@@ -10,6 +10,7 @@ class Molecule:
 
 	def fromFile(self, fileName):
 		biomolFound = False
+		biomolChains = list()
 		with open(fileName) as file:
 			for index, line in enumerate(file):
 				key = line[0:6].strip()
@@ -45,21 +46,26 @@ class Molecule:
 				biokey = "REMARK 350 BIOMOLECULE:"
 				if line[0:len(biokey)] == biokey:
 					biomolFound = self.toInt(line[len(biokey):]) == 1
-				biokey = "REMARK 350 APPLY THE FOLLOWING TO CHAINS:"
-				if biomolFound and line[0:len(biokey)] == biokey:
-					chains = line[len(biokey):].split(",")
-					chains = list(map(lambda x: x.strip(), chains))
-					biomolMatId, biomolMat1 = self.getFloats(file)
-					if biomolMatId == 1:
-						biomolMatId, biomolMat2 = self.getFloats(file)
-						biomolMatId, biomolMat3 = self.getFloats(file)
+				if biomolFound:
+					biokey = "REMARK 350 APPLY THE FOLLOWING TO CHAINS:"
+					if line[0:len(biokey)] == biokey:
+						biomolChains = line[len(biokey):].split(",")
+						biomolChains = list(map(lambda x: x.strip(), biomolChains))
+					biokey = "REMARK 350   BIOMT"
+					if line[0:len(biokey)] == biokey:
+						biomolMatId1, biomolMat1 = self.getFloats(line)
+						nextLine = next(file)
+						biomolMatId2, biomolMat2 = self.getFloats(nextLine)
+						nextLine = next(file)
+						biomolMatId3, biomolMat3 = self.getFloats(nextLine)
+						if biomolMatId1 != biomolMatId2 or biomolMatId1 != biomolMatId3:
+							raise Exception("Invalid rotation matrix format [%s]." % biomolMatId1)
 						matrix = [biomolMat1, biomolMat2, biomolMat3]
-						self.rotmat.append(dict(chains=chains, matrix=matrix))
+						self.rotmat.append(dict(chains=biomolChains, matrix=matrix))
 		if not self.calpha:
 			raise Exception("Molecule has no atoms.")
 
-	def getFloats(self, file):
-		nextLine = next(file)
+	def getFloats(self, nextLine):
 		matId = self.toInt(nextLine[20:23])
 		matLine = nextLine[23:].split()
 		matLine = list(map(lambda x: self.toFloat(x), matLine))
@@ -67,14 +73,22 @@ class Molecule:
 
 	def createUnit(self):
 		molecule = Molecule()
+		chainCount = 0
 		for matrixDict in self.rotmat:
 			for chain in matrixDict["chains"]:
-				chainCopy = self.calpha[chain].copy()
+				chainCopy = dict()
+				for residue in self.calpha[chain]:
+					chainCopy[residue] = self.calpha[chain][residue].copy()
 				for atomNumber in chainCopy:
 					atom = chainCopy[atomNumber]
 					rotmat = matrixDict["matrix"]
 					self.applyMatrix(atom, rotmat)
-				molecule.calpha[chain] = chainCopy
+				if chain in molecule.calpha:
+					chainName = chainCount
+				else:
+					chainName = chain
+				molecule.calpha[chainName] = chainCopy
+				chainCount = chainCount + 1
 		return molecule
 
 	def applyMatrix(self, atom, rotmat):
