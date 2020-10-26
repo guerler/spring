@@ -41,18 +41,15 @@ my @alpha = ("A".."Z");
 
 # report
 open (report, ">log.txt");
-            
+
 # loop
 for (my $i = 0; $i < $n; $i++) {
     # split
     my $id = substr($list[$i], 0 , 4);
 
-	# path tag
-	my $pathsub = substr($id, 0, 2) . "/" . $id . "/";
-
     # verify
     my $pd = $pathin . lc($id) . ".pdb";
-    my $fo = $pathout . $pathsub . "0.pdb";
+    my $fo = $pathout . $id . ".pdb";
 
     # print name
     print "$pd\n";  
@@ -69,16 +66,13 @@ for (my $i = 0; $i < $n; $i++) {
         next;
     }
 
-    # make directory
-    cmd("mkdir -p $pathout$pathsub");
-
     # get all chains
     my $protein = "";  
-        
+
     # remark 350
     my $biodef = "";
-    my $biodefn = 0;
-        
+    my $biofound = 0;
+
     # open file
     open (data, "$pd");
     while (my $record = <data>) {
@@ -100,7 +94,12 @@ for (my $i = 0; $i < $n; $i++) {
 
         # check for remark
         if (trim(substr($record, 0, 23)) eq "REMARK 350 BIOMOLECULE:") {
-            $biodef .= "#BIOMOL " . $biodefn++ . "\n";
+            if ($biofound) {
+                last;
+            } else {
+                $biofound = 1;
+                $biodef .= "#BIOMOL 1\n";
+            }
         }
 
         # check for remark
@@ -116,31 +115,23 @@ for (my $i = 0; $i < $n; $i++) {
 
     # end tag
     if ($biodef ne "") {
-        $biodef .= "#BIOMOL\n";
+        $biodef .= "#END\n";
     }
 
     # close
     close (data);
 
-    # write pdb as it is                
-    open (fout, ">$fo");
-    print fout $protein;
-    close (fout);
-
     # check
-    if ($biodefn == 0) {
-        #log
+    if ($biofound == 0) {
         print "No definiton found.\n";
         next;
     }
 
-    #debug
-    #print $biodef;
+    # debug
+    print $biodef;
 
     # final molecule
     my $biomol = "";
-    my $biochain = 0;
-    my $biomoln = 1;
 
     # biodefinition
     my @lb = split ("\n", $biodef);
@@ -154,23 +145,6 @@ for (my $i = 0; $i < $n; $i++) {
     for (my $j = 0; $j < @lb; $j++) {
         # key
         my $key = substr($lb[$j], 0, 7);
-        
-        # select chains
-        if ($key eq "#BIOMOL") {
-            # write out biomolecule
-            if ($biomol ne "") {
-                # write 
-                open (fout, ">$pathout$pathsub$biomoln.pdb");
-                print fout $biomol;
-                close (fout);                
-
-                # reset
-                $biomoln++;
-                $biomol = "";
-                $biochain = 0;
-                @rotchains = ();                                                
-            }
-        }
 
         # select chains
         if ($key eq "#CHAINS") {
@@ -200,8 +174,8 @@ for (my $i = 0; $i < $n; $i++) {
             my @lines = split ("\n", $protein);
             for (my $k = 0; $k < @lines; $k++) {
                 # lines
-                my $line = $lines[$k];                        
-                                    
+                my $line = $lines[$k];
+
                 # is atom
                 if (substr($line, 0, 4) eq "ATOM") {
                     # select chain
@@ -227,18 +201,22 @@ for (my $i = 0; $i < $n; $i++) {
 
                     # write
                     $biomol .= substr($line, 0, 30);
-                    $biomol .= sprintf ("%8.3f%8.3f%8.3f\n", $newx, $newy, $newz); 
+                    $biomol .= sprintf ("%8.3f%8.3f%8.3f\n", $newx, $newy, $newz);
                 }
             }
 
             # add termination
             $biomol .= "TER\n";
-            $biochain++;
+
+            # reset
+            @rotmat = ();
+            $rotmatid = 0;
         }
 
-        # reset
-        $rotmatid = 0;
-        @rotmat = ();                    
+        # write
+        open (fout, ">$fo");
+        print fout $biomol;
+        close (fout);
     }
 }
 
