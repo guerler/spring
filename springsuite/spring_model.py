@@ -40,13 +40,13 @@ def TMalign(fileA, fileB):
 
 def main(args):
 	os.system("mkdir -p temp")
+	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
+	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
 	templateMolecule = Molecule(args.template)
 	bioMolecule = templateMolecule.createUnit()
 	for key in bioMolecule.calpha.keys():
 		bioMolecule.saveChain(key, "temp/template%s.pdb" % key)
-	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
 	coreTMscore, coreMolecule = TMalign("temp/modelA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
-	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
 	for chainName in bioMolecule.calpha.keys():
 		if chainName != args.template_core:
 			print("Evaluating chain %s..." % chainName) 
