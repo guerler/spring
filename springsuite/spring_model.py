@@ -1,8 +1,13 @@
 #! /usr/bin/env python3
 import argparse
 import os
-from spring_package.Molecule import Molecule
+
 from spring_package.Alignment import Alignment
+from spring_package.Energy import Energy
+from spring_package.Molecule import Molecule
+
+w1 = 12.4
+w2 = 0.2
 
 def buildModel(resultFile, templateFile, chainName, outputName):
 	template = Molecule(templateFile)
@@ -43,6 +48,7 @@ def main(args):
 	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
 	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
 	templateMolecule = Molecule(args.template)
+	interfaceEnergy = Energy()
 	bioMolecule = templateMolecule.createUnit()
 	for key in bioMolecule.calpha.keys():
 		bioMolecule.saveChain(key, "temp/template%s.pdb" % key)
@@ -51,8 +57,12 @@ def main(args):
 		if chainName != args.template_core:
 			print("Evaluating chain %s..." % chainName) 
 			partnerTMscore, partnerMolecule = TMalign("temp/modelB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
-			minTMscore = min(coreTMscore, partnerTMscore)
-			print("min-TMscore: %2.5f" % minTMscore)
+			minTM = min(coreTMscore, partnerTMscore)
+			print("min-TMscore: %5.5f" % minTM)
+			energy = interfaceEnergy.get(coreMolecule, partnerMolecule)
+			print("Interaction: %5.5f" % energy)
+			springScore = minTM * w1 - energy * w2
+			print("SpringScore: %5.5f" % springScore)
 			partnerMolecule.save("temp/tmalign%s.pdb" % chainName)
 
 if __name__ == "__main__":

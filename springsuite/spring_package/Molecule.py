@@ -132,3 +132,4 @@ class Molecule:
 
 	def atomString(self, atom):
 		return "ATOM  %5d %s %s A %3d    %8.3f%8.3f%8.3f%6.2f%6.2f\n" % (atom["atomNumber"], atom["atomName"], atom["residue"], atom["residueNumber"], atom["x"], atom["y"], atom["z"], atom["occupancy"], atom["temperature"])
+
