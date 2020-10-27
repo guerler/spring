@@ -49,7 +49,7 @@ def main(args):
 		else:
 			crossReference.append([hhrEntry, hhrEntry])
 	crossReference.sort(key=lambda x: (x[0], x[1]))
-
+	print ("Found %s index entries." % len(crossReference))
 	print ("Found %s additional binding partners for hhr entries." % len(partnerList))
 
 	os.system("mkdir -p temp/")
