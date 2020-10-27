@@ -47,37 +47,37 @@ def main(args):
 	interfaceEnergy = Energy()
 	templateMolecule = Molecule(args.template)
 	modelCount = 0
-	biomolUnits = list(templateMolecule.rotmat.keys())
-	biomolUnits = [0] + biomolUnits
-	for biomolNumber in biomolUnits:
+	for biomolNumber in range(len(templateMolecule.rotmat.keys())):
+		os.system("rm -f temp/template*.pdb")
 		if biomolNumber == 0:
 			bioMolecule = templateMolecule
 		else:
 			bioMolecule = templateMolecule.createUnit(biomolNumber)
-		for chainName in bioMolecule.calpha.keys():
-			bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
-		coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
-		maxScore = -9999
-		maxMolecule = None
-		for chainName in bioMolecule.calpha.keys():
-			if chainName != args.template_core:
-				print("Evaluating chain %s..." % chainName) 
-				try:
-					partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
-				except:
-					continue
-				minTM = min(coreTMscore, partnerTMscore)
-				print("min-TMscore: %5.5f" % minTM)
-				energy = interfaceEnergy.get(coreMolecule, partnerMolecule)
-				print("Interaction: %5.5f" % energy)
-				springScore = minTM * args.wtm - energy * args.wenergy
-				print("SpringScore: %5.5f" % springScore)
-				if springScore > maxScore:
-					maxMolecule = partnerMolecule
-				modelName = "temp/model%s.pdb" % modelCount
-				coreMolecule.save(modelName, chainName="A")
-				maxMolecule.save(modelName, chainName="B", append=True)
-				modelCount = modelCount + 1
+		if len(bioMolecule.calpha.keys()) > 1:
+			for chainName in bioMolecule.calpha.keys():
+				bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
+			coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
+			maxScore = -9999
+			maxMolecule = None
+			for chainName in bioMolecule.calpha.keys():
+				if chainName != args.template_core:
+					print("Evaluating chain %s..." % chainName) 
+					try:
+						partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
+					except:
+						continue
+					minTM = min(coreTMscore, partnerTMscore)
+					print("min-TMscore: %5.5f" % minTM)
+					energy = interfaceEnergy.get(coreMolecule, partnerMolecule)
+					print("Interaction: %5.5f" % energy)
+					springScore = minTM * args.wtm - energy * args.wenergy
+					print("SpringScore: %5.5f" % springScore)
+					if springScore > maxScore:
+						maxMolecule = partnerMolecule
+					modelName = "temp/model%s.pdb" % modelCount
+					coreMolecule.save(modelName, chainName="A")
+					maxMolecule.save(modelName, chainName="B", append=True)
+					modelCount = modelCount + 1
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
