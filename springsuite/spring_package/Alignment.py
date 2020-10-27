@@ -6,6 +6,7 @@ class Alignment:
 		self.templateName = None
 		self.templateStart = list()
 		self.templateAlignment = list()
+		self.templateDssp = list()
 		self.readFile(fileName)
 
 	def readFile(self, fileName):
@@ -13,17 +14,19 @@ class Alignment:
 			for index, line in enumerate(file):
 				cols = line.split()
 				if len(cols) > 1 and cols[0] == "Query":
-					self.queryName = cols[1]
+					self.queryName = cols[1].split()[0][0:14]
 				if len(cols) > 1 and cols[0].startswith(">"):
 					self.templateName = cols[0][1:]
 				if self.queryName and self.templateName:
-					if len(cols) > 3:
+					if len(cols) > 2:
 						if cols[0] == "Q" and cols[1] == self.queryName:
 							self.queryStart.append(self.getStart(cols[2]))
 							self.queryAlignment.append(cols[3])
 						if cols[0] == "T" and cols[1] == self.templateName:
 							self.templateStart.append(self.getStart(cols[2]))
 							self.templateAlignment.append(cols[3])
+						if cols[0] == "T" and cols[1] == "ss_dssp":
+							self.templateDssp.append(cols[2])
 				if len(cols) > 1 and cols[0] == "No" and cols[1] == "2":
 					break
 
@@ -32,19 +35,21 @@ class Alignment:
 		for residueNumber in templateChain:
 			previousResidue[residueNumber] = templateChain[residueNumber]["residue"]
 			templateChain[residueNumber]["residue"] = None
+		tcount = 0
 		for i in range(len(self.templateStart)):
 			templateStart = self.templateStart[i]
 			templateSequence = self.templateAlignment[i]
+			templateDssp = self.templateDssp[i]
 			queryStart = self.queryStart[i]
 			querySequence = self.queryAlignment[i]
 			n = len(querySequence)
-			tcount = 0
 			qcount = 0
 			for j in range(n):
 				qs = querySequence[j]
 				ts = templateSequence[j]
-				if qs != "-" and ts != "-":
-					residueNumber = templateStart + tcount
+				dssp = templateDssp[j]
+				if dssp != "-" and qs != "-" and ts != "-":
+					residueNumber = tcount
 					if residueNumber in templateChain:
 						pr = previousResidue[residueNumber]
 						if pr != self.toThreeAmino(ts):
@@ -55,7 +60,7 @@ class Alignment:
 						print ("Warning: Skipping missing residue [%s]." % residueNumber)
 				if qs != "-":
 					qcount = qcount + 1
-				if ts != "-":
+				if dssp != "-":
 					tcount = tcount + 1
 
 	def getStart(self, x):

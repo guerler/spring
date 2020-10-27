@@ -42,25 +42,37 @@ def TMalign(fileA, fileB):
 
 def main(args):
 	os.system("mkdir -p temp")
+	templateMolecule = Molecule(args.template)
+	bioMolecule = templateMolecule.createUnit()
+	for key in bioMolecule.calpha.keys():
+		bioMolecule.saveChain(key, "temp/template%s.pdb" % key)
 	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
 	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
-	templateMolecule = Molecule(args.template)
 	interfaceEnergy = Energy()
+	templateMolecule = Molecule(args.template)
 	bioMolecule = templateMolecule.createUnit()
 	for key in bioMolecule.calpha.keys():
 		bioMolecule.saveChain(key, "temp/template%s.pdb" % key)
 	coreTMscore, coreMolecule = TMalign("temp/modelA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
+	maxScore = -9999
+	maxMolecule = None
 	for chainName in bioMolecule.calpha.keys():
 		if chainName != args.template_core:
 			print("Evaluating chain %s..." % chainName) 
-			partnerTMscore, partnerMolecule = TMalign("temp/modelB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
+			try:
+				partnerTMscore, partnerMolecule = TMalign("temp/modelB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
+			except:
+				continue
 			minTM = min(coreTMscore, partnerTMscore)
 			print("min-TMscore: %5.5f" % minTM)
 			energy = interfaceEnergy.get(coreMolecule, partnerMolecule)
 			print("Interaction: %5.5f" % energy)
 			springScore = minTM * args.wtm - energy * args.wenergy
 			print("SpringScore: %5.5f" % springScore)
-			partnerMolecule.save("temp/tmalign%s.pdb" % chainName)
+			if springScore > maxScore:
+				maxMolecule = partnerMolecule
+	coreMolecule.save("temp/model.pdb", chainName="A")
+	maxMolecule.save("temp/model.pdb", chainName="B", append=True)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
