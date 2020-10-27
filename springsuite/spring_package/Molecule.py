@@ -2,13 +2,13 @@ class Molecule:
 	def __init__(self, fileName = None):
 		self.calpha = dict()
 		self.biomol = dict()
-		self.rotmat = list()
+		self.rotmat = dict()
 		self.atoms = list()
 		if fileName is not None:
 			self.fromFile(fileName)
 
 	def fromFile(self, fileName):
-		biomolFound = False
+		biomolNumber = 0
 		biomolChains = list()
 		with open(fileName) as file:
 			for index, line in enumerate(file):
@@ -39,8 +39,9 @@ class Molecule:
 					if atom.strip() == "CA":
 						self.calpha[chainName][residueNumber] = atomDict
 					self.atoms.append(atomDict)
-				biokey = "REMARK 350 BIOMOLECULE: 1"
+				biokey = "REMARK 350 BIOMOLECULE:"
 				if line[0:len(biokey)] == biokey:
+					biomolNumber = self.toInt(line[len(biokey):])
 					biokey = "REMARK 350 APPLY THE FOLLOWING TO CHAINS:"
 					nextLine = next(file)
 					while nextLine[:len(biokey)] != biokey:
@@ -65,7 +66,9 @@ class Molecule:
 							raise Exception("Invalid rotation matrix format [%s]." % biomolMatId1)
 						matrix = [biomolMat1, biomolMat2, biomolMat3]
 						biomolChains = [c for c in biomolChains if c]
-						self.rotmat.append(dict(chains=biomolChains, matrix=matrix))
+						if biomolNumber not in self.rotmat:
+							self.rotmat[biomolNumber] = list()
+						self.rotmat[biomolNumber].append(dict(chains=biomolChains, matrix=matrix))
 		if not self.calpha:
 			raise Exception("Molecule has no atoms.")
 
@@ -75,10 +78,10 @@ class Molecule:
 		matLine = list(map(lambda x: self.toFloat(x), matLine))
 		return matId, matLine
 
-	def createUnit(self):
+	def createUnit(self, biomolNumber = 1):
 		molecule = Molecule()
 		chainCount = 0
-		for matrixDict in self.rotmat:
+		for matrixDict in self.rotmat[biomolNumber]:
 			for chain in matrixDict["chains"]:
 				if chain in self.calpha:
 					chainCopy = dict()
