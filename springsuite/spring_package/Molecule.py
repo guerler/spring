@@ -69,6 +69,12 @@ class Molecule:
 						if biomolNumber not in self.rotmat:
 							self.rotmat[biomolNumber] = list()
 						self.rotmat[biomolNumber].append(dict(chains=biomolChains, matrix=matrix))
+		removeChains = []
+		for chainName in self.calpha:
+			if len(self.calpha[chainName]) == 0:
+				removeChains.append(chainName)
+		for chainName in removeChains:
+			del self.calpha[chainName]
 		if not self.calpha:
 			raise Exception("Molecule has no atoms.")
 
