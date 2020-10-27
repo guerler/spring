@@ -34,6 +34,7 @@ def main(args):
 	print ("Found %s entries in complete fasta database." % allCount)
 
 	crossReference = list()
+	partnerList = set()
 	for hhrEntry in hhrEntries:
 		pdbId = hhrEntry[0:4]
 		if pdbId not in allEntries:
@@ -43,12 +44,17 @@ def main(args):
 		if len(partners) > 0:
 			for p in partners:
 				crossReference.append([hhrEntry, p])
+				partnerList.add(p)
 		else:
 			crossReference.append([hhrEntry, hhrEntry])
 	crossReference.sort(key=lambda x: (x[0], x[1]))
-	with open(args.output, 'w') as output_file:
-		for entry in crossReference:
-			output_file.write("%s\t%s\n" % (entry[0], entry[1]))
+
+	os.system("mkdir -p temp/")
+	with open("temp/partnerlist.txt", 'w') as output_file:
+		for entry in partnerList:
+			output_file.write("%s\n" % entry)
+
+	os.system("./filterfasta.py -l %s -f %s -o temp/hhr.fasta" % (args.hhrlist, args.fasta))
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='List filtering.')

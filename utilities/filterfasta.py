@@ -12,9 +12,9 @@ def main(args):
 		with open(args.fasta) as file:
 			for index, line in enumerate(file):
 				if line.startswith(">"):
-					name = line.split()[0][1:]
+					name = line.split()[0][1:].upper()
 					if name in names:
-						output_file.write("%s" % line)
+						output_file.write(">%s\n" % name)
 						nextLine = next(file)
 						while nextLine and not nextLine.startswith(">"):
 							output_file.write("%s" % nextLine)
@@ -22,7 +22,7 @@ def main(args):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='This script filters sequences by identifier from a fasta file.')
-	parser.add_argument('-l', '--list', help='Fasta containing mulitple sequences', required=True)
+	parser.add_argument('-l', '--list', help='List of entries', required=True)
 	parser.add_argument('-f', '--fasta', help='Fasta input file', required=True)
 	parser.add_argument('-o', '--output', help='Output file containing filtered sequences', required=True)
 	args = parser.parse_args()
