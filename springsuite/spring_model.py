@@ -17,9 +17,14 @@ def buildModel(resultFile, templateFile, chainName, outputName):
 	os.system("./build/pulchra %s" % outputName)
 
 def TMalign(fileA, fileB):
-	os.system("build/TMalign %s %s -m temp/tmalign.mat > temp/tmalign.out" % (fileA, fileB))
+	baseA = os.path.basename(fileA)
+	baseB = os.path.basename(fileB)
+	baseA = os.path.splitext(baseA)[0]
+	baseB = os.path.splitext(baseB)[0]
+	tmName = "temp/tmalign.%s.%s" % (baseA, baseB)
+	os.system("build/TMalign %s %s -m %s.mat > %s.out" % (fileA, fileB, tmName, tmName))
 	rotmat = list()
-	with open("temp/tmalign.mat") as file:
+	with open("%s.mat" % tmName) as file:
 		line = next(file)
 		line = next(file)
 		for i in range(3):
@@ -28,11 +33,13 @@ def TMalign(fileA, fileB):
 			rotmatLine = list(map(lambda x: float(x), rotmatLine))
 			rotmatLine = [rotmatLine[1], rotmatLine[2], rotmatLine[3], rotmatLine[0]]
 			rotmat.append(rotmatLine)
-	with open("temp/tmalign.out") as file:
+	with open("%s.out" % tmName) as file:
 		for i in range(14):
 			line = next(file)
 		try:
 			tmscore = float(line[9:17])
+			line = next(file)
+			tmscore = max(tmscore, float(line[9:17]))
 		except:
 			raise Exception("TMalign::Failed to retrieve TMscore.")
 	molecule = Molecule(fileA)
