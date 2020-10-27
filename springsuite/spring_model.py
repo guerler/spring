@@ -42,21 +42,22 @@ def TMalign(fileA, fileB):
 
 def main(args):
 	os.system("mkdir -p temp")
-	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
-	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
+	buildModel(args.a_result, args.a_template, args.a_chain, "temp/monomerA.pdb")
+	buildModel(args.b_result, args.b_template, args.b_chain, "temp/monomerB.pdb")
 	interfaceEnergy = Energy()
 	templateMolecule = Molecule(args.template)
 	bioMolecule = templateMolecule.createUnit()
-	for key in bioMolecule.calpha.keys():
-		bioMolecule.saveChain(key, "temp/template%s.pdb" % key)
-	coreTMscore, coreMolecule = TMalign("temp/modelA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
+	for chainName in bioMolecule.calpha.keys():
+		if chainName != args.template_core:
+			bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
+	coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
 	maxScore = -9999
 	maxMolecule = None
 	for chainName in bioMolecule.calpha.keys():
 		if chainName != args.template_core:
 			print("Evaluating chain %s..." % chainName) 
 			try:
-				partnerTMscore, partnerMolecule = TMalign("temp/modelB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
+				partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
 			except:
 				continue
 			minTM = min(coreTMscore, partnerTMscore)
@@ -67,8 +68,9 @@ def main(args):
 			print("SpringScore: %5.5f" % springScore)
 			if springScore > maxScore:
 				maxMolecule = partnerMolecule
-	coreMolecule.save("temp/model.pdb", chainName="A")
-	maxMolecule.save("temp/model.pdb", chainName="B", append=True)
+			modelName = "temp/model%s.pdb" % chainName
+			coreMolecule.save(modelName, chainName="A")
+			maxMolecule.save(modelName, chainName="B", append=True)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
