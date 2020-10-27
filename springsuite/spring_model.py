@@ -69,7 +69,7 @@ def main(args):
 			maxMolecule = None
 			for chainName in bioMolecule.calpha.keys():
 				if chainName != args.template_core and len(bioMolecule.calpha[chainName]) > 0:
-					print("Evaluating chain %s..." % chainName) 
+					print("Evaluating chain %s..." % chainName)
 					try:
 						partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
 					except:
