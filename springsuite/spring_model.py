@@ -48,8 +48,7 @@ def main(args):
 	templateMolecule = Molecule(args.template)
 	bioMolecule = templateMolecule.createUnit()
 	for chainName in bioMolecule.calpha.keys():
-		if chainName != args.template_core:
-			bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
+		bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
 	coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
 	maxScore = -9999
 	maxMolecule = None
