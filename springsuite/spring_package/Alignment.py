@@ -1,3 +1,5 @@
+from Bio import pairwise2
+
 class Alignment:
 	def __init__(self, fileName):
 		self.queryName = None
@@ -6,7 +8,6 @@ class Alignment:
 		self.templateName = None
 		self.templateStart = list()
 		self.templateAlignment = list()
-		self.templateDssp = list()
 		self.readFile(fileName)
 
 	def readFile(self, fileName):
@@ -25,21 +26,21 @@ class Alignment:
 						if cols[0] == "T" and cols[1] == self.templateName:
 							self.templateStart.append(self.getStart(cols[2]))
 							self.templateAlignment.append(cols[3])
-						if cols[0] == "T" and cols[1] == "ss_dssp":
-							self.templateDssp.append(cols[2])
 				if len(cols) > 1 and cols[0] == "No" and cols[1] == "2":
 					break
 
 	def createModel(self, templateChain):
+		hhrMapping = self.mapSequence(templateChain)
+		
 		previousResidue = dict()
 		for residueNumber in templateChain:
-			previousResidue[residueNumber] = templateChain[residueNumber]["residue"]
+			templateResidue = templateChain[residueNumber]["residue"]
+			previousResidue[residueNumber] = templateResidue
 			templateChain[residueNumber]["residue"] = None
 		tcount = 0
-		for i in range(len(self.templateStart)):
+		for i in range(len(self.templateAlignment)):
 			templateStart = self.templateStart[i]
 			templateSequence = self.templateAlignment[i]
-			templateDssp = self.templateDssp[i]
 			queryStart = self.queryStart[i]
 			querySequence = self.queryAlignment[i]
 			n = len(querySequence)
@@ -47,8 +48,8 @@ class Alignment:
 			for j in range(n):
 				qs = querySequence[j]
 				ts = templateSequence[j]
-				dssp = templateDssp[j]
-				if dssp != "-" and qs != "-" and ts != "-":
+				rs = hhrMapping[tcount]
+				if rs != "-" and qs != "-" and ts != "-":
 					residueNumber = tcount
 					if residueNumber in templateChain:
 						pr = previousResidue[residueNumber]
@@ -60,7 +61,7 @@ class Alignment:
 						print ("Warning: Skipping missing residue [%s]." % residueNumber)
 				if qs != "-":
 					qcount = qcount + 1
-				if dssp != "-":
+				if ts != "-":
 					tcount = tcount + 1
 
 	def getStart(self, x):
@@ -69,12 +70,43 @@ class Alignment:
 		except:
 			raise Exception("Invalid start index in alignment [%s]." % x)
 
-	def toThreeAmino (self, seq):
+	def toThreeAmino(self, seq):
 		code = dict(G="GLY", A="ALA", V="VAL", L="LEU", I="ILE", M="MET", F="PHE", P="PRO", Y="TYR", W="TRP",
 					K="LYS", S="SER", C="CYS", N="ASN", Q="GLN", H="HIS", T="THR", E="GLU", D="ASP", R="ARG")
 		return code[seq] if seq in code else "XXX"
 
-	def toSingleAmino (self, seq):
+	def toSingleAmino(self, seq):
 		code = dict(GLY="G", ALA="A", VAL="V", LEU="L", ILE="I", MET="M", PHE="F", PRO="P", TYR="Y", TRP="W",
 					LYS="K", SER="S", CYS="C", ASN="N", GLN="Q", HIS="H", THR="T", GLU="E", ASP="D", ARG="R")
 		return code[seq] if seq in code else "X"
+
+	def mapSequence(self, templateChain):
+		pdbSequence = ""
+		for residueNumber in templateChain:
+			templateResidue = templateChain[residueNumber]["residue"]
+			pdbSequence = pdbSequence + self.toSingleAmino(templateResidue)
+		hhrSequence = ""
+		for i in range(len(self.templateAlignment)):
+			templateSequence = self.templateAlignment[i]
+			for s in templateSequence:
+				if s != "-":
+					hhrSequence = hhrSequence + s
+		alignments = pairwise2.align.globalxx(pdbSequence, hhrSequence)
+		pdbAlignment = alignments[0].seqA
+		hhrAlignment = alignments[0].seqB
+		pCount = 0
+		hCount = 0
+		hhrMapping = []
+		for i in range(len(pdbAlignment)):
+			p = pdbAlignment[i]
+			h = hhrAlignment[i]
+			if h != "-":
+				residueIndex = pCount if p != "-" else p 
+				hhrMapping.append(residueIndex)
+			if p != "-":
+				pCount = pCount + 1
+		sortedResidueIndex = sorted(templateChain.keys())
+		for i in range(len(hhrMapping)):
+			if hhrMapping[i] != "-":
+				hhrMapping[i] = sortedResidueIndex[hhrMapping[i]]
+		return hhrMapping

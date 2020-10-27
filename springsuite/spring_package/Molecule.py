@@ -10,7 +10,6 @@ class Molecule:
 	def fromFile(self, fileName):
 		biomolFound = False
 		biomolChains = list()
-		residueNumber = 0
 		with open(fileName) as file:
 			for index, line in enumerate(file):
 				key = line[0:6].strip()
@@ -26,6 +25,7 @@ class Molecule:
 					occupancy = self.toFloat(line[54:60], optional=True)
 					temperature = self.toFloat(line[54:60], optional=True)
 					residue = line[17:20]
+					residueNumber = self.toInt(line[22:26])
 					atomNumber = self.toInt(line[6:11])
 					atomName = line[12:16]
 					atomDict = dict(x=x, y=y, z=z,
@@ -38,7 +38,6 @@ class Molecule:
 									chainName=chainName)
 					if atom.strip() == "CA":
 						self.calpha[chainName][residueNumber] = atomDict
-						residueNumber = residueNumber + 1
 					self.atoms.append(atomDict)
 				biokey = "REMARK 350 BIOMOLECULE: 1"
 				if line[0:len(biokey)] == biokey:
