@@ -44,10 +44,13 @@ def main(args):
 		if len(partners) > 0:
 			for p in partners:
 				crossReference.append([hhrEntry, p])
-				partnerList.add(p)
+				if p not in hhrEntries:
+					partnerList.add(p)
 		else:
 			crossReference.append([hhrEntry, hhrEntry])
 	crossReference.sort(key=lambda x: (x[0], x[1]))
+
+	print ("Found %s additional binding partners for hhr entries." % len(partnerList))
 
 	os.system("mkdir -p temp/")
 	with open("temp/partnerlist.txt", 'w') as output_file:
@@ -55,6 +58,8 @@ def main(args):
 			output_file.write("%s\n" % entry)
 
 	os.system("./filterfasta.py -l %s -f %s -o temp/hhr.fasta" % (args.hhrlist, args.fasta))
+	os.system("./filterfasta.py -l %s -f %s -o temp/partner.fasta" % ("temp/partnerlist.txt", args.fasta))
+
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='List filtering.')
