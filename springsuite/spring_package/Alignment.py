@@ -31,38 +31,36 @@ class Alignment:
 
 	def createModel(self, templateChain):
 		hhrMapping = self.mapSequence(templateChain)
-		
 		previousResidue = dict()
 		for residueNumber in templateChain:
 			templateResidue = templateChain[residueNumber]["residue"]
 			previousResidue[residueNumber] = templateResidue
 			templateChain[residueNumber]["residue"] = None
-		tcount = 0
+		tCount = 0
 		for i in range(len(self.templateAlignment)):
-			templateStart = self.templateStart[i]
 			templateSequence = self.templateAlignment[i]
-			queryStart = self.queryStart[i]
 			querySequence = self.queryAlignment[i]
+			queryStart = self.queryStart[i]
 			n = len(querySequence)
-			qcount = 0
+			qCount = 0
 			for j in range(n):
 				qs = querySequence[j]
 				ts = templateSequence[j]
-				rs = hhrMapping[tcount]
+				rs = hhrMapping[tCount]
 				if rs != "-" and qs != "-" and ts != "-":
-					residueNumber = tcount
+					residueNumber = rs
 					if residueNumber in templateChain:
 						pr = previousResidue[residueNumber]
 						if pr != self.toThreeAmino(ts):
 							print ("Warning: Ignoring mismatching residue [%s != %s]." % (pr, self.toThreeAmino(ts)))
 						templateChain[residueNumber]["residue"] = self.toThreeAmino(qs)
-						templateChain[residueNumber]["residueNumber"] = queryStart + qcount
+						templateChain[residueNumber]["residueNumber"] = queryStart + qCount
 					else:
 						print ("Warning: Skipping missing residue [%s]." % residueNumber)
 				if qs != "-":
-					qcount = qcount + 1
+					qCount = qCount + 1
 				if ts != "-":
-					tcount = tcount + 1
+					tCount = tCount + 1
 
 	def getStart(self, x):
 		try:

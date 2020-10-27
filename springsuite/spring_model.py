@@ -44,7 +44,6 @@ def main(args):
 	os.system("mkdir -p temp")
 	buildModel(args.a_result, args.a_template, args.a_chain, "temp/modelA.pdb")
 	buildModel(args.b_result, args.b_template, args.b_chain, "temp/modelB.pdb")
-	return
 	interfaceEnergy = Energy()
 	templateMolecule = Molecule(args.template)
 	bioMolecule = templateMolecule.createUnit()
