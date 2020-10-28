@@ -6,14 +6,14 @@ def main(args):
 	names = set()
 	with open(args.list) as file:
 		for line in file:
-			names.add(line[0:6].upper())
+			names.add(line[0:args.idlength].upper())
 	print ("Loaded %s names from `%s`." % (len(names), args.list))
 	with open(args.output, 'w') as output_file:
 		with open(args.fasta) as file:
 			nextLine = next(file, None)
 			while nextLine:
 				if nextLine.startswith(">"):
-					name = nextLine.split()[0][1:7].upper()
+					name = nextLine.split()[0][1:args.idlength+1].upper()
 					if name in names:
 						output_file.write(">%s\n" % name)
 						nextLine = next(file)
@@ -34,5 +34,6 @@ if __name__ == "__main__":
 	parser.add_argument('-l', '--list', help='List of entries', required=True)
 	parser.add_argument('-f', '--fasta', help='Fasta input file', required=True)
 	parser.add_argument('-o', '--output', help='Output file containing filtered sequences', required=True)
+	parser.add_argument('-idx', '--idlength', help='Length of identifer', type=int, default=6)
 	args = parser.parse_args()
 	main(args)
