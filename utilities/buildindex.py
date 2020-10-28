@@ -104,8 +104,6 @@ def main(args):
 		partnerMatches[partnerEntry] = maxMatch
 		partnerCount = partnerCount + 1
 		print("Matched %s: %s -> %s." % (partnerCount, partnerEntry, maxMatch))
-		if partnerCount > 20:
-			break
 
 	finalSet = set()
 	for (core, partner) in crossReference:
