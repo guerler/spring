@@ -92,10 +92,14 @@ def main(args):
 			output_file.write(">%s\n" % partnerEntry)
 			output_file.write("%s" % partnerSequence)
 		os.system("psiblast -query %s -db %s -out %s" % (partnerSequenceFile, hhrFasta, partnerResultFile))
-		with open(partnerResultFile) as file:
-			for i in range(38):
-				line = next(file)
-			maxMatch = line.split()[0]
+		try:
+			with open(partnerResultFile) as file:
+				for i in range(38):
+					line = next(file)
+				maxMatch = line.split()[0]
+		except:
+			print("Warning: Skipping failed alignment [%s]." % partnerEntry)
+			pass
 		partnerMatches[partnerEntry] = maxMatch
 		partnerCount = partnerCount + 1
 		print("Matched %s: %s -> %s." % (partnerCount, partnerEntry, maxMatch))
@@ -107,7 +111,8 @@ def main(args):
 
 	with open(args.output, 'w') as output_file:
 		for entry in crossReference:
-			output_file.write("%s\t%s\n" % (entry[0], entry[1]))
+			if entry[1] is not None:
+				output_file.write("%s\t%s\n" % (entry[0], entry[1]))
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='List filtering.')
