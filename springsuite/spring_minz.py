@@ -40,7 +40,7 @@ def main(args):
 					minScore=args.minscore,
 					idLength=args.idx,
 					interactions=interactions)
-	if duplicates == len(targets):
+	if duplicates != len(targets):
 		for inputName in inputs:
 			inputDirectory = args.inputpath.rstrip("/")
 			inputFile = "%s/%s" % (inputDirectory, inputName)
@@ -80,11 +80,13 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference, minSc
 								minInfo = "%s\t%s\t%s\t%s" % (targetTop, inputTop, t, p)
 			if minZ > minScore:
 				if targetName > inputName:
-					interactionKey = "%s_%s_%s" % (targetName, inputName, minZ)
+					interactionKey = "%s_%s" % (targetName, inputName)
 				else:
-					interactionKey = "%s_%s_%s" % (inputName, targetName, minZ)
-				if interactionKey not in interactions:
-					interactions[interactionKey] = dict(targetName=targetName, inputName=inputName, minZ=minZ, minInfo=minInfo)
+					interactionKey = "%s_%s" % (inputName, targetName)
+				if interactionKey in interactions:
+					if interactions[interactionKey]["minZ"] >= minZ:
+						continue
+				interactions[interactionKey] = dict(targetName=targetName, inputName=inputName, minZ=minZ, minInfo=minInfo)
 				print("Predicting: %s, min-Z: %s, templates: %s" % (inputName, minZ, minInfo))
 	return interactions
 
