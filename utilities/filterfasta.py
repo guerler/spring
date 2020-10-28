@@ -4,9 +4,16 @@ import os
 
 def main(args):
 	names = set()
+	countInvalid = 0
 	with open(args.list) as file:
 		for line in file:
-			names.add(line[0:args.idlength].upper())
+			entry = line.strip().upper()
+			if len(entry) == args.idlength:
+				names.add(entry)
+			else:
+				countInvalid = countInvalid + 1
+	if countInvalid > 0:
+		print ("Warning: Skipping %s entries with differing length [%s]." % (countInvalid, args.idlength))
 	print ("Loaded %s names from `%s`." % (len(names), args.list))
 	with open(args.output, 'w') as output_file:
 		with open(args.fasta) as file:
