@@ -3,18 +3,18 @@ import argparse
 import os
 
 def main(args):
-	inputs = set()
+	inputs = list()
 	with open(args.inputlist) as file:
 		for index, line in enumerate(file):
 			name = line.strip()
-			inputs.add(name)
+			inputs.append(name)
 	print ("Loaded %s input names from `%s`." % (len(inputs), args.inputlist))
-	targets = set()
+	targets = list()
 	duplicates = 0
 	with open(args.targetlist) as file:
 		for index, line in enumerate(file):
 			name = line.strip()
-			targets.add(name)
+			targets.append(name)
 			if name in inputs:
 				duplicates = duplicates + 1
 	print ("Loaded %s target names from `%s`." % (len(targets), args.targetlist))
@@ -34,7 +34,7 @@ def main(args):
 		targetFile = "%s/%s" % (targetDirectory, targetName)
 		matchScores(targetFile=targetFile,
 					targetName=targetName,
-					inputs=inputs,
+					inputs=sorted(inputs),
 					inputPath=args.inputpath,
 					crossReference=crossReference,
 					minScore=args.minscore,

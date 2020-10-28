@@ -59,6 +59,7 @@ def main(args):
 		else:
 			crossReference.append([hhrEntry, hhrEntry])
 	crossReference.sort(key=lambda x: (x[0], x[1]))
+
 	print("Found %s index entries." % len(crossReference))
 	print("Found %s additional binding partners for hhr entries." % len(partnerList))
 
@@ -103,16 +104,21 @@ def main(args):
 		partnerMatches[partnerEntry] = maxMatch
 		partnerCount = partnerCount + 1
 		print("Matched %s: %s -> %s." % (partnerCount, partnerEntry, maxMatch))
+		if partnerCount > 20:
+			break
 
-	for i in range(len(crossReference)):
-		partner = crossReference[i][1]
+	finalSet = set()
+	for (core, partner) in crossReference:
 		if partner in partnerMatches:
-			crossReference[i][1] = partnerMatches[partner]
+			partner = partnerMatches[partner]
+		if partner is not None:
+			entry = "%s\t%s" % (core, partner)
+			if entry not in finalSet:
+				finalSet.add(entry)
 
 	with open(args.output, 'w') as output_file:
-		for entry in crossReference:
-			if entry[1] is not None:
-				output_file.write("%s\t%s\n" % (entry[0], entry[1]))
+		for entry in sorted(finalSet):
+			output_file.write("%s\n" % entry)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='List filtering.')
