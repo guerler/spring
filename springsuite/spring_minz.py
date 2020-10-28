@@ -34,7 +34,7 @@ def main(args):
 		targetFile = "%s/%s" % (targetDirectory, targetName)
 		matchScores(targetFile=targetFile,
 					targetName=targetName,
-					inputs=sorted(inputs),
+					inputs=inputs,
 					inputPath=args.inputpath,
 					crossReference=crossReference,
 					minScore=args.minscore,

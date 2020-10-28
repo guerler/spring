@@ -7,7 +7,7 @@ def getSequences(fileName):
 	with open(fileName) as file:
 		for index, line in enumerate(file):
 			if line.startswith(">"):
-				name = line[1:7]
+				name = line[1:7].upper()
 				nextLine = next(file)
 				sequences[name] = nextLine
 	return sequences
@@ -16,13 +16,13 @@ def main(args):
 	hhrEntries = set()
 	with open(args.hhrlist) as file:
 		for index, line in enumerate(file):
-			hhrEntries.add(line.strip())
+			hhrEntries.add(line[0:6].upper())
 	print("Found %s hhr entries from `%s`." % (len(hhrEntries), args.hhrlist))
 
 	dimers = set()
 	with open(args.dimerlist) as file:
 		for index, line in enumerate(file):
-			dimers.add(line.strip())
+			dimers.add(line[0:4].upper())
 	print("Found %s dimer entries from `%s`." % (len(dimers), args.dimerlist))
 
 	hhrDimers = set()
@@ -59,7 +59,6 @@ def main(args):
 		else:
 			crossReference.append([hhrEntry, hhrEntry])
 	crossReference.sort(key=lambda x: (x[0], x[1]))
-
 	print("Found %s index entries." % len(crossReference))
 	print("Found %s additional binding partners for hhr entries." % len(partnerList))
 
@@ -97,7 +96,7 @@ def main(args):
 			with open(partnerResultFile) as file:
 				for i in range(38):
 					line = next(file)
-				maxMatch = line.split()[0]
+				maxMatch = line.split()[0][0:6].upper()
 		except:
 			print("Warning: Skipping failed alignment [%s]." % partnerEntry)
 			pass
@@ -113,6 +112,7 @@ def main(args):
 			entry = "%s\t%s" % (core, partner)
 			if entry not in finalSet:
 				finalSet.add(entry)
+	print("Found %s cross reference entries." % len(finalSet))
 
 	with open(args.output, 'w') as output_file:
 		for entry in sorted(finalSet):
