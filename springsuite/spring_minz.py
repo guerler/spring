@@ -10,10 +10,13 @@ def main(args):
 			inputs.add(name)
 	print ("Loaded %s input names from `%s`." % (len(inputs), args.inputlist))
 	targets = set()
+	duplicates = 0
 	with open(args.targetlist) as file:
 		for index, line in enumerate(file):
 			name = line.strip()
 			targets.add(name)
+			if name in inputs:
+				duplicates = duplicates + 1
 	print ("Loaded %s target names from `%s`." % (len(targets), args.targetlist))
 	crossReference = dict()
 	with open(args.crossreference) as file:
@@ -37,17 +40,18 @@ def main(args):
 					minScore=args.minscore,
 					idLength=args.idx,
 					interactions=interactions)
-	for inputName in inputs:
-		inputDirectory = args.inputpath.rstrip("/")
-		inputFile = "%s/%s" % (inputDirectory, inputName)
-		matchScores(targetFile=inputFile,
-					targetName=inputName,
-					inputs=targets,
-					inputPath=args.targetpath,
-					crossReference=crossReference,
-					minScore=args.minscore,
-					idLength=args.idx,
-					interactions=interactions)
+	if duplicates == len(targets):
+		for inputName in inputs:
+			inputDirectory = args.inputpath.rstrip("/")
+			inputFile = "%s/%s" % (inputDirectory, inputName)
+			matchScores(targetFile=inputFile,
+						targetName=inputName,
+						inputs=targets,
+						inputPath=args.targetpath,
+						crossReference=crossReference,
+						minScore=args.minscore,
+						idLength=args.idx,
+						interactions=interactions)
 	with open(args.output, 'w') as output_file:
 		for i in interactions:
 			entry = interactions[i]
