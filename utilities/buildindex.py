@@ -112,17 +112,18 @@ def main(args):
 
 	finalSet = set()
 	for (core, partner) in crossReference:
-		if partner in partnerList:
-			if partner in partnerMatches:
-				partner = partnerMatches[partner]
+		p = partner
+		if p in partnerList:
+			if p in partnerMatches:
+				p = partnerMatches[p]
 			else:
-				partner = None
-		if partner is not None:
-			entry = "%s\t%s" % (core, partner)
+				p = None
+		if p is not None:
+			entry = "%s\t%s" % (core, p)
 			if entry not in finalSet:
 				finalSet.add(entry)
 		else:
-			print("Warning: Skipping failed missing partner match [%s]." % partner)
+			print("Warning: Skipping failed missing partner match [%s, %s]." % (core, partner))
 	print("Found %s cross reference entries." % len(finalSet))
 
 	with open(args.output, 'w') as output_file:
