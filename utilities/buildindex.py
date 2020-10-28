@@ -98,7 +98,7 @@ def main(args):
 			maxMatch = line.split()[0]
 		partnerMatches[partnerEntry] = maxMatch
 		partnerCount = partnerCount + 1
-		print("Aligning %s." % partnerCount)
+		print("Matched %s: %s -> %s." % (partnerCount, partnerEntry, maxMatch))
 
 	for i in range(len(crossReference)):
 		partner = crossReference[i][1]
