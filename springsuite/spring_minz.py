@@ -52,9 +52,9 @@ def main(args):
 						minScore=args.minscore,
 						idLength=args.idx,
 						interactions=interactions)
+	interactions = sorted(interactions.values(), key=lambda item: item["minZ"], reverse=True)
 	with open(args.output, 'w') as output_file:
-		for i in interactions:
-			entry = interactions[i]
+		for entry in interactions:
 			output_file.write("%s\t%s\t%s\t%s\n" % (entry["targetName"], entry["inputName"], entry["minZ"], entry["minInfo"]))
 
 def matchScores(targetFile, targetName, inputs, inputPath, crossReference, minScore, idLength, interactions):
