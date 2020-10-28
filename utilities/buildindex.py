@@ -78,7 +78,7 @@ def main(args):
 	hhrSequences = getSequences(hhrFasta)
 	partnerSequences = getSequences(partnerFasta)
 	print("Aligning %s on %s sequences..." % (len(partnerSequences.keys()), len(hhrSequences.keys())))
-
+	return
 	partnerMatches = dict()
 	partnerSequenceFile = "temp/query.fasta"
 	partnerResultFile = "temp/query.out"

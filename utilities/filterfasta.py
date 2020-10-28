@@ -6,24 +6,28 @@ def main(args):
 	names = set()
 	with open(args.list) as file:
 		for line in file:
-			names.add(line.strip().upper())
+			names.add(line[0:6].upper())
 	print ("Loaded %s names from `%s`." % (len(names), args.list))
 	with open(args.output, 'w') as output_file:
 		with open(args.fasta) as file:
 			nextLine = next(file, None)
 			while nextLine:
 				if nextLine.startswith(">"):
-					name = nextLine.split()[0][1:].upper()
+					name = nextLine.split()[0][1:7].upper()
 					if name in names:
 						output_file.write(">%s\n" % name)
 						nextLine = next(file)
 						while nextLine and not nextLine.startswith(">"):
 							output_file.write("%s" % nextLine)
 							nextLine = next(file, None)
+						names.remove(name)
 					else:
 						nextLine = next(file, None)
 				else:
 					nextLine = next(file, None)
+	if len(names) > 0:
+		print("Warning: Missing %s sequences." % len(names))
+		print(", ".join(names))
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='This script filters sequences by identifier from a fasta file.')
