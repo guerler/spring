@@ -5,7 +5,7 @@ import os
 def getSequences(fileName):
 	sequences = dict()
 	with open(fileName) as file:
-		for index, line in enumerate(file):
+		for line in file:
 			if line.startswith(">"):
 				name = line[1:7].upper()
 				nextLine = next(file)
@@ -69,17 +69,16 @@ def main(args):
 			output_file.write("%s\n" % entry)
 
 	partnerFasta = "temp/partner.fasta"
-	if not os.path.exists(partnerFasta):
-		os.system("./filterfasta.py -l %s -f %s -o %s" % (partnerListFile, args.fasta, partnerFasta))
+	os.system("./filterfasta.py -l %s -f %s -o %s" % (partnerListFile, args.fasta, partnerFasta))
 
 	hhrFasta = "temp/hhr.fasta"
-	if not os.path.exists(hhrFasta):
-		os.system("./filterfasta.py -l %s -f %s -o %s" % (args.hhrlist, args.fasta, hhrFasta))
-		os.system("makeblastdb -in %s -dbtype prot" % hhrFasta)
+	os.system("./filterfasta.py -l %s -f %s -o %s" % (args.hhrlist, args.fasta, hhrFasta))
+	os.system("makeblastdb -in %s -dbtype prot" % hhrFasta)
 
 	hhrSequences = getSequences(hhrFasta)
 	partnerSequences = getSequences(partnerFasta)
 	print("Aligning %s on %s sequences..." % (len(partnerSequences.keys()), len(hhrSequences.keys())))
+
 	partnerMatches = dict()
 	partnerSequenceFile = "temp/query.fasta"
 	partnerResultFile = "temp/query.out"

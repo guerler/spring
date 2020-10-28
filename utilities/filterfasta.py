@@ -5,20 +5,25 @@ import os
 def main(args):
 	names = set()
 	with open(args.list) as file:
-		for index, line in enumerate(file):
-			names.add(line.strip())
+		for line in file:
+			names.add(line.strip().upper())
 	print ("Loaded %s names from `%s`." % (len(names), args.list))
 	with open(args.output, 'w') as output_file:
 		with open(args.fasta) as file:
-			for index, line in enumerate(file):
-				if line.startswith(">"):
-					name = line.split()[0][1:].upper()
+			nextLine = next(file, None)
+			while nextLine:
+				if nextLine.startswith(">"):
+					name = nextLine.split()[0][1:].upper()
 					if name in names:
 						output_file.write(">%s\n" % name)
 						nextLine = next(file)
 						while nextLine and not nextLine.startswith(">"):
 							output_file.write("%s" % nextLine)
-							nextLine = next(file)
+							nextLine = next(file, None)
+					else:
+						nextLine = next(file, None)
+				else:
+					nextLine = next(file, None)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='This script filters sequences by identifier from a fasta file.')
