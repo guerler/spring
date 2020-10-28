@@ -14,16 +14,16 @@ def getSequences(fileName):
 
 def main(args):
 	hhrEntries = set()
-	hhrCount = 0
+	hhrSkip = 0
 	with open(args.hhrlist) as file:
 		for index, line in enumerate(file):
 			entryId = line.strip().upper()
 			if len(entryId) == 6:
 				hhrEntries.add(entryId)
 			else:
-				hhrCount = hhrCount + 1
-	if hhrCount > 0:
-		print("Warning: Skipping %s templates." % hhrCount)
+				hhrSkip = hhrSkip + 1
+	if hhrSkip > 0:
+		print("Warning: Skipping %s templates." % hhrSkip)
 	print("Found %s hhr entries from `%s`." % (len(hhrEntries), args.hhrlist))
 
 	dimers = set()
