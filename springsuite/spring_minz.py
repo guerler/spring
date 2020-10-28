@@ -3,76 +3,113 @@ import argparse
 import os
 
 def main(args):
-	names = []
-	with open(args.list) as file:
+	inputs = set()
+	with open(args.inputlist) as file:
 		for index, line in enumerate(file):
-			names.append(line.strip())
-	print ("Loaded %s names from `%s`." % (len(names), args.list))
-	crossreference = {}
+			name = line.strip()
+			inputs.add(name)
+	print ("Loaded %s input names from `%s`." % (len(inputs), args.inputlist))
+	targets = set()
+	with open(args.targetlist) as file:
+		for index, line in enumerate(file):
+			name = line.strip()
+			targets.add(name)
+	print ("Loaded %s target names from `%s`." % (len(targets), args.targetlist))
+	crossReference = dict()
 	with open(args.crossreference) as file:
 		for index, line in enumerate(file):
 			columns = line.split()
 			core = columns[0]
 			partner = columns[-1]
-			if core not in crossreference:
-				crossreference[core] = []
-			crossreference[core].append(partner)
+			if core not in crossReference:
+				crossReference[core] = []
+			crossReference[core].append(partner)
 	print ("Loaded cross reference from `%s`." % args.crossreference)
-	toptarget, targets = get_template_scores(args.target, args.minscore, args.idx)
-	interactions = []
-	if not targets:
-		print("No targets found `%s`" % args.target)
-	else:
-		print ("Loaded target scores from `%s`." % args.target)
-		for name in names:
-			input_directory = args.inputs.rstrip("/")
-			input_file = "%s/%s" % (input_directory, name)
-			toptemplate, templates = get_template_scores(input_file, args.minscore, args.idx)
-			minz = 0
-			mint = ""
-			for t in targets:
-				if t in crossreference:
-					partners = crossreference[t]
-					for p in partners:
-						if p in templates:
-							score = min(targets[t], templates[p])
-							if score > minz:
-								minz = score
-								mint = "%s\t%s\t%s\t%s" % (toptarget, toptemplate, t, p)
-			if minz > args.minscore:
-				interactions.append((name, minz, mint))
-				print("Predicting: %s, min-Z: %s, templates: %s" % (name, minz, mint))
-		interactions.sort(key=lambda tup: tup[1], reverse=True)
-	with open(args.output, 'a+') as output_file:
+	interactions = dict()
+	for targetName in targets:
+		targetDirectory = args.targetpath.rstrip("/")
+		targetFile = "%s/%s" % (targetDirectory, targetName)
+		matchScores(targetFile=targetFile,
+					targetName=targetName,
+					inputs=inputs,
+					inputPath=args.inputpath,
+					crossReference=crossReference,
+					minScore=args.minscore,
+					idLength=args.idx,
+					interactions=interactions)
+	for inputName in inputs:
+		inputDirectory = args.inputpath.rstrip("/")
+		inputFile = "%s/%s" % (inputDirectory, inputName)
+		matchScores(targetFile=inputFile,
+					targetName=inputName,
+					inputs=targets,
+					inputPath=args.targetpath,
+					crossReference=crossReference,
+					minScore=args.minscore,
+					idLength=args.idx,
+					interactions=interactions)
+	with open(args.output, 'w') as output_file:
 		for i in interactions:
-			output_file.write("%s\t%s\t%s\t%s\n" % (args.name, i[0], i[1], i[2]))
+			entry = interactions[i]
+			output_file.write("%s\t%s\t%s\t%s\n" % (entry["targetName"], entry["inputName"], entry["minZ"], entry["minInfo"]))
 
-def get_template_scores(hhr_file, min_score, identifier_length):
-	result = {}
-	toptemplate = None
-	identifier_length = identifier_length + 4
-	if os.path.isfile(hhr_file):
-		with open(hhr_file) as file:
+def matchScores(targetFile, targetName, inputs, inputPath, crossReference, minScore, idLength, interactions):
+	targetTop, targetHits = getTemplateScores(targetFile, minScore, idLength)
+	if not targetHits:
+		print("No targets found `%s`" % targetFile)
+	else:
+		print ("Loaded target scores from `%s`." % targetFile)
+		for inputName in inputs:
+			inputDirectory = inputPath.rstrip("/")
+			inputFile = "%s/%s" % (inputDirectory, inputName)
+			inputTop, inputHits = getTemplateScores(inputFile, minScore, idLength)
+			minZ = 0
+			minInfo = ""
+			for t in targetHits:
+				if t in crossReference:
+					partners = crossReference[t]
+					for p in partners:
+						if p in inputHits:
+							score = min(targetHits[t], inputHits[p])
+							if score > minZ:
+								minZ = score
+								minInfo = "%s\t%s\t%s\t%s" % (targetTop, inputTop, t, p)
+			if minZ > minScore:
+				if targetName > inputName:
+					interactionKey = "%s_%s_%s" % (targetName, inputName, minZ)
+				else:
+					interactionKey = "%s_%s_%s" % (inputName, targetName, minZ)
+				if interactionKey not in interactions:
+					interactions[interactionKey] = dict(targetName=targetName, inputName=inputName, minZ=minZ, minInfo=minInfo)
+				print("Predicting: %s, min-Z: %s, templates: %s" % (inputName, minZ, minInfo))
+	return interactions
+
+def getTemplateScores(hhrFile, minScore, identifierLength):
+	result = dict()
+	topTemplate = None
+	identifierLength = identifierLength + 4
+	if os.path.isfile(hhrFile):
+		with open(hhrFile) as file:
 			for index, line in enumerate(file):
 				if index > 8:
 					if not line.strip():
 						break
-					template_id = line[4:identifier_length]
-					template_score = float(line[57:63])
-					if template_score > min_score:
-						if toptemplate is None:
-							toptemplate = template_id
-						result[template_id] = template_score
-	return toptemplate, result
+					templateId = line[4:identifierLength]
+					templateScore = float(line[57:63])
+					if templateScore > minScore:
+						if topTemplate is None:
+							topTemplate = templateId
+						result[templateId] = templateScore
+	return topTemplate, result
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='This script identifies interactions by detecting matching HH-search results.')
-	parser.add_argument('-t', '--target', help='HHR target file result', required=True)
-	parser.add_argument('-n', '--name', help='HHR target name', required=True)
+	parser.add_argument('-il', '--inputlist', help='Text file containing identifiers.', required=True)
+	parser.add_argument('-ip', '--inputpath', help='Directory containing `hhr` files', required=True)
+	parser.add_argument('-tl', '--targetlist', help='Text file containing identifiers.', required=True)
+	parser.add_argument('-tp', '--targetpath', help='Directory containing `hhr` files', required=True)
 	parser.add_argument('-c', '--crossreference', help='Cross Reference index file', required=True)
 	parser.add_argument('-x', '--idx', help='Length of identifier', type=int, default=6)
-	parser.add_argument('-l', '--list', help='Text file containing identifiers.', required=True)
-	parser.add_argument('-i', '--inputs', help='Directory containing `hhr` files', required=True)
 	parser.add_argument('-o', '--output', help='Output file containing min-Z scores', required=True)
 	parser.add_argument('-m', '--minscore', help='min-Z score threshold', type=int, default=10)
 	args = parser.parse_args()

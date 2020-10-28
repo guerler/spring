@@ -7,10 +7,12 @@
             link '${str(input)}' 'inputs/${input.element_identifier}' &&
             echo '${input.element_identifier}' >> 'input_list' &&
         #end for
+		mkdir -p targets &&
         #for target in $targets
-            python3 '$__tool_directory__/spring_minz.py' -m '$minscore' -t '${str(target)}' -n '${target.element_identifier}' -c '$crossreference' -x '$idx' -o '$output' -l input_list -i inputs &&
+            link '${str(target)}' 'targets/${target.element_identifier}' &&
+            echo '${target.element_identifier}' >> 'target_list' &&
         #end for
-        echo 0
+		python3 '$__tool_directory__/spring_minz.py' -il input_list -ip inputs -tl target_list -tp targets -m '$minscore' -c '$crossreference' -x '$idx' -o '$output'
     ]]></command>
     <inputs>
         <param format="txt" name="targets" type="data_collection" label="Target Profiles" help="Homology search result of target/query profiles `hhr`."/>
