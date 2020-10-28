@@ -45,19 +45,19 @@ def main(args):
 
 	crossReference = list()
 	partnerList = set()
-	for hhrEntry in hhrEntries:
-		pdbId = hhrEntry[0:4]
+	for hhrDimer in hhrDimers:
+		pdbId = hhrDimer[0:4]
 		if pdbId not in allEntries:
 			print("Warning: Missing entry %s" % pdbId)
 			continue
 		partners = allEntries[pdbId]
 		if len(partners) > 0:
 			for p in partners:
-				crossReference.append([hhrEntry, p])
+				crossReference.append([hhrDimer, p])
 				if p not in hhrEntries:
 					partnerList.add(p)
 		else:
-			crossReference.append([hhrEntry, hhrEntry])
+			crossReference.append([hhrDimer, hhrDimer])
 	crossReference.sort(key=lambda x: (x[0], x[1]))
 	print("Found %s index entries." % len(crossReference))
 	print("Found %s additional binding partners for hhr entries." % len(partnerList))
