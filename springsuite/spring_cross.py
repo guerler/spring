@@ -56,17 +56,17 @@ def main(args):
             print("Warning: Missing entry %s." % pdbId)
             continue
         partners = allEntries[pdbId]
-        if len(partners) > 0:
-            for p in partners:
-                crossReference.append([hhrDimer, p])
-                if p not in hhrEntries:
-                    partnerList.add(p)
-        else:
-            crossReference.append([hhrDimer, hhrDimer])
+        isHeteroDimer = len(partners) > 1
+        for p in partners:
+            if isHeteroDimer and hhrDimer == p:
+                continue
+            crossReference.append([hhrDimer, p])
+            if p not in hhrEntries:
+                partnerList.add(p)
     crossReference.sort(key=lambda x: (x[0], x[1]))
     print("Found %s index entries." % len(crossReference))
     print("Found %s additional binding partners for hhr entries." % len(partnerList))
-    
+
     temp = args.temp.rstrip("/")
     os.system("mkdir -p %s/" % temp)
     partnerListFile = "%s/partnerlist.txt" % temp
@@ -89,6 +89,8 @@ def main(args):
     partnerSequenceFile = "%s/query.fasta" % temp
     partnerResultFile = "%s/query.out" % temp
     partnerCount = 0
+    partnerCacheFile = "%s/partner.cache.txt" % temp
+    partnerCache = open(partnerCacheFile, "+a")
     for partnerEntry in partnerSequences.keys():
         maxScore = 0
         maxMatch = None
@@ -108,6 +110,8 @@ def main(args):
         partnerMatches[partnerEntry] = maxMatch
         partnerCount = partnerCount + 1
         print("Matched %s: %s -> %s." % (partnerCount, partnerEntry, maxMatch))
+        partnerCache.write("%s\t%s\n" % (partnerEntry, maxMatch))
+    partnerCache.close()
 
     finalSet = set()
     for (core, partner) in crossReference:
