@@ -139,6 +139,6 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--dimerlist', help='List of all pdb multimers [PDB]', required=True)
     parser.add_argument('-f', '--fasta', help='Sequences of all pdb entries [PDB]', required=True)
     parser.add_argument('-o', '--output', help='Resulting list', required=True)
-    parser.add_argument('-t', '--temp', help='Temporary directory', required=True)
+    parser.add_argument('-t', '--temp', help='Temporary directory', required=False, default="temp/")
     args = parser.parse_args()
     main(args)
