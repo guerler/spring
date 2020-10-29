@@ -69,16 +69,17 @@ def main(args):
     print("Found %s index entries." % len(crossReference))
     print("Found %s additional binding partners for hhr entries." % len(partnerList))
 
-    os.system("mkdir -p temp/")
-    partnerListFile = "temp/partnerlist.txt"
+    temp = args.temp.rstrip("/")
+    os.system("mkdir -p %s/" % temp)
+    partnerListFile = "%s/partnerlist.txt" % temp
     with open(partnerListFile, 'w') as output_file:
         for entry in partnerList:
             output_file.write("%s\n" % entry)
 
-    partnerFasta = "temp/partner.fasta"
-    os.system("./filterfasta.py -l %s -f %s -o %s" % (partnerListFile, args.fasta, partnerFasta))
+    partnerFasta = "%s/partner.fasta" % temp
+    os.system("./filter_fasta.py -l %s -f %s -o %s" % (partnerListFile, args.fasta, partnerFasta))
 
-    hhrFasta = "temp/hhr.fasta"
+    hhrFasta = "%s/hhr.fasta" % temp
     os.system("./filterfasta.py -l %s -f %s -o %s" % (args.hhrlist, args.fasta, hhrFasta))
     os.system("makeblastdb -in %s -dbtype prot" % hhrFasta)
 
@@ -87,8 +88,8 @@ def main(args):
     print("Aligning %s on %s sequences..." % (len(partnerSequences.keys()), len(hhrSequences.keys())))
 
     partnerMatches = dict()
-    partnerSequenceFile = "temp/query.fasta"
-    partnerResultFile = "temp/query.out"
+    partnerSequenceFile = "%s/query.fasta" % temp
+    partnerResultFile = "%s/query.out" % temp
     partnerCount = 0
     for partnerEntry in partnerSequences.keys():
         maxScore = 0
@@ -136,5 +137,6 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--dimerlist', help='List of all pdb multimers [PDB]', required=True)
     parser.add_argument('-f', '--fasta', help='Sequences of all pdb entries [PDB]', required=True)
     parser.add_argument('-o', '--output', help='Resulting list', required=True)
+    parser.add_argument('-t', '--temp', help='Temporary directory', required=True)
     args = parser.parse_args()
     main(args)
