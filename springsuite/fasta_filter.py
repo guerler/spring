@@ -2,25 +2,22 @@
 import argparse
 import os
 
+def getId(line):
+    line = line.strip()
+    return line[:4].upper() + line[4:]
+
 def main(args):
     names = set()
-    countInvalid = 0
     with open(args.list) as file:
         for line in file:
-            entry = line.strip().upper()
-            if len(entry) == args.idlength:
-                names.add(entry)
-            else:
-                countInvalid = countInvalid + 1
-    if countInvalid > 0:
-        print ("Warning: Skipping %s entries with differing length [%s]." % (countInvalid, args.idlength))
+            names.add(getId(line))
     print ("Loaded %s names from `%s`." % (len(names), args.list))
     with open(args.output, 'w') as output_file:
         with open(args.fasta) as file:
             nextLine = next(file, None)
             while nextLine:
                 if nextLine.startswith(">"):
-                    name = nextLine.split()[0][1:args.idlength+1].upper()
+                    name = getId(nextLine.split()[0][1:])
                     if name in names:
                         output_file.write(">%s\n" % name)
                         nextLine = next(file)
@@ -41,6 +38,5 @@ if __name__ == "__main__":
     parser.add_argument('-l', '--list', help='List of entries', required=True)
     parser.add_argument('-f', '--fasta', help='Fasta input file', required=True)
     parser.add_argument('-o', '--output', help='Output file containing filtered sequences', required=True)
-    parser.add_argument('-idx', '--idlength', help='Length of identifer', type=int, default=6)
     args = parser.parse_args()
     main(args)

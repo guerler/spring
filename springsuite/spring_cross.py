@@ -2,40 +2,37 @@
 import argparse
 import os
 
+def getId(line):
+    line = line.strip()
+    return line[:4].upper() + line[4:]
+
 def getSequences(fileName):
     sequences = dict()
     with open(fileName) as file:
         for line in file:
             if line.startswith(">"):
-                name = line[1:7].upper()
+                name = getId(line.split()[0][1:])
                 nextLine = next(file)
                 sequences[name] = nextLine
     return sequences
 
 def main(args):
     hhrEntries = set()
-    hhrSkip = 0
     with open(args.hhrlist) as file:
         for index, line in enumerate(file):
-            entryId = line.strip().upper()
-            if len(entryId) == 6:
-                hhrEntries.add(entryId)
-            else:
-                hhrSkip = hhrSkip + 1
-    if hhrSkip > 0:
-        print("Warning: Skipping %s templates." % hhrSkip)
+            hhrEntries.add(getId(line))
     print("Found %s hhr entries from `%s`." % (len(hhrEntries), args.hhrlist))
 
     dimers = set()
     with open(args.dimerlist) as file:
         for index, line in enumerate(file):
-            dimers.add(line[0:4].upper())
+            dimers.add(getId(line))
     print("Found %s dimer entries from `%s`." % (len(dimers), args.dimerlist))
 
     hhrDimers = set()
     for entry in hhrEntries:
         if entry[0:4] in dimers:
-            hhrDimers.add(entry)
+            hhrDimers.add(getId(entry))
     print("Found %s hhr entries in dimers." % len(hhrDimers))
 
     allEntries = dict()
@@ -43,10 +40,11 @@ def main(args):
     with open(args.fasta) as file:
         for index, line in enumerate(file):
             if line.startswith(">"):
-                pdbId = line[1:5].upper()
+                fullId = getId(line.split()[0][1:])
+                pdbId = fullId[:4]
                 if pdbId not in allEntries:
                     allEntries[pdbId] = set()
-                allEntries[pdbId].add(line[1:7].upper())
+                allEntries[pdbId].add(fullId)
                 allCount = allCount + 1
     print("Found %s entries in complete fasta database." % allCount)
 
@@ -55,7 +53,7 @@ def main(args):
     for hhrDimer in hhrDimers:
         pdbId = hhrDimer[0:4]
         if pdbId not in allEntries:
-            print("Warning: Missing entry %s" % pdbId)
+            print("Warning: Missing entry %s." % pdbId)
             continue
         partners = allEntries[pdbId]
         if len(partners) > 0:
@@ -68,7 +66,7 @@ def main(args):
     crossReference.sort(key=lambda x: (x[0], x[1]))
     print("Found %s index entries." % len(crossReference))
     print("Found %s additional binding partners for hhr entries." % len(partnerList))
-
+    
     temp = args.temp.rstrip("/")
     os.system("mkdir -p %s/" % temp)
     partnerListFile = "%s/partnerlist.txt" % temp
@@ -103,7 +101,7 @@ def main(args):
             with open(partnerResultFile) as file:
                 for i in range(38):
                     line = next(file)
-                maxMatch = line.split()[0][0:6].upper()
+                maxMatch = getId(line.split()[0])
         except:
             print("Warning: Skipping failed alignment [%s]." % partnerEntry)
             pass

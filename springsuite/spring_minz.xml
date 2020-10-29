@@ -13,9 +13,9 @@
                 link '${str(input)}' 'inputs/${input.element_identifier}' &&
                 echo '${input.element_identifier}' >> 'input_list' &&
             #end for
-            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -il input_list -ip inputs -m '$minscore' -c '$crossreference' -x '$idx' -o '$output' -l '$log'
+            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -il input_list -ip inputs -m '$minscore' -c '$crossreference' -o '$output' -l '$log'
         #else
-            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -m '$minscore' -c '$crossreference' -x '$idx' -o '$output' -l '$log'
+            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -m '$minscore' -c '$crossreference' -o '$output' -l '$log'
         #end if
     ]]></command>
     <inputs>
@@ -28,7 +28,6 @@
         </conditional>
         <param format="tabular" name="crossreference" type="data" label="Cross reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
         <param name="minscore" type="integer" label="Score threshold" value="10" min="1" max="200" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
-        <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="20" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="SPRING min-Z Table"/>
@@ -52,7 +51,6 @@
             <conditional name="input_type">
                 <param name="input_type_selector" type="boolean" checked="false"/>
             </conditional>
-            <param name="idx" value="10"/>
             <param name="crossreference" value="minz/dbCAN_random.txt"/>
             <output name="output" file="minz/dbCAN_result.txt"/>
             <output name="log" file="minz/dbCAN_log.txt"/>
