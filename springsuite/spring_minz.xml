@@ -19,14 +19,14 @@
         #end if
     ]]></command>
     <inputs>
-        <param format="txt" name="targets" type="data_collection" collection_type="list" label="Target Profiles" help="Homology search result of target/query profiles `hhr`."/>
+        <param format="txt" name="targets" type="data_collection" collection_type="list" label="Target profiles" help="Homology search result of target/query profiles `hhr`."/>
         <conditional name="input_type">
             <param name="input_type_selector" type="boolean" label="Identify interactions across sets?" checked="true"/>
             <when value="true">
-                <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input Profiles" help="Homology search results of input profiles `hhr`."/>
+                <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input profiles" help="Homology search results of input profiles `hhr`."/>
             </when>
         </conditional>
-        <param format="txt" name="crossreference" type="data" label="Cross Reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
+        <param format="txt" name="crossreference" type="data" label="Cross reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
         <param name="minscore" type="integer" label="Score threshold" value="10" min="1" max="200" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
         <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="20" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
     </inputs>
