@@ -2,59 +2,60 @@
     <description>filter operation</description>
     <code file="spring_minz.py"/>
     <command detect_errors="exit_code"><![CDATA[
-        mkdir -p inputs &&
-        #for input in $inputs
-            link '${str(input)}' 'inputs/${input.element_identifier}' &&
-            echo '${input.element_identifier}' >> 'input_list' &&
-        #end for
-		mkdir -p targets &&
+        mkdir -p targets &&
         #for target in $targets
             link '${str(target)}' 'targets/${target.element_identifier}' &&
             echo '${target.element_identifier}' >> 'target_list' &&
         #end for
-		python3 '$__tool_directory__/spring_minz.py' -il input_list -ip inputs -tl target_list -tp targets -m '$minscore' -c '$crossreference' -x '$idx' -o '$output'
+        #if str($input_type.input_type_selector) == "true":
+            mkdir -p inputs &&
+            #for input in $input_type.inputs
+                link '${str(input)}' 'inputs/${input.element_identifier}' &&
+                echo '${input.element_identifier}' >> 'input_list' &&
+            #end for
+            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -il input_list -ip inputs -m '$minscore' -c '$crossreference' -x '$idx' -o '$output' -l '$log'
+        #else
+            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -m '$minscore' -c '$crossreference' -x '$idx' -o '$output' -l '$log'
+        #end if
     ]]></command>
     <inputs>
-        <param format="txt" name="targets" type="data_collection" label="Target Profiles" help="Homology search result of target/query profiles `hhr`."/>
-        <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input Profiles" help="Homology search results of input profiles `hhr`."/>
+        <param format="txt" name="targets" type="data_collection" collection_type="list" label="Target Profiles" help="Homology search result of target/query profiles `hhr`."/>
+        <conditional name="input_type">
+            <param name="input_type_selector" type="boolean" label="Identify interactions across sets?" checked="true"/>
+            <when value="true">
+                <param format="txt" name="inputs" type="data_collection" collection_type="list" label="Input Profiles" help="Homology search results of input profiles `hhr`."/>
+            </when>
+        </conditional>
         <param format="txt" name="crossreference" type="data" label="Cross Reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
         <param name="minscore" type="integer" label="Score threshold" value="10" min="1" max="200" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
         <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="20" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output" label="SPRING min-Z Table"/>
+        <data format="txt" name="log" label="SPRING min-Z Log" />
     </outputs>
     <tests>
         <test>
             <param name="targets">
                 <collection type="list">
-                    <element name="6WEY_A.hhr" value="6WEY_A.hhr" />
-                    <element name="6WJI_A.hhr" value="6WJI_A.hhr" />
-                    <element name="6WLC_A.hhr" value="6WLC_A.hhr" />
                     <element name="7BQY_A.hhr" value="7BQY_A.hhr" />
+                    <element name="6WLC_A.hhr" value="6WLC_A.hhr" />
+                    <element name="6WJI_A.hhr" value="6WJI_A.hhr" />
+                    <element name="6WEY_A.hhr" value="6WEY_A.hhr" />
                     <element name="6W37_A.hhr" value="6W37_A.hhr" />
                     <element name="6W9C_A.hhr" value="6W9C_A.hhr" />
-                    <element name="6W4H_A.hhr" value="6W4H_A.hhr" />
                     <element name="6W4H_B.hhr" value="6W4H_B.hhr" />
+                    <element name="6W4H_A.hhr" value="6W4H_A.hhr" />
                     <element name="6W9Q_A.hhr" value="6W9Q_A.hhr" />
                 </collection>
             </param>
+            <conditional name="input_type">
+                <param name="input_type_selector" type="boolean" checked="false"/>
+            </conditional>
             <param name="idx" value="10"/>
-            <param name="inputs">
-                <collection type="list">
-                    <element name="6WEY_A.hhr" value="6WEY_A.hhr" />
-                    <element name="6WJI_A.hhr" value="6WJI_A.hhr" />
-                    <element name="6WLC_A.hhr" value="6WLC_A.hhr" />
-                    <element name="7BQY_A.hhr" value="7BQY_A.hhr" />
-                    <element name="6W37_A.hhr" value="6W37_A.hhr" />
-                    <element name="6W9C_A.hhr" value="6W9C_A.hhr" />
-                    <element name="6W4H_A.hhr" value="6W4H_A.hhr" />
-                    <element name="6W4H_B.hhr" value="6W4H_B.hhr" />
-                    <element name="6W9Q_A.hhr" value="6W9Q_A.hhr" />
-                </collection>
-            </param>
             <param name="crossreference" value="dbCAN_random.txt"/>
             <output name="output" file="dbCAN_result.txt"/>
+            <output name="log" file="dbCAN_log.txt"/>
         </test>
         <test>
             <param name="targets">
@@ -62,16 +63,20 @@
                     <element name="NP_000282.1.hhr" value="NP_000282.1.hhr" />
                 </collection>
             </param>
-            <param name="inputs">
-                <collection type="list">
-                    <element name="NP_000282.1.hhr" value="NP_000282.1.hhr" />
-                    <element name="NP_000290.2.hhr" value="NP_000290.2.hhr" />
-                    <element name="NP_000548.2.hhr" value="NP_000548.2.hhr" />
-                    <element name="NP_000836.2.hhr" value="NP_000836.2.hhr" />
-                </collection>
-            </param>
+            <conditional name="input_type">
+                <param name="input_type_selector" type="boolean" checked="true"/>
+                <param name="inputs">
+                    <collection type="list">
+                        <element name="NP_000282.1.hhr" value="NP_000282.1.hhr" />
+                        <element name="NP_000290.2.hhr" value="NP_000290.2.hhr" />
+                        <element name="NP_000548.2.hhr" value="NP_000548.2.hhr" />
+                        <element name="NP_000836.2.hhr" value="NP_000836.2.hhr" />
+                    </collection>
+                </param>
+            </conditional>
             <param name="crossreference" value="pdb70_random.txt"/>
             <output name="output" file="pdb70_result.txt"/>
+            <output name="log" file="pdb70_log.txt"/>
         </test>
     </tests>
     <help><![CDATA[
