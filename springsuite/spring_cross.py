@@ -77,10 +77,10 @@ def main(args):
             output_file.write("%s\n" % entry)
 
     partnerFasta = "%s/partner.fasta" % temp
-    os.system("./filter_fasta.py -l %s -f %s -o %s" % (partnerListFile, args.fasta, partnerFasta))
+    os.system("./fasta_filter.py -l %s -f %s -o %s" % (partnerListFile, args.fasta, partnerFasta))
 
     hhrFasta = "%s/hhr.fasta" % temp
-    os.system("./filterfasta.py -l %s -f %s -o %s" % (args.hhrlist, args.fasta, hhrFasta))
+    os.system("./fasta_filter.py -l %s -f %s -o %s" % (args.hhrlist, args.fasta, hhrFasta))
     os.system("makeblastdb -in %s -dbtype prot" % hhrFasta)
 
     hhrSequences = getSequences(hhrFasta)
