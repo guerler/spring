@@ -1,0 +1,9 @@
+Interaction between 7BQY_A.hhr and 6W37_A.hhr [min-Z: 14.0].
+Interaction between 7BQY_A.hhr and 6W9C_A.hhr [min-Z: 24.2].
+Interaction between 7BQY_A.hhr and 6W4H_B.hhr [min-Z: 24.0].
+Interaction between 6W37_A.hhr and 6W37_A.hhr [min-Z: 14.0].
+Interaction between 6W37_A.hhr and 6W9C_A.hhr [min-Z: 21.3].
+Interaction between 6W37_A.hhr and 6W4H_B.hhr [min-Z: 16.0].
+Interaction between 6W4H_A.hhr and 6W4H_A.hhr [min-Z: 24.7].
+Interaction between 6W9Q_A.hhr and 6W9C_A.hhr [min-Z: 21.0].
+Interaction between 6W9Q_A.hhr and 6W4H_B.hhr [min-Z: 22.3].
