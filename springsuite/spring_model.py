@@ -55,6 +55,9 @@ def main(args):
     interfaceEnergy = Energy()
     templateMolecule = Molecule(args.c_template)
     modelCount = 0
+    print("SPRING Model")
+    print("Sequence A: %s" % args.a_result)
+    print("Sequence B: %s" % args.a_result)
     for biomolNumber in range(len(templateMolecule.rotmat.keys())):
         os.system("rm -f temp/template*.pdb")
         if biomolNumber == 0:
@@ -81,11 +84,12 @@ def main(args):
                 springScore = minTM * args.wtm - energy * args.wenergy
                 print("SpringScore: %5.5f" % springScore)
                 if springScore > maxScore:
+                    maxScore = springScore
                     maxMolecule = partnerMolecule
-                modelName = "temp/model%s_%s.pdb" % (modelCount, chainName)
-                coreMolecule.save(modelName, chainName="A")
-                maxMolecule.save(modelName, chainName="B", append=True)
-                modelCount = modelCount + 1
+            outputName = "%s_%1.2f.pdb" % (args.output, maxScore)
+            coreMolecule.save(outputName, chainName="A")
+            maxMolecule.save(outputName, chainName="B", append=True)
+            modelCount = modelCount + 1
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
@@ -97,9 +101,9 @@ if __name__ == "__main__":
     parser.add_argument('-bt', '--b_template', help='Second template PDB', required=True)
     parser.add_argument('-ct', '--c_template', help='Structure template', required=True)
     parser.add_argument('-cc', '--c_chain', help='Core template chain name', required=True)
-    parser.add_argument('-o', '--output', help='Output PDB file', required=False)
-    parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=12.4, required=False)
-    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=-0.2, required=False)
+    parser.add_argument('-o', '--output', help='Output model file', required=True)
+    parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
+    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=-0.01, required=False)
     parser.add_argument('-tp', '--temp', help='Temporary directory', required=False, default="temp/")
     args = parser.parse_args()
     main(args)

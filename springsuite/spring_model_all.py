@@ -11,10 +11,11 @@ def getIdentifier(line):
     return pdb, chain
  
 def main(args):
-    os.system("mkdir -p %s" % args.temp)
+    pdbPath = args.pdb_path.rstrip("/")
+    hhrPath = args.hhr_path.rstrip("/")
+    outPath = args.output_path.rstrip("/")
+    os.system("mkdir -p %s" % outPath)
     with open(args.input, "r") as file:
-        pdbPath = args.pdb_path.rstrip("/")
-        hhrPath = args.hhr_path.rstrip("/")
         for line in file:
             param = line.split()
             ar = "%s/%s%s" % (hhrPath, param[0], ".txt")
@@ -25,10 +26,9 @@ def main(args):
             at = "%s/%s%s" % (pdbPath, at, ".pdb")
             bt = "%s/%s%s" % (pdbPath, bt, ".pdb")
             ct = "%s/%s%s" % (pdbPath, ct, ".pdb")
-            cmdString = "./spring_model.py -ar '%s' -at '%s' -ac '%s' -br '%s' -bt '%s' -bc '%s' -ct '%s' -cc '%s'" % (ar, at, ac, br, bt, bc, ct, cc)
-            print(cmdString)
+            o = "%s/%s.%s" % (outPath, param[0], param[1])
+            cmdString = "./spring_model.py -ar '%s' -at '%s' -ac '%s' -br '%s' -bt '%s' -bc '%s' -ct '%s' -cc '%s' -o '%s'" % (ar, at, ac, br, bt, bc, ct, cc, o)
             os.system(cmdString)
-            return
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     parser.add_argument('-hp', '--hhr_path', help='Path to HHR files', required=True)
     parser.add_argument('-pp', '--pdb_path', help='Path to PDB files', required=True)
     parser.add_argument('-tp', '--temp', help='Temporary directory', required=False, default="temp/")
-    parser.add_argument('-o', '--output', help='Output directory', required=False)
+    parser.add_argument('-op', '--output_path', help='Output directory', required=True)
     args = parser.parse_args()
     main(args)
  
