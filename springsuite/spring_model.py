@@ -53,7 +53,7 @@ def main(args):
     buildModel(args.a_result, args.a_template, args.a_chain, "temp/monomerA.pdb")
     buildModel(args.b_result, args.b_template, args.b_chain, "temp/monomerB.pdb")
     interfaceEnergy = Energy()
-    templateMolecule = Molecule(args.template)
+    templateMolecule = Molecule(args.c_template)
     modelCount = 0
     for biomolNumber in range(len(templateMolecule.rotmat.keys())):
         os.system("rm -f temp/template*.pdb")
@@ -61,14 +61,14 @@ def main(args):
             bioMolecule = templateMolecule
         else:
             bioMolecule = templateMolecule.createUnit(biomolNumber)
-        if len(bioMolecule.calpha.keys()) > 1 and args.template_core in bioMolecule.calpha:
+        if len(bioMolecule.calpha.keys()) > 1 and args.c_chain in bioMolecule.calpha:
             for chainName in bioMolecule.calpha.keys():
                 bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
-            coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.template_core)
+            coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.c_chain)
             maxScore = -9999
             maxMolecule = None
             for chainName in bioMolecule.calpha.keys():
-                if chainName != args.template_core and len(bioMolecule.calpha[chainName]) > 0:
+                if chainName != args.c_chain and len(bioMolecule.calpha[chainName]) > 0:
                     print("Evaluating chain %s..." % chainName)
                 try:
                     partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
@@ -95,8 +95,8 @@ if __name__ == "__main__":
     parser.add_argument('-br', '--b_result', help='Second HHR target file result', required=True)
     parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=True)
     parser.add_argument('-bt', '--b_template', help='Second template PDB', required=True)
-    parser.add_argument('-ts', '--template', help='Structure template', required=True)
-    parser.add_argument('-tc', '--template_core', help='Core template chain name', required=True)
+    parser.add_argument('-ct', '--c_template', help='Structure template', required=True)
+    parser.add_argument('-cc', '--c_chain', help='Core template chain name', required=True)
     parser.add_argument('-o', '--output', help='Output PDB file', required=False)
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=12.4, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=-0.2, required=False)
