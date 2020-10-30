@@ -48,16 +48,19 @@ def TMalign(fileA, fileB):
     return tmscore, molecule
 
 def main(args):
+    print("SPRING Model")
+    print("Sequence A: %s" % args.a_result)
+    print("Sequence B: %s" % args.b_result)
+    print("Template C: %s" % args.c_template)
     os.system("mkdir -p temp")
     os.system("rm -f temp/*.*")
     buildModel(args.a_result, args.a_template, args.a_chain, "temp/monomerA.pdb")
     buildModel(args.b_result, args.b_template, args.b_chain, "temp/monomerB.pdb")
     interfaceEnergy = Energy()
     templateMolecule = Molecule(args.c_template)
-    modelCount = 0
-    print("SPRING Model")
-    print("Sequence A: %s" % args.a_result)
-    print("Sequence B: %s" % args.a_result)
+    maxScore = -9999
+    maxMolecule = None
+    maxTemplate = None
     for biomolNumber in range(len(templateMolecule.rotmat.keys())):
         os.system("rm -f temp/template*.pdb")
         if biomolNumber == 0:
@@ -68,28 +71,30 @@ def main(args):
             for chainName in bioMolecule.calpha.keys():
                 bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
             coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % args.c_chain)
-            maxScore = -9999
-            maxMolecule = None
             for chainName in bioMolecule.calpha.keys():
                 if chainName != args.c_chain and len(bioMolecule.calpha[chainName]) > 0:
                     print("Evaluating chain %s..." % chainName)
-                try:
-                    partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
-                except:
-                    continue
-                minTM = min(coreTMscore, partnerTMscore)
-                print("min-TMscore: %5.5f" % minTM)
-                energy = interfaceEnergy.get(coreMolecule, partnerMolecule)
-                print("Interaction: %5.5f" % energy)
-                springScore = minTM * args.wtm - energy * args.wenergy
-                print("SpringScore: %5.5f" % springScore)
-                if springScore > maxScore:
-                    maxScore = springScore
-                    maxMolecule = partnerMolecule
+                    try:
+                        partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
+                    except:
+                        print("Warning: Failed TMalign [%s]." % chainName)
+                        continue
+                    TMscore = min(coreTMscore, partnerTMscore)
+                    print("min-TMscore: %5.5f" % TMscore)
+                    energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
+                    print("Interaction: %5.5f" % energy)
+                    springScore = TMscore * args.wtm + energy * args.wenergy
+                    print("SpringScore: %5.5f" % springScore)
+                    if springScore > maxScore:
+                        maxScore = springScore
+                        maxMolecule = partnerMolecule
+                        maxTemplate = bioMolecule
             outputName = "%s_%1.2f.pdb" % (args.output, maxScore)
-            coreMolecule.save(outputName, chainName="A")
-            maxMolecule.save(outputName, chainName="B", append=True)
-            modelCount = modelCount + 1
+            coreMolecule.save(outputName, chainName="0")
+            maxMolecule.save(outputName, chainName="1", append=True)
+            maxTemplate.save(outputName, append=True)
+    if maxMolecule is None:
+        print ("Warning: Failed to determine model.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
@@ -102,9 +107,10 @@ if __name__ == "__main__":
     parser.add_argument('-ct', '--c_template', help='Structure template', required=True)
     parser.add_argument('-cc', '--c_chain', help='Core template chain name', required=True)
     parser.add_argument('-o', '--output', help='Output model file', required=True)
-    parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
-    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=-0.01, required=False)
+    parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=12.4, required=False)
+    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.2, required=False)
     parser.add_argument('-tp', '--temp', help='Temporary directory', required=False, default="temp/")
+    parser.add_argument('-st', '--show_template', help='Add template to model structure', type=bool, required=False, default=True)
     args = parser.parse_args()
     main(args)
  

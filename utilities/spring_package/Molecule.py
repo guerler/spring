@@ -2,7 +2,6 @@ class Molecule:
     def __init__(self, fileName = None):
         self.calpha = dict()
         self.biomol = dict()
-        self.rotmat = dict()
         self.atoms = list()
         if fileName is not None:
             self.fromFile(fileName)
@@ -10,8 +9,9 @@ class Molecule:
     def fromFile(self, fileName):
         biomolNumber = 0
         biomolChains = list()
+        self.biomol[0] = None
         with open(fileName) as file:
-            for index, line in enumerate(file):
+            for line in file:
                 key = line[0:6].strip()
                 if key == "ATOM":
                     atom = line[12:16]
@@ -42,6 +42,8 @@ class Molecule:
                 biokey = "REMARK 350 BIOMOLECULE:"
                 if line[0:len(biokey)] == biokey:
                     biomolNumber = self.toInt(line[len(biokey):])
+                    if biomolNumber == 0:
+                        raise Exception("Invalid biomolecule identifier [0].")
                     biokey = "REMARK 350 APPLY THE FOLLOWING TO CHAINS:"
                     nextLine = next(file)
                     while nextLine[:len(biokey)] != biokey:
@@ -66,9 +68,9 @@ class Molecule:
                             raise Exception("Invalid rotation matrix format [%s]." % biomolMatId1)
                         matrix = [biomolMat1, biomolMat2, biomolMat3]
                         biomolChains = [c for c in biomolChains if c]
-                        if biomolNumber not in self.rotmat:
-                            self.rotmat[biomolNumber] = list()
-                        self.rotmat[biomolNumber].append(dict(chains=biomolChains, matrix=matrix))
+                        if biomolNumber not in self.biomol:
+                            self.biomol[biomolNumber] = list()
+                        self.biomol[biomolNumber].append(dict(chains=biomolChains, matrix=matrix))
         removeChains = []
         for chainName in self.calpha:
             if len(self.calpha[chainName]) == 0:
@@ -87,7 +89,7 @@ class Molecule:
     def createUnit(self, biomolNumber = 1):
         molecule = Molecule()
         chainCount = 0
-        for matrixDict in self.rotmat[biomolNumber]:
+        for matrixDict in self.biomol[biomolNumber]:
             for chain in matrixDict["chains"]:
                 if chain in self.calpha:
                     chainCopy = dict()
@@ -104,6 +106,15 @@ class Molecule:
                     molecule.calpha[chainName] = chainCopy
                     chainCount = chainCount + 1
         return molecule
+
+    def getSequence(self, chainName):
+        seq = ""
+        if chainName not in self.calpha:
+            raise Exception("Chain identifier not found [%s]" % chainName)
+        chainDict = self.calpha[chainName]
+        for residueNumber in sorted(chainDict):
+            seq = seq + self.toSingleAmino(chainDict[residueNumber]["residue"])
+        return seq
 
     def applyMatrix(self, atom, rotmat):
         newx = atom["x"] * rotmat[0][0] + atom["y"] * rotmat[0][1] + atom["z"] * rotmat[0][2] + rotmat[0][3]
@@ -127,6 +138,11 @@ class Molecule:
             return int(x)
         except:
             raise Exception("Invalid integer conversion [%s]." % x)
+
+    def toSingleAmino(self, seq):
+        code = dict(GLY="G", ALA="A", VAL="V", LEU="L", ILE="I", MET="M", PHE="F", PRO="P", TYR="Y", TRP="W",
+                    LYS="K", SER="S", CYS="C", ASN="N", GLN="Q", HIS="H", THR="T", GLU="E", ASP="D", ARG="R")
+        return code[seq] if seq in code else "X"
 
     def saveChain(self, chainName, outputName):
         print ("Writing PDB file to %s." % outputName)

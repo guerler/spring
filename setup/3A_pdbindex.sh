@@ -7,8 +7,8 @@ select((select(STDOUT), $| = 1)[0]);
 use strict;
 
 # verify
-if ($#ARGV + 1 < 2) {
-	print "Parameters required: [list] [path to pdb repository]\n\n";
+if ($#ARGV + 1 < 3) {
+	print "Parameters required: [list] [path to pdb repository] [output file]\n\n";
 	print "Description: This script maps the extended monomer libraries complexation partners to the template database\n";	
 	exit();
 }
@@ -39,7 +39,6 @@ close (data);
                
 # loop
 open (idx, ">$idx");
-my %index = ();
 for (my $i = 0; $i < $n; $i++) {
     # print
     print "Loading " . $lid[$i] . ".\n";
@@ -48,7 +47,7 @@ for (my $i = 0; $i < $n; $i++) {
     my $id = $lid[$i];
 
     # sub directory
-    my $sub = $inp . "/" . $id;
+    my $sub = $inp . "/" . substr($id, 0, 2) . "/" . $id;
     opendir(data, $sub);
     my @files = readdir(data);
     closedir(data);
@@ -126,11 +125,8 @@ for (my $i = 0; $i < $n; $i++) {
                         $stage = 1; 
                     }
                     if ($stage == 1 && substr($record, 0, 1) eq ">") {
-                        my $info = $id . " " . trim(substr($record, 1));
-                        if (!exists $index{$info}) {
-                            $index{$info} = 1;
-                            print idx "$info\n";
-                        }
+                        my $info = $id . " " . prefix($is) . " " . trim(substr($record, 1));
+                        print idx "$info\n";
                         $stage = 2;
                     }
                     if ($stage == 2 && substr($record, 0, 13) eq " Identities =") {
