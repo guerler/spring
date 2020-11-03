@@ -83,7 +83,11 @@ def main(args):
             pdbFile, pdbChain = getPDB(pdbPath, partnerId)
             partnerMol = Molecule(pdbFile)
             partnerSeq = partnerMol.getSequence(pdbChain)
-            matchedId = getHomologue(partnerSeq, templateSequenceFile)
+            partnerFile = "%s/%s.fasta" % (temp, partnerId)
+            with open(partnerFile, "w") as partnerFasta:
+                partnerFasta.write(">%s\n" % partnerId)
+                partnerFasta.write("%s" % partnerSeq)
+            matchedId = getHomologue(partnerFile, templateSequenceFile)
             if matchedId is None:
                 print("Warning: Failed alignment [%s]" % partnerId)
             else:
