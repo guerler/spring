@@ -6,7 +6,7 @@ from spring_package.Molecule import Molecule
 
 def getId(line):
     line = line.strip()
-    return line[:4].upper() + line[4:]
+    return line[:4].upper() + line[4:6]
 
 def getPDB(pdbPath, line):
     pdb = line[:4].lower()
@@ -43,12 +43,12 @@ def main(args):
     templates = set()
     os.system("mkdir -p %s" % temp)
     templateSequenceFile = "%s/templates.fasta" % temp
-    if os.path.isfile(templateSequenceFile):
+    if not os.path.isfile(templateSequenceFile):
         templateSequences = open(templateSequenceFile, "w")
         with open(args.list) as file:
-            for templateId in file:
-                templateId = templateId.strip()
-                templates.add(getId(templateId))
+            for rawId in file:
+                templateId = getId(rawId)
+                templates.add(templateId)
                 pdbFile, pdbChain = getPDB(pdbPath, templateId)
                 try:
                     templateMol = Molecule(pdbFile)
@@ -79,6 +79,7 @@ def main(args):
             refEntry["match"] = partnerId
             print("Found partner in template list alignment [%s]" % partnerId)
         else:
+            print("Processing %s." % partnerId)
             pdbFile, pdbChain = getPDB(pdbPath, partnerId)
             partnerMol = Molecule(pdbFile)
             partnerSeq = partnerMol.getSequence(pdbChain)
@@ -86,6 +87,7 @@ def main(args):
             if matchedId is None:
                 print("Warning: Failed alignment [%s]" % partnerId)
             else:
+                print("Found matching entry %s." % matchedId)
                 refEntry["match"] = matchedId
 
     finalSet = set()

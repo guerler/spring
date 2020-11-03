@@ -100,7 +100,7 @@ class Molecule:
                         rotmat = matrixDict["matrix"]
                         self.applyMatrix(atom, rotmat)
                     if chain in molecule.calpha:
-                        chainName = chainCount
+                        chainName = "%s%d" % (chain, chainCount)
                     else:
                         chainName = chain
                     molecule.calpha[chainName] = chainCopy
@@ -164,5 +164,5 @@ class Molecule:
         f.close()
 
     def atomString(self, atom):
-        return "ATOM  %5d %s %s %s%4d    %8.3f%8.3f%8.3f%6.2f%6.2f\n" % (atom["atomNumber"], atom["atomName"], atom["residue"], atom["chainName"], atom["residueNumber"], atom["x"], atom["y"], atom["z"], atom["occupancy"], atom["temperature"])
+        return "ATOM  %5d %s %s %1s%4d    %8.3f%8.3f%8.3f%6.2f%6.2f\n" % (atom["atomNumber"], atom["atomName"], atom["residue"], atom["chainName"], atom["residueNumber"], atom["x"], atom["y"], atom["z"], atom["occupancy"], atom["temperature"])
 

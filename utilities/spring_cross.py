@@ -38,12 +38,10 @@ def main(args):
             nChains = len(bioMolecule.calpha.keys())
             print("Found %d chain(s)." % nChains)
             if nChains > 1 and pdbChain in bioMolecule.calpha:
-                firstSelf = False
                 for bioChain in bioMolecule.calpha:
-                    if bioChain == pdbChain and not firstSelf:
-                        firstSelf = True
+                    if bioChain == pdbChain:
                         continue
-                    partnerPdbChain = "%s_%s" % (pdb.upper(), bioChain)
+                    partnerPdbChain = "%s_%s" % (pdb.upper(), bioChain[:1])
                     partnerList.add("%s\t%s" % (entryId, partnerPdbChain))
             else:
                 print("Skipping: Chain not found or single chain [%s]." % pdbChain)
