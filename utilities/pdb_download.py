@@ -23,7 +23,6 @@ def main(args):
         os.system("wget -O %s %s%s" % (pdbFile, pdbUrl, pdbFile))
         os.system("mv %s %s" % (pdbFile, pdbPathFile))
         print("Completed.")
-        break
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Downloads PDB files')
