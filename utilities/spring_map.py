@@ -24,12 +24,12 @@ def getSequences(fileName):
                 sequences[name] = nextLine
     return sequences
 
-def getHomologue(queryFile, databaseFile):
+def getHomologue(queryFile, queryResultFile, databaseFile):
+        if not os.path.isfile(queryResultFile):
+            os.system("psiblast -query %s -db %s -out %s" % (queryFile, databaseFile, queryResultFile))
         maxMatch = None
-        partnerResultFile = "%s.result" % queryFile
-        os.system("psiblast -query %s -db %s -out %s" % (queryFile, databaseFile, partnerResultFile))
         try:
-            with open(partnerResultFile) as file:
+            with open(queryResultFile) as file:
                 for i in range(38):
                     line = next(file)
                 maxMatch = getId(line.split()[0])
@@ -75,19 +75,23 @@ def main(args):
     for refEntry in crossReference:
         coreId = refEntry["core"]
         partnerId = refEntry["partner"]
+        partnerFile = "%s/%s.fasta" % (temp, partnerId)
+        partnerResultFile = "%s.result" % partnerFile
         if partnerId in templates:
             refEntry["match"] = partnerId
             print("Found partner in template list alignment [%s]" % partnerId)
         else:
             print("Processing %s." % partnerId)
-            pdbFile, pdbChain = getPDB(pdbPath, partnerId)
-            partnerMol = Molecule(pdbFile)
-            partnerSeq = partnerMol.getSequence(pdbChain)
-            partnerFile = "%s/%s.fasta" % (temp, partnerId)
-            with open(partnerFile, "w") as partnerFasta:
-                partnerFasta.write(">%s\n" % partnerId)
-                partnerFasta.write("%s" % partnerSeq)
-            matchedId = getHomologue(partnerFile, templateSequenceFile)
+            if not os.path.isfile(partnerResultFile):
+                pdbFile, pdbChain = getPDB(pdbPath, partnerId)
+                partnerMol = Molecule(pdbFile)
+                partnerSeq = partnerMol.getSequence(pdbChain)
+                with open(partnerFile, "w") as partnerFasta:
+                    partnerFasta.write(">%s\n" % partnerId)
+                    partnerFasta.write("%s" % partnerSeq)
+            else:
+                print("Using existing results. [%s]" % partnerId)
+            matchedId = getHomologue(partnerFile, partnerResultFile, templateSequenceFile)
             if matchedId is None:
                 print("Warning: Failed alignment [%s]" % partnerId)
             else:
