@@ -58,9 +58,9 @@ def main(args):
                 except:
                     print("Warning: File not found [%s]." % pdbFile)
         templateSequences.close()
+        os.system("makeblastdb -in %s -dbtype prot" % templateSequenceFile)
     else:
         print("Using existing sequences for templates [%s]." % templateSequenceFile)
-    os.system("makeblastdb -in %s -dbtype prot" % templateSequenceFile)
     print("Found %s template entries from `%s`." % (len(templates), args.list))
 
     crossReference = dict()
