@@ -63,17 +63,17 @@ def main(args):
         print("Using existing sequences for templates [%s]." % templateSequenceFile)
     print("Found %s template entries from `%s`." % (len(templates), args.list))
 
-    crossReference = dict()
+    crossReference = list()
     with open(args.cross) as file:
         for line in file:
             l = line.split()
             if len(l) != 2:
                 raise Exception("Invalid line in crossreference [%s]." % line)
-            crossReference[l[0]] = dict(partner=l[1])
-    print("Loaded crossreference with %d entries." % len(crossReference.keys()))
+            crossReference.append(dict(core=l[0], partner=l[1]))
+    print("Loaded crossreference with %d entries." % len(crossReference))
 
-    for coreId in crossReference:
-        refEntry = crossReference[coreId]
+    for refEntry in crossReference:
+        coreId = refEntry["core"]
         partnerId = refEntry["partner"]
         if partnerId in templates:
             refEntry["match"] = partnerId
@@ -95,8 +95,8 @@ def main(args):
                 refEntry["match"] = matchedId
 
     finalSet = set()
-    for coreId in crossReference:
-        refEntry = crossReference[coreId]
+    for refEntry in crossReference:
+        coreId = refEntry["core"]
         partnerId = refEntry["partner"]
         if "match" in refEntry:
             entry = "%s\t%s\t%s" % (coreId, partnerId, refEntry["match"])
