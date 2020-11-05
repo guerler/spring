@@ -103,7 +103,7 @@ def main(args):
         coreId = refEntry["core"]
         partnerId = refEntry["partner"]
         if "match" in refEntry:
-            entry = "%s\t%s\t%s" % (coreId, partnerId, refEntry["match"])
+            entry = "%s\t%s" % (coreId, refEntry["match"])
             if entry not in finalSet:
                 finalSet.add(entry)
         else:
@@ -117,9 +117,9 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Maps binding partners to template library')
     parser.add_argument('-l', '--list', help='List of template entries [PDB_CHAIN]', required=True)
-    parser.add_argument('-c', '--cross', help='2-column cross reference', required=True)
+    parser.add_argument('-c', '--cross', help='Cross reference (unmapped)', required=True)
     parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]', required=True)
-    parser.add_argument('-o', '--output', help='3-column cross reference', required=True)
+    parser.add_argument('-o', '--output', help='Cross reference', required=True)
     parser.add_argument('-t', '--temp', help='Temporary directory', required=False, default="temp/")
     args = parser.parse_args()
     main(args)
