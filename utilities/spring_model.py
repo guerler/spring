@@ -61,7 +61,7 @@ def main(args):
     maxScore = -9999
     maxMolecule = None
     maxTemplate = None
-    for biomolNumber in range(len(templateMolecule.rotmat.keys())):
+    for biomolNumber in range(len(templateMolecule.biomol.keys())):
         os.system("rm -f temp/template*.pdb")
         if biomolNumber == 0:
             bioMolecule = templateMolecule
@@ -99,16 +99,16 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
     parser.add_argument('-ar', '--a_result', help='First HHR target file result', required=True)
-    parser.add_argument('-ac', '--a_chain', help='First template chain name', required=True)
     parser.add_argument('-at', '--a_template', help='First template PDB', required=True)
+    parser.add_argument('-ac', '--a_chain', help='First template chain name', required=True)
     parser.add_argument('-br', '--b_result', help='Second HHR target file result', required=True)
-    parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=True)
     parser.add_argument('-bt', '--b_template', help='Second template PDB', required=True)
+    parser.add_argument('-bc', '--b_chain', help='Second structure chain name', required=True)
     parser.add_argument('-ct', '--c_template', help='Structure template', required=True)
     parser.add_argument('-cc', '--c_chain', help='Core template chain name', required=True)
     parser.add_argument('-o', '--output', help='Output model file', required=True)
-    parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=12.4, required=False)
-    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.2, required=False)
+    parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
+    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
     parser.add_argument('-tp', '--temp', help='Temporary directory', required=False, default="temp/")
     parser.add_argument('-st', '--show_template', help='Add template to model structure', type=bool, required=False, default=True)
     args = parser.parse_args()

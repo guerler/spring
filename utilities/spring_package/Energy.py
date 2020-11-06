@@ -8,7 +8,7 @@ class Energy:
     def __init__(self):
         self.dfire = list()
         with open("spring_package/dfire/dfire.txt") as file:
-            for index, line in enumerate(file):
+            for line in file:
                 self.dfire.append(float(line))
 
     def get(self, moleculeA, moleculeB):

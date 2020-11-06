@@ -12,7 +12,7 @@ class Alignment:
 
     def readFile(self, fileName):
         with open(fileName) as file:
-            for index, line in enumerate(file):
+            for line in file:
                 cols = line.split()
                 if len(cols) > 1 and cols[0] == "Query":
                     self.queryName = cols[1].split()[0][0:14]
@@ -77,7 +77,6 @@ class Alignment:
         pdbAlignment = alignments[0].seqA
         hhrAlignment = alignments[0].seqB
         pCount = 0
-        hCount = 0
         hhrMapping = []
         for i in range(len(pdbAlignment)):
             p = pdbAlignment[i]
