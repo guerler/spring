@@ -10,7 +10,7 @@ def getId(rawId):
         return elements[1]
     return rawId
 
-def getReference(fileName):
+def getReference(fileName, filterList=None):
     index = dict()
     with open(fileName) as fp:
         line = fp.readline()
@@ -18,7 +18,11 @@ def getReference(fileName):
             ls = line.split()
             a = getId(ls[0])
             b = getId(ls[1])
-            if len(ls) >= 2:
+            skip = False
+            if filterList is not None:
+                if a not in filterList and b not in filterList:
+                    skip = True
+            if not skip and len(ls) >= 2:
                 if a > b:
                     name = "%s_%s" % (a, b)
                 else:
@@ -57,8 +61,8 @@ def getxy(prediction, positive, negative):
         if found:
             x.append(100.0 * fp / negative_denominator)
             y.append(100.0 * tp / positive_denominator)
-        fn = positive_total - tp;
-        tn = negative_total - fp;
+        fn = positive_total - tp
+        tn = negative_total - fp
         denom = (tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)
         if denom > 0.0:
             mcc = (tp*tn-fp*fn)/math.sqrt(denom)
@@ -73,9 +77,16 @@ def getxy(prediction, positive, negative):
     return x, y
 
 def main(args):
+    # Get filter list
+    filterList = list()
+    with open("%s.list" % args.input) as filterFile:
+        for line in filterFile:
+            filterList.append(getId(line))
+    print(filterList)
+
     # Get data
     prediction = getReference("%s.txt" % args.input)
-    positive = getReference("%s.positive.txt" % args.input)
+    positive = getReference("%s.positive.txt" % args.input, filterList=filterList)
     negative = getReference("%s.negative.txt" % args.input)
 
     # Print plot
