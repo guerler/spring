@@ -7,7 +7,7 @@ def main(args):
     targets = list()
     targetPath = args.targetpath.rstrip("/")
     with open(args.targetlist) as file:
-        for index, line in enumerate(file):
+        for line in file:
             name = line.strip()
             targets.append(name)
     print ("Loaded %s target names from `%s`." % (len(targets), args.targetlist))
@@ -15,7 +15,7 @@ def main(args):
         inputs = list()
         inputPath = args.inputpath.rstrip("/")
         with open(args.inputlist) as file:
-            for index, line in enumerate(file):
+            for line in file:
                 name = line.strip()
                 inputs.append(name)
         print ("Loaded %s input names from `%s`." % (len(inputs), args.inputlist))
@@ -24,7 +24,7 @@ def main(args):
         inputPath = targetPath
     crossReference = dict()
     with open(args.crossreference) as file:
-        for index, line in enumerate(file):
+        for line in file:
             columns = line.split()
             core = columns[0]
             partner = columns[-1]
