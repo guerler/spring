@@ -163,7 +163,6 @@ def main(args):
         if key not in positive and key not in negative:
             negative.add(key)
             negativeCount = negativeCount - 1
-    #negative = getReference("%s.negative.txt" % args.input)
 
     # print plot
     print ("Producing plot data...")
@@ -171,8 +170,7 @@ def main(args):
     print("Total count in positive file: %d." % len(positive))
     x, y = getxy(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
-    plt.plot(range(100), range(100))
-    plt.plot(x, y)
+    plt.plot(range(20), range(20))
     plt.xlabel('False Positive Rate (%)')
     plt.ylabel('True Positive Rate (%)')
     plt.title('Prediction Results')
