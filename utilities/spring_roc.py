@@ -4,7 +4,10 @@ import math
 import matplotlib.pyplot as plt
 import os
 
-def getId(rawId):
+def getIds(rawIds):
+    return rawIds.split("|")
+
+def getCenterId(rawId):
     elements = rawId.split("|")
     if len(elements) > 1:
         return elements[1]
@@ -17,42 +20,43 @@ def getReference(fileName, filterList=None, minScore=None, mappingDict=None, aCo
         line = fp.readline()
         while line:
             ls = line.split(separator)
-            a = getId(ls[aCol])
-            b = getId(ls[bCol])
-            skip = False
-            if a == "-" or b == "-":
-                skip = True
-            aSplit = a.split("|")
-            bSplit = b.split("|")
-            if len(aSplit) > 1 or len(bSplit) > 1:
-                print (aSplit)
-                print (bSplit)
-            if mappingDict is not None:
-                if a in mappingDict and b in mappingDict:
-                    a = mappingDict[a]
-                    b = mappingDict[b]
-                else:
-                    failedToMap = failedToMap + 1
-                    skip = True
-            if filterList is not None:
-                if a not in filterList and b not in filterList:
-                    skip = True
-            if not skip:
-                if a > b:
-                    name = "%s_%s" % (a, b)
-                else:
-                    name = "%s_%s" % (b, a)
-                if name not in index:
-                    if scoreCol >= 0 and len(ls) > scoreCol:
-                        score = float(ls[scoreCol])
-                        skip = False
-                        if minScore is not None:
-                            if minScore > score:
-                                break
-                        if not skip:
-                            index[name] = score
-                    else:
-                        index[name] = 1.0
+            if separator is not None:
+                aList = getIds(ls[aCol])
+                bList = getIds(ls[bCol])
+            else:
+                aList = [getCenterId(ls[aCol])]
+                bList = [getCenterId(ls[bCol])]
+            for a in aList:
+                for b in bList:
+                    skip = False
+                    if a == "-" or b == "-":
+                        skip = True
+                    if mappingDict is not None:
+                        if a in mappingDict and b in mappingDict:
+                            a = mappingDict[a]
+                            b = mappingDict[b]
+                        else:
+                            failedToMap = failedToMap + 1
+                            skip = True
+                    if filterList is not None:
+                        if a not in filterList and b not in filterList:
+                            skip = True
+                    if not skip:
+                        if a > b:
+                            name = "%s_%s" % (a, b)
+                        else:
+                            name = "%s_%s" % (b, a)
+                        if name not in index:
+                            if scoreCol >= 0 and len(ls) > scoreCol:
+                                score = float(ls[scoreCol])
+                                skip = False
+                                if minScore is not None:
+                                    if minScore > score:
+                                        break
+                                if not skip:
+                                    index[name] = score
+                            else:
+                                index[name] = 1.0
             line = fp.readline()
     return index
 
@@ -95,8 +99,12 @@ def getxy(prediction, positive, negative):
             if mcc >= maxmcc:
                 maxmcc = mcc
                 minscore = score
+                maxtp = tp
+                maxfp = fp
+                maxcnt = cnt
+    precision = maxtp / (maxtp + maxfp)
     print("Top ranking prediction %s." % str(sorted_prediction[0]))
-    print("Total count of prediction set: %s." % len(sorted_prediction))
+    print("Total count of prediction set: %s (Precision=%1.2f)." % (maxcnt, precision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
     print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), minscore))
@@ -122,7 +130,7 @@ def main(args):
         filterList = list()
         with open(filterName) as filterFile:
             for line in filterFile:
-                id = getId(line.split()[0])
+                id = getCenterId(line.split()[0])
                 if mappingDict is not None and id in mappingDict:
                     id = mappingDict[id]
                     filterList.append(id)
