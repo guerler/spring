@@ -13,9 +13,9 @@ def getCenterId(rawId):
         return elements[1]
     return rawId
 
-def getReference(fileName, filterList=None, minScore=None, mappingDict=None, aCol=0, bCol=1, scoreCol=-1, separator=None):
+def getReference(fileName, filterList=None, minScore=None, aCol=0, bCol=1, scoreCol=-1, separator=None, skipStartsWith="SWISS-PROT"):
     index = dict()
-    failedToMap = 0
+    count = 0
     with open(fileName) as fp:
         line = fp.readline()
         while line:
@@ -25,19 +25,12 @@ def getReference(fileName, filterList=None, minScore=None, mappingDict=None, aCo
                 bList = getIds(ls[bCol])
             else:
                 aList = [getCenterId(ls[aCol])]
-                bList = [getCenterId(ls[bCol])]
+                bList= [getCenterId(ls[bCol])]
             for a in aList:
                 for b in bList:
                     skip = False
-                    if a == "-" or b == "-":
+                    if a == "-" or b == "-" or a.startswith(skipStartsWith):
                         skip = True
-                    if mappingDict is not None:
-                        if a in mappingDict and b in mappingDict:
-                            a = mappingDict[a]
-                            b = mappingDict[b]
-                        else:
-                            failedToMap = failedToMap + 1
-                            skip = True
                     if filterList is not None:
                         if a not in filterList and b not in filterList:
                             skip = True
@@ -58,6 +51,7 @@ def getReference(fileName, filterList=None, minScore=None, mappingDict=None, aCo
                             else:
                                 index[name] = 1.0
             line = fp.readline()
+            count = count + 1
     return index
 
 def getPercentage(rate, denominator):
@@ -73,14 +67,16 @@ def getxy(prediction, positive, negative):
     negative_denominator = float(negative_total)
     x = []
     y = []
-    cnt = 0
+    count = 0
     mcc = 0.0
+    maxcount = 0
     maxmcc = 0.0
+    maxprecision = 0.0
     minscore = 0.0
     tp = 0
     fp = 0
+    previous = 0.0
     for (name, score) in sorted_prediction:
-        cnt = cnt + 1
         found = False
         if name in positive:
             found = True
@@ -99,55 +95,48 @@ def getxy(prediction, positive, negative):
             if mcc >= maxmcc:
                 maxmcc = mcc
                 minscore = score
-                maxtp = tp
-                maxfp = fp
-                maxcnt = cnt
-    precision = maxtp / (maxtp + maxfp)
+                maxcount = count
+                maxprecision = 0.0
+                if tp > 0 or fp > 0:
+                    maxprecision = tp / (tp + fp)
+        if count % 10000 == 0:
+            print ("%s (precision=%5.3f)" % (count, maxprecision))
+        count = count + 1
+
     print("Top ranking prediction %s." % str(sorted_prediction[0]))
-    print("Total count of prediction set: %s (Precision=%1.2f)." % (maxcnt, precision))
+    print("Total count of prediction set: %s (Precision=%1.2f)." % (maxcount, maxprecision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
     print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), minscore))
     return x, y
 
 def main(args):
-    # Check filter and mapping files
-    mappingDict = None
-    mappingName = "%s.mapping.txt" % args.input
-    if os.path.isfile(mappingName):
-        mappingDict = dict()
-        with open(mappingName) as mappingFile:
-            for line in mappingFile:
-                ll = line.split()
-                source = ll[0]
-                target = ll[1]
-                mappingDict[source] = target
-        print("Total number in mapping list: %d." % len(mappingDict.keys()))
-
+    # filter list
     filterList = None
     filterName = "%s.list.txt" % args.input
     if os.path.isfile(filterName):
-        filterList = list()
+        filterList = set()
         with open(filterName) as filterFile:
             for line in filterFile:
                 id = getCenterId(line.split()[0])
-                if mappingDict is not None and id in mappingDict:
-                    id = mappingDict[id]
-                    filterList.append(id)
-                else:
-                    filterList.append(id)
+                filterList.add(id)
         print("Total number in filter list: %d." % len(filterList))
 
-    # Get data
+    # process biogrid database
     if args.biogrid:
+        positive = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterList=filterList)
         prediction = getReference("%s.txt" % args.input, scoreCol=2)
-        positive = getReference(args.biogrid, filterList=filterList, aCol=23, bCol=26, separator="\t")
     else:
-        prediction = getReference("%s.txt" % args.input, scoreCol=2, mappingDict=mappingDict)
         positive = getReference("%s.positive.txt" % args.input, filterList=filterList)
+        prediction = getReference("%s.txt" % args.input, scoreCol=2)
+
+    # estimate background noise
     negative = getReference("%s.negative.txt" % args.input)
 
-    # Print plot
+    # print plot
+    print ("Producing plot data...")
+    print("Total count in prediction file: %d." % len(prediction))
+    print("Total count in positive file: %d." % len(positive))
     x, y = getxy(prediction, positive, negative)
     plt.plot(x, y)
     plt.xlabel('False Positive Rate (%)')
