@@ -3,6 +3,8 @@ import argparse
 import math
 import matplotlib.pyplot as plt
 import os
+import random
+from datetime import datetime
 
 def getIds(rawIds):
     return rawIds.split("|")
@@ -12,6 +14,13 @@ def getCenterId(rawId):
     if len(elements) > 1:
         return elements[1]
     return rawId
+
+def getKey(a, b):
+    if a > b:
+        name = "%s_%s" % (a, b)
+    else:
+        name = "%s_%s" % (b, a)
+    return name
 
 def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bCol=1, scoreCol=-1, separator=None, skipStartsWith="SWISS-PROT"):
     index = dict()
@@ -38,23 +47,20 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
                         if a not in filterB and b not in filterB:
                             skip = True
                     if not skip:
-                        if a > b:
-                            name = "%s_%s" % (a, b)
-                        else:
-                            name = "%s_%s" % (b, a)
+                        name = getKey(a, b)
                         if name not in index:
                             if scoreCol >= 0 and len(ls) > scoreCol:
                                 score = float(ls[scoreCol])
                                 skip = False
                                 if minScore is not None:
                                     if minScore > score:
-                                        break
+                                        return index
                                 if not skip:
                                     index[name] = score
                             else:
                                 index[name] = 1.0
-            line = fp.readline()
             count = count + 1
+            line = fp.readline()
     return index
 
 def getPercentage(rate, denominator):
@@ -98,7 +104,6 @@ def getxy(prediction, positive, negative):
                 maxmcc = mcc
                 minscore = score
                 maxcount = count
-                maxprecision = 0.0
                 if tp > 0 or fp > 0:
                     maxprecision = tp / (tp + fp)
         if count % 10000 == 0:
@@ -106,7 +111,7 @@ def getxy(prediction, positive, negative):
         count = count + 1
 
     print("Top ranking prediction %s." % str(sorted_prediction[0]))
-    print("Total count of prediction set: %s (Precision=%1.2f)." % (maxcount, maxprecision))
+    print("Total count of prediction set: %s (precision=%1.2f)." % (maxcount, maxprecision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
     print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), minscore))
@@ -127,7 +132,7 @@ def main(args):
     inputPath = os.path.dirname(os.path.abspath(args.input))
     inputName = os.path.splitext(inputBase)[0]
     splitTargets = inputName.split("_")
-    print(splitTargets)
+    print("Target names: %s." % splitTargets)
     if len(splitTargets) > 1:
         filterA = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[0]))
         filterB = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[1]))
@@ -143,7 +148,19 @@ def main(args):
         prediction = getReference("%s.txt" % args.input, scoreCol=2)
 
     # estimate background noise
-    negative = getReference("%s.negative.txt" % args.input)
+    negative = set()
+    filterAList = list(filterA)
+    filterBList = list(filterB)
+    negativeCount = int(len(positive.keys()))
+    random.seed(datetime.now())
+    while negativeCount > 0:
+        nameA = random.choice(filterAList)
+        nameB = random.choice(filterBList)
+        key = getKey(nameA, nameB)
+        if key not in positive and key not in negative:
+            negative.add(key)
+            negativeCount = negativeCount - 1
+    #negative = getReference("%s.negative.txt" % args.input)
 
     # print plot
     print ("Producing plot data...")
