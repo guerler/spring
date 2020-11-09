@@ -35,6 +35,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
             else:
                 aList = [getCenterId(ls[aCol])]
                 bList= [getCenterId(ls[bCol])]
+            validEntry = False
             for a in aList:
                 for b in bList:
                     skip = False
@@ -49,6 +50,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
                     if not skip:
                         name = getKey(a, b)
                         if name not in index:
+                            validEntry = True
                             if scoreCol >= 0 and len(ls) > scoreCol:
                                 score = float(ls[scoreCol])
                                 skip = False
@@ -59,21 +61,22 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
                                     index[name] = score
                             else:
                                 index[name] = 1.0
-            count = count + 1
+            if validEntry:
+                count = count + 1
             line = fp.readline()
-    return index
+    return index, count
 
 def getPercentage(rate, denominator):
     if denominator > 0:
         return 100.0 * rate / denominator
     return 0.0
 
-def getxy(prediction, positive, negative):
-    sorted_prediction = sorted(prediction.items(), key=lambda x: x[1], reverse=True)
-    positive_total = len(positive)
-    negative_total = len(negative)
-    positive_denominator = float(positive_total)
-    negative_denominator = float(negative_total)
+def getxy(prediction, positive, positiveCount, negative):
+    sortedPrediction = sorted(prediction.items(), key=lambda x: x[1], reverse=True)
+    positiveTotal = positiveCount
+    negativeTotal = len(negative)
+    positiveDenominator = float(positiveTotal)
+    negativeDenominator = float(negativeTotal)
     x = []
     y = []
     count = 0
@@ -84,7 +87,7 @@ def getxy(prediction, positive, negative):
     minscore = 0.0
     tp = 0
     fp = 0
-    for (name, score) in sorted_prediction:
+    for (name, score) in sortedPrediction:
         found = False
         if name in positive:
             found = True
@@ -93,10 +96,10 @@ def getxy(prediction, positive, negative):
             found = True
             fp = fp + 1
         if found:
-            x.append(getPercentage(fp, negative_denominator))
-            y.append(getPercentage(tp, positive_denominator))
-        fn = positive_total - tp
-        tn = negative_total - fp
+            x.append(getPercentage(fp, negativeDenominator))
+            y.append(getPercentage(tp, positiveDenominator))
+        fn = positiveTotal - tp
+        tn = negativeTotal - fp
         denom = (tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)
         if denom > 0.0:
             mcc = (tp*tn-fp*fn)/math.sqrt(denom)
@@ -110,7 +113,7 @@ def getxy(prediction, positive, negative):
             print ("%s (precision=%5.3f)" % (count, maxprecision))
         count = count + 1
 
-    print("Top ranking prediction %s." % str(sorted_prediction[0]))
+    print("Top ranking prediction %s." % str(sortedPrediction[0]))
     print("Total count of prediction set: %s (precision=%1.2f)." % (maxcount, maxprecision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
@@ -141,11 +144,11 @@ def main(args):
 
     # process biogrid database
     if args.biogrid:
-        positive = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterA=filterA, filterB=filterB)
-        prediction = getReference("%s.txt" % args.input, scoreCol=2)
+        positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterA=filterA, filterB=filterB)
+        prediction, _ = getReference("%s.txt" % args.input, scoreCol=2)
     else:
-        positive = getReference("%s.positive.txt" % args.input, filterA=filterA, filterB=filterB)
-        prediction = getReference("%s.txt" % args.input, scoreCol=2)
+        positive, positiveCount = getReference("%s.positive.txt" % args.input, filterA=filterA, filterB=filterB)
+        prediction, _ = getReference("%s.txt" % args.input, scoreCol=2)
 
     # estimate background noise
     negative = set()
@@ -166,7 +169,9 @@ def main(args):
     print ("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y = getxy(prediction, positive, negative)
+    x, y = getxy(prediction, positive, positiveCount, negative)
+    plt.plot(x, y)
+    plt.plot(range(100), range(100))
     plt.plot(x, y)
     plt.xlabel('False Positive Rate (%)')
     plt.ylabel('True Positive Rate (%)')
