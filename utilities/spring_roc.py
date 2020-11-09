@@ -56,7 +56,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
                                 skip = False
                                 if minScore is not None:
                                     if minScore > score:
-                                        return index
+                                        return index, count
                                 if not skip:
                                     index[name] = score
                             else:
@@ -79,12 +79,13 @@ def getxy(prediction, positive, positiveCount, negative):
     negativeDenominator = float(negativeTotal)
     x = []
     y = []
+    xMax = 0
     count = 0
     mcc = 0.0
     maxcount = 0
     maxmcc = 0.0
     maxprecision = 0.0
-    minscore = 0.0
+    maxscore = 0.0
     tp = 0
     fp = 0
     for (name, score) in sortedPrediction:
@@ -95,9 +96,9 @@ def getxy(prediction, positive, positiveCount, negative):
         if name in negative:
             found = True
             fp = fp + 1
-        if found:
-            x.append(getPercentage(fp, negativeDenominator))
-            y.append(getPercentage(tp, positiveDenominator))
+        precision = 0.0
+        if tp > 0 or fp > 0:
+            precision = tp / (tp + fp)
         fn = positiveTotal - tp
         tn = negativeTotal - fp
         denom = (tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)
@@ -105,10 +106,15 @@ def getxy(prediction, positive, positiveCount, negative):
             mcc = (tp*tn-fp*fn)/math.sqrt(denom)
             if mcc >= maxmcc:
                 maxmcc = mcc
-                minscore = score
+                maxscore = score
                 maxcount = count
-                if tp > 0 or fp > 0:
-                    maxprecision = tp / (tp + fp)
+                maxprecision = precision
+        if found:
+            yValue = getPercentage(tp, positiveDenominator)
+            xValue = getPercentage(fp, negativeDenominator)
+            x.append(xValue)
+            y.append(yValue)
+            xMax = xValue if xValue > xMax else xMax
         if count % 10000 == 0:
             print ("%s (precision=%5.3f)" % (count, maxprecision))
         count = count + 1
@@ -117,8 +123,8 @@ def getxy(prediction, positive, positiveCount, negative):
     print("Total count of prediction set: %s (precision=%1.2f)." % (maxcount, maxprecision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
-    print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), minscore))
-    return x, y
+    print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), maxscore))
+    return x, y, xMax + 1
 
 def getFilter(filterName):
     filterSet = set()
@@ -168,9 +174,9 @@ def main(args):
     print ("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y = getxy(prediction, positive, positiveCount, negative)
+    x, y, xMax = getxy(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
-    plt.plot(range(20), range(20))
+    plt.plot(range(int(xMax)), range(int(xMax)))
     plt.xlabel('False Positive Rate (%)')
     plt.ylabel('True Positive Rate (%)')
     plt.title('Prediction Results')
