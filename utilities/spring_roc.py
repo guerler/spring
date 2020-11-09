@@ -13,7 +13,7 @@ def getCenterId(rawId):
         return elements[1]
     return rawId
 
-def getReference(fileName, filterList=None, minScore=None, aCol=0, bCol=1, scoreCol=-1, separator=None, skipStartsWith="SWISS-PROT"):
+def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bCol=1, scoreCol=-1, separator=None, skipStartsWith="SWISS-PROT"):
     index = dict()
     count = 0
     with open(fileName) as fp:
@@ -31,8 +31,11 @@ def getReference(fileName, filterList=None, minScore=None, aCol=0, bCol=1, score
                     skip = False
                     if a == "-" or b == "-" or a.startswith(skipStartsWith):
                         skip = True
-                    if filterList is not None:
-                        if a not in filterList and b not in filterList:
+                    if filterA is not None:
+                        if a not in filterA and b not in filterA:
+                            skip = True
+                    if filterB is not None:
+                        if a not in filterB and b not in filterB:
                             skip = True
                     if not skip:
                         if a > b:
@@ -75,7 +78,6 @@ def getxy(prediction, positive, negative):
     minscore = 0.0
     tp = 0
     fp = 0
-    previous = 0.0
     for (name, score) in sorted_prediction:
         found = False
         if name in positive:
@@ -110,24 +112,34 @@ def getxy(prediction, positive, negative):
     print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), minscore))
     return x, y
 
-def main(args):
-    # filter list
-    filterList = None
-    filterName = "%s.list.txt" % args.input
+def getFilter(filterName):
+    filterSet = set()
     if os.path.isfile(filterName):
-        filterList = set()
         with open(filterName) as filterFile:
             for line in filterFile:
                 id = getCenterId(line.split()[0])
-                filterList.add(id)
-        print("Total number in filter list: %d." % len(filterList))
+                filterSet.add(id)
+    print("Total number in filter list: %d." % len(filterSet))
+    return filterSet
+
+def main(args):
+    inputBase = os.path.basename(args.input)
+    inputPath = os.path.dirname(os.path.abspath(args.input))
+    inputName = os.path.splitext(inputBase)[0]
+    splitTargets = inputName.split("_")
+    print(splitTargets)
+    if len(splitTargets) > 1:
+        filterA = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[0]))
+        filterB = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[1]))
+    else:
+        filterA = filterB = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[0]))
 
     # process biogrid database
     if args.biogrid:
-        positive = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterList=filterList)
+        positive = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterA=filterA, filterB=filterB)
         prediction = getReference("%s.txt" % args.input, scoreCol=2)
     else:
-        positive = getReference("%s.positive.txt" % args.input, filterList=filterList)
+        positive = getReference("%s.positive.txt" % args.input, filterA=filterA, filterB=filterB)
         prediction = getReference("%s.txt" % args.input, scoreCol=2)
 
     # estimate background noise
