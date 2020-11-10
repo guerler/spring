@@ -71,7 +71,7 @@ def getPercentage(rate, denominator):
         return 100.0 * rate / denominator
     return 0.0
 
-def getxy(prediction, positive, positiveCount, negative):
+def getXY(prediction, positive, positiveCount, negative):
     sortedPrediction = sorted(prediction.items(), key=lambda x: x[1], reverse=True)
     positiveTotal = positiveCount
     negativeTotal = len(negative)
@@ -174,7 +174,7 @@ def main(args):
     print ("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y, xMax = getxy(prediction, positive, positiveCount, negative)
+    x, y, xMax = getXY(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
     plt.plot(range(int(xMax)), range(int(xMax)))
     plt.xlabel('False Positive Rate (%)')
