@@ -1,13 +1,14 @@
 #! /usr/bin/env python
 import argparse
 import math
-import matplotlib.pyplot as plt
-import os
+from matplotlib import pyplot as plt
 import random
 from datetime import datetime
 
+
 def getIds(rawIds):
     return rawIds.split("|")
+
 
 def getCenterId(rawId):
     elements = rawId.split("|")
@@ -15,9 +16,11 @@ def getCenterId(rawId):
         return elements[1]
     return rawId
 
+
 def getOrganism(rawId):
     elements = rawId.split("_")
     return elements[-1]
+
 
 def getKey(a, b):
     if a > b:
@@ -26,7 +29,35 @@ def getKey(a, b):
         name = "%s_%s" % (b, a)
     return name
 
-def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bCol=1, scoreCol=-1, separator=None, skipStartsWith="SWISS-PROT"):
+
+def getPercentage(rate, denominator):
+    if denominator > 0:
+        return 100.0 * rate / denominator
+    return 0.0
+
+
+def getFilter(filterName):
+    print("Loading target organism(s)...")
+    filterSets = dict()
+    with open(filterName) as filterFile:
+        for line in filterFile:
+            columns = line.split()
+            for colIndex in [0, 1]:
+                if colIndex >= len(columns):
+                    break
+                colEntry = columns[colIndex]
+                id = getCenterId(colEntry)
+                organism = getOrganism(colEntry)
+                if organism not in filterSets:
+                    filterSets[organism] = set()
+                filterSets[organism].add(id)
+    print("Organism(s) in set: %s." % filterSets.keys())
+    return filterSets
+
+
+def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
+                 bCol=1, scoreCol=-1, separator=None,
+                 skipStartsWith="SWISS-PROT"):
     index = dict()
     count = 0
     with open(fileName) as fp:
@@ -38,7 +69,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
                 bList = getIds(ls[bCol])
             else:
                 aList = [getCenterId(ls[aCol])]
-                bList= [getCenterId(ls[bCol])]
+                bList = [getCenterId(ls[bCol])]
             validEntry = False
             for a in aList:
                 for b in bList:
@@ -70,13 +101,10 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0, bC
             line = fp.readline()
     return index, count
 
-def getPercentage(rate, denominator):
-    if denominator > 0:
-        return 100.0 * rate / denominator
-    return 0.0
 
 def getXY(prediction, positive, positiveCount, negative):
-    sortedPrediction = sorted(prediction.items(), key=lambda x: x[1], reverse=True)
+    sortedPrediction = sorted(prediction.items(), key=lambda x: x[1],
+                              reverse=True)
     positiveTotal = positiveCount
     negativeTotal = len(negative)
     positiveDenominator = float(positiveTotal)
@@ -84,14 +112,13 @@ def getXY(prediction, positive, positiveCount, negative):
     x = list()
     y = list()
     xMax = 0
-    count = 0
-    mcc = 0.0
-    maxcount = 0
-    maxmcc = 0.0
-    maxprecision = 0.0
-    maxscore = 0.0
+    topCount = 0
+    topMCC = 0.0
+    topPrecision = 0.0
+    topScore = 0.0
     tp = 0
     fp = 0
+    count = 0
     for (name, score) in sortedPrediction:
         found = False
         if name in positive:
@@ -108,11 +135,11 @@ def getXY(prediction, positive, positiveCount, negative):
         denom = (tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)
         if denom > 0.0:
             mcc = (tp*tn-fp*fn)/math.sqrt(denom)
-            if mcc >= maxmcc:
-                maxmcc = mcc
-                maxscore = score
-                maxcount = count
-                maxprecision = precision
+            if mcc >= topMCC:
+                topMCC = mcc
+                topScore = score
+                topCount = count
+                topPrecision = precision
         if found:
             yValue = getPercentage(tp, positiveDenominator)
             xValue = getPercentage(fp, negativeDenominator)
@@ -121,29 +148,14 @@ def getXY(prediction, positive, positiveCount, negative):
             xMax = max(xValue, xMax)
         count = count + 1
     print("Top ranking prediction %s." % str(sortedPrediction[0]))
-    print("Total count of prediction set: %s (precision=%1.2f)." % (maxcount, maxprecision))
+    print("Total count of prediction set: %s (precision=%1.2f)." %
+          (topCount, topPrecision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
-    print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), maxscore))
+    print("Matthews-Correlation-Coefficient: %s at Score >= %s." %
+          (round(topMCC, 2), topScore))
     return x, y, xMax
 
-def getFilter(filterName):
-    print("Loading target organisms...")
-    filterSets = dict()
-    with open(filterName) as filterFile:
-        for line in filterFile:
-            columns = line.split()
-            for colIndex in [0, 1]:
-                if colIndex >= len(columns):
-                    break
-                colEntry = columns[colIndex]
-                id = getCenterId(colEntry)
-                organism = getOrganism(colEntry)
-                if organism not in filterSets:
-                    filterSets[organism] = set()
-                filterSets[organism].add(id)
-    print("Organisms in set: %s." % filterSets.keys())
-    return filterSets
 
 def main(args):
     # load source files
@@ -156,15 +168,17 @@ def main(args):
         filterB = filterA
 
     # process biogrid database
-    print ("Loading postive set from BioGRID file...")
-    positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterA=filterA, filterB=filterB)
+    print("Loading postive set from BioGRID file...")
+    positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26,
+                                           separator="\t", filterA=filterA,
+                                           filterB=filterB)
 
     # process prediction file
-    print ("Loading prediction file...")
+    print("Loading prediction file...")
     prediction, _ = getReference(args.input, scoreCol=2)
 
     # estimate background noise
-    print ("Estimating background noise...")
+    print("Estimating background noise...")
     negative = set()
     filterAList = list(filterA)
     filterBList = list(filterB)
@@ -179,7 +193,7 @@ def main(args):
             negativeCount = negativeCount - 1
 
     # create plot
-    print ("Producing plot data...")
+    print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
     x, y, xMax = getXY(prediction, positive, positiveCount, negative)
@@ -191,9 +205,12 @@ def main(args):
     plt.savefig("out.pdf", formatstr="pdf")
     plt.show()
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create ROC plot.')
-    parser.add_argument('-i', '--input', help='Input template entries [PDB_CHAIN]', required=True)
-    parser.add_argument('-b', '--biogrid', help='BioGRID interaction database file', required=True)
+    parser.add_argument('-i', '--input', help='Input prediction file.',
+                        required=True)
+    parser.add_argument('-b', '--biogrid', help='BioGRID interaction ' +
+                        'database file', required=True)
     args = parser.parse_args()
     main(args)
