@@ -1,9 +1,10 @@
 #! /usr/bin/env python
 import argparse
 import math
-from matplotlib import pyplot as plt
 import random
 from datetime import datetime
+
+from matplotlib import pyplot as plt
 
 
 def getIds(rawIds):
