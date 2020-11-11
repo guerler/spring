@@ -15,6 +15,10 @@ def getCenterId(rawId):
         return elements[1]
     return rawId
 
+def getOrganism(rawId):
+    elements = rawId.split("_")
+    return elements[-1]
+
 def getKey(a, b):
     if a > b:
         name = "%s_%s" % (a, b)
@@ -77,8 +81,8 @@ def getXY(prediction, positive, positiveCount, negative):
     negativeTotal = len(negative)
     positiveDenominator = float(positiveTotal)
     negativeDenominator = float(negativeTotal)
-    x = []
-    y = []
+    x = list()
+    y = list()
     xMax = 0
     count = 0
     mcc = 0.0
@@ -114,49 +118,49 @@ def getXY(prediction, positive, positiveCount, negative):
             xValue = getPercentage(fp, negativeDenominator)
             x.append(xValue)
             y.append(yValue)
-            xMax = xValue if xValue > xMax else xMax
-        if count % 10000 == 0:
-            print ("%s (precision=%5.3f)" % (count, maxprecision))
+            xMax = max(xValue, xMax)
         count = count + 1
-
     print("Top ranking prediction %s." % str(sortedPrediction[0]))
     print("Total count of prediction set: %s (precision=%1.2f)." % (maxcount, maxprecision))
     print("Total count of positive set: %s." % len(positive))
     print("Total count of negative set: %s." % len(negative))
     print("Matthews-Correlation-Coefficient: %s at Score >= %s." % (round(maxmcc, 2), maxscore))
-    return x, y, xMax + 1
+    return x, y, xMax
 
 def getFilter(filterName):
-    filterSet = set()
-    if os.path.isfile(filterName):
-        with open(filterName) as filterFile:
-            for line in filterFile:
-                id = getCenterId(line.split()[0])
-                filterSet.add(id)
-    print("Total number in filter list: %d." % len(filterSet))
-    return filterSet
+    filterSets = dict()
+    print("Loading target organisms...")
+    with open(filterName) as filterFile:
+        for line in filterFile:
+            firstColumn = line.split()[0]
+            id = getCenterId(firstColumn)
+            organism = getOrganism(firstColumn)
+            if organism not in filterSets:
+                filterSets[organism] = set()
+            filterSets[organism].add(id)
+    print("Organisms in set: %s." % filterSets.keys())
+    return filterSets
 
 def main(args):
-    inputBase = os.path.basename(args.input)
-    inputPath = os.path.dirname(os.path.abspath(args.input))
-    inputName = os.path.splitext(inputBase)[0]
-    splitTargets = inputName.split("_")
-    print("Target names: %s." % splitTargets)
-    if len(splitTargets) > 1:
-        filterA = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[0]))
-        filterB = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[1]))
+    # load source files
+    filterSets = getFilter("%s.list" % args.input)
+    filterKeys = list(filterSets.keys())
+    filterA = filterSets[filterKeys[0]]
+    if len(filterKeys) > 1:
+        filterB = filterSets[filterKeys[1]]
     else:
-        filterA = filterB = getFilter("%s/%s.list.txt" % (inputPath, splitTargets[0]))
+        filterB = filterA
 
     # process biogrid database
-    if args.biogrid:
-        positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterA=filterA, filterB=filterB)
-        prediction, _ = getReference("%s.txt" % args.input, scoreCol=2)
-    else:
-        positive, positiveCount = getReference("%s.positive.txt" % args.input, filterA=filterA, filterB=filterB)
-        prediction, _ = getReference("%s.txt" % args.input, scoreCol=2)
+    print ("Loading postive set from BioGRID file...")
+    positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26, separator="\t", filterA=filterA, filterB=filterB)
+
+    # process prediction file
+    print ("Loading prediction file...")
+    prediction, _ = getReference(args.input, scoreCol=2)
 
     # estimate background noise
+    print ("Estimating background noise...")
     negative = set()
     filterAList = list(filterA)
     filterBList = list(filterB)
@@ -170,21 +174,22 @@ def main(args):
             negative.add(key)
             negativeCount = negativeCount - 1
 
-    # print plot
+    # create plot
     print ("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
     x, y, xMax = getXY(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
-    plt.plot(range(int(xMax)), range(int(xMax)))
+    plt.plot([0, xMax], [0, xMax])
     plt.xlabel('False Positive Rate (%)')
     plt.ylabel('True Positive Rate (%)')
-    plt.title('Prediction Results')
+    plt.title('Prediction Validation')
+    plt.savefig("out.pdf", formatstr="pdf")
     plt.show()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create ROC plot.')
     parser.add_argument('-i', '--input', help='Input template entries [PDB_CHAIN]', required=True)
-    parser.add_argument('-b', '--biogrid', help='Read BioGrid interaction database file', required=False)
+    parser.add_argument('-b', '--biogrid', help='BioGRID interaction database file', required=True)
     args = parser.parse_args()
     main(args)
