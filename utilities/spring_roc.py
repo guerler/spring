@@ -128,16 +128,20 @@ def getXY(prediction, positive, positiveCount, negative):
     return x, y, xMax
 
 def getFilter(filterName):
-    filterSets = dict()
     print("Loading target organisms...")
+    filterSets = dict()
     with open(filterName) as filterFile:
         for line in filterFile:
-            firstColumn = line.split()[0]
-            id = getCenterId(firstColumn)
-            organism = getOrganism(firstColumn)
-            if organism not in filterSets:
-                filterSets[organism] = set()
-            filterSets[organism].add(id)
+            columns = line.split()
+            for colIndex in [0, 1]:
+                if colIndex >= len(columns):
+                    break
+                colEntry = columns[colIndex]
+                id = getCenterId(colEntry)
+                organism = getOrganism(colEntry)
+                if organism not in filterSets:
+                    filterSets[organism] = set()
+                filterSets[organism].add(id)
     print("Organisms in set: %s." % filterSets.keys())
     return filterSets
 
