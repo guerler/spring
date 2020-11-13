@@ -58,11 +58,13 @@ def getFilter(filterName):
 
 def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
                  bCol=1, scoreCol=-1, separator=None,
-                 skipStartsWith="SWISS-PROT"):
+                 skipFirstLine=False):
     index = dict()
     count = 0
     with open(fileName) as fp:
         line = fp.readline()
+        if skipFirstLine:
+            line = fp.readline()
         while line:
             ls = line.split(separator)
             if separator is not None:
@@ -75,7 +77,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
             for a in aList:
                 for b in bList:
                     skip = False
-                    if a == "-" or b == "-" or a.startswith(skipStartsWith):
+                    if a == "-" or b == "-":
                         skip = True
                     if filterA is not None:
                         if a not in filterA and b not in filterA:
@@ -108,8 +110,6 @@ def getXY(prediction, positive, positiveCount, negative):
                               reverse=True)
     positiveTotal = positiveCount
     negativeTotal = len(negative)
-    positiveDenominator = float(positiveTotal)
-    negativeDenominator = float(negativeTotal)
     x = list()
     y = list()
     xMax = 0
@@ -120,6 +120,8 @@ def getXY(prediction, positive, positiveCount, negative):
     tp = 0
     fp = 0
     count = 0
+    x.append(0)
+    y.append(0)
     for (name, score) in sortedPrediction:
         found = False
         if name in positive:
@@ -142,8 +144,8 @@ def getXY(prediction, positive, positiveCount, negative):
                 topCount = count
                 topPrecision = precision
         if found:
-            yValue = getPercentage(tp, positiveDenominator)
-            xValue = getPercentage(fp, negativeDenominator)
+            xValue = getPercentage(tp, tp+fn)
+            yValue = getPercentage(tn, fp+tn)
             x.append(xValue)
             y.append(yValue)
             xMax = max(xValue, xMax)
@@ -172,7 +174,7 @@ def main(args):
     print("Loading postive set from BioGRID file...")
     positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26,
                                            separator="\t", filterA=filterA,
-                                           filterB=filterB)
+                                           filterB=filterB, skipFirstLine=True)
 
     # process prediction file
     print("Loading prediction file...")
@@ -197,11 +199,10 @@ def main(args):
     print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y, xMax = getXY(prediction, positive, positiveCount, negative)
+    x, y, _ = getXY(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
-    plt.plot([0, xMax], [0, xMax])
-    plt.xlabel('False Positive Rate (%)')
-    plt.ylabel('True Positive Rate (%)')
+    plt.xlabel('Specificity (%)')
+    plt.ylabel('Sensitivity (%)')
     plt.title('Prediction Validation')
     plt.savefig("out.pdf", formatstr="pdf")
     plt.show()

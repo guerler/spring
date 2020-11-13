@@ -2,6 +2,7 @@
 import argparse
 import os
 
+
 def main(args):
     logFile = open(args.log, 'a+')
     targets = list()
@@ -9,16 +10,18 @@ def main(args):
     with open(args.targetlist) as file:
         for line in file:
             name = line.strip()
-            targets.append(name)
-    print ("Loaded %s target names from `%s`." % (len(targets), args.targetlist))
+            targets.append(name+ ".txt")
+    print("Loaded %s target names from `%s`." % (len(targets),
+          args.targetlist))
     if args.inputlist:
         inputs = list()
         inputPath = args.inputpath.rstrip("/")
         with open(args.inputlist) as file:
             for line in file:
                 name = line.strip()
-                inputs.append(name)
-        print ("Loaded %s input names from `%s`." % (len(inputs), args.inputlist))
+                inputs.append(name )
+        print("Loaded %s input names from `%s`." % (len(inputs),
+              args.inputlist))
     else:
         inputs = targets
         inputPath = targetPath
@@ -31,7 +34,7 @@ def main(args):
             if core not in crossReference:
                 crossReference[core] = []
             crossReference[core].append(partner)
-    print ("Loaded cross reference from `%s`." % args.crossreference)
+    print("Loaded cross reference from `%s`." % args.crossreference)
     interactions = dict()
     for targetName in targets:
         targetFile = "%s/%s" % (targetPath, targetName)
@@ -57,21 +60,27 @@ def main(args):
                         idLength=args.idlength,
                         logFile=logFile,
                         interactions=interactions)
-    interactions = sorted(interactions.values(), key=lambda item: item["minZ"], reverse=True)
+    interactions = sorted(interactions.values(), key=lambda item: item["minZ"],
+                          reverse=True)
     with open(args.output, 'w') as output_file:
         for entry in interactions:
-            output_file.write("%s\t%s\t%s\t%s\n" % (entry["targetName"], entry["inputName"], entry["minZ"], entry["minInfo"]))
+            output_file.write("%s\t%s\t%s\t%s\n" % (entry["targetName"],
+                              entry["inputName"], entry["minZ"],
+                              entry["minInfo"]))
     logFile.close()
 
-def matchScores(targetFile, targetName, inputs, inputPath, crossReference, minScore, idLength, logFile, interactions):
+
+def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
+                minScore, idLength, logFile, interactions):
     targetTop, targetHits = getTemplateScores(targetFile, minScore, idLength)
     if not targetHits:
         print("No targets found `%s`" % targetFile)
     else:
-        print ("Loaded target scores from `%s`." % targetFile)
+        print("Loaded target scores from `%s`." % targetFile)
         for inputName in inputs:
             inputFile = "%s/%s" % (inputPath, inputName)
-            inputTop, inputHits = getTemplateScores(inputFile, minScore, idLength)
+            inputTop, inputHits = getTemplateScores(inputFile,
+                                                    minScore, idLength)
             minZ = 0
             minInfo = ""
             for t in targetHits:
@@ -82,7 +91,8 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference, minSc
                             score = min(targetHits[t], inputHits[p])
                             if score > minZ:
                                 minZ = score
-                                minInfo = "%s\t%s\t%s\t%s" % (targetTop, inputTop, t, p)
+                                minInfo = "%s\t%s\t%s\t%s" % (targetTop,
+                                                              inputTop, t, p)
             if minZ > minScore:
                 if targetName > inputName:
                     interactionKey = "%s_%s" % (targetName, inputName)
@@ -91,8 +101,12 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference, minSc
                 if interactionKey in interactions:
                     if interactions[interactionKey]["minZ"] >= minZ:
                         continue
-                interactions[interactionKey] = dict(targetName=targetName, inputName=inputName, minZ=minZ, minInfo=minInfo)
-                logFile.write("Interaction between %s and %s [min-Z: %s].\n" % (targetName, inputName, minZ))
+                interactions[interactionKey] = dict(targetName=targetName,
+                                                    inputName=inputName,
+                                                    minZ=minZ, minInfo=minInfo)
+                logFile.write("Interaction between %s and %s [min-Z: %s].\n" % 
+                              (targetName, inputName, minZ))
+
 
 def getTemplateScores(hhrFile, minScore, idLength):
     result = dict()
@@ -111,6 +125,7 @@ def getTemplateScores(hhrFile, minScore, idLength):
                             topTemplate = templateId
                         result[templateId] = templateScore
     return topTemplate, result
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='This script identifies interactions by detecting matching HH-search results.')
