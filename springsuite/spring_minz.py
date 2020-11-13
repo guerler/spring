@@ -10,7 +10,7 @@ def main(args):
     with open(args.targetlist) as file:
         for line in file:
             name = line.strip()
-            targets.append(name+ ".txt")
+            targets.append(name)
     print("Loaded %s target names from `%s`." % (len(targets),
           args.targetlist))
     if args.inputlist:
@@ -19,7 +19,7 @@ def main(args):
         with open(args.inputlist) as file:
             for line in file:
                 name = line.strip()
-                inputs.append(name )
+                inputs.append(name)
         print("Loaded %s input names from `%s`." % (len(inputs),
               args.inputlist))
     else:
