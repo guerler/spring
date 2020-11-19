@@ -109,7 +109,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
     return index, count
 
 
-def getXY(prediction, positive, positiveCount, negative, negativeFraction):
+def getXY(prediction, positive, positiveCount, negative):
     sortedPrediction = sorted(prediction.items(), key=lambda x: x[1],
                               reverse=True)
     positiveTotal = positiveCount
@@ -206,16 +206,11 @@ def main(args):
             negative.add(key)
             negativeRequired = negativeRequired - 1
 
-    # calculate total number of possible pairs
-    totalCount = len(filterAList) * len(filterBList) / 2.0
-    negativeFraction = negativeCount / totalCount
-
     # create plot
     print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y, xMax = getXY(prediction, positive, positiveCount, negative,
-                    negativeFraction)
+    x, y, xMax = getXY(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
     plt.plot([0, xMax], [0, xMax])
     plt.ylabel('True Positive Rate (%)')
