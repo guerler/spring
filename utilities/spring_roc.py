@@ -58,7 +58,7 @@ def getFilter(filterName):
 
 def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
                  bCol=1, scoreCol=-1, separator=None,
-                 skipFirstLine=False):
+                 skipFirstLine=False, filterValues=list()):
     index = dict()
     count = 0
     with open(fileName) as fp:
@@ -85,6 +85,10 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
                     if filterB is not None:
                         if a not in filterB and b not in filterB:
                             skip = True
+                    for f in filterValues:
+                        if len(ls) > f[0]:
+                            if ls[f[0]].find(f[1]) == -1:
+                                skip = True
                     if not skip:
                         name = getKey(a, b)
                         if name not in index:
@@ -105,7 +109,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
     return index, count
 
 
-def getXY(prediction, positive, positiveCount, negative):
+def getXY(prediction, positive, positiveCount, negative, negativeFraction):
     sortedPrediction = sorted(prediction.items(), key=lambda x: x[1],
                               reverse=True)
     positiveTotal = positiveCount
@@ -120,8 +124,6 @@ def getXY(prediction, positive, positiveCount, negative):
     tp = 0
     fp = 0
     count = 0
-    x.append(0)
-    y.append(0)
     for (name, score) in sortedPrediction:
         found = False
         if name in positive:
@@ -144,10 +146,10 @@ def getXY(prediction, positive, positiveCount, negative):
                 topCount = count
                 topPrecision = precision
         if found:
-            xValue = getPercentage(tp, tp+fn)
-            yValue = getPercentage(tn, fp+tn)
-            x.append(xValue)
+            yValue = getPercentage(tp, tp+fn)
+            xValue = getPercentage(fp, fp+tn)
             y.append(yValue)
+            x.append(xValue)
             xMax = max(xValue, xMax)
         count = count + 1
     print("Top ranking prediction %s." % str(sortedPrediction[0]))
@@ -174,7 +176,15 @@ def main(args):
     print("Loading postive set from BioGRID file...")
     positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26,
                                            separator="\t", filterA=filterA,
+                                           filterB=filterB, skipFirstLine=True,
+                                           filterValues=[[12, "physical"],
+                                                         [17, "Low"]])
+    print("Found %s." % positiveCount)
+    print("Loading putative set from BioGRID file...")
+    putative, putativeCount = getReference(args.biogrid, aCol=23, bCol=26,
+                                           separator="\t", filterA=filterA,
                                            filterB=filterB, skipFirstLine=True)
+    print("Found %s." % putativeCount)
 
     # process prediction file
     print("Loading prediction file...")
@@ -185,26 +195,34 @@ def main(args):
     negative = set()
     filterAList = list(filterA)
     filterBList = list(filterB)
-    negativeCount = int(len(positive.keys()))
+    negativeCount = positiveCount
+    negativeRequired = negativeCount
     random.seed(datetime.now())
-    while negativeCount > 0:
+    while negativeRequired > 0:
         nameA = random.choice(filterAList)
         nameB = random.choice(filterBList)
         key = getKey(nameA, nameB)
-        if key not in positive and key not in negative:
+        if key not in putative and key not in negative:
             negative.add(key)
-            negativeCount = negativeCount - 1
+            negativeRequired = negativeRequired - 1
+
+    # calculate total number of possible pairs
+    totalCount = len(filterAList) * len(filterBList) / 2.0
+    negativeFraction = negativeCount / totalCount
 
     # create plot
     print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y, _ = getXY(prediction, positive, positiveCount, negative)
+    x, y, xMax = getXY(prediction, positive, positiveCount, negative,
+                    negativeFraction)
     plt.plot(x, y)
-    plt.xlabel('Specificity (%)')
-    plt.ylabel('Sensitivity (%)')
-    plt.title('Prediction Validation')
-    plt.savefig("out.pdf", formatstr="pdf")
+    plt.plot([0, xMax], [0, xMax])
+    plt.ylabel('True Positive Rate (%)')
+    plt.xlabel('False Positive Rate (%)')
+    title = " vs. ".join(filterSets)
+    plt.title(title)
+    plt.savefig("roc.png", formatstr="png")
     plt.show()
 
 
