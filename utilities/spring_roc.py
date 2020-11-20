@@ -87,7 +87,8 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
                             skip = True
                     for f in filterValues:
                         if len(ls) > f[0]:
-                            if ls[f[0]].find(f[1]) == -1:
+                            columnEntry = ls[f[0]].lower()
+                            if columnEntry.find(f[1]) == -1:
                                 skip = True
                     if not skip:
                         name = getKey(a, b)
@@ -172,19 +173,34 @@ def main(args):
     else:
         filterB = filterA
 
+    # identify biogrid filter options
+    filterValues = []
+    if args.method:
+        filterValues.append([11, args.method.lower()])
+    if args.experiment:
+        filterValues.append([12, args.experiment.lower()])
+    if args.throughput:
+        filterValues.append([17, args.throughput.lower()])
+
     # process biogrid database
     print("Loading postive set from BioGRID file...")
     positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26,
                                            separator="\t", filterA=filterA,
                                            filterB=filterB, skipFirstLine=True,
-                                           filterValues=[[12, "physical"],
-                                                         [17, "Low"]])
+                                           filterValues=filterValues)
     print("Found %s." % positiveCount)
-    print("Loading putative set from BioGRID file...")
-    putative, putativeCount = getReference(args.biogrid, aCol=23, bCol=26,
-                                           separator="\t", filterA=filterA,
-                                           filterB=filterB, skipFirstLine=True)
-    print("Found %s." % putativeCount)
+
+    # rescan biogrid database to identify set of putative interactions
+    if filterValues:
+        print("Filtered entries by (column, value): %s" % filterValues)
+        print("Loading putative set from BioGRID file...")
+        putative, putativeCount = getReference(args.biogrid, aCol=23, bCol=26,
+                                               separator="\t", filterA=filterA,
+                                               filterB=filterB,
+                                               skipFirstLine=True)
+        print("Found %s." % putativeCount)
+    else:
+        putative = positive
 
     # process prediction file
     print("Loading prediction file...")
@@ -217,7 +233,7 @@ def main(args):
     plt.xlabel('False Positive Rate (%)')
     title = " vs. ".join(filterSets)
     plt.title(title)
-    plt.savefig("roc.png", formatstr="png")
+    plt.savefig(args.output, formatstr="png")
     plt.show()
 
 
@@ -227,5 +243,12 @@ if __name__ == "__main__":
                         required=True)
     parser.add_argument('-b', '--biogrid', help='BioGRID interaction ' +
                         'database file', required=True)
+    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)',
+                        default="", required=False)
+    parser.add_argument('-t', '--throughput', help='Throughput (low/high)',
+                        default="", required=False)
+    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid',
+                        default="", required=False)
+    parser.add_argument('-o', '--output', help='Output (png)', required=True)
     args = parser.parse_args()
     main(args)
