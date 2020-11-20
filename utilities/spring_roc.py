@@ -165,7 +165,7 @@ def getXY(prediction, positive, positiveCount, negative):
 
 def main(args):
     # load source files
-    filterSets = getFilter("%s.list" % args.input)
+    filterSets = getFilter(args.input)
     filterKeys = list(filterSets.keys())
     filterA = filterSets[filterKeys[0]]
     if len(filterKeys) > 1:
@@ -226,13 +226,16 @@ def main(args):
     print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    x, y, xMax = getXY(prediction, positive, positiveCount, negative)
-    plt.plot(x, y)
-    plt.plot([0, xMax], [0, xMax])
     plt.ylabel('True Positive Rate (%)')
     plt.xlabel('False Positive Rate (%)')
     title = " vs. ".join(filterSets)
-    plt.title(title)
+    plt.suptitle(title)
+    if filterValues:
+        filterAttributes = list(map(lambda x: x[1], filterValues))
+        plt.title("BioGRID filters: %s" % filterAttributes, fontsize=8)
+    x, y, xMax = getXY(prediction, positive, positiveCount, negative)
+    plt.plot(x, y)
+    plt.plot([0, xMax], [0, xMax])
     plt.savefig(args.output, formatstr="png")
     plt.show()
 
