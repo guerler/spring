@@ -188,6 +188,8 @@ def main(args):
                                            separator="\t", filterA=filterA,
                                            filterB=filterB, skipFirstLine=True,
                                            filterValues=filterValues)
+    if positiveCount == 0:
+        raise Exception("No positive reference interactions found in database.")
     print("Found %s." % positiveCount)
 
     # rescan biogrid database to identify set of putative interactions
@@ -232,12 +234,11 @@ def main(args):
     plt.suptitle(title)
     if filterValues:
         filterAttributes = list(map(lambda x: x[1], filterValues))
-        plt.title("BioGRID filters: %s" % filterAttributes, fontsize=8)
+        plt.title("BioGRID filters: %s" % filterAttributes, fontsize=10)
     x, y, xMax = getXY(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
     plt.plot([0, xMax], [0, xMax])
     plt.savefig(args.output, formatstr="png")
-    plt.show()
 
 
 if __name__ == "__main__":
