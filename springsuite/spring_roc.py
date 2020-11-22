@@ -189,9 +189,6 @@ def main(args):
                                            separator="\t", filterA=filterA,
                                            filterB=filterB, skipFirstLine=True,
                                            filterValues=filterValues)
-    if positiveCount == 0:
-        raise Exception("No positive interactions found in database.")
-    print("Found %s." % positiveCount)
 
     # rescan biogrid database to identify set of putative interactions
     if filterValues:
