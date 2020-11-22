@@ -38,11 +38,17 @@
                     <option value="Two-hybrid">Two-hybrid</option>
                 </param>
             </when>
+            <when value="genetic">
+                <param name="method" type="hidden" value="" />
+            </when>
+            <when value="">
+                <param name="method" type="hidden" value="" />
+            </when>
         </conditional>
         <param name="throughput" type="select" label="Experimental Throughput" display="radio" help="Choose the experimental throughput grade.">
             <option value="">Any</option>
-            <option value="low">Low</option>
-            <option value="high">High</option>
+            <option value="Low Throughput">Low</option>
+            <option value="High Throughput">High</option>
         </param>
     </inputs>
     <outputs>

@@ -87,7 +87,7 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
                             skip = True
                     for f in filterValues:
                         if len(ls) > f[0]:
-                            columnEntry = ls[f[0]].lower()
+                            columnEntry = ls[f[0]]
                             if columnEntry.find(f[1]) == -1:
                                 skip = True
                     if not skip:
@@ -115,8 +115,8 @@ def getXY(prediction, positive, positiveCount, negative):
                               reverse=True)
     positiveTotal = positiveCount
     negativeTotal = len(negative)
-    x = list()
-    y = list()
+    x = list([0])
+    y = list([0])
     xMax = 0
     topCount = 0
     topMCC = 0.0
@@ -147,8 +147,8 @@ def getXY(prediction, positive, positiveCount, negative):
                 topCount = count
                 topPrecision = precision
         if found:
-            yValue = getPercentage(tp, tp+fn)
-            xValue = getPercentage(fp, fp+tn)
+            yValue = tp
+            xValue = fp
             y.append(yValue)
             x.append(xValue)
             xMax = max(xValue, xMax)
@@ -176,14 +176,14 @@ def main(args):
     # identify biogrid filter options
     filterValues = []
     if args.method:
-        filterValues.append([11, args.method.lower()])
+        filterValues.append([11, args.method])
     if args.experiment:
-        filterValues.append([12, args.experiment.lower()])
+        filterValues.append([12, args.experiment])
     if args.throughput:
-        filterValues.append([17, args.throughput.lower()])
+        filterValues.append([17, args.throughput])
 
     # process biogrid database
-    print("Loading postive set from BioGRID file...")
+    print("Loading positive set from BioGRID file...")
     positive, positiveCount = getReference(args.biogrid, aCol=23, bCol=26,
                                            separator="\t", filterA=filterA,
                                            filterB=filterB, skipFirstLine=True,
@@ -228,8 +228,8 @@ def main(args):
     print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    plt.ylabel('True Positive Rate (%)')
-    plt.xlabel('False Positive Rate (%)')
+    plt.ylabel('True Positive')
+    plt.xlabel('False Positive')
     title = " vs. ".join(filterSets)
     plt.suptitle(title)
     if filterValues:
@@ -238,7 +238,7 @@ def main(args):
     x, y, xMax = getXY(prediction, positive, positiveCount, negative)
     plt.plot(x, y)
     plt.plot([0, xMax], [0, xMax])
-    plt.savefig(args.output, formatstr="png")
+    plt.savefig(args.output, format="png")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,5 @@
 <tool id="spring_minz" name="SPRING min-Z" version="0.1.2" python_template_version="3.5">
     <description>filter operation</description>
-    <code file="spring_minz.py"/>
     <command detect_errors="exit_code"><![CDATA[
         mkdir -p targets &&
         #for target in $targets
