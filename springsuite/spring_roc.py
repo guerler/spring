@@ -87,8 +87,9 @@ def getReference(fileName, filterA=None, filterB=None, minScore=None, aCol=0,
                             skip = True
                     for f in filterValues:
                         if len(ls) > f[0]:
-                            columnEntry = ls[f[0]]
-                            if columnEntry.find(f[1]) == -1:
+                            columnEntry = ls[f[0]].lower()
+                            searchEntry = f[1].lower()
+                            if columnEntry.find(searchEntry) == -1:
                                 skip = True
                     if not skip:
                         name = getKey(a, b)
@@ -147,8 +148,8 @@ def getXY(prediction, positive, positiveCount, negative):
                 topCount = count
                 topPrecision = precision
         if found:
-            yValue = tp
-            xValue = fp
+            yValue = getPercentage(tp, tp + fn)
+            xValue = getPercentage(fp, fp + tn)
             y.append(yValue)
             x.append(xValue)
             xMax = max(xValue, xMax)
@@ -228,8 +229,8 @@ def main(args):
     print("Producing plot data...")
     print("Total count in prediction file: %d." % len(prediction))
     print("Total count in positive file: %d." % len(positive))
-    plt.ylabel('True Positive')
-    plt.xlabel('False Positive')
+    plt.ylabel('True Positive Rate (%)')
+    plt.xlabel('False Positive Rate (%)')
     title = " vs. ".join(filterSets)
     plt.suptitle(title)
     if filterValues:
