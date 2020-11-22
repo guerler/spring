@@ -54,6 +54,17 @@
     <outputs>
         <data format="png" name="rocplot" label="SPRING ROC Image" />
     </outputs>
+    <tests>
+        <test>
+            <param format="tabular" name="input" value="roc/human_hv1h2.txt" />
+            <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
+            <conditional name="experiment">
+                <param name="type" value="physical" />
+                <param name="method" value="Two-hybrid" />
+            </conditional>
+            <output name="output" file="roc/human_hv1h2.png" />
+        </test>
+    </tests>
     <help><![CDATA[
 This tool generates a ROC plot for a given 2-column tabular prediction file containing UniProt Accession codes. The prediction is compared
 to a given BioGRID database file in TAB 3.0 format. Non-interacting protein pairs are randomly sampled. Optionally, users may filter the BioGRID database by
