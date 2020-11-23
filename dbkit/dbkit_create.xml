@@ -1,0 +1,38 @@
+<tool id="dbkit_create" name="DBKit Create" version="0.1.1" python_template_version="3.5" license="MIT">
+    <description>database generator</description>
+    <command detect_errors="exit_code"><![CDATA[
+        python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$url' -p 'temp' -x '$index' -d '$database' -o '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
+    ]]></command>
+    <inputs>
+        <param format="tabular" name="input" type="data" label="List of Identifiers" help="Specify a list containing all entry identifiers to be downloaded."/>
+        <param name="url" type="text" label="URL to External Source" help="Specify the URL to the external database source.">
+            <option value="https://files.rcsb.org/download/">https://files.rcsb.org/download/</option>
+        </param>
+        <conditional name="advanced">
+            <param name="type" type="boolean" label="Identifier Formatting Options" />
+            <when value="true">        
+                <param name="idextension" type="text" label="Identifier Extensions" help="Specify the extension of the identifier (optional)."/>
+                <param name="idlength" type="integer" label="Identifier Length" value="0" min="0" max="20" help="Specify the length of the identifier (disable=0)."/>
+                <param name="idcase" type="select" label="Identifier Case" display="radio" help="Choose to format the identifier by changing its case (optional).">
+                    <option value="">Unformatted</option>
+                    <option value="lower">Lower</option>
+                    <option value="upper">Upper</option>
+                </param>
+            </when>
+            <when value="false">
+                <param name="idextension" type="hidden" value="" />
+                <param name="idlength" type="hidden" value="0" />
+                <param name="idcase" type="hidden" value="" />
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data format="tabular" name="index" label="DBKit Index"/>
+        <data format="txt" name="database" label="DBKit Database" />
+        <data format="txt" name="log" label="DBKit Log" />
+    </outputs>
+    <help><![CDATA[
+This database creation tool downloads entries from an external resource and creates a datasets with all its contents. Additionally an index file is
+generated indicating the start and end of every entry within the database file.
+    ]]></help>
+</tool>
