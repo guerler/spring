@@ -44,8 +44,9 @@ def main(args):
     with open(args.list) as file:
         for line in file:
             entry = line.split()[0]
-            if args.idlength is not None:
-                entry = entry[:args.idlength]
+            idLength = int(args.idlength)
+            if idLength > 0:
+                entry = entry[:idLength]
             if args.idcase == "lower":
                 entry = entry.lower()
             elif args.idcase == "upper":
@@ -66,7 +67,7 @@ if __name__ == "__main__":
     parser.add_argument('-p', '--path', help='Path to files', required=True)
     parser.add_argument('-x', '--index', help='Output Database Index', required=True)
     parser.add_argument('-d', '--database', help='Output Database', required=True)
-    parser.add_argument('-il', '--idlength', help='Format Identifier Length (integer)', type=int, required=False, default=None)
+    parser.add_argument('-il', '--idlength', help='Format Identifier Length (integer)', required=False, default="0")
     parser.add_argument('-ic', '--idcase', help='Format Identifier Case (lower, upper)', required=False, default=None)
     parser.add_argument('-ie', '--idextension', help='Format Identifier Extension', required=False, default=None)
     parser.add_argument('-o', '--log', help="Log file", required=True)
