@@ -5,8 +5,7 @@ from os.path import isfile, join, getsize
 
 
 def createIndex(inputPath, outputIndex, outputDatabase):
-    names = sorted([f for f in listdir(inputPath)
-                    if isfile(join(inputPath, f))])
+    names = sorted([f for f in listdir(inputPath) if isfile(join(inputPath, f))])
     files = [join(args.path, name) for name in names]
     sizes = [getsize(f) for f in files]
     start = 0
@@ -28,11 +27,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Merges files.')
-    parser.add_argument('-p', '--path', help='Path to files',
-                        required=True)
-    parser.add_argument('-x', '--index', help='Output Database Index',
-                        required=True)
-    parser.add_argument('-d', '--database', help='Output Database',
-                        required=True)
+    parser.add_argument('-p', '--path', help='Path to files', required=True)
+    parser.add_argument('-x', '--index', help='Output Database Index', required=True)
+    parser.add_argument('-d', '--database', help='Output Database', required=True)
     args = parser.parse_args()
     main(args)
