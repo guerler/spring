@@ -2,6 +2,7 @@
 import argparse
 import os
 
+
 def main(args):
     pdbUrl = "https://files.rcsb.org/download/"
     pdbPath = args.pdbpath.rstrip("/")
@@ -24,9 +25,10 @@ def main(args):
         os.system("mv %s %s" % (pdbFile, pdbPathFile))
         print("Completed.")
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Downloads PDB files')
-    parser.add_argument('-l', '--list', help='List of template entries [PDB_CHAIN]', required=True)
-    parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]', required=True)
+    parser.add_argument('-l', '--list', help='List of entries', required=True)
+    parser.add_argument('-p', '--pdbpath', help='Path to files', required=True)
     args = parser.parse_args()
     main(args)

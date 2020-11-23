@@ -4,13 +4,14 @@ from os import listdir, system
 from os.path import isfile, join, getsize
 
 
-def main(args):
-    names = sorted([f for f in listdir(args.path)
-                    if isfile(join(args.path, f))])
+def createIndex(inputPath, outputIndex, outputDatabase):
+    names = sorted([f for f in listdir(inputPath)
+                    if isfile(join(inputPath, f))])
     files = [join(args.path, name) for name in names]
     sizes = [getsize(f) for f in files]
     start = 0
-    with open(args.index, 'w') as output_file:
+    system("rm %s" % outputDatabase)
+    with open(outputIndex, 'w') as output_file:
         for i in range(len(names)):
             name = names[i]
             size = sizes[i]
@@ -18,7 +19,11 @@ def main(args):
             end = start + size
             output_file.write("%s\t%d\t%d\n" % (name, start, end))
             start = end + 1
-            system("cat %s >> %s" % (file, args.database))
+            system("cat %s >> %s" % (file, outputDatabase))
+
+
+def main(args):
+    createIndex(args.path, args.index, args.database)
 
 
 if __name__ == "__main__":

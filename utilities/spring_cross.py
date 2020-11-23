@@ -1,11 +1,12 @@
 #! /usr/bin/env python3
 import argparse
-import os
 from spring_package.Molecule import Molecule
+
 
 def getId(line):
     line = line.strip()
     return line[:4].upper() + line[4:6]
+
 
 def main(args):
     pdbCount = 0
@@ -22,7 +23,7 @@ def main(args):
         pdbFile = "%s/%s.pdb" % (pdbPath, pdb)
         try:
             mol = Molecule(pdbFile)
-        except:
+        except Exception:
             print("Warning: File '%s' not found" % pdbFile)
             continue
         pdbCount = pdbCount + 1
@@ -44,15 +45,19 @@ def main(args):
                     partnerPdbChain = "%s_%s" % (pdb.upper(), bioChain[:1])
                     partnerList.add("%s\t%s" % (entryId, partnerPdbChain))
             else:
-                print("Skipping: Chain not found or single chain [%s]." % pdbChain)
+                print("Skipping: Chain not found or single chain [%s]." %
+                      pdbChain)
     with open(args.output, 'w') as output_file:
         for entry in sorted(partnerList):
             output_file.write("%s\n" % entry)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='List filtering.')
-    parser.add_argument('-l', '--list', help='List of template entries [PDB_CHAIN]', required=True)
-    parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]', required=True)
+    parser.add_argument('-l', '--list', help='List of template entries ' +
+                        '[PDB_CHAIN]', required=True)
+    parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]',
+                        required=True)
     parser.add_argument('-o', '--output', help='Output file', required=True)
     args = parser.parse_args()
     main(args)
