@@ -54,10 +54,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='List filtering.')
-    parser.add_argument('-l', '--list', help='List of template entries ' +
-                        '[PDB_CHAIN]', required=True)
-    parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]',
-                        required=True)
+    parser.add_argument('-l', '--list', help='List of template entries [PDB_CHAIN]', required=True)
+    parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]', required=True)
     parser.add_argument('-o', '--output', help='Output file', required=True)
     args = parser.parse_args()
     main(args)
