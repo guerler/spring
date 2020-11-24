@@ -1,4 +1,4 @@
-<tool id="spring_roc" name="SPRING ROC" version="0.1.0" python_template_version="3.5">
+<tool id="spring_roc" name="SPRING ROC" version="0.1.0" python_template_version="3.5" license="MIT">
     <description>plot generator</description>
     <requirements>
         <requirement type="package" version="3.3.3">matplotlib</requirement>

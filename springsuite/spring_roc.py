@@ -190,21 +190,29 @@ def main(args):
                                            filterB=filterB, skipFirstLine=True,
                                            filterValues=filterValues)
 
-    # rescan biogrid database to identify set of putative interactions
-    if filterValues:
-        print("Filtered entries by (column, value): %s" % filterValues)
-        print("Loading putative set from BioGRID file...")
-        putative, putativeCount = getReference(args.biogrid, aCol=23, bCol=26,
-                                               separator="\t", filterA=filterA,
-                                               filterB=filterB,
-                                               skipFirstLine=True)
-        print("Found %s." % putativeCount)
-    else:
-        putative = positive
-
     # process prediction file
     print("Loading prediction file...")
     prediction, _ = getReference(args.input, scoreCol=2)
+
+    # get subcellular localization from UniProt export
+    localA = dict()
+    localB = dict()
+    with open(args.localization) as locFile:
+        for line in locFile:
+            searchKey = "SUBCELLULAR LOCATION"
+            searchPos = line.find(searchKey)
+            if searchPos != -1:
+                uniId = line.split()[0]
+                locStart = searchPos + len(searchKey) + 1
+                locId = line[locStart:].split()[0]
+                if locId in ["Nucleus", "Membrane", "Cytoplasm"]:
+                    if uniId in filterA:
+                        localA[uniId] = locId
+                    if uniId in filterB:
+                        localB[uniId] = locId
+
+    print("Found %d, %d subcellular localizations." % (len(localA.keys()), len(localB.keys())))
+    exit()
 
     # estimate background noise
     print("Estimating background noise...")
@@ -217,10 +225,12 @@ def main(args):
     while negativeRequired > 0:
         nameA = random.choice(filterAList)
         nameB = random.choice(filterBList)
-        key = getKey(nameA, nameB)
-        if key not in putative and key not in negative:
-            negative.add(key)
-            negativeRequired = negativeRequired - 1
+        if nameA in localization and nameB in localization:
+            if localization[nameA] != localization[nameB]:
+                key = getKey(nameA, nameB)
+                if key not in positive and key not in negative:
+                    negative.add(key)
+                    negativeRequired = negativeRequired - 1
 
     # create plot
     print("Producing plot data...")
@@ -241,16 +251,12 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create ROC plot.')
-    parser.add_argument('-i', '--input', help='Input prediction file.',
-                        required=True)
-    parser.add_argument('-b', '--biogrid', help='BioGRID interaction ' +
-                        'database file', required=True)
-    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)',
-                        default="", required=False)
-    parser.add_argument('-t', '--throughput', help='Throughput (low/high)',
-                        default="", required=False)
-    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid',
-                        default="", required=False)
+    parser.add_argument('-i', '--input', help='Input prediction file.', required=True)
+    parser.add_argument('-b', '--biogrid', help='BioGRID interaction database file', required=True)
+    parser.add_argument('-l', '--localization', help='UniProt export table with subcellular localizations', required=True)
+    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)', default="", required=False)
+    parser.add_argument('-t', '--throughput', help='Throughput (low/high)', default="", required=False)
+    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid', default="", required=False)
     parser.add_argument('-o', '--output', help='Output (png)', required=True)
     args = parser.parse_args()
     main(args)
