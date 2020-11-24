@@ -4,11 +4,12 @@
         <requirement type="package" version="3.3.3">matplotlib</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        python3 '$__tool_directory__/spring_roc.py' -i '$input' -b '$database' -e '$experiment.type' -m '$experiment.method' -t '$throughput' -o '$rocplot'
+        python3 '$__tool_directory__/spring_roc.py' -i '$input' -b '$database' -e '$experiment.type' -m '$experiment.method' -t '$throughput' -l '$locations' -o '$rocplot'
     ]]></command>
     <inputs>
         <param format="tabular" name="input" type="data" label="Interactions" help="Prediction Input Table with 2-columns containing UniProt Accession codes."/>
         <param format="tabular" name="database" type="data" label="BioGRID Database" help="BioGRID Database in TAB 3.0 format."/>
+        <param format="tabular" name="locations" type="data" label="UniProt Localization" help="UniProt tabular export with localization column to sample non-interacting pairs." optional="True" />
         <conditional name="experiment">
             <param name="type" type="select" label="Experimental Type" display="radio" help="Choose a specific experimental system type.">
                 <option value="">Any</option>
