@@ -59,10 +59,6 @@
         <test>
             <param format="tabular" name="input" value="roc/human_hv1h2.txt" />
             <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
-            <conditional name="experiment">
-                <param name="type" value="physical" />
-                <param name="method" value="Two-hybrid" />
-            </conditional>
             <output name="output" file="roc/human_hv1h2.png" />
         </test>
     </tests>

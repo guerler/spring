@@ -2,6 +2,7 @@
 import argparse
 import math
 import random
+from os.path import isfile
 from datetime import datetime
 
 from matplotlib import pyplot as plt
@@ -208,7 +209,7 @@ def main(args):
 
     # get subcellular locations from UniProt export
     locations = dict()
-    if args.locations:
+    if isfile(args.locations):
         with open(args.locations) as locFile:
             for line in locFile:
                 searchKey = "SUBCELLULAR LOCATION"
@@ -225,10 +226,10 @@ def main(args):
     # estimate background noise
     print("Estimating background noise...")
     negative = set()
-    filterAList = list(filterA)
-    filterBList = list(filterB)
+    filterAList = sorted(list(filterA))
+    filterBList = sorted(list(filterB))
     negativeRequired = positiveCount
-    random.seed(datetime.now())
+    random.seed(0)
     totalAttempts = int(len(filterAList) * len(filterBList) / 2)
     while totalAttempts > 0:
         totalAttempts = totalAttempts - 1
@@ -268,9 +269,9 @@ if __name__ == "__main__":
     parser.add_argument('-i', '--input', help='Input prediction file.', required=True)
     parser.add_argument('-b', '--biogrid', help='BioGRID interaction database file', required=True)
     parser.add_argument('-l', '--locations', help='UniProt export table with subcellular locations', required=False)
-    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)', required=False)
-    parser.add_argument('-t', '--throughput', help='Throughput (low/high)', required=False)
-    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid', required=False)
+    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)', default="", required=False)
+    parser.add_argument('-t', '--throughput', help='Throughput (low/high)', default="", required=False)
+    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid', default="", required=False)
     parser.add_argument('-o', '--output', help='Output (png)', required=True)
     args = parser.parse_args()
     main(args)
