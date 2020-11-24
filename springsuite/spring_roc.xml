@@ -4,7 +4,7 @@
         <requirement type="package" version="3.3.3">matplotlib</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        python3 '$__tool_directory__/spring_roc.py' -i '$input' -b '$database' -e '$experiment.type' -m '$experiment.method' -t '$throughput' -l '$sampling.locations' -r '$sampling.regions' -o '$rocplot'
+        python3 '$__tool_directory__/spring_roc.py' -i '$input' -b '$database' -e '$experiment.type' -m '$experiment.method' -t '$throughput' -l '$sampling.locations' -r '$sampling.regions' -n '$sampling.negative' -o '$rocplot'
     ]]></command>
     <inputs>
         <param name="input" type="data" format="tabular" label="Interactions" help="Prediction Input Table with 2-columns containing UniProt Accession codes."/>
@@ -13,9 +13,11 @@
             <param name="type" type="select" label="Non-interacting Pairs" display="radio" help="Decide how to retrieve non-interacting pairs.">
                 <option value="random">Random Sampling</option>
                 <option value="uniprot">Sampling with UniProt Localization</option>
+                <option value="negative">Specify non-interacting pairs</option>
             </param>
             <when value="uniprot">
-                <param name="locations" type="data" format="tabular" label="UniProt Localization Database" help="UniProt tabular export with localization column to sample non-interacting pairs." optional="True" />
+                <param name="locations" type="data" format="tabular" label="UniProt Localization Database" help="UniProt tabular export with localization column to sample non-interacting pairs." />
+                <param name="negative" type="hidden" value="" />
                 <param name="regions" type="select" multiple="True" label="Choose Subcellular Locations">
                     <option value="Membrane" selected="True">Membrane</option>
                     <option value="Mitochondrion" selected="True">Mitochondrion</option>
@@ -24,7 +26,13 @@
                  </param>
             </when>
             <when value="random">
+                <param name="negative" type="hidden" value="" />
                 <param name="locations" type="hidden" value="" />
+                <param name="regions" type="hidden" value="" />
+            </when>
+            <when value="negative">
+                <param name="locations" type="hidden" value="" />
+                <param name="negative" type="data" format="tabular" label="Non-interacting Pairs" help="Tabular file containing non-interacting pairs." />
                 <param name="regions" type="hidden" value="" />
             </when>
         </conditional>

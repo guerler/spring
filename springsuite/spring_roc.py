@@ -3,7 +3,6 @@ import argparse
 import math
 import random
 from os.path import isfile
-from datetime import datetime
 
 from matplotlib import pyplot as plt
 
@@ -207,50 +206,62 @@ def main(args):
     print("Loading prediction file...")
     prediction, _ = getReference(args.input, scoreCol=2)
 
-    # get subcellular locations from UniProt export
-    locations = dict()
-    if isfile(args.locations):
-        regions = list()
-        if args.regions:
-            regions = args.regions.split(",")
-        with open(args.locations) as locFile:
-            for line in locFile:
-                searchKey = "SUBCELLULAR LOCATION"
-                searchPos = line.find(searchKey)
-                if searchPos != -1:
-                    uniId = line.split()[0]
-                    locStart = searchPos + len(searchKey) + 1
-                    locId = line[locStart:].split()[0]
-                    if regions:
-                        if locId not in regions:
-                            continue
-                    if uniId in filterA or uniId in filterB:
-                        locations[uniId] = locId
-        print("Found %d subcellular locations." % (len(list(locations.keys()))))
-
-    # estimate background noise
-    print("Estimating background noise...")
+    # determine negative set
+    print("Identifying non-interacting pairs...")
     negative = set()
-    filterAList = sorted(list(filterA))
-    filterBList = sorted(list(filterB))
-    negativeRequired = positiveCount
-    random.seed(0)
-    totalAttempts = int(len(filterAList) * len(filterBList) / 2)
-    while totalAttempts > 0:
-        totalAttempts = totalAttempts - 1
-        nameA = random.choice(filterAList)
-        nameB = random.choice(filterBList)
-        if locations:
-            if nameA not in locations or nameB not in locations:
-                continue
-            if locations[nameA] == locations[nameB]:
-                continue
-        key = getKey(nameA, nameB)
-        if key not in putative and key not in negative:
-            negative.add(key)
-            negativeRequired = negativeRequired - 1
-            if negativeRequired == 0:
-                break
+    if isfile(args.negative):
+        # load from explicit file
+        with open(args.negative) as file:
+            for line in file:
+                cols = line.split()
+                nameA = cols[0]
+                nameB = cols[1]
+                key = getKey(nameA, nameB)
+                if key not in putative and key not in negative:
+                    negative.add(key)
+    else:
+        # get subcellular locations from UniProt export
+        locations = dict()
+        if isfile(args.locations):
+            regions = list()
+            if args.regions:
+                regions = args.regions.split(",")
+            with open(args.locations) as locFile:
+                for line in locFile:
+                    searchKey = "SUBCELLULAR LOCATION"
+                    searchPos = line.find(searchKey)
+                    if searchPos != -1:
+                        uniId = line.split()[0]
+                        locStart = searchPos + len(searchKey) + 1
+                        locId = line[locStart:].split()[0]
+                        if regions:
+                            if locId not in regions:
+                                continue
+                        if uniId in filterA or uniId in filterB:
+                            locations[uniId] = locId
+            print("Found %d subcellular locations." % (len(list(locations.keys()))))
+
+        # randomly sample non-interacting pairs
+        filterAList = sorted(list(filterA))
+        filterBList = sorted(list(filterB))
+        negativeRequired = positiveCount
+        random.seed(0)
+        totalAttempts = int(len(filterAList) * len(filterBList) / 2)
+        while totalAttempts > 0:
+            totalAttempts = totalAttempts - 1
+            nameA = random.choice(filterAList)
+            nameB = random.choice(filterBList)
+            if locations:
+                if nameA not in locations or nameB not in locations:
+                    continue
+                if locations[nameA] == locations[nameB]:
+                    continue
+            key = getKey(nameA, nameB)
+            if key not in putative and key not in negative:
+                negative.add(key)
+                negativeRequired = negativeRequired - 1
+                if negativeRequired == 0:
+                    break
 
     # create plot
     print("Producing plot data...")
@@ -271,13 +282,14 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create ROC plot.')
-    parser.add_argument('-i', '--input', help='Input prediction file.', required=True)
+    parser.add_argument('-i', '--input', help='Input prediction file (2-columns).', required=True)
     parser.add_argument('-b', '--biogrid', help='BioGRID interaction database file', required=True)
     parser.add_argument('-l', '--locations', help='UniProt export table with subcellular locations', required=False)
-    parser.add_argument('-r', '--regions', help='Comma-separated regions', required=False)
-    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)', default="", required=False)
-    parser.add_argument('-t', '--throughput', help='Throughput (low/high)', default="", required=False)
-    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid', default="", required=False)
+    parser.add_argument('-r', '--regions', help='Comma-separated subcellular locations', required=False)
+    parser.add_argument('-n', '--negative', help='Negative set (2-columns)', required=False)
+    parser.add_argument('-e', '--experiment', help='Type (physical/genetic)', required=False)
+    parser.add_argument('-t', '--throughput', help='Throughput (low/high)', required=False)
+    parser.add_argument('-m', '--method', help='Method e.g. Two-hybrid', required=False)
     parser.add_argument('-o', '--output', help='Output (png)', required=True)
     args = parser.parse_args()
     main(args)
