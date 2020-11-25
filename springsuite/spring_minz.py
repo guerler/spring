@@ -11,8 +11,7 @@ def main(args):
         for line in file:
             name = line.strip()
             targets.append(name)
-    print("Loaded %s target names from `%s`." % (len(targets),
-          args.targetlist))
+    print("Loaded %s target names from `%s`." % (len(targets), args.targetlist))
     if args.inputlist:
         inputs = list()
         inputPath = args.inputpath.rstrip("/")
@@ -20,8 +19,7 @@ def main(args):
             for line in file:
                 name = line.strip()
                 inputs.append(name)
-        print("Loaded %s input names from `%s`." % (len(inputs),
-              args.inputlist))
+        print("Loaded %s input names from `%s`." % (len(inputs), args.inputlist))
     else:
         inputs = targets
         inputPath = targetPath
@@ -29,6 +27,8 @@ def main(args):
     with open(args.crossreference) as file:
         for line in file:
             columns = line.split()
+            if len(columns) < 2:
+                raise Exception("Invalid cross reference entry %s." % line)
             core = columns[0]
             partner = columns[-1]
             if core not in crossReference:
@@ -43,7 +43,6 @@ def main(args):
                     inputs=inputs,
                     inputPath=inputPath,
                     crossReference=crossReference,
-                    idLength=args.idlength,
                     minScore=args.minscore,
                     logFile=logFile,
                     interactions=interactions)
@@ -57,7 +56,6 @@ def main(args):
                         inputPath=targetPath,
                         crossReference=crossReference,
                         minScore=args.minscore,
-                        idLength=args.idlength,
                         logFile=logFile,
                         interactions=interactions)
     interactions = sorted(interactions.values(), key=lambda item: item["minZ"],
@@ -71,8 +69,8 @@ def main(args):
 
 
 def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
-                minScore, idLength, logFile, interactions):
-    targetTop, targetHits = getTemplateScores(targetFile, minScore, idLength)
+                minScore, logFile, interactions):
+    targetTop, targetHits = getTemplateScores(targetFile, minScore)
     if not targetHits:
         print("No targets found `%s`" % targetFile)
     else:
@@ -80,7 +78,7 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
         for inputName in inputs:
             inputFile = "%s/%s" % (inputPath, inputName)
             inputTop, inputHits = getTemplateScores(inputFile,
-                                                    minScore, idLength)
+                                                    minScore)
             minZ = 0
             minInfo = ""
             for t in targetHits:
@@ -108,17 +106,16 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
                               (targetName, inputName, minZ))
 
 
-def getTemplateScores(hhrFile, minScore, idLength):
+def getTemplateScores(hhrFile, minScore):
     result = dict()
     topTemplate = None
-    idLength = idLength + 4
     if os.path.isfile(hhrFile):
         with open(hhrFile) as file:
             for index, line in enumerate(file):
                 if index > 8:
                     if not line.strip():
                         break
-                    templateId = line[4:idLength]
+                    templateId = line[4:10]
                     templateScore = float(line[57:63])
                     if templateScore > minScore:
                         if topTemplate is None:
@@ -137,6 +134,5 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output', help='Output file containing min-Z scores', required=True)
     parser.add_argument('-l', '--log', help='Log file', required=True)
     parser.add_argument('-m', '--minscore', help='min-Z score threshold', type=int, default=10)
-    parser.add_argument('-idx', '--idlength', help='Length of identifier in reference', type=int, default=6)
     args = parser.parse_args()
     main(args)

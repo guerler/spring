@@ -12,9 +12,9 @@
                 link '${str(input)}' 'inputs/${input.element_identifier}' &&
                 echo '${input.element_identifier}' >> 'input_list' &&
             #end for
-            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -il input_list -ip inputs -m '$minscore' -idx '$idx' -c '$crossreference' -o '$output' -l '$log'
+            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -il input_list -ip inputs -m '$minscore' -c '$crossreference' -o '$output' -l '$log'
         #else
-            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -m '$minscore' -idx '$idx' -c '$crossreference' -o '$output' -l '$log'
+            python3 '$__tool_directory__/spring_minz.py' -tl target_list -tp targets -m '$minscore' -c '$crossreference' -o '$output' -l '$log'
         #end if
     ]]></command>
     <inputs>
@@ -27,7 +27,6 @@
         </conditional>
         <param format="tabular" name="crossreference" type="data" label="Cross reference" help="Cross reference of interacting proteins `first_id metadata_id second_id`."/>
         <param name="minscore" type="integer" label="Score threshold" value="10" min="1" max="200" help="Matching interaction pairs with a score lower than this threshold will be excluded."/>
-        <param name="idx" type="integer" label="Identifier length" value="6" min="1" max="20" help="Specify the length of the identifier e.g. `1ACB_A` has length 6."/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="SPRING min-Z Table"/>
@@ -37,24 +36,17 @@
         <test>
             <param name="targets">
                 <collection type="list">
-                    <element name="7BQY_A.hhr" value="minz/7BQY_A.hhr" />
-                    <element name="6WLC_A.hhr" value="minz/6WLC_A.hhr" />
-                    <element name="6WJI_A.hhr" value="minz/6WJI_A.hhr" />
-                    <element name="6WEY_A.hhr" value="minz/6WEY_A.hhr" />
-                    <element name="6W37_A.hhr" value="minz/6W37_A.hhr" />
-                    <element name="6W9C_A.hhr" value="minz/6W9C_A.hhr" />
-                    <element name="6W4H_B.hhr" value="minz/6W4H_B.hhr" />
-                    <element name="6W4H_A.hhr" value="minz/6W4H_A.hhr" />
-                    <element name="6W9Q_A.hhr" value="minz/6W9Q_A.hhr" />
+                    <element name="NP_000282.1.hhr" value="minz/NP_000282.1.hhr" />
+                    <element name="NP_000290.2.hhr" value="minz/NP_000290.2.hhr" />
+                    <element name="NP_000548.2.hhr" value="minz/NP_000548.2.hhr" />
+                    <element name="NP_000836.2.hhr" value="minz/NP_000836.2.hhr" />
                 </collection>
             </param>
             <conditional name="input_type">
                 <param name="input_type_selector" type="boolean" checked="false"/>
             </conditional>
-            <param name="crossreference" value="minz/dbCAN_random.txt"/>
-            <param name="idx" type="integer" value="10"/>
-            <output name="output" file="minz/dbCAN_result.txt"/>
-            <output name="log" file="minz/dbCAN_log.txt"/>
+            <param name="crossreference" value="minz/pdb70_random.txt"/>
+            <output name="output" file="minz/pdb70_result.0.txt"/>
         </test>
         <test>
             <param name="targets">
@@ -74,7 +66,7 @@
                 </param>
             </conditional>
             <param name="crossreference" value="minz/pdb70_random.txt"/>
-            <output name="output" file="minz/pdb70_result.txt"/>
+            <output name="output" file="minz/pdb70_result.1.txt"/>
             <output name="log" file="minz/pdb70_log.txt"/>
         </test>
     </tests>

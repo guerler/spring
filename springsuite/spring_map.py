@@ -134,8 +134,8 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Maps binding partners to template library')
     parser.add_argument('-l', '--list', help='List of template entries `PDB_CHAIN`', required=True)
-    parser.add_argument('-i', '--index', help='PDB Database Index file (dbkit_index)', required=True)
-    parser.add_argument('-d', '--database', help='PDB Database files (dbkit)', required=True)
+    parser.add_argument('-i', '--index', help='PDB Database Index file (ffindex)', required=True)
+    parser.add_argument('-d', '--database', help='PDB Database files (ffdata)', required=True)
     parser.add_argument('-c', '--cross', help='Cross reference (unmapped)', required=True)
     parser.add_argument('-o', '--output', help='Cross reference', required=True)
     parser.add_argument('-g', '--log', help='Log File', required=True)

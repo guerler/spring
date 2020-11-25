@@ -2,6 +2,7 @@
 import argparse
 import os
 
+
 def getIdentifier(line):
     pdbChain = line.split("_")
     if len(pdbChain) != 2:
@@ -9,7 +10,8 @@ def getIdentifier(line):
     pdb = pdbChain[0]
     chain = pdbChain[1]
     return pdb, chain
- 
+
+
 def main(args):
     pdbPath = args.pdb_path.rstrip("/")
     hhrPath = args.hhr_path.rstrip("/")
@@ -29,6 +31,7 @@ def main(args):
             o = "%s/%s.%s" % (outPath, param[0], param[1])
             cmdString = "./spring_model.py -ar '%s' -at '%s' -ac '%s' -br '%s' -bt '%s' -bc '%s' -ct '%s' -cc '%s' -o '%s'" % (ar, at, ac, br, bt, bc, ct, cc, o)
             os.system(cmdString)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
