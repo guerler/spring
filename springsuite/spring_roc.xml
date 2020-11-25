@@ -83,8 +83,8 @@
     </outputs>
     <tests>
         <test>
-            <param format="tabular" name="input" value="roc/human_hv1h2.txt" />
-            <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
+            <param name="input" value="roc/human_hv1h2.txt" />
+            <param name="database" value="roc/biogrid_fret.txt" />
             <output name="output" file="roc/human_hv1h2.png" />
         </test>
     </tests>

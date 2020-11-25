@@ -19,7 +19,7 @@ def getIdentifiers(args):
             if args.idextension is not None:
                 entry = "%s.%s" % (entry, args.idextension)
             entries.add(entry)
-    return entries
+    return sorted(entries)
 
 
 def main(args):

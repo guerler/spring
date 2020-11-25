@@ -32,6 +32,21 @@
         <data format="ffdata" name="database" label="DBKit Database" />
         <data format="txt" name="log" label="DBKit Log" />
     </outputs>
+    <tests>
+        <test>
+            <param name="input" value="create/chains.tabular" />
+            <param name="url" value="https://files.rcsb.org/download/" />
+            <conditional name="advanced">
+                <param name="type" value="true" />
+                <param name="idextension" value="pdb" />
+                <param name="idlength" value="4" />
+                <param name="idcase" value="lower" />
+            </conditional>
+            <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
+            <output name="index" file="create/index.ffindex" />
+            <output name="database" file="create/data.ffdata" />
+        </test>
+    </tests>
     <help><![CDATA[
 This database creation tool downloads entries from an external resource and creates a datasets with all its contents. Additionally an index file is
 generated indicating the start and end of every entry within the database file.
