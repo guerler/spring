@@ -5,8 +5,8 @@
     ]]></command>
     <inputs>
         <param format="tabular" name="list" type="data" label="PDB Chain Identifiers" help="List of PDB chains `PDB_CHAIN`."/>
-        <param format="tabular" name="index" type="data" label="PDB Database Index" help="Database Index file (ffindex)."/>
-        <param format="data" name="database" type="data" label="PDB Database" help="Database Data file (ffdata)."/>
+        <param format="ffindex" name="index" type="data" label="PDB Database Index" help="Database Index file."/>
+        <param format="ffdata" name="database" type="data" label="PDB Database" help="Database Data file."/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="SPRING Cross Reference"/>
