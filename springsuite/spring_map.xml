@@ -7,10 +7,10 @@
         python3 '$__tool_directory__/spring_map.py' -l '$list' -i '$index' -d '$database' -c '$cross' -o '$output' -g '$log' -t temp
     ]]></command>
     <inputs>
-        <param format="tabular" name="list" type="data" label="PDB Chain Identifiers" help="List of PDB chains [PDB_CHAIN]."/>
+        <param format="tabular" name="list" type="data" label="PDB Chain Identifiers" help="List of PDB chains `PDB_CHAIN`."/>
         <param format="tabular" name="index" type="data" label="PDB Database Index" help="Database Index file (ffindex)."/>
         <param format="data" name="database" type="data" label="PDB Database" help="Database Data file (ffdata)."/>
-        <param format="tabular" name="cross" type="data" label="Unmapped Cross Reference" help="SPRING PDB Cross Reference (unmapped)."/>
+        <param format="tabular" name="cross" type="data" label="Cross Reference (unmapped)" help="Unmapped SPRING PDB Cross Reference as produced by SPRING Cross tool."/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="SPRING Map Cross Reference"/>

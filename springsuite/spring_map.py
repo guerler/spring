@@ -8,6 +8,8 @@ from spring_package.Molecule import Molecule
 
 def getId(line):
     line = line.strip()
+    if len(line) != 6 or line[4:5] != "_":
+        raise Exception("Invalid list entry (`PDB_CHAIN`): %s." % line)
     return line[:4].upper() + line[4:6]
 
 
@@ -131,7 +133,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Maps binding partners to template library')
-    parser.add_argument('-l', '--list', help='List of template entries [PDB_CHAIN]', required=True)
+    parser.add_argument('-l', '--list', help='List of template entries `PDB_CHAIN`', required=True)
     parser.add_argument('-i', '--index', help='PDB Database Index file (dbkit_index)', required=True)
     parser.add_argument('-d', '--database', help='PDB Database files (dbkit)', required=True)
     parser.add_argument('-c', '--cross', help='Cross reference (unmapped)', required=True)
