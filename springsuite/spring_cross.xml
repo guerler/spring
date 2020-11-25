@@ -1,21 +1,29 @@
 <tool id="spring_cross" name="SPRING Cross" version="0.1.0" python_template_version="3.5" license="MIT">
     <description>reference builder</description>
     <command detect_errors="exit_code"><![CDATA[
-        mkdir temp &&
-        python3 '$__tool_directory__/spring_cross.py' -l '$list' -i '$index' -d '$database' -o '$output' -t temp
+        python3 '$__tool_directory__/spring_cross.py' -l '$list' -i '$index' -d '$database' -o '$output' -g '$log' -t temp
     ]]></command>
     <inputs>
         <param format="tabular" name="list" type="data" label="PDB Chain Identifiers" help="List of PDB chains [PDB_CHAIN]."/>
-        <param format="tabular" name="index" type="data" label="PDB Database Index" help="Database Index file (dbkit_index)."/>
-        <param format="data" name="database" type="data" label="PDB Database" help="Database Data file (dbkit)."/>
+        <param format="tabular" name="index" type="data" label="PDB Database Index" help="Database Index file (ffindex)."/>
+        <param format="data" name="database" type="data" label="PDB Database" help="Database Data file (ffdata)."/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="SPRING Cross Reference"/>
+        <data format="txt" name="log" label="SPRING Cross Log"/>
     </outputs>
     <help><![CDATA[
 Creates a 2-column cross reference between a list of input chains and all interacting chains found in the provided PDB database. This reference is required as 
 input for the SPRING min-Z calculator.
     ]]></help>
+    <tests>
+        <test>
+            <param name="list" value="cross/chains.tabular" />
+            <param name="index" value="cross/pdb.ffindex" />
+            <param name="database" value="cross/pdb.ffdata" />
+            <output name="output" file="cross/reference.tabular"/>
+        </test>
+    </tests>
     <citations>
         <citation type="bibtex">
 @misc{githubhh-suite,

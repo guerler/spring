@@ -1,7 +1,7 @@
 <tool id="dbkit_create" name="DBKit Create" version="0.1.1" python_template_version="3.5" license="MIT">
     <description>database generator</description>
     <command detect_errors="exit_code"><![CDATA[
-        mkdir -f temp &&
+        mkdir temp &&
         python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$url' -p 'temp' -x '$index' -d '$database' -o '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
     ]]></command>
     <inputs>
@@ -28,8 +28,8 @@
         </conditional>
     </inputs>
     <outputs>
-        <data format="tabular" name="index" label="DBKit Index"/>
-        <data format="data" name="database" label="DBKit Database" />
+        <data format="ffindex" name="index" label="DBKit Index"/>
+        <data format="ffdata" name="database" label="DBKit Database" />
         <data format="txt" name="log" label="DBKit Log" />
     </outputs>
     <help><![CDATA[

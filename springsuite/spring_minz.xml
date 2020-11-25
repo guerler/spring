@@ -1,4 +1,4 @@
-<tool id="spring_minz" name="SPRING min-Z" version="0.1.2" python_template_version="3.5" license="MIT">
+<tool id="spring_minz" name="SPRING Min-Z" version="0.1.2" python_template_version="3.5" license="MIT">
     <description>filter operation</description>
     <command detect_errors="exit_code"><![CDATA[
         mkdir -p targets &&
