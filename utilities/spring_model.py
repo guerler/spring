@@ -6,6 +6,7 @@ from spring_package.Alignment import Alignment
 from spring_package.Energy import Energy
 from spring_package.Molecule import Molecule
 
+
 def buildModel(resultFile, templateFile, chainName, outputName):
     template = Molecule(templateFile)
     if chainName not in template.calpha:
@@ -15,6 +16,7 @@ def buildModel(resultFile, templateFile, chainName, outputName):
     alignment.createModel(chain)
     template.saveChain(chainName, outputName)
     os.system("./build/pulchra %s" % outputName)
+
 
 def TMalign(fileA, fileB):
     baseA = os.path.basename(fileA)
@@ -40,12 +42,13 @@ def TMalign(fileA, fileB):
             tmscore = float(line[9:17])
             line = next(file)
             tmscore = max(tmscore, float(line[9:17]))
-        except:
+        except Exception:
             raise Exception("TMalign::Failed to retrieve TMscore.")
     molecule = Molecule(fileA)
     for atom in molecule.atoms:
         molecule.applyMatrix(atom, rotmat)
     return tmscore, molecule
+
 
 def main(args):
     print("SPRING Model")
@@ -76,7 +79,7 @@ def main(args):
                     print("Evaluating chain %s..." % chainName)
                     try:
                         partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
-                    except:
+                    except Exception:
                         print("Warning: Failed TMalign [%s]." % chainName)
                         continue
                     TMscore = min(coreTMscore, partnerTMscore)
@@ -94,7 +97,8 @@ def main(args):
             maxMolecule.save(outputName, chainName="1", append=True)
             maxTemplate.save(outputName, append=True)
     if maxMolecule is None:
-        print ("Warning: Failed to determine model.")
+        print("Warning: Failed to determine model.")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
@@ -113,4 +117,3 @@ if __name__ == "__main__":
     parser.add_argument('-st', '--show_template', help='Add template to model structure', type=bool, required=False, default=True)
     args = parser.parse_args()
     main(args)
- 

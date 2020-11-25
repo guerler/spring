@@ -4,13 +4,35 @@ from spring_package.Molecule import Molecule
 
 
 def getId(line):
-    line = line.strip()
+    line = line.split()[0]
     return line[:4].upper() + line[4:6]
+
+
+def createFile(identifier, databaseIndex, database, outputName):
+    start = -1
+    end = -1
+    with open(databaseIndex) as file:
+        for line in file:
+            cols = line.split()
+            if identifier == cols[0]:
+                start = cols[1]
+                end = cols[2]
+                break
+    if start != -1:
+        with open(database) as file:
+            file.seek(start)
+            content = file.read(end - start)
+            outputFile = open(outputName, "w")
+            outputFile.write(content)
+            outputFile.close()
+        return True
+    else:
+        return False
 
 
 def main(args):
     pdbCount = 0
-    pdbPath = args.pdbpath.rstrip("/")
+    pdbDatabase = args.pdbpath
     partnerList = set()
     entries = list()
     with open(args.list) as file:
@@ -18,9 +40,10 @@ def main(args):
             entries.append(getId(line))
     print("Found %s template entries from `%s`." % (len(entries), args.list))
     for entryId in entries:
-        pdb = entryId[:4].lower()
+        pdb = "%s.pdb" % entryId[:4].lower()
         pdbChain = entryId[5:6]
-        pdbFile = "%s/%s.pdb" % (pdbPath, pdb)
+        pdbFile = "%s/%s" % (args.temp, pdb)
+        createFile(pdb, args.pdbindex, args.pdbpath, pdbFile)
         try:
             mol = Molecule(pdbFile)
         except Exception:
@@ -54,8 +77,10 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='List filtering.')
-    parser.add_argument('-l', '--list', help='List of template entries [PDB_CHAIN]', required=True)
-    parser.add_argument('-p', '--pdbpath', help='Path to PDB files [PDB.pdb]', required=True)
+    parser.add_argument('-l', '--list', help='List of PDB chains [PDB_CHAIN]', required=True)
+    parser.add_argument('-i', '--index', help='PDB Database Index file (dbkit_index)', required=True)
+    parser.add_argument('-d', '--database', help='PDB Database files (dbkit)', required=True)
     parser.add_argument('-o', '--output', help='Output file', required=True)
+    parser.add_argument('-t', '--temp', help='Temporary Directory', required=True))
     args = parser.parse_args()
     main(args)

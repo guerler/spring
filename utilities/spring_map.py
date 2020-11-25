@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 import argparse
 import os
-impsdjklajd
 
 
 from spring_package.Molecule import Molecule

@@ -38,8 +38,7 @@ def downloadFiles(entries, sourceUrl, outputPath, logFile):
             logFile.write("Completed.\n")
 
 
-def main(args):
-    logFile = open(args.log, "w")
+def getIdentifiers(args, logFile):
     entries = list()
     with open(args.list) as file:
         for line in file:
@@ -55,6 +54,12 @@ def main(args):
                 entry = "%s.%s" % (entry, args.idextension)
             entries.append(entry)
     logFile.write("Found %s entries from `%s`.\n" % (len(entries), entries))
+    return entries
+
+
+def main(args):
+    logFile = open(args.log, "w")
+    entries = getIdentifiers(args, logFile=logFile)
     downloadFiles(entries, args.url, args.path, logFile=logFile)
     createIndex(args.path, args.index, args.database)
     logFile.close()

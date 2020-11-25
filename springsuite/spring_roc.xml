@@ -7,10 +7,9 @@
         python3 '$__tool_directory__/spring_roc.py' -i '$input' -b '$database' -e '$experiment.type' -m '$experiment.method' -t '$throughput' -l '$sampling.locations' -r '$sampling.regions' -n '$sampling.negative' -o '$rocplot'
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="tabular" label="Interactions" help="Prediction Input Table with 2-columns containing UniProt Accession codes."/>
-        <param name="database" type="data" format="tabular" label="BioGRID Database" help="BioGRID Database in TAB 3.0 format."/>
+        <param name="input" type="data" format="tabular" label="Interacting Pairs" help="Prediction input containing UniProt Accession codes (2-columns)."/>
         <conditional name="sampling">
-            <param name="type" type="select" label="Non-interacting Pairs" display="radio" help="Decide how to retrieve non-interacting pairs.">
+            <param name="type" type="select" label="Non-interacting Pairs" display="radio" help="Specify how to determine non-interacting pairs.">
                 <option value="random">Random Sampling</option>
                 <option value="uniprot">Sampling with UniProt Localization</option>
                 <option value="negative">Specify non-interacting pairs</option>
@@ -32,10 +31,11 @@
             </when>
             <when value="negative">
                 <param name="locations" type="hidden" value="" />
-                <param name="negative" type="data" format="tabular" label="Non-interacting Pairs" help="Tabular file containing non-interacting pairs." />
+                <param name="negative" type="data" format="tabular" label="Non-interacting Pairs" help="Tabular file containing non-interacting pairs (2-columns)." />
                 <param name="regions" type="hidden" value="" />
             </when>
         </conditional>
+        <param name="database" type="data" format="tabular" label="BioGRID Database" help="BioGRID Database in TAB 3.0 format."/>
         <conditional name="experiment">
             <param name="type" type="select" label="Experimental Type" display="radio" help="Choose a specific experimental system type.">
                 <option value="">Any</option>
