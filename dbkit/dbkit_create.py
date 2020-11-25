@@ -15,9 +15,8 @@ def createIndex(inputPath, outputIndex, outputDatabase):
             name = names[i]
             size = sizes[i]
             file = files[i]
-            end = start + size
-            output_file.write("%s\t%d\t%d\n" % (name, start, end))
-            start = end + 1
+            output_file.write("%s\t%d\t%d\n" % (name, start, size))
+            start = start + size + 1
             system("cat %s >> %s" % (file, outputDatabase))
 
 
