@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import argparse
-import os
+from os import system
+from os.path import isfile
 
 from spring_package.DBKit import DBKit
 from spring_package.Molecule import Molecule
@@ -27,13 +28,20 @@ def getSequences(fileName):
     return sequences
 
 
-def getHomologue(queryFile, queryResultFile, databaseFile):
-    if not os.path.isfile(queryResultFile):
-        os.system("psiblast -query %s -db %s -out %s" % (queryFile,
-                  databaseFile, queryResultFile))
+def findMatch(identifier, databaseFile, pdbDatabase):
+    fastaFile = "temp/%s.fasta" % identifier
+    resultFile = "%s.result" % fastaFile
+    if not isfile(resultFile):
+        pdbFile, pdbChain = getPDB(identifier, pdbDatabase)
+        mol = Molecule(pdbFile)
+        seq = mol.getSequence(pdbChain)
+        with open(fastaFile, "w") as fasta:
+            fasta.write(">%s\n" % identifier)
+            fasta.write("%s" % seq)
+        system("psiblast -query %s -db %s -out %s" % (fastaFile, databaseFile, resultFile))
     maxMatch = None
     try:
-        with open(queryResultFile) as file:
+        with open(resultFile) as file:
             for i in range(38):
                 line = next(file)
             maxMatch = getId(line.split()[0])
@@ -46,10 +54,10 @@ def main(args):
     logFile = open(args.log, "w")
     temp = args.temp.rstrip("/")
     templates = set()
-    os.system("mkdir -p %s" % temp)
+    system("mkdir -p %s" % temp)
     templateSequenceFile = "%s/templates.fasta" % temp
     pdbDatabase = DBKit(args.index, args.database)
-    if not os.path.isfile(templateSequenceFile):
+    if not isfile(templateSequenceFile):
         templateSequences = open(templateSequenceFile, "w")
         with open(args.list) as file:
             for rawId in file:
@@ -64,7 +72,7 @@ def main(args):
                 except Exception:
                     logFile.write("Warning: File not found [%s].\n" % pdbFile)
         templateSequences.close()
-        os.system("makeblastdb -in %s -dbtype prot" % templateSequenceFile)
+        system("makeblastdb -in %s -dbtype prot" % templateSequenceFile)
     else:
         logFile.write("Using existing sequences for templates [%s].\n" % templateSequenceFile)
     logFile.write("Found %s template entries from `%s`.\n" % (len(templates), args.list))
@@ -83,37 +91,24 @@ def main(args):
     for refEntry in crossReference:
         coreId = refEntry["core"]
         partnerId = refEntry["partner"]
-        partnerFile = "%s/%s.fasta" % (temp, partnerId)
-        partnerResultFile = "%s.result" % partnerFile
+        logFile.write("Processing %s.\n" % partnerId)
         if partnerId in templates:
-            refEntry["match"] = partnerId
-            logFile.write("Found partner in template list alignment [%s].\n" % partnerId)
+            partnerMatch = partnerId
         else:
-            logFile.write("Processing %s.\n" % partnerId)
-            if not os.path.isfile(partnerResultFile):
-                pdbFile, pdbChain = getPDB(partnerId, pdbDatabase)
-                partnerMol = Molecule(pdbFile)
-                partnerSeq = partnerMol.getSequence(pdbChain)
-                with open(partnerFile, "w") as partnerFasta:
-                    partnerFasta.write(">%s\n" % partnerId)
-                    partnerFasta.write("%s" % partnerSeq)
-            else:
-                logFile.write("Using existing results. [%s].\n" % partnerId)
-            matchedId = getHomologue(partnerFile, partnerResultFile,
-                                     templateSequenceFile)
-            if matchedId is None:
-                logFile.write("Warning: Failed alignment [%s].\n" % partnerId)
-            else:
-                logFile.write("Found matching entry %s.\n" % matchedId)
-                refEntry["match"] = matchedId
+            partnerMatch = findMatch(partnerId, templateSequenceFile, pdbDatabase)
+        if partnerMatch is None:
+            logFile.write("Warning: Failed alignment [%s].\n" % partnerId)
+        else:
+            logFile.write("Found matching entry %s.\n" % partnerMatch)
+            refEntry["partnerMatch"] = partnerMatch
         logFile.flush()
 
     finalSet = set()
     for refEntry in crossReference:
         coreId = refEntry["core"]
         partnerId = refEntry["partner"]
-        if "match" in refEntry:
-            entry = "%s\t%s" % (coreId, refEntry["match"])
+        if "partnerMatch" in refEntry:
+            entry = "%s\t%s" % (coreId, refEntry["partnerMatch"])
             if entry not in finalSet:
                 finalSet.add(entry)
         else:
