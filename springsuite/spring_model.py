@@ -3,11 +3,11 @@ import argparse
 from os import system
 from os.path import basename, splitext
 
-from spring_package.Alignment import Alignment, getTemplates
+from spring_package.Alignment import Alignment
 from spring_package.DBKit import DBKit
 from spring_package.Energy import Energy
 from spring_package.Molecule import Molecule
-from spring_package.Utilities import getChain, getCrossReference, getName
+from spring_package.Utilities import getChain, getCrossReference, getName, getTemplates
 
 
 def createPDB(identifier, pdbDatabase, outputName):
@@ -34,7 +34,7 @@ def TMalign(fileA, fileB):
     baseB = basename(fileB)
     baseA = splitext(baseA)[0]
     baseB = splitext(baseB)[0]
-    tmName = "temp/tmalign.%s.%s" % (baseA, baseB)
+    tmName = "temp/tmalign"
     system("build/TMalign %s %s -m %s.mat > %s.out" % (fileA, fileB, tmName, tmName))
     rotmat = list()
     with open("%s.mat" % tmName) as file:
@@ -61,7 +61,7 @@ def TMalign(fileA, fileB):
     return tmscore, molecule
 
 
-def getFrameworks(aTemplates, bTemplates, crossReference, minScore=10, maxTries=5):
+def getFrameworks(aTemplates, bTemplates, crossReference, minScore=10, maxTries=10):
     for aTemplate in aTemplates:
         if aTemplate in crossReference:
             partners = crossReference[aTemplate]
@@ -74,13 +74,14 @@ def getFrameworks(aTemplates, bTemplates, crossReference, minScore=10, maxTries=
 
 
 def main(args):
-    print("SPRING Model")
+    print("SPRING - Complex Model Creation")
     print("Sequence A: %s" % args.a_hhr)
     print("Sequence B: %s" % args.b_hhr)
     aTop, aTemplates = getTemplates(args.a_hhr)
     bTop, bTemplates = getTemplates(args.b_hhr)
     system("mkdir -p temp")
     system("rm -f temp/*.*")
+    outputName = args.output
     pdbDatabase = DBKit(args.index, args.database)
     crossReference = getCrossReference(args.cross)
     interfaceEnergy = Energy()
@@ -90,6 +91,7 @@ def main(args):
     maxMolecule = None
     maxTemplate = None
     for aTemplate in getFrameworks(aTemplates, bTemplates, crossReference):
+        print("Evaluating Complex Template: %s." % aTemplate)
         templateFile = "temp/template.pdb"
         templateChain = getChain(aTemplate)
         createPDB(aTemplate, pdbDatabase, templateFile)
@@ -122,10 +124,10 @@ def main(args):
                             maxScore = springScore
                             maxMolecule = partnerMolecule
                             maxTemplate = bioMolecule
-            outputName = "%s_%1.2f.pdb" % (args.output, maxScore)
-            coreMolecule.save(outputName, chainName="0")
-            maxMolecule.save(outputName, chainName="1", append=True)
-            maxTemplate.save(outputName, append=True)
+                            coreMolecule.save(outputName, chainName="0")
+                            maxMolecule.save(outputName, chainName="1", append=True)
+                            if args.show_reference == "true":
+                                maxTemplate.save(outputName, append=True)
     if maxMolecule is None:
         print("Warning: Failed to determine model.")
 
@@ -138,9 +140,8 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--database', help='PDB Database files (ffdata)', required=True)
     parser.add_argument('-c', '--cross', help='PDB Cross Reference', required=True)
     parser.add_argument('-o', '--output', help='Output model file', required=True)
-    parser.add_argument('-t', '--temp', help='Temporary directory', required=False, default="temp")
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
-    parser.add_argument('-sr', '--show_reference', help='Add reference template to model structure', type=bool, required=False, default=True)
+    parser.add_argument('-sr', '--show_reference', help='Add reference template to model structure', required=False, default="true")
     args = parser.parse_args()
     main(args)

@@ -39,7 +39,7 @@ def getCrossReference(crossReferenceFile):
     return crossReference
 
 
-def getTemplates(hhrFile, minScore):
+def getTemplates(hhrFile, minScore=10):
     result = dict()
     topTemplate = None
     if isfile(hhrFile):

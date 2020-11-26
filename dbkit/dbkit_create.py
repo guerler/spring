@@ -40,12 +40,12 @@ def main(args):
             pathName = args.path.rstrip("/")
             fileName = "%s/%s" % (pathName, entryId)
         if isfile(fileName):
-            tempSize = getsize(fileName)
-            if tempSize == 0:
+            size = getsize(fileName)
+            if size == 0:
                 logFile.write("Entry `%s` not found.\n" % entryId)
             else:
-                indexFile.write("%s\t%d\t%d\n" % (entryId, start, tempSize))
-                start = start + tempSize + 1
+                indexFile.write("%s\t%d\t%d\n" % (entryId, start, size))
+                start = start + size
                 system("cat %s >> %s" % (fileName, outputDatabase))
         logFile.flush()
     logFile.close()
