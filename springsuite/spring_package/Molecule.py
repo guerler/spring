@@ -145,7 +145,6 @@ class Molecule:
         return code[seq] if seq in code else "X"
 
     def saveChain(self, chainName, outputName):
-        print("Writing PDB file to %s." % outputName)
         f = open(outputName, "w")
         for residueNumber in sorted(self.calpha[chainName].keys()):  
             ca = self.calpha[chainName][residueNumber]
@@ -154,7 +153,6 @@ class Molecule:
         f.close()
 
     def save(self, outputName, append=False, chainName=None):
-        print("Writing atoms to PDB file to %s." % outputName)
         fileFlag = "+a" if append else "w"
         f = open(outputName, fileFlag)
         for atom in self.atoms:

@@ -123,11 +123,11 @@ def main(args):
                             print("Warning: Failed TMalign [%s]." % chainName)
                             continue
                         TMscore = min(coreTMscore, partnerTMscore)
-                        print("min-TMscore: %5.5f" % TMscore)
+                        print("  min-TMscore: %5.5f" % TMscore)
                         energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
-                        print("Interaction: %5.5f" % energy)
+                        print("  Interaction: %5.5f" % energy)
                         springScore = TMscore * args.wtm + energy * args.wenergy
-                        print("SpringScore: %5.5f" % springScore)
+                        print("  SpringScore: %5.5f" % springScore)
                         if springScore > maxScore:
                             maxScore = springScore
                             maxMolecule = partnerMolecule
