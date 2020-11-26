@@ -1,12 +1,13 @@
 #! /usr/bin/env python3
 import argparse
-import os
+from os import system
+from os.path import isfile, getsize
 
 
 def main(args):
     pdbUrl = "https://files.rcsb.org/download/"
     pdbPath = args.pdbpath.rstrip("/")
-    os.system("mkdir -p %s" % pdbPath)
+    system("mkdir -p %s" % pdbPath)
     entries = list()
     with open(args.list) as file:
         for line in file:
@@ -18,11 +19,13 @@ def main(args):
         print("Loading %s..." % pdbId)
         pdbFile = "%s.pdb" % pdbId
         pdbPathFile = "%s/%s" % (pdbPath, pdbFile)
-        if os.path.isfile(pdbPathFile):
+        if isfile(pdbPathFile):
             print("Skipping %s." % pdbId)
             continue
-        os.system("wget -O %s %s%s" % (pdbFile, pdbUrl, pdbFile))
-        os.system("mv %s %s" % (pdbFile, pdbPathFile))
+        system("wget -q -O %s %s%s" % (pdbPathFile, pdbUrl, pdbFile))
+        if isfile(pdbPathFile) and getsize(pdbPathFile) == 0:
+            print("Removing empty file %s." % pdbPathFile)
+            system("rm %s" % pdbPathFile)
         print("Completed.")
 
 
