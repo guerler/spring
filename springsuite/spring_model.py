@@ -61,16 +61,22 @@ def TMalign(fileA, fileB):
     return tmscore, molecule
 
 
-def getFrameworks(aTemplates, bTemplates, crossReference, minScore=10, maxTries=10):
+def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
+    templateIndex = dict()
     for aTemplate in aTemplates:
         if aTemplate in crossReference:
             partners = crossReference[aTemplate]
             for pTemplate in partners:
                 if pTemplate in bTemplates:
                     minZ = min(aTemplates[aTemplate], bTemplates[pTemplate])
-                    if minZ > minScore and maxTries > 0:
-                        maxTries = maxTries - 1
-                        yield aTemplate
+                    templateIndex[aTemplate] = minZ
+    templateList = sorted(templateIndex.items(), key=lambda item: item[1], reverse=True)
+    print("Found %d templates." % len(templateList))
+    for templateName, templateScore in templateList:
+        if templateScore < minScore or maxTries == 0:
+            break
+        maxTries = maxTries - 1
+        yield templateName
 
 
 def main(args):
@@ -90,7 +96,9 @@ def main(args):
     maxScore = -9999
     maxMolecule = None
     maxTemplate = None
-    for aTemplate in getFrameworks(aTemplates, bTemplates, crossReference):
+    minScore = float(args.minscore)
+    maxTries = int(args.maxtries)
+    for aTemplate in getFrameworks(aTemplates, bTemplates, crossReference, minScore=minScore, maxTries=maxTries):
         print("Evaluating Complex Template: %s." % aTemplate)
         templateFile = "temp/template.pdb"
         templateChain = getChain(aTemplate)
@@ -130,6 +138,10 @@ def main(args):
                                 maxTemplate.save(outputName, append=True)
     if maxMolecule is None:
         print("Warning: Failed to determine model.")
+    else:
+        print("Completed.")
+        print("SpringScore: %5.5f" % maxScore)
+        print("Result stored to %s" % outputName)
 
 
 if __name__ == "__main__":
@@ -142,6 +154,8 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output', help='Output model file', required=True)
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
+    parser.add_argument('-ms', '--minscore', help='Minimum min-Z score threshold', type=float, default=10.0, required=False)
+    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=20, required=False)
     parser.add_argument('-sr', '--show_reference', help='Add reference template to model structure', required=False, default="true")
     args = parser.parse_args()
     main(args)
