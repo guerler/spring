@@ -17,7 +17,7 @@
         <data format="txt" name="log" label="SPRING Map Log"/>
     </outputs>
     <help><![CDATA[
-Creates a 3rd column for the SPRING cross reference containing the chain identifier of the binding partners homologue.
+Creates a additional columns for the SPRING cross reference containing the chain identifier of the homologues from the template library.
     ]]></help>
     <tests>
         <test>

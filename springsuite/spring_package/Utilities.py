@@ -32,10 +32,11 @@ def getCrossReference(crossReferenceFile):
             if len(columns) < 2:
                 raise Exception("Invalid Cross Reference Entry %s." % line)
             core = columns[0]
-            partner = columns[-1]
+            partner = columns[1]
             if core not in crossReference:
                 crossReference[core] = []
-            crossReference[core].append(partner)
+            if partner not in crossReference[core]:
+                crossReference[core].append(partner)
     return crossReference
 
 

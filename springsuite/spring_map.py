@@ -28,7 +28,9 @@ def getSequences(fileName):
     return sequences
 
 
-def findMatch(identifier, databaseFile, pdbDatabase):
+def findMatch(identifier, templates, databaseFile, pdbDatabase):
+    if identifier in templates:
+        return identifier
     fastaFile = "temp/%s.fasta" % identifier
     resultFile = "%s.result" % fastaFile
     if not isfile(resultFile):
@@ -90,35 +92,32 @@ def main(args):
 
     for refEntry in crossReference:
         coreId = refEntry["core"]
+        logFile.write("Processing %s.\n" % coreId)
+        coreMatch = findMatch(coreId, templates, templateSequenceFile, pdbDatabase)
         partnerId = refEntry["partner"]
         logFile.write("Processing %s.\n" % partnerId)
-        if partnerId in templates:
-            partnerMatch = partnerId
+        partnerMatch = findMatch(partnerId, templates, templateSequenceFile, pdbDatabase)
+        if partnerMatch is None or coreMatch is None:
+            logFile.write("Warning: Failed alignment [%s, %s].\n" % (coreId, partnerId))
         else:
-            partnerMatch = findMatch(partnerId, templateSequenceFile, pdbDatabase)
-        if partnerMatch is None:
-            logFile.write("Warning: Failed alignment [%s].\n" % partnerId)
-        else:
-            logFile.write("Found matching entry %s.\n" % partnerMatch)
+            logFile.write("Found matching entries [%s, %s].\n" % (coreMatch, partnerMatch))
+            refEntry["coreMatch"] = coreMatch
             refEntry["partnerMatch"] = partnerMatch
         logFile.flush()
 
-    finalSet = set()
-    for refEntry in crossReference:
-        coreId = refEntry["core"]
-        partnerId = refEntry["partner"]
-        if "partnerMatch" in refEntry:
-            entry = "%s\t%s" % (coreId, refEntry["partnerMatch"])
-            if entry not in finalSet:
-                finalSet.add(entry)
-        else:
-            logFile.write("Warning: Skipping failed missing partner match [%s, %s].\n" % (coreId, partnerId))
-    logFile.write("Found %s cross reference entries.\n" % len(finalSet))
-    logFile.close()
-
+    entryCount = 0
     with open(args.output, 'w') as output_file:
-        for entry in sorted(finalSet):
-            output_file.write("%s\n" % entry)
+        for refEntry in crossReference:
+            coreId = refEntry["core"]
+            partnerId = refEntry["partner"]
+            if "coreMatch" in refEntry and "partnerMatch" in refEntry:
+                entry = "%s\t%s\t%s\t%s\n" % (refEntry["coreMatch"], refEntry["partnerMatch"], refEntry["core"], refEntry["partner"])
+                output_file.write(entry)
+                entryCount = entryCount + 1
+            else:
+                logFile.write("Warning: Skipping failed missing partner match [%s, %s].\n" % (coreId, partnerId))
+    logFile.write("Found %s cross reference entries.\n" % entryCount)
+    logFile.close()
 
 
 if __name__ == "__main__":
