@@ -152,9 +152,11 @@ class Molecule:
                 f.write(self.atomString(ca))
         f.close()
 
-    def save(self, outputName, append=False, chainName=None):
+    def save(self, outputName, append=False, chainName=None, payload=None):
         fileFlag = "+a" if append else "w"
         f = open(outputName, fileFlag)
+        if payload:
+            f.write("%s\n" % payload)
         for atom in self.atoms:
             atom["chainName"] = chainName if chainName else atom["chainName"]
             f.write(self.atomString(atom))

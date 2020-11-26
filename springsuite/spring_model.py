@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 from os import system
-from os.path import basename, splitext
+from os.path import basename, isfile, splitext
 
 from spring_package.Alignment import Alignment
 from spring_package.DBKit import DBKit
@@ -94,8 +94,7 @@ def main(args):
     buildModel(args.a_hhr, aTop, pdbDatabase, "temp/monomerA.pdb")
     buildModel(args.b_hhr, bTop, pdbDatabase, "temp/monomerB.pdb")
     maxScore = -9999
-    maxMolecule = None
-    maxTemplate = None
+    maxInfo = None
     minScore = float(args.minscore)
     maxTries = int(args.maxtries)
     for aTemplate in getFrameworks(aTemplates, bTemplates, crossReference, minScore=minScore, maxTries=maxTries):
@@ -130,18 +129,23 @@ def main(args):
                         print("  SpringScore: %5.5f" % springScore)
                         if springScore > maxScore:
                             maxScore = springScore
-                            maxMolecule = partnerMolecule
-                            maxTemplate = bioMolecule
+                            maxInfo = "%s\t %5.5f\t %5.5f\n" % (outputName, TMscore, energy)
                             coreMolecule.save(outputName, chainName="0")
-                            maxMolecule.save(outputName, chainName="1", append=True)
+                            partnerMolecule.save(outputName, chainName="1", append=True)
                             if args.showtemplate == "true":
-                                maxTemplate.save(outputName, append=True)
-    if maxMolecule is None:
-        print("Warning: Failed to determine model.")
-    else:
+                                bioMolecule.save(outputName, append=True)
+    if maxInfo is not None:
         print("Completed.")
         print("SpringScore: %5.5f" % maxScore)
         print("Result stored to %s" % outputName)
+        logExists = isfile(args.log)
+        logFile = open(args.log, "a+")
+        if not logExists:
+            logFile.write("# Description: Name, TMscore, Energy\n")
+        logFile.write(maxInfo)
+        logFile.close()
+    else:
+        print("Warning: Failed to determine model.")
 
 
 if __name__ == "__main__":
@@ -152,6 +156,7 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--database', help='PDB Database files (ffdata)', required=True)
     parser.add_argument('-c', '--cross', help='PDB Cross Reference', required=True)
     parser.add_argument('-o', '--output', help='Output model file', required=True)
+    parser.add_argument('-g', '--log', help='Log file', required=True)
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
     parser.add_argument('-ms', '--minscore', help='Minimum min-Z score threshold', type=float, default=10.0, required=False)
