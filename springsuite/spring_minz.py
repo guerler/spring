@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 
-from spring_package.Alignment import getCrossReference, getTemplates
+from spring_package.Utilities import getCrossReference, getTemplates
 
 
 def main(args):
@@ -24,8 +24,8 @@ def main(args):
     else:
         inputs = targets
         inputPath = targetPath
-    crossReference = getCrossReference(args.crossreference)
-    print("Loaded cross reference from `%s`." % args.crossreference)
+    crossReference = getCrossReference(args.cross)
+    print("Loaded cross reference from `%s`." % args.cross)
     interactions = dict()
     for targetName in targets:
         targetFile = "%s/%s" % (targetPath, targetName)
@@ -92,8 +92,7 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
                 interactions[interactionKey] = dict(targetName=targetName,
                                                     inputName=inputName,
                                                     minZ=minZ, minInfo=minInfo)
-                logFile.write("Interaction between %s and %s [min-Z: %s].\n" % 
-                              (targetName, inputName, minZ))
+                logFile.write("Interaction between %s and %s [min-Z: %s].\n" % (targetName, inputName, minZ))
 
 
 if __name__ == "__main__":
@@ -102,7 +101,7 @@ if __name__ == "__main__":
     parser.add_argument('-tp', '--targetpath', help='Directory containing `hhr` files', required=True)
     parser.add_argument('-il', '--inputlist', help='Text file containing identifiers.', required=False)
     parser.add_argument('-ip', '--inputpath', help='Directory containing `hhr` files', required=False)
-    parser.add_argument('-c', '--crossreference', help='Cross Reference index file', required=True)
+    parser.add_argument('-c', '--cross', help='PDB Cross Reference', required=True)
     parser.add_argument('-o', '--output', help='Output file containing min-Z scores', required=True)
     parser.add_argument('-l', '--log', help='Log file', required=True)
     parser.add_argument('-m', '--minscore', help='min-Z score threshold', type=int, default=10)

@@ -2,15 +2,9 @@
 import argparse
 from os import system
 
-from spring_package.DBKit import createFile
+from spring_package.DBKit import DBKit
 from spring_package.Molecule import Molecule
-
-
-def getId(line):
-    line = line.strip()
-    if len(line) != 6 or line[4:5] != "_":
-        raise Exception("Invalid list entry (`PDB_CHAIN`): %s." % line)
-    return line[:4].upper() + line[4:6]
+from spring_package.Utilities import getId, getName, getChain
 
 
 def main(args):
@@ -23,16 +17,17 @@ def main(args):
         for line in file:
             entries.append(getId(line))
     logFile.write("Found %s template entries.\n" % len(entries))
+    pdbDatabase = DBKit(args.index, args.database)
     for entryId in entries:
-        pdb = entryId[:4].lower()
-        pdbChain = entryId[5:6]
+        pdb = getName(entryId)
+        pdbChain = getChain(entryId)
         pdbFile = "%s/temp.pdb" % args.temp
         pdbDatabaseId = "%s.pdb" % pdb
-        createFile(pdbDatabaseId, args.index, args.database, pdbFile)
+        pdbDatabase.createFile(pdbDatabaseId, pdbFile)
         try:
             mol = Molecule(pdbFile)
         except Exception:
-            logFile.write("Warning: File '%s' not found.\n" % pdbDatabaseId)
+            logFile.write("Warning: Entry '%s' not found.\n" % pdb)
             continue
         pdbCount = pdbCount + 1
         logFile.write("Processing %s, chain %s.\n" % (pdb, pdbChain))

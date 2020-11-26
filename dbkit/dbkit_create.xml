@@ -2,7 +2,7 @@
     <description>database generator</description>
     <command detect_errors="exit_code"><![CDATA[
         mkdir temp &&
-        python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$url' -t 'temp' -o '$index' -d '$database' -g '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
+        python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$url' -o '$index' -d '$database' -g '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
     ]]></command>
     <inputs>
         <param format="tabular" name="input" type="data" label="List of Identifiers" help="Specify a list containing all entry identifiers to be downloaded."/>

@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 from os import system
-from os.path import getsize
+from os.path import isfile, getsize
 
 
 def getIdentifiers(args):
@@ -28,22 +28,25 @@ def main(args):
     logFile.write("Found %s entries.\n" % len(entries))
     outputIndex = args.index
     outputDatabase = args.database
-    tempPath = args.temp.rstrip("/")
-    tempFile = "%s/temp.pdb" % tempPath
-    system("mkdir -p %s" % tempPath)
     system("rm -f %s" % outputDatabase)
     indexFile = open(outputIndex, 'w')
     start = 0
     for entryId in entries:
         logFile.write("Loading %s.\n" % entryId)
-        system("wget -q -O %s %s%s" % (tempFile, args.url, entryId))
-        tempSize = getsize(tempFile)
-        if tempSize == 0:
-            logFile.write("Entry `%s` not found.\n" % entryId)
+        if args.url:
+            fileName = "temp.dat"
+            system("wget -q -O %s %s%s" % (fileName, args.url, entryId))
         else:
-            indexFile.write("%s\t%d\t%d\n" % (entryId, start, tempSize))
-            start = start + tempSize + 1
-            system("cat %s >> %s" % (tempFile, outputDatabase))
+            pathName = args.path.rstrip("/")
+            fileName = "%s/%s" % (pathName, entryId)
+        if isfile(fileName):
+            tempSize = getsize(fileName)
+            if tempSize == 0:
+                logFile.write("Entry `%s` not found.\n" % entryId)
+            else:
+                indexFile.write("%s\t%d\t%d\n" % (entryId, start, tempSize))
+                start = start + tempSize + 1
+                system("cat %s >> %s" % (fileName, outputDatabase))
         logFile.flush()
     logFile.close()
 
@@ -51,8 +54,8 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='DBKit - Download and Merge files into a single file.')
     parser.add_argument('-l', '--list', help='List of entries', required=True)
-    parser.add_argument('-u', '--url', help='Source Url', required=True)
-    parser.add_argument('-t', '--temp', help='temp', required=True)
+    parser.add_argument('-u', '--url', help='Source Url', required=False)
+    parser.add_argument('-p', '--path', help='Path to files', required=False)
     parser.add_argument('-il', '--idlength', help='Format Identifier Length (integer)', required=False, default="0")
     parser.add_argument('-ic', '--idcase', help='Format Identifier Case (lower, upper)', required=False, default=None)
     parser.add_argument('-ie', '--idextension', help='Format Identifier Extension', required=False, default=None)

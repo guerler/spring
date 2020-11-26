@@ -2,23 +2,17 @@
 import argparse
 import os
 
-from spring_package.DBKit import createFile
+from spring_package.DBKit import DBKit
 from spring_package.Molecule import Molecule
+from spring_package.Utilities import getId, getChain, getName
 
 
-def getId(line):
-    line = line.strip()
-    if len(line) != 6 or line[4:5] != "_":
-        raise Exception("Invalid list entry (`PDB_CHAIN`): %s." % line)
-    return line[:4].upper() + line[4:6]
-
-
-def getPDB(line, args):
-    pdb = line[:4].lower()
-    pdbChain = line[5:6]
+def getPDB(line, pdbDatabase):
+    pdb = getName(line)
+    pdbChain = getChain(line)
     pdbFile = "%s/temp.pdb" % args.temp
     pdbDatabaseId = "%s.pdb" % pdb
-    createFile(pdbDatabaseId, args.index, args.database, pdbFile)
+    pdbDatabase.createFile(pdbDatabaseId, pdbFile)
     return pdbFile, pdbChain
 
 
@@ -54,13 +48,14 @@ def main(args):
     templates = set()
     os.system("mkdir -p %s" % temp)
     templateSequenceFile = "%s/templates.fasta" % temp
+    pdbDatabase = DBKit(args.index, args.database)
     if not os.path.isfile(templateSequenceFile):
         templateSequences = open(templateSequenceFile, "w")
         with open(args.list) as file:
             for rawId in file:
                 templateId = getId(rawId)
                 templates.add(templateId)
-                pdbFile, pdbChain = getPDB(templateId, args)
+                pdbFile, pdbChain = getPDB(templateId, pdbDatabase)
                 try:
                     templateMol = Molecule(pdbFile)
                     templateSeq = templateMol.getSequence(pdbChain)
@@ -96,7 +91,7 @@ def main(args):
         else:
             logFile.write("Processing %s.\n" % partnerId)
             if not os.path.isfile(partnerResultFile):
-                pdbFile, pdbChain = getPDB(partnerId, args)
+                pdbFile, pdbChain = getPDB(partnerId, pdbDatabase)
                 partnerMol = Molecule(pdbFile)
                 partnerSeq = partnerMol.getSequence(pdbChain)
                 with open(partnerFile, "w") as partnerFasta:
