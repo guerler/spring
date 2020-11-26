@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import argparse
-import os
+
+from spring_package.Alignment import getCrossReference, getTemplates
 
 
 def main(args):
@@ -23,17 +24,7 @@ def main(args):
     else:
         inputs = targets
         inputPath = targetPath
-    crossReference = dict()
-    with open(args.crossreference) as file:
-        for line in file:
-            columns = line.split()
-            if len(columns) < 2:
-                raise Exception("Invalid cross reference entry %s." % line)
-            core = columns[0]
-            partner = columns[-1]
-            if core not in crossReference:
-                crossReference[core] = []
-            crossReference[core].append(partner)
+    crossReference = getCrossReference(args.crossreference)
     print("Loaded cross reference from `%s`." % args.crossreference)
     interactions = dict()
     for targetName in targets:
@@ -70,15 +61,14 @@ def main(args):
 
 def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
                 minScore, logFile, interactions):
-    targetTop, targetHits = getTemplateScores(targetFile, minScore)
+    targetTop, targetHits = getTemplates(targetFile, minScore)
     if not targetHits:
         print("No targets found `%s`" % targetFile)
     else:
         print("Loaded target scores from `%s`." % targetFile)
         for inputName in inputs:
             inputFile = "%s/%s" % (inputPath, inputName)
-            inputTop, inputHits = getTemplateScores(inputFile,
-                                                    minScore)
+            inputTop, inputHits = getTemplates(inputFile, minScore)
             minZ = 0
             minInfo = ""
             for t in targetHits:
@@ -104,24 +94,6 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
                                                     minZ=minZ, minInfo=minInfo)
                 logFile.write("Interaction between %s and %s [min-Z: %s].\n" % 
                               (targetName, inputName, minZ))
-
-
-def getTemplateScores(hhrFile, minScore):
-    result = dict()
-    topTemplate = None
-    if os.path.isfile(hhrFile):
-        with open(hhrFile) as file:
-            for index, line in enumerate(file):
-                if index > 8:
-                    if not line.strip():
-                        break
-                    templateId = line[4:10]
-                    templateScore = float(line[57:63])
-                    if templateScore > minScore:
-                        if topTemplate is None:
-                            topTemplate = templateId
-                        result[templateId] = templateScore
-    return topTemplate, result
 
 
 if __name__ == "__main__":

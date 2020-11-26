@@ -1,4 +1,5 @@
 from Bio import pairwise2
+from os.path import isfile
 
 
 class Alignment:
@@ -108,3 +109,36 @@ class Alignment:
         code = dict(GLY="G", ALA="A", VAL="V", LEU="L", ILE="I", MET="M", PHE="F", PRO="P", TYR="Y", TRP="W",
                     LYS="K", SER="S", CYS="C", ASN="N", GLN="Q", HIS="H", THR="T", GLU="E", ASP="D", ARG="R")
         return code[seq] if seq in code else "X"
+
+
+def getTemplates(hhrFile, minScore):
+    result = dict()
+    topTemplate = None
+    if isfile(hhrFile):
+        with open(hhrFile) as file:
+            for index, line in enumerate(file):
+                if index > 8:
+                    if not line.strip():
+                        break
+                    templateId = line[4:10]
+                    templateScore = float(line[57:63])
+                    if templateScore > minScore:
+                        if topTemplate is None:
+                            topTemplate = templateId
+                        result[templateId] = templateScore
+    return topTemplate, result
+
+
+def getCrossReference(crossReferenceFile):
+    crossReference = dict()
+    with open(crossReferenceFile) as file:
+        for line in file:
+            columns = line.split()
+            if len(columns) < 2:
+                raise Exception("Invalid cross reference entry %s." % line)
+            core = columns[0]
+            partner = columns[-1]
+            if core not in crossReference:
+                crossReference[core] = []
+            crossReference[core].append(partner)
+    return crossReference
