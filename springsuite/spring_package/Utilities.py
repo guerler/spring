@@ -19,7 +19,6 @@ def getChain(identifier):
 
 
 def getName(identifier):
-    validateIdentifier(identifier)
     pdb = identifier[:4].lower()
     return pdb
 
