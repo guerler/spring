@@ -8,14 +8,12 @@ def main(args):
     pdbUrl = "https://files.rcsb.org/download/"
     pdbPath = args.pdbpath.rstrip("/")
     system("mkdir -p %s" % pdbPath)
-    entries = list()
+    entries = set()
     with open(args.list) as file:
         for line in file:
-            entries.append(line.strip())
+            entries.add(line[:4].lower())
     print("Found %s template entries from `%s`." % (len(entries), args.list))
-
-    for entryId in entries:
-        pdbId = entryId[:4].lower()
+    for pdbId in sorted(entries):
         print("Loading %s..." % pdbId)
         pdbFile = "%s.pdb" % pdbId
         pdbPathFile = "%s/%s" % (pdbPath, pdbFile)

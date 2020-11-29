@@ -2,7 +2,7 @@ from os.path import isfile
 
 
 def validateIdentifier(identifier):
-    if len(identifier) != 6 or identifier[4:5] != "_":
+    if len(identifier) < 6 or identifier[4:5] != "_":
         raise Exception("Invalid list entry (`PDB_CHAIN`): %s." % identifier)
 
 

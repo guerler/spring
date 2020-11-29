@@ -11,7 +11,7 @@ from spring_package.Utilities import getId, getChain, getName
 def getPDB(line, pdbDatabase):
     pdb = getName(line)
     pdbChain = getChain(line)
-    pdbFile = "%s/temp.pdb" % args.temp
+    pdbFile = "temp/temp.pdb"
     pdbDatabaseId = "%s.pdb" % pdb
     pdbDatabase.createFile(pdbDatabaseId, pdbFile)
     return pdbFile, pdbChain
@@ -54,10 +54,9 @@ def findMatch(identifier, templates, databaseFile, pdbDatabase):
 
 def main(args):
     logFile = open(args.log, "w")
-    temp = args.temp.rstrip("/")
     templates = set()
-    system("mkdir -p %s" % temp)
-    templateSequenceFile = "%s/templates.fasta" % temp
+    system("mkdir -p temp")
+    templateSequenceFile = "temp/templates.fasta"
     pdbDatabase = DBKit(args.index, args.database)
     if not isfile(templateSequenceFile):
         templateSequences = open(templateSequenceFile, "w")
@@ -128,6 +127,5 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--cross', help='Cross reference (unmapped)', required=True)
     parser.add_argument('-o', '--output', help='Cross reference', required=True)
     parser.add_argument('-g', '--log', help='Log File', required=True)
-    parser.add_argument('-t', '--temp', help='Temporary directory', required=True)
     args = parser.parse_args()
     main(args)
