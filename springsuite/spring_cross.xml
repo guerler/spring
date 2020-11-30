@@ -1,10 +1,9 @@
 <tool id="spring_cross" name="SPRING Cross" version="0.1.0" python_template_version="3.5" license="MIT">
     <description>reference builder</description>
     <command detect_errors="exit_code"><![CDATA[
-        python3 '$__tool_directory__/spring_cross.py' -l '$list' -i '$index' -d '$database' -o '$output' -g '$log' -t temp
+        python3 '$__tool_directory__/spring_cross.py' -i '$index' -d '$database' -o '$output' -g '$log'
     ]]></command>
     <inputs>
-        <param format="tabular" name="list" type="data" label="PDB Chain Identifiers" help="List of PDB chains `PDB_CHAIN`."/>
         <param format="ffindex" name="index" type="data" label="PDB Database Index" help="Database Index file."/>
         <param format="ffdata" name="database" type="data" label="PDB Database" help="Database Data file."/>
     </inputs>
@@ -18,7 +17,6 @@ input for the SPRING min-Z calculator.
     ]]></help>
     <tests>
         <test>
-            <param name="list" value="cross/chains.tabular" />
             <param name="index" value="cross/pdb.ffindex" />
             <param name="database" value="cross/pdb.ffdata" />
             <output name="output" file="cross/reference.tabular"/>

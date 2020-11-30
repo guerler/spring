@@ -28,7 +28,7 @@ def main(args):
     print("Loaded cross reference from `%s`." % args.cross)
     interactions = dict()
     for targetName in targets:
-        targetFile = "%s/%s.txt" % (targetPath, targetName)
+        targetFile = "%s/%s" % (targetPath, targetName)
         matchScores(targetFile=targetFile,
                     targetName=targetName,
                     inputs=inputs,
@@ -40,7 +40,7 @@ def main(args):
     if args.inputlist:
         for inputName in inputs:
             inputDirectory = inputPath
-            inputFile = "%s/%s.txt" % (inputDirectory, inputName)
+            inputFile = "%s/%s" % (inputDirectory, inputName)
             matchScores(targetFile=inputFile,
                         targetName=inputName,
                         inputs=targets,
@@ -67,7 +67,7 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
     else:
         print("Loaded target scores from `%s`." % targetFile)
         for inputName in inputs:
-            inputFile = "%s/%s.txt" % (inputPath, inputName)
+            inputFile = "%s/%s" % (inputPath, inputName)
             inputTop, inputHits = getTemplates(inputFile, minScore)
             minZ = 0
             minInfo = ""
