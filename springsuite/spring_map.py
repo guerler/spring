@@ -54,16 +54,19 @@ def findMatch(identifier, templates, databaseFile, pdbDatabase):
 
 def main(args):
     logFile = open(args.log, "w")
-    templates = set()
     system("mkdir -p temp")
     templateSequenceFile = "temp/templates.fasta"
     pdbDatabase = DBKit(args.index, args.database)
+    templates = set()
+    with open(args.list) as file:
+        for rawId in file:
+            templateId = getId(rawId)
+            templates.add(templateId)
     if not isfile(templateSequenceFile):
         templateSequences = open(templateSequenceFile, "w")
         with open(args.list) as file:
             for rawId in file:
                 templateId = getId(rawId)
-                templates.add(templateId)
                 pdbFile, pdbChain = getPDB(templateId, pdbDatabase)
                 try:
                     templateMol = Molecule(pdbFile)
@@ -71,7 +74,7 @@ def main(args):
                     templateSequences.write(">%s\n" % templateId)
                     templateSequences.write("%s\n" % templateSeq)
                 except Exception:
-                    logFile.write("Warning: File not found [%s].\n" % pdbFile)
+                    logFile.write("Warning: File not found [%s].\n" % templateId)
         templateSequences.close()
         system("makeblastdb -in %s -dbtype prot" % templateSequenceFile)
     else:
