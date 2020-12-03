@@ -209,7 +209,7 @@ def main(args):
     # determine negative set
     print("Identifying non-interacting pairs...")
     negative = set()
-    if isfile(args.negative):
+    if args.negative and isfile(args.negative):
         # load from explicit file
         with open(args.negative) as file:
             for line in file:
@@ -222,7 +222,7 @@ def main(args):
     else:
         # get subcellular locations from UniProt export
         locations = dict()
-        if isfile(args.locations):
+        if args.locations and isfile(args.locations):
             regions = list()
             if args.regions:
                 regions = args.regions.split(",")
@@ -239,7 +239,7 @@ def main(args):
                                 continue
                         if uniId in filterA or uniId in filterB:
                             locations[uniId] = locId
-            print("Found %d subcellular locations." % (len(list(locations.keys()))))
+            print("Found subcellular locations for %s entries." % (len(list(locations.keys()))))
 
         # randomly sample non-interacting pairs
         filterAList = sorted(list(filterA))

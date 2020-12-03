@@ -31,9 +31,11 @@ def getSequences(fileName):
 def findMatch(identifier, templates, databaseFile, pdbDatabase):
     if identifier in templates:
         return identifier
-    fastaFile = "temp/%s.fasta" % identifier
+    resultSub = identifier[:2]
+    fastaFile = "temp/%s/%s.fasta" % (resultSub, identifier)
     resultFile = "%s.result" % fastaFile
     if not isfile(resultFile):
+        system("mkdir -p temp/%s" % resultSub)
         pdbFile, pdbChain = getPDB(identifier, pdbDatabase)
         mol = Molecule(pdbFile)
         seq = mol.getSequence(pdbChain)

@@ -25,6 +25,7 @@ def getName(identifier):
 
 def getCrossReference(crossReferenceFile):
     crossReference = dict()
+    crossCount = 0
     with open(crossReferenceFile) as file:
         for line in file:
             columns = line.split()
@@ -36,6 +37,8 @@ def getCrossReference(crossReferenceFile):
                 crossReference[core] = []
             if partner not in crossReference[core]:
                 crossReference[core].append(partner)
+                crossCount = crossCount + 1
+    print("Identified %s reference interactions." % crossCount)
     return crossReference
 
 
