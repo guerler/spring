@@ -82,6 +82,34 @@ def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
         yield templateHit["templatePair"]
 
 
+def getClashes(moleculeA, moleculeB, minDist=3.0):
+    minDist = minDist ** 2
+    clashes = 0
+    chainA = list(moleculeA.calpha.keys())[0]
+    chainB = list(moleculeB.calpha.keys())[0]
+    calphaA = moleculeA.calpha[chainA]
+    calphaB = moleculeB.calpha[chainB]
+    lenA = len(calphaA.keys())
+    lenB = len(calphaB.keys())
+    if lenA > lenB:
+        temp = calphaB
+        calphaB = calphaA
+        calphaA = temp
+        lenA = len(calphaA.keys())
+        lenB = len(calphaB.keys())
+    for i in calphaA:
+        atomA = calphaA[i]
+        for j in calphaB:
+            atomB = calphaB[j]
+            dist2 = ((atomA["x"] - atomB["x"]) ** 2 +
+                     (atomA["y"] - atomB["y"]) ** 2 +
+                     (atomA["z"] - atomB["z"]) ** 2)
+            if dist2 < minDist:
+                clashes = clashes + 1
+                break
+    return clashes / float(lenA)
+
+
 def main(args):
     print("SPRING - Complex Model Creation")
     print("Sequence A: %s" % args.a_hhr)
@@ -125,14 +153,16 @@ def main(args):
                     print("Warning: Failed TMalign [%s]." % bTemplateChain)
                     continue
                 TMscore = min(coreTMscore, partnerTMscore)
-                print("  min-TMscore: %5.5f" % TMscore)
+                print("  minTMscore : %5.5f" % TMscore)
                 energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
                 print("  Interaction: %5.5f" % energy)
+                clashes = getClashes(coreMolecule, partnerMolecule)
+                print("  ClashRatio : %5.5f" % clashes)
                 springScore = TMscore * args.wtm + energy * args.wenergy
                 print("  SpringScore: %5.5f" % springScore)
                 if springScore > maxScore:
                     maxScore = springScore
-                    maxInfo = "%s\t %5.5f\t %5.5f\n" % (outputName, TMscore, energy)
+                    maxInfo = "%s\t %5.5f\t %5.5f\t %5.5f\n" % (outputName, TMscore, energy, clashes)
                     coreMolecule.save(outputName, chainName="0")
                     partnerMolecule.save(outputName, chainName="1", append=True)
                     if args.showtemplate == "true":

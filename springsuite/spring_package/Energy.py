@@ -22,7 +22,9 @@ class Energy:
             for j in moleculeB.calpha[chainB]:
                 atomB = moleculeB.calpha[chainB][j]
                 indexB = self.toResCode(atomB["residue"])
-                dist2 = (atomA["x"] - atomB["x"]) ** 2 + (atomA["y"] - atomB["y"]) ** 2 + (atomA["z"] - atomB["z"]) ** 2
+                dist2 = ((atomA["x"] - atomB["x"]) ** 2 +
+                         (atomA["y"] - atomB["y"]) ** 2 +
+                         (atomA["z"] - atomB["z"]) ** 2)
                 dist = int((math.sqrt(dist2) * NSCALE))
                 if dist < NDIST:
                     index = indexA * NTYPE * NDIST + indexB * NDIST + dist
