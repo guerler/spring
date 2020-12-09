@@ -23,20 +23,23 @@ def getName(identifier):
     return pdb
 
 
-def getCrossReference(crossReferenceFile):
+def getCrossReference(crossReferenceFile, allPartners=False):
     crossReference = dict()
     crossCount = 0
     with open(crossReferenceFile) as file:
         for line in file:
             columns = line.split()
-            if len(columns) < 4:
+            if len(columns) < 2:
                 raise Exception("Invalid Cross Reference Entry %s." % line)
             core = columns[0]
             partner = columns[1]
-            templates = [columns[2], columns[3]]
+            if len(columns) < 4:
+                templates = [core, partner]
+            else:
+                templates = [columns[2], columns[3]]
             if core not in crossReference:
                 crossReference[core] = dict(partners=list(), templates=list())
-            if partner not in crossReference[core]["partners"]:
+            if allPartners or partner not in crossReference[core]["partners"]:
                 crossReference[core]["partners"].append(partner)
                 crossReference[core]["templates"].append(templates)
                 crossCount = crossCount + 1
