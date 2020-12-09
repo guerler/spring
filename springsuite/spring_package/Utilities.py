@@ -33,10 +33,12 @@ def getCrossReference(crossReferenceFile):
                 raise Exception("Invalid Cross Reference Entry %s." % line)
             core = columns[0]
             partner = columns[1]
+            templates = [columns[2], columns[3]]
             if core not in crossReference:
-                crossReference[core] = []
+                crossReference[core] = dict(partners=list(), templates=list())
             if partner not in crossReference[core]:
-                crossReference[core].append(partner)
+                crossReference[core]["partners"].append(partner)
+                crossReference[core]["templates"].append(templates)
                 crossCount = crossCount + 1
     print("Identified %s reference interactions." % crossCount)
     return crossReference

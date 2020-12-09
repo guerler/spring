@@ -62,10 +62,11 @@ def TMalign(fileA, fileB):
 
 
 def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
+    maxPartners = maxTries
     templateIndex = dict()
     for aTemplate in aTemplates:
         if aTemplate in crossReference:
-            partners = crossReference[aTemplate]
+            partners = crossReference[aTemplate]["partners"]
             for pTemplate in partners:
                 if pTemplate in bTemplates:
                     minZ = min(aTemplates[aTemplate], bTemplates[pTemplate])
@@ -73,10 +74,15 @@ def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
     templateList = sorted(templateIndex.items(), key=lambda item: item[1], reverse=True)
     print("Found %d templates." % len(templateList))
     for templateName, templateScore in templateList:
-        if templateScore < minScore or maxTries == 0:
+        if templateScore < minScore or maxPartners == 0:
             break
-        maxTries = maxTries - 1
-        yield templateName
+        maxPartners = maxPartners - 1
+        maxTemplates = maxTries
+        for templateSource in crossReference[templateName]["templates"]:
+            maxTemplates = maxTemplates - 1
+            yield templateSource
+            if maxTemplates == 0:
+                break
 
 
 def main(args):
@@ -97,43 +103,43 @@ def main(args):
     maxInfo = None
     minScore = float(args.minscore)
     maxTries = int(args.maxtries)
-    for aTemplate in getFrameworks(aTemplates, bTemplates, crossReference, minScore=minScore, maxTries=maxTries):
+    for [aTemplate, bTemplate] in getFrameworks(aTemplates, bTemplates, crossReference, minScore=minScore, maxTries=maxTries):
         print("Evaluating Complex Template: %s." % aTemplate)
         templateFile = "temp/template.pdb"
-        templateChain = getChain(aTemplate)
         createPDB(aTemplate, pdbDatabase, templateFile)
         templateMolecule = Molecule(templateFile)
+        aTemplateChain = getChain(aTemplate)
+        bTemplateChain = getChain(bTemplate)
+        print("Evaluating chain %s and %s..." % (aTemplate, bTemplate))
         for biomolNumber in range(len(templateMolecule.biomol.keys())):
-            system("rm -f temp/template*.pdb")
+            system("rm -f temp/template_*.pdb")
             if biomolNumber == 0:
                 bioMolecule = templateMolecule
             else:
                 bioMolecule = templateMolecule.createUnit(biomolNumber)
-            if len(bioMolecule.calpha.keys()) > 1 and templateChain in bioMolecule.calpha:
-                for chainName in bioMolecule.calpha.keys():
-                    bioMolecule.saveChain(chainName, "temp/template%s.pdb" % chainName)
-                coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template%s.pdb" % templateChain)
-                for chainName in bioMolecule.calpha.keys():
-                    if chainName != templateChain and len(bioMolecule.calpha[chainName]) > 0:
-                        print("Evaluating chain %s..." % chainName)
-                        try:
-                            partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template%s.pdb" % chainName)
-                        except Exception:
-                            print("Warning: Failed TMalign [%s]." % chainName)
-                            continue
-                        TMscore = min(coreTMscore, partnerTMscore)
-                        print("  min-TMscore: %5.5f" % TMscore)
-                        energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
-                        print("  Interaction: %5.5f" % energy)
-                        springScore = TMscore * args.wtm + energy * args.wenergy
-                        print("  SpringScore: %5.5f" % springScore)
-                        if springScore > maxScore:
-                            maxScore = springScore
-                            maxInfo = "%s\t %5.5f\t %5.5f\n" % (outputName, TMscore, energy)
-                            coreMolecule.save(outputName, chainName="0")
-                            partnerMolecule.save(outputName, chainName="1", append=True)
-                            if args.showtemplate == "true":
-                                bioMolecule.save(outputName, append=True)
+            if len(bioMolecule.calpha.keys()) > 1 and aTemplateChain in bioMolecule.calpha and bTemplateChain in bioMolecule.calpha:
+                print("Evaluating biomolecule %i..." % biomolNumber)
+                bioMolecule.saveChain(aTemplateChain, "temp/template_0.pdb")
+                bioMolecule.saveChain(bTemplateChain, "temp/template_1.pdb")
+                try:
+                    coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template_0.pdb")
+                    partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template_1.pdb")
+                except Exception:
+                    print("Warning: Failed TMalign [%s]." % bTemplateChain)
+                    continue
+                TMscore = min(coreTMscore, partnerTMscore)
+                print("  min-TMscore: %5.5f" % TMscore)
+                energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
+                print("  Interaction: %5.5f" % energy)
+                springScore = TMscore * args.wtm + energy * args.wenergy
+                print("  SpringScore: %5.5f" % springScore)
+                if springScore > maxScore:
+                    maxScore = springScore
+                    maxInfo = "%s\t %5.5f\t %5.5f\n" % (outputName, TMscore, energy)
+                    coreMolecule.save(outputName, chainName="0")
+                    partnerMolecule.save(outputName, chainName="1", append=True)
+                    if args.showtemplate == "true":
+                        bioMolecule.save(outputName, append=True)
     if maxInfo is not None:
         print("Completed.")
         print("SpringScore: %5.5f" % maxScore)
@@ -160,7 +166,7 @@ if __name__ == "__main__":
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
     parser.add_argument('-ms', '--minscore', help='Minimum min-Z score threshold', type=float, default=10.0, required=False)
-    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=20, required=False)
+    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=10, required=False)
     parser.add_argument('-sr', '--showtemplate', help='Add reference template to model structure', required=False, default="true")
     args = parser.parse_args()
     main(args)

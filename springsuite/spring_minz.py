@@ -73,7 +73,7 @@ def matchScores(targetFile, targetName, inputs, inputPath, crossReference,
             minInfo = ""
             for t in targetHits:
                 if t in crossReference:
-                    partners = crossReference[t]
+                    partners = crossReference[t]["partners"]
                     for p in partners:
                         if p in inputHits:
                             score = min(targetHits[t], inputHits[p])
