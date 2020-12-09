@@ -62,27 +62,24 @@ def TMalign(fileA, fileB):
 
 
 def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
-    maxPartners = maxTries
-    templateIndex = dict()
+    templateHits = list()
     for aTemplate in aTemplates:
         if aTemplate in crossReference:
             partners = crossReference[aTemplate]["partners"]
-            for pTemplate in partners:
+            templates = crossReference[aTemplate]["templates"]
+            for pIndex in range(len(partners)):
+                pTemplate = partners[pIndex]
+                templatePair = templates[pIndex]
                 if pTemplate in bTemplates:
                     minZ = min(aTemplates[aTemplate], bTemplates[pTemplate])
-                    templateIndex[aTemplate] = minZ
-    templateList = sorted(templateIndex.items(), key=lambda item: item[1], reverse=True)
+                    templateHits.append(dict(templatePair=templatePair, score=minZ))
+    templateList = sorted(templateHits, key=lambda item: item["score"], reverse=True)
     print("Found %d templates." % len(templateList))
-    for templateName, templateScore in templateList:
-        if templateScore < minScore or maxPartners == 0:
+    for templateHit in templateList:
+        if templateHit["score"] < minScore or maxTries == 0:
             break
-        maxPartners = maxPartners - 1
-        maxTemplates = maxTries
-        for templateSource in crossReference[templateName]["templates"]:
-            maxTemplates = maxTemplates - 1
-            yield templateSource
-            if maxTemplates == 0:
-                break
+        maxTries = maxTries - 1
+        yield templateHit["templatePair"]
 
 
 def main(args):
@@ -166,7 +163,7 @@ if __name__ == "__main__":
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
     parser.add_argument('-ms', '--minscore', help='Minimum min-Z score threshold', type=float, default=10.0, required=False)
-    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=10, required=False)
+    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=20, required=False)
     parser.add_argument('-sr', '--showtemplate', help='Add reference template to model structure', required=False, default="true")
     args = parser.parse_args()
     main(args)
