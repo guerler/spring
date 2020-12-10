@@ -17,6 +17,7 @@ def createPDB(identifier, pdbDatabase, outputName):
 
 
 def buildModel(resultFile, identifier, pdbDatabase, outputName):
+    print("Building model with: %s." % identifier)
     createPDB(identifier, pdbDatabase, outputName)
     template = Molecule(outputName)
     pdbChain = getChain(identifier)
@@ -29,8 +30,7 @@ def buildModel(resultFile, identifier, pdbDatabase, outputName):
     system("./build/pulchra %s" % outputName)
 
 
-def TMalign(fileA, fileB):
-    tmName = "temp/tmalign"
+def TMalign(fileA, fileB, tmName="temp/tmalign"):
     system("build/TMalign %s %s -m %s.mat > %s.out" % (fileA, fileB, tmName, tmName))
     rotmat = list()
     with open("%s.mat" % tmName) as file:
@@ -55,6 +55,32 @@ def TMalign(fileA, fileB):
     for atom in molecule.atoms:
         molecule.applyMatrix(atom, rotmat)
     return tmscore, molecule
+
+
+def TMalignAlignment(bioMolecule, templateChain, tmName="temp/tmalign"):
+    aligned = list()
+    with open("%s.out" % tmName) as file:
+        for i in range(19):
+            line = next(file)
+        try:
+            modelAlign = line
+            line = next(file)
+            alignment = line
+            line = next(file)
+            templateAlign = line
+        except Exception:
+            raise Exception("TMalign::Failed to retrieve TMalign results.")
+    templateResidues = sorted(bioMolecule.calpha[templateChain].values(), key=lambda item: item["residueNumber"])
+    templateIndex = 0
+    for i in range(len(alignment)):
+        t = templateAlign[i]
+        if alignment[i] == ":":
+            templateResidue = templateResidues[templateIndex]
+            templateResidue["alignedResidue"] = modelAlign[i]
+            aligned.append(templateResidue)
+        if t != "-":
+            templateIndex = templateIndex + 1
+    return aligned
 
 
 def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
@@ -108,6 +134,7 @@ def main(args):
         if aTemplateChain == bTemplateChain:
             bTemplateChain = "%s_0" % bTemplateChain
         print("Evaluating chain %s and %s..." % (aTemplate, bTemplate))
+        biomolFound = False
         for biomolNumber in range(len(templateMolecule.biomol.keys())):
             system("rm -f temp/template_*.pdb")
             if biomolNumber == 0:
@@ -122,13 +149,17 @@ def main(args):
                 bioMolecule.saveChain(bTemplateChain, "temp/template_1.pdb")
                 try:
                     coreTMscore, coreMolecule = TMalign("temp/monomerA.rebuilt.pdb", "temp/template_0.pdb")
+                    coreAligned = TMalignAlignment(bioMolecule, aTemplateChain)
                     partnerTMscore, partnerMolecule = TMalign("temp/monomerB.rebuilt.pdb", "temp/template_1.pdb")
-                except Exception:
+                    partnerAligned = TMalignAlignment(bioMolecule, bTemplateChain)
+                except Exception as e:
                     print("Warning: Failed TMalign [%s]." % bTemplateChain)
+                    print(str(e))
                     continue
+                biomolFound = True
                 TMscore = min(coreTMscore, partnerTMscore)
                 print("  minTMscore : %5.2f" % TMscore)
-                energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
+                energy = -interfaceEnergy.get(coreAligned, partnerAligned)
                 print("  Interaction: %5.2f" % energy)
                 clashes = interfaceEnergy.getClashes(coreMolecule, partnerMolecule)
                 print("  ClashRatio : %5.2f" % clashes)
@@ -136,11 +167,13 @@ def main(args):
                 print("  SpringScore: %5.2f" % springScore)
                 if springScore > maxScore:
                     maxScore = springScore
-                    maxInfo = "%s\t %s\t %5.2f\t %5.2f\t %5.2f\n" % (aName, bName, TMscore, energy, clashes)
+                    maxInfo = "%s\t %s\t %s\t %5.2f\t %5.2f\t %5.2f\n" % (aName, bName, TMscore, energy, clashes, springScore)
                     coreMolecule.save(outputName, chainName="0")
                     partnerMolecule.save(outputName, chainName="1", append=True)
                     if args.showtemplate == "true":
                         bioMolecule.save(outputName, append=True)
+            if biomolFound:
+                break
     if maxInfo is not None:
         print("Completed.")
         print("SpringScore: %5.2f" % maxScore)
@@ -148,7 +181,7 @@ def main(args):
         logExists = isfile(args.log)
         logFile = open(args.log, "a+")
         if not logExists:
-            logFile.write("# Columns: NameA, NameB, TMscore, Energy, Clashes\n")
+            logFile.write("# Columns: NameA, NameB, TMscore, Energy, Clashes, Score\n")
         logFile.write(maxInfo)
         logFile.close()
     else:
@@ -165,7 +198,7 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output', help='Output model file', required=True)
     parser.add_argument('-g', '--log', help='Log file', required=True)
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
-    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
+    parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=-0.01, required=False)
     parser.add_argument('-ms', '--minscore', help='Minimum min-Z score threshold', type=float, default=10.0, required=False)
     parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=20, required=False)
     parser.add_argument('-sr', '--showtemplate', help='Add reference template to model structure', required=False, default="true")

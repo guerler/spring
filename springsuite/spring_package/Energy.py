@@ -12,16 +12,12 @@ class Energy:
             for line in file:
                 self.dfire.append(float(line))
 
-    def get(self, moleculeA, moleculeB):
+    def get(self, residuesA, residuesB):
         result = 0
-        chainA = list(moleculeA.calpha.keys())[0]
-        chainB = list(moleculeB.calpha.keys())[0]
-        for i in moleculeA.calpha[chainA]:
-            atomA = moleculeA.calpha[chainA][i]
-            indexA = self.toResCode(atomA["residue"])
-            for j in moleculeB.calpha[chainB]:
-                atomB = moleculeB.calpha[chainB][j]
-                indexB = self.toResCode(atomB["residue"])
+        for atomA in residuesA:
+            indexA = self.toResCode(atomA["alignedResidue"])
+            for atomB in residuesB:
+                indexB = self.toResCode(atomB["alignedResidue"])
                 dist2 = ((atomA["x"] - atomB["x"]) ** 2 +
                          (atomA["y"] - atomB["y"]) ** 2 +
                          (atomA["z"] - atomB["z"]) ** 2)
@@ -59,6 +55,6 @@ class Energy:
         return clashes / float(lenA)
 
     def toResCode(self, seq):
-        code = dict(ALA=0, CYS=1, ASP=2, GLU=3, PHE=4, GLY=5, HIS=6, ILE=7, LYS=8, LEU=9, MET=10,
-                    ASN=11, PRO=12, GLN=13, ARG=14, SER=15, THR=16, VAL=17, TRP=18, TYR=19)
+        code = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9, M=10,
+                    N=11, P=12, Q=13, R=14, S=15, T=16, V=17, W=18, Y=19)
         return code[seq] if seq in code else 20
