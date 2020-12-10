@@ -88,7 +88,7 @@ class Molecule:
 
     def createUnit(self, biomolNumber=1):
         molecule = Molecule()
-        chainCount = 0
+        chainCount = dict()
         for matrixDict in self.biomol[biomolNumber]:
             for chain in matrixDict["chains"]:
                 if chain in self.calpha:
@@ -99,12 +99,14 @@ class Molecule:
                         atom = chainCopy[atomNumber]
                         rotmat = matrixDict["matrix"]
                         self.applyMatrix(atom, rotmat)
-                    if chain in molecule.calpha:
-                        chainName = "%s%d" % (chain, chainCount)
+                    if chain in chainCount:
+                        chainCount = chainCount[chain]
+                        chainName = "%s_%d" % (chain, chainCount)
+                        chainCount[chain] = chainCount + 1
                     else:
                         chainName = chain
+                        chainCount[chain] = 0
                     molecule.calpha[chainName] = chainCopy
-                    chainCount = chainCount + 1
         return molecule
 
     def getSequence(self, chainName):

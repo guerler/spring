@@ -105,6 +105,8 @@ def main(args):
         templateMolecule = Molecule(templateFile)
         aTemplateChain = getChain(aTemplate)
         bTemplateChain = getChain(bTemplate)
+        if aTemplateChain == bTemplateChain:
+            bTemplateChain = "%s_0" % bTemplateChain
         print("Evaluating chain %s and %s..." % (aTemplate, bTemplate))
         for biomolNumber in range(len(templateMolecule.biomol.keys())):
             system("rm -f temp/template_*.pdb")
@@ -112,7 +114,9 @@ def main(args):
                 bioMolecule = templateMolecule
             else:
                 bioMolecule = templateMolecule.createUnit(biomolNumber)
-            if len(bioMolecule.calpha.keys()) > 1 and aTemplateChain in bioMolecule.calpha and bTemplateChain in bioMolecule.calpha:
+            if (len(bioMolecule.calpha.keys()) > 1
+               and aTemplateChain in bioMolecule.calpha
+               and bTemplateChain in bioMolecule.calpha):
                 print("Evaluating biomolecule %i..." % biomolNumber)
                 bioMolecule.saveChain(aTemplateChain, "temp/template_0.pdb")
                 bioMolecule.saveChain(bTemplateChain, "temp/template_1.pdb")
