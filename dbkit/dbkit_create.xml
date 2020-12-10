@@ -1,18 +1,18 @@
 <tool id="dbkit_create" name="DBKit Create" version="0.1.1" python_template_version="3.5" license="MIT">
     <description>database generator</description>
     <command detect_errors="exit_code"><![CDATA[
-        #if str($input_type.input_type_selector) == "true":
+        #if str($source.type) == "false":
             mkdir -p inputs &&
-            #for input in $source.inputs
-                link '${str(input)}' 'inputs/${input.element_identifier}' &&
+            #for item in $source.inputs
+                cp '${str(item)}' 'inputs/${item.element_identifier}' &&
             #end for
         #end if
-        python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$url' -p 'inputs' -o '$index' -d '$database' -g '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
+        python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$source.url' -p 'inputs' -o '$index' -d '$database' -g '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
     ]]></command>
     <inputs>
+        <param format="tabular" name="input" type="data" label="List of Identifiers" help="Specify a list containing all entry identifiers to be downloaded."/>    
         <conditional name="source">
-            <param format="tabular" name="input" type="data" label="List of Identifiers" help="Specify a list containing all entry identifiers to be downloaded."/>    
-            <param name="type" type="boolean" label="Download data from URL" />
+            <param name="type" type="boolean" label="Download from URL"/>
             <when value="true">
                 <param name="url" type="text" label="URL to External Source" help="Specify the URL to the external database source.">
                     <option value="https://files.rcsb.org/download/">https://files.rcsb.org/download/</option>

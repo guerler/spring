@@ -167,7 +167,7 @@ def main(args):
                 print("  SpringScore: %5.2f" % springScore)
                 if springScore > maxScore:
                     maxScore = springScore
-                    maxInfo = "%s\t %s\t %s\t %5.2f\t %5.2f\t %5.2f\n" % (aName, bName, TMscore, energy, clashes, springScore)
+                    maxInfo = "%s\t %s\t %5.2f\t %5.2f\t %5.2f\t %5.2f\n" % (aName, bName, springScore, TMscore, energy, clashes)
                     coreMolecule.save(outputName, chainName="0")
                     partnerMolecule.save(outputName, chainName="1", append=True)
                     if args.showtemplate == "true":
@@ -181,7 +181,7 @@ def main(args):
         logExists = isfile(args.log)
         logFile = open(args.log, "a+")
         if not logExists:
-            logFile.write("# Columns: NameA, NameB, TMscore, Energy, Clashes, Score\n")
+            logFile.write("# Columns: NameA, NameB, Score, TMscore, Energy, Clashes\n")
         logFile.write(maxInfo)
         logFile.close()
     else:

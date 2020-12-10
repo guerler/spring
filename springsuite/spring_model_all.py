@@ -16,7 +16,6 @@ def main(args):
             logfile = "%s/log.txt" % outPath
             cmdString = "./spring_model.py -a '%s' -b '%s' -c '%s' -i '%s' -d '%s' -o '%s' -g '%s'" % (a, b, args.cross, args.index, args.database, outfile, logfile)
             system(cmdString)
-            exit()
 
 
 if __name__ == "__main__":

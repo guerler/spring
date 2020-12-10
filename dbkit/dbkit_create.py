@@ -47,6 +47,8 @@ def main(args):
                 indexFile.write("%s\t%d\t%d\n" % (entryId, start, size))
                 start = start + size
                 system("cat %s >> %s" % (fileName, outputDatabase))
+        else:
+            logFile.write("Content not found: %s.\n" % fileName)
         logFile.flush()
     logFile.close()
 
