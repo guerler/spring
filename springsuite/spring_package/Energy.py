@@ -31,6 +31,33 @@ class Energy:
                     result = result + self.dfire[index]
         return result
 
+    def getClashes(self, moleculeA, moleculeB, minDist=3.0):
+        minDist = minDist ** 2
+        clashes = 0
+        chainA = list(moleculeA.calpha.keys())[0]
+        chainB = list(moleculeB.calpha.keys())[0]
+        calphaA = moleculeA.calpha[chainA]
+        calphaB = moleculeB.calpha[chainB]
+        lenA = len(calphaA.keys())
+        lenB = len(calphaB.keys())
+        if lenA > lenB:
+            temp = calphaB
+            calphaB = calphaA
+            calphaA = temp
+            lenA = len(calphaA.keys())
+            lenB = len(calphaB.keys())
+        for i in calphaA:
+            atomA = calphaA[i]
+            for j in calphaB:
+                atomB = calphaB[j]
+                dist2 = ((atomA["x"] - atomB["x"]) ** 2 +
+                         (atomA["y"] - atomB["y"]) ** 2 +
+                         (atomA["z"] - atomB["z"]) ** 2)
+                if dist2 < minDist:
+                    clashes = clashes + 1
+                    break
+        return clashes / float(lenA)
+
     def toResCode(self, seq):
         code = dict(ALA=0, CYS=1, ASP=2, GLU=3, PHE=4, GLY=5, HIS=6, ILE=7, LYS=8, LEU=9, MET=10,
                     ASN=11, PRO=12, GLN=13, ARG=14, SER=15, THR=16, VAL=17, TRP=18, TYR=19)

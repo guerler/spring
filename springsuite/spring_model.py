@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 from os import system
-from os.path import basename, isfile, splitext
+from os.path import basename, isfile
 
 from spring_package.Alignment import Alignment
 from spring_package.DBKit import DBKit
@@ -30,10 +30,6 @@ def buildModel(resultFile, identifier, pdbDatabase, outputName):
 
 
 def TMalign(fileA, fileB):
-    baseA = basename(fileA)
-    baseB = basename(fileB)
-    baseA = splitext(baseA)[0]
-    baseB = splitext(baseB)[0]
     tmName = "temp/tmalign"
     system("build/TMalign %s %s -m %s.mat > %s.out" % (fileA, fileB, tmName, tmName))
     rotmat = list()
@@ -82,38 +78,12 @@ def getFrameworks(aTemplates, bTemplates, crossReference, minScore, maxTries):
         yield templateHit["templatePair"]
 
 
-def getClashes(moleculeA, moleculeB, minDist=3.0):
-    minDist = minDist ** 2
-    clashes = 0
-    chainA = list(moleculeA.calpha.keys())[0]
-    chainB = list(moleculeB.calpha.keys())[0]
-    calphaA = moleculeA.calpha[chainA]
-    calphaB = moleculeB.calpha[chainB]
-    lenA = len(calphaA.keys())
-    lenB = len(calphaB.keys())
-    if lenA > lenB:
-        temp = calphaB
-        calphaB = calphaA
-        calphaA = temp
-        lenA = len(calphaA.keys())
-        lenB = len(calphaB.keys())
-    for i in calphaA:
-        atomA = calphaA[i]
-        for j in calphaB:
-            atomB = calphaB[j]
-            dist2 = ((atomA["x"] - atomB["x"]) ** 2 +
-                     (atomA["y"] - atomB["y"]) ** 2 +
-                     (atomA["z"] - atomB["z"]) ** 2)
-            if dist2 < minDist:
-                clashes = clashes + 1
-                break
-    return clashes / float(lenA)
-
-
 def main(args):
     print("SPRING - Complex Model Creation")
-    print("Sequence A: %s" % args.a_hhr)
-    print("Sequence B: %s" % args.b_hhr)
+    aName = basename(args.a_hhr)
+    bName = basename(args.b_hhr)
+    print("Sequence A: %s" % aName)
+    print("Sequence B: %s" % bName)
     aTop, aTemplates = getTemplates(args.a_hhr)
     bTop, bTemplates = getTemplates(args.b_hhr)
     system("mkdir -p temp")
@@ -153,28 +123,28 @@ def main(args):
                     print("Warning: Failed TMalign [%s]." % bTemplateChain)
                     continue
                 TMscore = min(coreTMscore, partnerTMscore)
-                print("  minTMscore : %5.5f" % TMscore)
+                print("  minTMscore : %5.2f" % TMscore)
                 energy = -interfaceEnergy.get(coreMolecule, partnerMolecule)
-                print("  Interaction: %5.5f" % energy)
-                clashes = getClashes(coreMolecule, partnerMolecule)
-                print("  ClashRatio : %5.5f" % clashes)
+                print("  Interaction: %5.2f" % energy)
+                clashes = interfaceEnergy.getClashes(coreMolecule, partnerMolecule)
+                print("  ClashRatio : %5.2f" % clashes)
                 springScore = TMscore * args.wtm + energy * args.wenergy
-                print("  SpringScore: %5.5f" % springScore)
+                print("  SpringScore: %5.2f" % springScore)
                 if springScore > maxScore:
                     maxScore = springScore
-                    maxInfo = "%s\t %5.5f\t %5.5f\t %5.5f\n" % (outputName, TMscore, energy, clashes)
+                    maxInfo = "%s\t %s\t %5.2f\t %5.2f\t %5.2f\n" % (aName, bName, TMscore, energy, clashes)
                     coreMolecule.save(outputName, chainName="0")
                     partnerMolecule.save(outputName, chainName="1", append=True)
                     if args.showtemplate == "true":
                         bioMolecule.save(outputName, append=True)
     if maxInfo is not None:
         print("Completed.")
-        print("SpringScore: %5.5f" % maxScore)
+        print("SpringScore: %5.2f" % maxScore)
         print("Result stored to %s" % outputName)
         logExists = isfile(args.log)
         logFile = open(args.log, "a+")
         if not logExists:
-            logFile.write("# Description: Name, TMscore, Energy\n")
+            logFile.write("# Columns: NameA, NameB, TMscore, Energy, Clashes\n")
         logFile.write(maxInfo)
         logFile.close()
     else:
@@ -193,7 +163,7 @@ if __name__ == "__main__":
     parser.add_argument('-wt', '--wtm', help='Weight TM-score', type=float, default=1.0, required=False)
     parser.add_argument('-we', '--wenergy', help='Weight Energy term', type=float, default=0.0, required=False)
     parser.add_argument('-ms', '--minscore', help='Minimum min-Z score threshold', type=float, default=10.0, required=False)
-    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=50, required=False)
+    parser.add_argument('-mt', '--maxtries', help='Maximum number of templates', type=int, default=20, required=False)
     parser.add_argument('-sr', '--showtemplate', help='Add reference template to model structure', required=False, default="true")
     args = parser.parse_args()
     main(args)

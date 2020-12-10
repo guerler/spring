@@ -37,20 +37,7 @@ def main(args):
                     minScore=args.minscore,
                     logFile=logFile,
                     interactions=interactions)
-    if args.inputlist:
-        for inputName in inputs:
-            inputDirectory = inputPath
-            inputFile = "%s/%s" % (inputDirectory, inputName)
-            matchScores(targetFile=inputFile,
-                        targetName=inputName,
-                        inputs=targets,
-                        inputPath=targetPath,
-                        crossReference=crossReference,
-                        minScore=args.minscore,
-                        logFile=logFile,
-                        interactions=interactions)
-    interactions = sorted(interactions.values(), key=lambda item: item["minZ"],
-                          reverse=True)
+    interactions = sorted(interactions.values(), key=lambda item: item["minZ"], reverse=True)
     with open(args.output, 'w') as output_file:
         for entry in interactions:
             output_file.write("%s\t%s\t%s\t%s\n" % (entry["targetName"],
