@@ -50,7 +50,10 @@
     <tests>
         <test>
             <param name="input" value="create/chains.tabular" />
-            <param name="url" value="https://files.rcsb.org/download/" />
+            <conditional name="source">
+                <param name="type" value="true"/>
+                <param name="url" value="https://files.rcsb.org/download/" />
+            </conditional>
             <conditional name="advanced">
                 <param name="type" value="true" />
                 <param name="idextension" value="pdb" />
@@ -61,9 +64,28 @@
             <output name="index" file="create/index.ffindex" />
             <output name="database" file="create/data.ffdata" />
         </test>
+        <test>
+            <param name="input" value="create/sequences.tabular" />
+            <conditional name="source">
+                <param name="type" value="false"/>
+                <param name="inputs">
+                    <collection type="list">
+                        <element name="NP_000282.1.hhr" value="create/NP_000282.1.hhr" />
+                        <element name="NP_000290.2.hhr" value="create/NP_000290.2.hhr" />
+                        <element name="NP_000548.2.hhr" value="create/NP_000548.2.hhr" />
+                        <element name="NP_000836.2.hhr" value="create/NP_000836.2.hhr" />
+                    </collection>
+                </param>
+            </conditional>
+            <conditional name="advanced">
+                <param name="type" value="false" />
+            </conditional>
+            <output name="index" file="create/sequences.ffindex" />
+            <output name="database" file="create/sequences.ffdata" />
+        </test>
     </tests>
     <help><![CDATA[
 This database creation tool downloads entries from an external resource and creates a datasets with all its contents. Additionally an index file is
-generated indicating the start and end of every entry within the database file.
+generated indicating the start and size of every entry within the database file. The tool can also operate on collections.
     ]]></help>
 </tool>

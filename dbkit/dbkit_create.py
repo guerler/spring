@@ -16,7 +16,7 @@ def getIdentifiers(args):
                 entry = entry.lower()
             elif args.idcase == "upper":
                 entry = entry.upper()
-            if args.idextension is not None:
+            if args.idextension:
                 entry = "%s.%s" % (entry, args.idextension)
             entries.add(entry)
     return sorted(entries)
