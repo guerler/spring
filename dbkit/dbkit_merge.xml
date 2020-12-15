@@ -16,11 +16,12 @@
     </outputs>
     <tests>
         <test>
-            <param name="input" value="create/chains.tabular" />
-            <param name="url" value="https://files.rcsb.org/download/" />
-            <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
-            <output name="index" file="create/index.ffindex" />
-            <output name="database" file="create/data.ffdata" />
+            <param name="firstindex" value="create/first.ffindex"/>    
+            <param name="firstdata" value="create/first.ffdata"/>
+            <param name="secondindex" value="merge/second.ffindex"/>    
+            <param name="seconddata" value="merge/second.ffdata"/>
+            <output name="index" file="merge/result.ffindex" />
+            <output name="database" file="merge/result.ffdata" />
         </test>
     </tests>
     <help><![CDATA[

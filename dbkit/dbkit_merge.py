@@ -4,10 +4,10 @@ from os import system
 from os.path import getsize
 
 
-def createFile(self, sourceData, start, size, outputName):
+def createFile(sourceData, start, size, outputName):
     with open(sourceData) as file:
-        file.seek(start)
-        content = file.read(size)
+        file.seek(int(start))
+        content = file.read(int(size))
         outputFile = open(outputName, "w")
         outputFile.write(content)
         outputFile.close()
@@ -16,15 +16,15 @@ def createFile(self, sourceData, start, size, outputName):
 def main(args):
     logFile = open(args.log, "w")
     outIndex = args.outindex
-    outData = args.outData
+    outData = args.outdata
     if getsize(args.firstindex) > getsize(args.secondindex):
         firstIndex = args.firstindex
-        firstData = args.firstData
+        firstData = args.firstdata
         secondIndex = args.secondindex
         secondData = args.seconddata
     else:
         firstIndex = args.secondindex
-        firstData = args.secondData
+        firstData = args.seconddata
         secondIndex = args.firstindex
         secondData = args.firstdata
     system("cp %s %s" % (firstIndex, outIndex))
@@ -32,12 +32,15 @@ def main(args):
     firstEntries = set()
     with open(firstIndex, "r") as f:
         for line in f:
-            name = line.split[0]
+            name = line.split()[0]
             firstEntries.add(name)
+    logFile.write("Detected %s entries.\n" % len(firstEntries))
     secondEntries = dict()
     with open(secondIndex, "r") as f:
         for line in f:
             lineSplit = line.split()
+            if len(lineSplit) < 3:
+                raise Exception("Invalid Index entry found: %s." % line)
             name = lineSplit[0]
             start = lineSplit[1]
             size = lineSplit[2]
@@ -47,12 +50,14 @@ def main(args):
     for secondKey in secondEntries:
         if secondKey not in firstEntries:
             secondLocation = secondEntries[secondKey]
-            createFile(secondData, secondLocation["start"], secondLocation["size"], tempFile)
+            createFile(secondData, secondLocation[0], secondLocation[1], tempFile)
             currentSize = getsize(outData)
-            system("cat %s > %s" % (tempFile, outData))
-            system("cat '%s\t%s\n' > %s" % (currentSize, secondLocation["size"], outIndex))
+            system("cat %s >> %s" % (tempFile, outData))
+            system("echo '%s\t%s\t%s' >> %s" % (secondKey, currentSize, secondLocation[1], outIndex))
             count = count + 1
-    logFile.write("Merged %s entries." % count)    
+        else:
+            logFile.write("Skipping existing entry %s.\n" % secondKey)
+    logFile.write("Added %s entries.\n" % count)
     logFile.close()
 
 

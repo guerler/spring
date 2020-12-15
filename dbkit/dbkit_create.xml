@@ -61,8 +61,8 @@
                 <param name="idcase" value="lower" />
             </conditional>
             <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
-            <output name="index" file="create/index.ffindex" />
-            <output name="database" file="create/data.ffdata" />
+            <output name="index" file="create/first.ffindex" />
+            <output name="database" file="create/first.ffdata" />
         </test>
         <test>
             <param name="input" value="create/sequences.tabular" />
