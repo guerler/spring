@@ -160,7 +160,7 @@ def createModel(args):
                 print("  Interaction: %5.2f" % energy)
                 clashes = interfaceEnergy.getClashes(coreMolecule, partnerMolecule)
                 print("  ClashRatio : %5.2f" % clashes)
-                springScore = TMscore * args.wtm + energy * args.wenergy
+                springScore = TMscore + energy * args.wenergy
                 print("  SpringScore: %5.2f" % springScore)
                 if springScore > maxScore:
                     maxScore = springScore
