@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 import argparse
-from os import system
+from spring_package.Modeller import createModel
 
 
 def main(args):
@@ -19,7 +19,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Create a 3D model from HH-search results.')
+    parser = argparse.ArgumentParser(description='Create 3D models from HH-search results.')
     parser.add_argument('-p', '--pairs', help='Result table from min-Z evaluation', required=True)
     parser.add_argument('-hp', '--hhr_path', help='Path to HHR files', required=True)
     parser.add_argument('-op', '--output_path', help='Output directory', required=True)
