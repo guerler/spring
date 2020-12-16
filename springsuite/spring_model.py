@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
-from os import system
-from os.path import basename, isfile
+from os import system, mkdir
+from os.path import basename, isfile, isdir
 
 from spring_package.Alignment import Alignment
 from spring_package.DBKit import DBKit
@@ -112,8 +112,8 @@ def main(args):
     print("Sequence B: %s" % bName)
     aTop, aTemplates = getTemplates(args.a_hhr)
     bTop, bTemplates = getTemplates(args.b_hhr)
-    system("mkdir -p temp")
-    system("rm -f temp/*.*")
+    if not isdir("temp"):
+        mkdir("temp")
     outputName = args.output
     pdbDatabase = DBKit(args.index, args.database)
     crossReference = getCrossReference(args.cross)
@@ -136,7 +136,6 @@ def main(args):
         print("Evaluating chain %s and %s..." % (aTemplate, bTemplate))
         biomolFound = False
         for biomolNumber in range(len(templateMolecule.biomol.keys())):
-            system("rm -f temp/template_*.pdb")
             if biomolNumber == 0:
                 bioMolecule = templateMolecule
             else:

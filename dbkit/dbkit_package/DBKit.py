@@ -1,3 +1,6 @@
+from os.path import isfile, getsize
+
+
 class DBKit:
     def __init__(self, indexFile, databaseFile):
         self.databaseFile = databaseFile
@@ -30,3 +33,26 @@ class DBKit:
 
     def getIndex(self):
         return self.index
+
+
+def writeEntry(identifier, fileName, outputIndex, outputDatabase):
+    if isfile(outputDatabase):
+        currentSize = getsize(outputDatabase)
+    else:
+        currentSize = 0
+    if isfile(fileName):
+        entrySize = getsize(fileName)
+    else:
+        entrySize = 0
+    if entrySize > 0:
+        outputIndexFile = open(outputIndex, "a+")
+        outputIndexFile.write("%s\t%s\t%s\n" % (identifier, currentSize, entrySize))
+        tempFile = open(fileName, "r")
+        databaseFile = open(outputDatabase, "a+")
+        databaseFile.write(tempFile.read())
+        databaseFile.close()
+        tempFile.close()
+        outputIndexFile.close()
+        return True
+    else:
+        return False

@@ -1,7 +1,10 @@
 #! /usr/bin/env python3
 import argparse
-from os import system
+from os import remove
 from os.path import isfile, getsize
+import wget
+
+from dbkit_package.DBKit import writeEntry
 
 
 def getIdentifiers(args):
@@ -28,25 +31,21 @@ def main(args):
     logFile.write("Found %s entries.\n" % len(entries))
     outputIndex = args.index
     outputDatabase = args.database
-    system("rm -f %s" % outputDatabase)
-    indexFile = open(outputIndex, 'w')
-    start = 0
+    if isfile(outputDatabase):
+        remove(outputDatabase)
     for entryId in entries:
         logFile.write("Loading %s.\n" % entryId)
         if args.url:
-            fileName = "temp.dat"
-            system("wget -q -O %s %s%s" % (fileName, args.url, entryId))
+            fileName = wget.download("%s%s" % (args.url, entryId))
         else:
             pathName = args.path.rstrip("/")
             fileName = "%s/%s" % (pathName, entryId)
         if isfile(fileName):
-            size = getsize(fileName)
-            if size == 0:
+            entrySize = getsize(fileName)
+            if entrySize == 0:
                 logFile.write("Entry `%s` not found.\n" % entryId)
             else:
-                indexFile.write("%s\t%d\t%d\n" % (entryId, start, size))
-                start = start + size
-                system("cat %s >> %s" % (fileName, outputDatabase))
+                writeEntry(entryId, fileName, outputIndex, outputDatabase)
         else:
             logFile.write("Content not found: %s.\n" % fileName)
         logFile.flush()

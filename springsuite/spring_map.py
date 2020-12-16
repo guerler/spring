@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
-from os import system
-from os.path import isfile
+from os import mkdir, system
+from os.path import isfile, isdir
 
 from spring_package.DBKit import DBKit
 from spring_package.Molecule import Molecule
@@ -35,7 +35,9 @@ def findMatch(identifier, templates, databaseFile, pdbDatabase):
     fastaFile = "temp/%s/%s.fasta" % (resultSub, identifier)
     resultFile = "%s.result" % fastaFile
     if not isfile(resultFile):
-        system("mkdir -p temp/%s" % resultSub)
+        resultDir = "temp/%s" % resultSub
+        if not isdir(resultDir):
+            mkdir(resultDir)
         pdbFile, pdbChain = getPDB(identifier, pdbDatabase)
         mol = Molecule(pdbFile)
         seq = mol.getSequence(pdbChain)

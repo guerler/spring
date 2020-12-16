@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import argparse
-from os import system
+from os import mkdir
+from os.path import isdir
 
 from spring_package.DBKit import DBKit
 from spring_package.Molecule import Molecule
@@ -9,7 +10,8 @@ from spring_package.Utilities import getName
 
 def main(args):
     logFile = open(args.log, "w")
-    system("mkdir -p temp")
+    if not isdir("temp"):
+        mkdir("temp")
     pdbCount = 0
     partnerList = set()
     entries = set()

@@ -1,5 +1,8 @@
 <tool id="dbkit_create" name="DBKit Create" version="0.1.1" python_template_version="3.5" license="MIT">
-    <description>database generator</description>
+    <description>database</description>
+     <requirements>
+        <requirement type="package" version="3.2">python-wget</requirement>
+    </requirements>
     <command detect_errors="exit_code"><![CDATA[
         #if str($source.type) == "false":
             mkdir -p inputs &&
