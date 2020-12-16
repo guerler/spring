@@ -1,0 +1,28 @@
+<tool id="dbkit_extract" name="DBKit Extract" version="0.1.1" python_template_version="3.5" license="MIT">
+    <description>entries</description>
+    <command detect_errors="exit_code"><![CDATA[
+        python3 '$__tool_directory__/dbkit_extract.py' -l '$list' -d '$database' -i '$index' -oi '$outindex' -od '$outdata' -g '$logfile'
+    ]]></command>
+    <inputs>
+        <param format="tabular" name="list" type="data" label="List of entries" help="Select a tabular file containing the entries to be extracted."/>    
+        <param format="ffindex" name="index" type="data" label="Database Index" help="Select the index file of the database (ffindex)."/>    
+        <param format="ffdata" name="database" type="data" label="Database Content" help="Select the data file of the database (ffdata)."/>
+    </inputs>
+    <outputs>
+        <data format="ffindex" name="outindex" label="DBKit Extracted Index" />
+        <data format="ffdata" name="outdata" label="DBKit Extraced Database" />
+        <data format="txt" name="logfile" label="DBKit Extraced Log" />
+    </outputs>
+    <tests>
+        <test> 
+            <param name="list" value="create/pdb.tabular" />
+            <param name="index" value="merge/result.ffindex" />
+            <param name="database" value="merge/result.ffdata" />
+            <output name="outindex" file="merge/second.ffindex" />
+            <output name="outdatabase" file="merge/second.ffdata" />
+        </test>
+    </tests>
+    <help><![CDATA[
+This database creation tool merges two pairs of ffindex/ffdata entries into a single ffindex/ffdata pair.
+    ]]></help>
+</tool>

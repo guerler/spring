@@ -3,14 +3,7 @@ import argparse
 from os import system
 from os.path import getsize
 
-
-def createFile(sourceData, start, size, outputName):
-    with open(sourceData) as file:
-        file.seek(int(start))
-        content = file.read(int(size))
-        outputFile = open(outputName, "w")
-        outputFile.write(content)
-        outputFile.close()
+from dbkit_package.DBKit import DBKit
 
 
 def main(args):
@@ -35,25 +28,21 @@ def main(args):
             name = line.split()[0]
             firstEntries.add(name)
     logFile.write("Detected %s entries.\n" % len(firstEntries))
-    secondEntries = dict()
+    secondEntries = list()
     with open(secondIndex, "r") as f:
         for line in f:
-            lineSplit = line.split()
-            if len(lineSplit) < 3:
-                raise Exception("Invalid Index entry found: %s." % line)
-            name = lineSplit[0]
-            start = lineSplit[1]
-            size = lineSplit[2]
-            secondEntries[name] = [start, size]
+            name = line.split()[0]
+            secondEntries.append(name)
     tempFile = "temp.dat"
     count = 0
+    dbkit = DBKit(secondIndex, secondData)
     for secondKey in secondEntries:
         if secondKey not in firstEntries:
-            secondLocation = secondEntries[secondKey]
-            createFile(secondData, secondLocation[0], secondLocation[1], tempFile)
+            dbkit.createFile(secondKey, tempFile)
+            entrySize = getsize(tempFile)
             currentSize = getsize(outData)
             system("cat %s >> %s" % (tempFile, outData))
-            system("echo '%s\t%s\t%s' >> %s" % (secondKey, currentSize, secondLocation[1], outIndex))
+            system("echo '%s\t%s\t%s' >> %s" % (secondKey, currentSize, entrySize, outIndex))
             count = count + 1
         else:
             logFile.write("Skipping existing entry %s.\n" % secondKey)
