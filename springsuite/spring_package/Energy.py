@@ -1,4 +1,5 @@
 import math
+from os.path import dirname, realpath
 
 NTYPE = 21
 NDIST = 20
@@ -8,7 +9,8 @@ NSCALE = 2.0
 class Energy:
     def __init__(self):
         self.dfire = list()
-        with open("spring_package/dfire/dfire.txt") as file:
+        dirPath = dirname(realpath(__file__))
+        with open("%s/dfire/dfire.txt" % dirPath) as file:
             for line in file:
                 self.dfire.append(float(line))
 
