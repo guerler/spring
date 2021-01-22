@@ -21,7 +21,7 @@ def main(args):
                 entries.add(entryB)
     print("Found %s new entries." % len(entries))
     with open("pdb_duplicates.log", "w") as file:
-        for entry in entries:
+        for entry in sorted(entries):
             file.write("%s\n" % entry)
     file.close()
 
