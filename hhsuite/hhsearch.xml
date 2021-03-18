@@ -1,43 +1,123 @@
-<tool id="hhsearch" name="HHsearch" version="0.1.0" python_template_version="3.5">
+<tool id="hhsearch" name="HHsearch" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="20.01">
     <description>detecting remote homologues of proteins</description>
+    <macros>
+        <token name="@TOOL_VERSION@">3.2.0</token>
+        <token name="@VERSION_SUFFIX@">0</token>
+        <xml name="ffindex_single_inputs">
+            <param name="ffdata" type="data" format="ffdata" label="PDB Database" help="Database Data file." />
+            <param name="ffindex" type="data" format="ffindex" label="PDB Database Index" help="Database Index file." />
+        </xml>
+    </macros>
     <requirements>
-        <requirement type="package" version="3.2.0">hhsuite</requirement>
+        <requirement type="package" version="@TOOL_VERSION@">hhsuite</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        link '$hhm_ffdata' hhdb_hhm.ffdata &&
-        link '$hhm_ffindex' hhdb_hhm.ffindex &&
-        link '$cs219_ffdata' hhdb_cs219.ffdata &&
-        link '$cs219_ffindex' hhdb_cs219.ffindex &&
-        $method -e '$e' -i '$input' -d hhdb -o '$output'
-    ]]></command>
+        #if $db_source.db_source_selector == 'indexed':
+            ln -s '${db_source.ffindex.fields.path}.ffdata' hhdb_hhm.ffdata &&
+            ln -s '${db_source.ffindex.fields.path}.ffindex' hhdb_hhm.ffindex &&
+        #else
+            ln -s '$db_source.ffdata' hhdb_hhm.ffdata &&
+            ln -s '$db_source.ffindex' hhdb_hhm.ffindex &&
+        #end if
+
+        #if $db_source_cs219.db_source_selector == 'indexed':
+            ln -s '${db_source_cs219.ffindex.fields.path}.ffdata' hhdb_cs219.ffdata &&
+            ln -s '${db_source_cs219.ffindex.fields.path}.ffindex' hhdb_cs219.ffindex &&
+        #else
+            ln -s '$db_source_cs219.ffdata' hhdb_cs219.ffdata &&
+            ln -s '$db_source_cs219.ffindex' hhdb_cs219.ffindex &&
+        #end if
+
+        $method
+        -cpu \${GALAXY_SLOTS:-1}
+        -e '$e'
+        -i '$i'
+        -d hhdb
+        -o '$output'
+    ]]>    </command>
     <inputs>
-        <param format="data" name="input" type="data" label="Query Sequence" help="Single sequence or multiple sequence alignment (MSA)
-                in a3m, a2m, or FASTA format, or HMM in hhm format. (-i)"/>
-        <param format="txt" name="hhm_ffindex" type="data" label="HHM Index file" help="Database file ending with 'hhm.ffindex'."/>
-        <param format="data" name="hhm_ffdata" type="data" label="HHM Data file" help="Database file ending with 'hhm.ffdata'."/>
-        <param format="txt" name="cs219_ffindex" type="data" label="cs219 Index file" help="Database file ending with 'cs219.ffindex'."/>
-        <param format="data" name="cs219_ffdata" type="data" label="cs219 Data file" help="Database file ending with 'cs219.ffdata'."/>
+        <param argument="--i" type="data" format="fasta,hmm3" label="Query Sequence" help="Single sequence or multiple sequence alignment (MSA)
+                in FASTA format, or HMM in hhm3 format." />
         <param name="method" type="select" display="radio" label="Search Method" help="Select a search method. See help below for more information.">
             <option value="hhsearch" selected="true">HHsearch</option>
             <option value="hhblits">HHblits</option>
         </param>
-        <param name="e" type="float" label="E-value cutoff for inclusion in result alignment. (-e)" value="0.001" min="0" max="1"/>
+        <conditional name="db_source">
+            <param name="db_source_selector" type="select" label="Custom or built-in HHM index" help="Built-ins have been indexed using ffindex">
+                <option value="indexed" selected="true">Use a built-in index</option>
+                <option value="history">Use a HHM index from history</option>
+            </param>
+            <when value="indexed">
+                <param name="ffindex" type="select" label="Select ffindex" help="">
+                    <options from_data_table="ffindex_indices">
+                        <filter type="sort_by" column="0" />
+                        <filter type="static_value" column="3" value="hhm" />
+                        <validator type="no_options" message="No indices are available" />
+                    </options>
+                </param>
+            </when>
+            <when value="history">
+                <expand macro="ffindex_single_inputs" />
+            </when>
+        </conditional>
+
+        <conditional name="db_source_cs219">
+            <param name="db_source_selector" type="select" label="Custom or built-in cs219 index" help="Built-ins have been indexed using ffindex">
+                <option value="indexed" selected="true">Use a built-in index</option>
+                <option value="history">Use a cs219 index from history</option>
+            </param>
+            <when value="indexed">
+                <param name="ffindex" type="select" label="Select ffindex" help="">
+                    <options from_data_table="ffindex_indices">
+                        <filter type="sort_by" column="0" />
+                        <filter type="static_value" column="3" value="cs219" />
+                        <validator type="no_options" message="No indices are available" />
+                    </options>
+                </param>
+            </when>
+            <when value="history">
+                <expand macro="ffindex_single_inputs" />
+            </when>
+        </conditional>
+        <param name="e" type="float" value="0.001" min="0" max="1" label="E-value cutoff for inclusion in result alignment. (-e)" />
     </inputs>
     <outputs>
         <data format="txt" name="output" />
     </outputs>
     <tests>
         <test>
-            <param name="method" value="hhblits"/>
-            <param name="input" value="6VYB_A.fasta"/>
-            <param name="hhm_ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_hhm.ffindex"/>
-            <param name="hhm_ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_hhm.ffdata"/>
-            <param name="cs219_ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffindex"/>
-            <param name="cs219_ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffdata"/>
-            <output name="output" file="6VYB_A.hhr" lines_diff="4"/>
+            <param name="method" value="hhblits" />
+            <param name="i" value="6VYB_A.fasta" />
+            <conditional name="db_source">
+                <param name="db_source_selector" value="history" />
+                <param name="ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_hhm.ffindex" />
+                <param name="ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_hhm.ffdata" />
+            </conditional>
+            <conditional name="db_source_cs219">
+                <param name="db_source_selector" value="history" />
+                <param name="ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffindex" />
+                <param name="ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffdata" />
+            </conditional>
+            <output name="output" file="6VYB_A.hhr" lines_diff="4" />
+        </test>
+        <test>
+            <param name="method" value="hhblits" />
+            <param name="i" value="6VYB_A.fasta" />
+            <conditional name="db_source">
+                <param name="db_source_selector" value="indexed" />
+                <param name="ffindex" value="hmm_dbcan" />
+            </conditional>
+            <conditional name="db_source_cs219">
+                <param name="db_source_selector" value="indexed" />
+                <param name="ffindex" value="cs219_dbcan" />
+            </conditional>
+            <output name="output" file="6VYB_A.hhr" lines_diff="4" />
         </test>
     </tests>
     <help><![CDATA[
+
+**What it does**
+
 HHsearch aligns a profile HMM against a database of target profile HMMs. The search first aligns the
 query HMM with each of the target HMMs using the Viterbi dynamic programming algorithm, which finds the
 alignment with the maximum score. The E-value for the target HMM is calculated from the Viterbi score. 
@@ -51,16 +131,8 @@ Analogously to PSI-BLAST and HMMER3, such iterative searches can be used to buil
 Sequences from matches to profile HMMs below some E-value threshold (e.g. 10−3) are added to the query MSA for the next search iteration.
 
 Download databases from: http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/
-    ]]></help>
+    ]]>    </help>
     <citations>
-        <citation type="bibtex">
-@misc{githubhh-suite,
-  author = {Soeding, Johannes},
-  year = {2005},
-  title = {Protein homology detection by HMM-HMM comparison},
-  publisher = {Oxford University Press},
-  journal = {Bioinformatics},
-  url = {https://doi.org/10.1093/bioinformatics/bti125},
-}</citation>
+        <citation type="doi">10.1093/bioinformatics/bti125</citation>
     </citations>
 </tool>
