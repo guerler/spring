@@ -82,7 +82,7 @@
         <param name="e" type="float" value="0.001" min="0" max="1" label="E-value cutoff for inclusion in result alignment. (-e)" />
     </inputs>
     <outputs>
-        <data format="txt" name="output" />
+        <data format="hhr" name="output" />
     </outputs>
     <tests>
         <test>
@@ -98,7 +98,7 @@
                 <param name="ffindex" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffindex" />
                 <param name="ffdata" value="dbCAN-fam-V8/dbCAN-fam-V8_cs219.ffdata" />
             </conditional>
-            <output name="output" file="6VYB_A.hhr" lines_diff="4" />
+            <output name="output" file="6VYB_A.hhr" lines_diff="4" ftype="hhr" />
         </test>
         <test>
             <param name="method" value="hhblits" />
@@ -111,7 +111,7 @@
                 <param name="db_source_selector" value="indexed" />
                 <param name="ffindex" value="cs219_dbcan" />
             </conditional>
-            <output name="output" file="6VYB_A.hhr" lines_diff="4" />
+            <output name="output" file="6VYB_A.hhr" lines_diff="4" ftype="hhr" />
         </test>
     </tests>
     <help><![CDATA[
