@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import argparse
 
 from dbkit_package.DBKit import DBKit, writeEntry

@@ -1,10 +1,14 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import argparse
 from os import remove
-from os.path import isfile, getsize
-import wget
+from os.path import getsize, isfile
 
 from dbkit_package.DBKit import writeEntry
+
+try:
+    import wget
+except Exception:
+    wget = None
 
 
 def getIdentifiers(args):

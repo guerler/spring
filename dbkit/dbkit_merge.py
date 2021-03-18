@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import argparse
 from os.path import getsize
 from shutil import copyfile
@@ -49,8 +49,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='DBKit - Merge database pair.')
-    parser.add_argument('-fi', '--firstindex', help='First Index file', required=True)
-    parser.add_argument('-fd', '--firstdata', help='First Data file', required=True)
+    parser.add_argument('-i', '--firstindex', help='First Index file', required=True)
+    parser.add_argument('-d', '--firstdata', help='First Data file', required=True)
     parser.add_argument('-si', '--secondindex', help='Second Index file', required=True)
     parser.add_argument('-sd', '--seconddata', help='Second Data file', required=True)
     parser.add_argument('-oi', '--outputindex', help='Output Index file', required=True)

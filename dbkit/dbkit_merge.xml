@@ -1,30 +1,63 @@
-<tool id="dbkit_merge" name="DBKit Merge" version="0.1.1" python_template_version="3.5" license="MIT">
+<tool id="dbkit_merge" name="DBKit Merge" version="0.1.1" license="MIT" profile="20.01">
     <description>two databases</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
     <command detect_errors="exit_code"><![CDATA[
-        python3 '$__tool_directory__/dbkit_merge.py' -fi '$firstindex' -fd '$firstdata' -si '$secondindex' -sd '$seconddata' -oi '$outindex' -od '$outdata' -log '$logfile'
-    ]]></command>
+        python3 '$__tool_directory__/dbkit_merge.py'
+        @db_source@
+        @db_source2@
+        -oi '$outindex'
+        -od '$outdata'
+        -log '$logfile'
+    ]]>    </command>
     <inputs>
-        <param format="ffindex" name="firstindex" type="data" label="First Database Index" help="Select the index file of the first database (ffindex)."/>    
-        <param format="ffdata" name="firstdata" type="data" label="First Database Content" help="Select the data file of the first database (ffdata)."/>
-        <param format="ffindex" name="secondindex" type="data" label="Second Database Index" help="Select the index file of the second database (ffindex)."/>    
-        <param format="ffdata" name="seconddata" type="data" label="Second Database Content" help="Select the data file of the second database (ffdata)."/>
+        <expand macro="db_source" />
+        <expand macro="db_source2" />
+        <expand macro="logfile" />
     </inputs>
     <outputs>
-        <data format="ffindex" name="outindex" label="DBKit Merged Index"/>
-        <data format="ffdata" name="outdata" label="DBKit Merged Database" />
-        <data format="txt" name="logfile" label="DBKit Merged Log" />
+        <data name="outindex" format="ffindex" label="DBKit Merged Index" />
+        <data name="outdata" format="ffdata" label="DBKit Merged Database" />
+        <data format="txt" name="logfile" label="DBKit Merged Log">
+            <filter>logfile</filter>
+        </data>
     </outputs>
     <tests>
         <test>
-            <param name="firstindex" value="create/first.ffindex"/>    
-            <param name="firstdata" value="create/first.ffdata"/>
-            <param name="secondindex" value="merge/second.ffindex"/>    
-            <param name="seconddata" value="merge/second.ffdata"/>
-            <output name="index" file="merge/result.ffindex" />
-            <output name="database" file="merge/result.ffdata" />
+            <conditional name="db_source">
+                <param name="db_source_selector" value="history" />
+                <param name="ffindex" value="create/first.ffindex" />
+                <param name="ffdata" value="create/first.ffdata" />
+            </conditional>
+            <conditional name="db_source">
+                <param name="db_source_selector" value="history" />
+                <param name="ffindex" value="merge/second.ffindex" />
+                <param name="ffdata" value="merge/second.ffdata" />
+            </conditional>
+            <output name="outindex" file="merge/result.ffindex" />
+            <output name="outdata" file="merge/result.ffdata" />
+        </test>
+        <test>
+            <conditional name="db_source">
+                <param name="db_source_selector" value="indexed" />
+                <param name="ffindex" value="first" />
+            </conditional>
+            <conditional name="db_source">
+                <param name="db_source_selector" value="indexed" />
+                <param name="ffindex" value="second" />
+            </conditional>
+            <output name="outindex" file="merge/result.ffindex" />
+            <output name="outdata" file="merge/result.ffdata" />
         </test>
     </tests>
     <help><![CDATA[
+
+**What it does**
+
 This database creation tool merges two pairs of ffindex/ffdata entries into a single ffindex/ffdata pair.
-    ]]></help>
+
+    ]]>    </help>
+    <expand macro="citations" />
 </tool>
