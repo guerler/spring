@@ -1,37 +1,35 @@
-<tool id="dbkit_create" name="DBKit Create" version="0.1.1" python_template_version="3.5" license="MIT">
+<tool id="dbkit_create" name="DBKit Create" version="0.1.1" license="MIT" profile="20.01">
     <description>database</description>
-     <requirements>
-        <requirement type="package" version="3.2">python-wget</requirement>
-    </requirements>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
     <command detect_errors="exit_code"><![CDATA[
-        #if str($source.type) == "false":
-            mkdir -p inputs &&
-            #for item in $source.inputs
-                cp '${str(item)}' 'inputs/${item.element_identifier}' &&
-            #end for
-        #end if
-        python3 '$__tool_directory__/dbkit_create.py' -l '$input' -u '$source.url' -p 'inputs' -o '$index' -d '$database' -g '$log' -il '$advanced.idlength' -ic '$advanced.idcase' -ie '$advanced.idextension'
-    ]]></command>
+        mkdir -p inputs &&
+        #for item in $inputs
+            ln -s '${item}' 'inputs/${item.element_identifier}' &&
+        #end for
+        python3 '$__tool_directory__/dbkit_create.py'
+        -l '$input'
+        -p 'inputs'
+        -o '$index'
+        -d '$database'
+        -g '$log'
+        -il '$advanced.idlength'
+        -ic '$advanced.idcase'
+        -ie '$advanced.idextension'
+    ]]>    </command>
     <inputs>
-        <param format="tabular" name="input" type="data" label="List of Identifiers" help="Specify a list containing all entry identifiers to be downloaded."/>    
-        <conditional name="source">
-            <param name="type" type="boolean" label="Download from URL"/>
-            <when value="true">
-                <param name="url" type="text" label="URL to External Source" help="Specify the URL to the external database source.">
-                    <option value="https://files.rcsb.org/download/">https://files.rcsb.org/download/</option>
-                </param>
-                <param name="inputs" type="hidden"/>
-            </when>
-            <when value="false">
-                <param name="url" type="hidden"/>
-                <param name="inputs" type="data_collection" collection_type="list" label="Collection" help="Specify a collection containing the datasets."/>
-            </when>
-        </conditional>
+        <param name="input" type="data" format="tabular" label="List of Identifiers" help="Specify a list containing all entry identifiers to be downloaded." />
+        <param name="inputs" type="data" format="txt" multiple="true" label="Specify your datasets" help="The datasets that you want to convert into an ffindex." />
         <conditional name="advanced">
-            <param name="type" type="boolean" label="Identifier Formatting Options" />
-            <when value="true">        
-                <param name="idextension" type="text" label="Identifier Extensions" help="Specify the extension of the identifier (optional)."/>
-                <param name="idlength" type="integer" label="Identifier Length" value="0" min="0" max="20" help="Specify the length of the identifier (disable=0)."/>
+            <param name="type" type="select" label="Identifier Formatting Options" help="">
+                <option value="true">Yes, I want to format my identifiers</option>
+                <option value="false">No formatting</option>
+            </param>
+            <when value="true">
+                <param name="idextension" type="text" optional="true" label="Identifier Extensions" help="Specify the extension of the identifier" />
+                <param name="idlength" type="integer" label="Identifier Length" value="0" min="0" max="20" help="Specify the length of the identifier (disable=0)." />
                 <param name="idcase" type="select" label="Identifier Case" display="radio" help="Choose to format the identifier by changing its case (optional).">
                     <option value="">Unformatted</option>
                     <option value="lower">Lower</option>
@@ -44,51 +42,32 @@
                 <param name="idcase" type="hidden" value="" />
             </when>
         </conditional>
+        <expand macro="logfile" />
     </inputs>
     <outputs>
-        <data format="ffindex" name="index" label="DBKit Index"/>
-        <data format="ffdata" name="database" label="DBKit Database" />
-        <data format="txt" name="log" label="DBKit Log" />
+        <data name="index" format="ffindex" label="DBKit Index" />
+        <data name="database" format="ffdata" label="DBKit Database" />
+        <data format="txt" name="log" label="DBKit Log">
+            <filter>logfile</filter>
+        </data>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="create/chains.tabular" />
-            <conditional name="source">
-                <param name="type" value="true"/>
-                <param name="url" value="https://files.rcsb.org/download/" />
-            </conditional>
-            <conditional name="advanced">
-                <param name="type" value="true" />
-                <param name="idextension" value="pdb" />
-                <param name="idlength" value="4" />
-                <param name="idcase" value="lower" />
-            </conditional>
-            <param format="tabular" name="database" value="roc/biogrid_fret.txt" />
-            <output name="index" file="create/first.ffindex" />
-            <output name="database" file="create/first.ffdata" />
-        </test>
-        <test>
-            <param name="input" value="create/sequences.tabular" />
-            <conditional name="source">
-                <param name="type" value="false"/>
-                <param name="inputs">
-                    <collection type="list">
-                        <element name="NP_000282.1.hhr" value="create/NP_000282.1.hhr" />
-                        <element name="NP_000290.2.hhr" value="create/NP_000290.2.hhr" />
-                        <element name="NP_000548.2.hhr" value="create/NP_000548.2.hhr" />
-                        <element name="NP_000836.2.hhr" value="create/NP_000836.2.hhr" />
-                    </collection>
-                </param>
-            </conditional>
+            <param name="input" value="create/sequences.tabular" ftype="tabular" />
+            <param name="inputs" value="create/NP_000282.1.hhr,create/NP_000290.2.hhr,create/NP_000548.2.hhr,create/NP_000836.2.hhr" />
             <conditional name="advanced">
                 <param name="type" value="false" />
             </conditional>
-            <output name="index" file="create/sequences.ffindex" />
-            <output name="database" file="create/sequences.ffdata" />
+            <output name="index" file="create/sequences.ffindex" ftype="ffindex" />
+            <output name="database" file="create/sequences.ffdata" ftype="ffdata" />
         </test>
     </tests>
     <help><![CDATA[
+
+**What it does**
+
 This database creation tool downloads entries from an external resource and creates a datasets with all its contents. Additionally an index file is
 generated indicating the start and size of every entry within the database file. The tool can also operate on collections.
-    ]]></help>
+    ]]>    </help>
+    <expand macro="citations" />
 </tool>

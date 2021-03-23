@@ -1,4 +1,4 @@
-from os.path import isfile, getsize
+from os.path import getsize, isfile
 
 
 class DBKit:
